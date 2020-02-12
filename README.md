@@ -13,7 +13,7 @@ MiniProject 2: COMP 551 (001/002), Applied Machine Learning, Winter 2020, McGill
 7. [Rules specific to the Kaggle competition](#rules-specific-to-the-kaggle-competition)
 8. [How to run the Python program](#how-to-run-the-python-program)
 
-[Assignment description (PDF)](https://github.com/ramonfigueiredopessoa/comp551-2020-p1-logistic_regression_and_naive_bayes/blob/master/assignment/p1.pdf)
+[Assignment description (PDF) (COMP551 P2 Fall 2019)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_kaggle_reddit_classification/blob/master/assignment/2019-fall-miniproject2_spec.pdf)
 
 # Preamble
 
