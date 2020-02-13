@@ -131,21 +131,19 @@ You can discuss methods and technical issues with members of other teams, but yo
 ```sh
 cd code/
 
-```#!/bin/sh
 virtualenv venv -p python3
-```
-
-or (if you are using Mac)
-
-```#!/bin/sh
-python3 -m venv env  
-```
 
 source venv/bin/activate
 
 pip install -r requirements.txt
 
 python main.py
+```
+
+If you are using Mac, replace ```virtualenv venv -p python3``` by
+
+```#!/bin/sh
+python3 -m venv env  
 ```
 
 **Note**: To desactivate the virtual environment
