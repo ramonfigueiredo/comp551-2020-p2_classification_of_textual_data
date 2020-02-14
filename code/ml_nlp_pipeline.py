@@ -47,9 +47,9 @@ if __name__ == '__main__':
         # filter out stop wordsstop_words = set(stopwords.words('english'))
         stop_words = set(stopwords.words('english'))
         words = [w for w in words if not w in stop_words]
-        print(words[:100])
+        comment = ' '.join(words)
 
-        line = str(id_and_comment[0]+1) + ", " + '\"' + str(id_and_comment[1]).replace(',', ' ').replace('\n', '') + "\", " + str(target_name) + "\n"
+        line = str(id_and_comment[0]+1) + ", " + '\"' + comment + "\", " + str(target_name) + "\n"
         print(line)
         f.write(line)
 
