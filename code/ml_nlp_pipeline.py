@@ -1,20 +1,33 @@
-import time
 import os
 import string
-import nltk
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
+import time
+from enum import Enum, unique
 
+import nltk
+import pandas as pd
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 from sklearn.datasets import fetch_20newsgroups
 
 nltk.download('punkt')
 nltk.download('stopwords')
 
-if __name__ == '__main__':
-    start = time.time()
+@unique
+class Datasets(Enum):
+    NEWS_GROUPS = 1
+    NEWS_GROUPS_ADAPTED = 2
 
-    newsgroups = fetch_20newsgroups(subset='all')
 
+def load_dataset(path, header='infer', sep=',', x_col_indices=slice(-1), y_col_indices=-1):
+    dataset = pd.read_csv(path, header=header, sep=sep)
+
+    X = dataset.iloc[:, x_col_indices].values
+    y = dataset.iloc[:, y_col_indices].values
+
+    return X, y
+
+
+def create_csv_file(newsgroups):
     print('\nlen(newsgroups.data)', len(newsgroups.data))
     print('\nlist(newsgroups.data)[1:10]', list(newsgroups.data)[1:10])
     print('\nnewsgroups.target_names', newsgroups.target_names)
@@ -22,10 +35,10 @@ if __name__ == '__main__':
     # Creating the new dataset
     # reddit_train.csv - Contains the training set. The data contains three fields: id, comments and subreddits
     # reddit_test.csv - Contains the training set.The data contains two fields: id and comments
+
     database_path = os.path.join(os.getcwd(), 'datasets/data/reddit-comments')
     if not os.path.exists(database_path):
         os.mkdir(database_path)
-
     f = open(os.path.join(database_path, "dataset.csv"), "w+")
     print('\n\nNew dataset\n')
     for id_and_comment, target_name in zip(enumerate(newsgroups.data), newsgroups.target_names):
@@ -49,16 +62,35 @@ if __name__ == '__main__':
         words = [w for w in words if not w in stop_words]
         comment = ' '.join(words)
 
-        line = str(id_and_comment[0]+1) + ", " + '\"' + comment + "\", " + str(target_name) + "\n"
+        line = str(id_and_comment[0] + 1) + ", " + '\"' + comment + "\", " + str(target_name) + "\n"
         print(line)
         f.write(line)
-
     f.close()
 
-    # Pre-processing
 
+if __name__ == '__main__':
+
+    start = time.time()
+
+    newsgroups = fetch_20newsgroups(subset='all')
+
+    dataset = Datasets.NEWS_GROUPS
+    # dataset = Datasets.NEWS_GROUPS_ADAPTED
+
+    if dataset == Datasets.NEWS_GROUPS_ADAPTED:
+        # Create csv file using the Scikit Learn fetch_20newsgroups dataset
+        create_csv_file(newsgroups)
+
+        # Read csv file
+        X, y = load_dataset(path='datasets/data/reddit-comments/dataset.csv', header=None)
+
+    # Pre-processing
     from sklearn.model_selection import train_test_split
-    X_train, X_test, y_train, y_test = train_test_split(newsgroups.data, newsgroups.target, train_size=0.8, test_size=0.2)
+
+    if dataset == Datasets.NEWS_GROUPS_ADAPTED:
+        X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.8, test_size=0.2)
+    else:
+        X_train, X_test, y_train, y_test = train_test_split(newsgroups.data, newsgroups.target, train_size=0.8, test_size=0.2)
 
     print('\nlen(X_train)', len(X_train))
     print('\nlen(X_test)', len(X_test))
@@ -73,9 +105,12 @@ if __name__ == '__main__':
     vectorizer = CountVectorizer()
     print(vectorizer)
 
-    vectors_train = vectorizer.fit_transform(X_train)
-
-    vectors_test = vectorizer.transform(X_test)
+    if dataset == Datasets.NEWS_GROUPS_ADAPTED:
+        vectors_train = vectorizer.fit_transform(X_train[:, 1])
+        vectors_test = vectorizer.transform(X_test[:, 1])
+    else:
+        vectors_train = vectorizer.fit_transform(X_train)
+        vectors_test = vectorizer.transform(X_test)
 
     print('\nvectors_train.shape', vectors_train.shape)
 
@@ -85,8 +120,13 @@ if __name__ == '__main__':
     from sklearn.feature_extraction.text import TfidfVectorizer
 
     tf_idf_vectorizer = TfidfVectorizer()
-    vectors_train_idf = tf_idf_vectorizer.fit_transform(X_train)
-    vectors_test_idf = vectorizer.transform(X_test)
+    if dataset == Datasets.NEWS_GROUPS_ADAPTED:
+        vectors_train_idf = tf_idf_vectorizer.fit_transform(X_train[:, 1])
+        vectors_test_idf = vectorizer.transform(X_test[:, 1])
+    else:
+        vectors_train_idf = tf_idf_vectorizer.fit_transform(X_train)
+        vectors_test_idf = vectorizer.transform(X_test)
+
     print('\nX_train[1:2]', X_train[1:2])
 
     print('\nvectors_train_idf.shape', vectors_train_idf.shape)
@@ -128,12 +168,15 @@ if __name__ == '__main__':
 
     print(metrics.classification_report(y_test, y_pred))
 
+    n_folds = 5
+    print('n_folds', n_folds)
+
     print('\nCross Validation')
     from sklearn.model_selection import cross_val_score
     from sklearn.naive_bayes import MultinomialNB
     clf = MultinomialNB(alpha=.01)
     print(clf)
-    scores = cross_val_score(clf, vectors_train, y_train, cv=5)
+    scores = cross_val_score(clf, vectors_train, y_train, cv=n_folds)
     print('scores', scores)
 
     print('Grid Search')
@@ -142,9 +185,6 @@ if __name__ == '__main__':
 
     tuned_parameters = [{'alpha': [0.01, 1, 0.5, 0.2, 0.1]}]
     print('tuned_parameters', tuned_parameters)
-
-    n_folds = 5
-    print('n_folds', n_folds )
 
     clf = MultinomialNB()
     print(clf)
