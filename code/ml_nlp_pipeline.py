@@ -1,6 +1,14 @@
 import time
+import os
+import string
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
 
 from sklearn.datasets import fetch_20newsgroups
+
+nltk.download('punkt')
+nltk.download('stopwords')
 
 if __name__ == '__main__':
     start = time.time()
@@ -10,6 +18,42 @@ if __name__ == '__main__':
     print('\nlen(newsgroups.data)', len(newsgroups.data))
     print('\nlist(newsgroups.data)[1:10]', list(newsgroups.data)[1:10])
     print('\nnewsgroups.target_names', newsgroups.target_names)
+
+    # Creating the new dataset
+    # reddit_train.csv - Contains the training set. The data contains three fields: id, comments and subreddits
+    # reddit_test.csv - Contains the training set.The data contains two fields: id and comments
+    database_path = os.path.join(os.getcwd(), 'datasets/data/reddit-comments')
+    if not os.path.exists(database_path):
+        os.mkdir(database_path)
+
+    f = open(os.path.join(database_path, "dataset.csv"), "w+")
+    print('\n\nNew dataset\n')
+    for id_and_comment, target_name in zip(enumerate(newsgroups.data), newsgroups.target_names):
+        comment = id_and_comment[1]
+
+        # split into words
+        tokens = word_tokenize(str(comment))
+
+        # convert to lower case
+        tokens = [w.lower() for w in tokens]
+
+        # remove punctuation from each word
+        table = str.maketrans('', '', string.punctuation)
+        stripped = [w.translate(table) for w in tokens]
+
+        # remove remaining tokens that are not alphabetic
+        words = [word for word in stripped if word.isalpha()]
+
+        # filter out stop wordsstop_words = set(stopwords.words('english'))
+        stop_words = set(stopwords.words('english'))
+        words = [w for w in words if not w in stop_words]
+        print(words[:100])
+
+        line = str(id_and_comment[0]+1) + ", " + '\"' + str(id_and_comment[1]).replace(',', ' ').replace('\n', '') + "\", " + str(target_name) + "\n"
+        print(line)
+        f.write(line)
+
+    f.close()
 
     # Pre-processing
 
