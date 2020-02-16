@@ -193,10 +193,11 @@ def cross_validation():
     scores = cross_val_score(clf, vectors_train, y_train, cv=n_folds)
     print('scores', scores)
     print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
-    print("MultinomialNB: It took {} seconds".format(time.time() - start))
+    print("Cross Validation: MultinomialNB. It took {} seconds".format(time.time() - start))
 
 
 def grid_search():
+    start = time.time()
     global clf, scores
     print('Grid Search')
     from sklearn.model_selection import GridSearchCV
@@ -208,9 +209,13 @@ def grid_search():
     clf = GridSearchCV(clf, tuned_parameters, cv=n_folds, refit=False)
     clf.fit(vectors_train, y_train)
     scores = clf.cv_results_['mean_test_score']
-    scores_std = clf.cv_results_['std_test_score']
     print('scores:', scores)
-    print('scores_std', scores_std)
+    print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+    best_accuracy = clf.best_score_
+    print("Grid Search: Best accuracy\n", best_accuracy)
+    best_parameters = clf.best_params_
+    print("Grid Search: Best parameters\n", best_parameters)
+    print("Grid Search: MultinomialNB. It took {} seconds".format(time.time() - start))
 
 
 if __name__ == '__main__':
