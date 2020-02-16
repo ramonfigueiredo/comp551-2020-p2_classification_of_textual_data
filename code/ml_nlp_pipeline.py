@@ -68,6 +68,151 @@ def create_csv_file(newsgroups):
     f.close()
 
 
+def cross_validation():
+
+    global n_folds, clf, scores
+    n_folds = 5
+    print('n_folds', n_folds)
+    print('\nCross Validation')
+    from sklearn.model_selection import cross_val_score
+
+    # Multiclass and multilabel algorithms
+    # https://scikit-learn.org/stable/modules/multiclass.html
+
+    '''
+    Below is a summary of the classifiers supported by scikit-learn grouped by strategy; you don’t need the meta-estimators in this class if you’re using one of these, unless you want custom multiclass behavior:
+    
+    Inherently multiclass:
+        
+        sklearn.naive_bayes.BernoulliNB
+        
+        sklearn.tree.DecisionTreeClassifier
+        
+        sklearn.tree.ExtraTreeClassifier
+        
+        sklearn.ensemble.ExtraTreesClassifier
+        
+        sklearn.naive_bayes.GaussianNB
+        
+        sklearn.neighbors.KNeighborsClassifier
+        
+        sklearn.semi_supervised.LabelPropagation
+        
+        sklearn.semi_supervised.LabelSpreading
+        
+        sklearn.discriminant_analysis.LinearDiscriminantAnalysis
+        
+        sklearn.svm.LinearSVC (setting multi_class=”crammer_singer”)
+        
+        sklearn.linear_model.LogisticRegression (setting multi_class=”multinomial”)
+        
+        sklearn.linear_model.LogisticRegressionCV (setting multi_class=”multinomial”)
+        
+        sklearn.neural_network.MLPClassifier
+        
+        sklearn.neighbors.NearestCentroid
+        
+        sklearn.discriminant_analysis.QuadraticDiscriminantAnalysis
+        
+        sklearn.neighbors.RadiusNeighborsClassifier
+        
+        sklearn.ensemble.RandomForestClassifier
+        
+        sklearn.linear_model.RidgeClassifier
+        
+        sklearn.linear_model.RidgeClassifierCV
+    
+    
+    Multiclass as One-Vs-One:
+
+        sklearn.svm.NuSVC
+        
+        sklearn.svm.SVC.
+        
+        sklearn.gaussian_process.GaussianProcessClassifier (setting multi_class = “one_vs_one”)
+    
+    
+    Multiclass as One-Vs-The-Rest:
+
+        sklearn.ensemble.GradientBoostingClassifier
+        
+        sklearn.gaussian_process.GaussianProcessClassifier (setting multi_class = “one_vs_rest”)
+        
+        sklearn.svm.LinearSVC (setting multi_class=”ovr”)
+        
+        sklearn.linear_model.LogisticRegression (setting multi_class=”ovr”)
+        
+        sklearn.linear_model.LogisticRegressionCV (setting multi_class=”ovr”)
+        
+        sklearn.linear_model.SGDClassifier
+        
+        sklearn.linear_model.Perceptron
+        
+        sklearn.linear_model.PassiveAggressiveClassifier
+
+
+    Support multilabel:
+        
+        sklearn.tree.DecisionTreeClassifier
+        
+        sklearn.tree.ExtraTreeClassifier
+        
+        sklearn.ensemble.ExtraTreesClassifier
+        
+        sklearn.neighbors.KNeighborsClassifier
+        
+        sklearn.neural_network.MLPClassifier
+        
+        sklearn.neighbors.RadiusNeighborsClassifier
+        
+        sklearn.ensemble.RandomForestClassifier
+        
+        sklearn.linear_model.RidgeClassifierCV
+
+
+    Support multiclass-multioutput:
+
+        sklearn.tree.DecisionTreeClassifier
+        
+        sklearn.tree.ExtraTreeClassifier
+        
+        sklearn.ensemble.ExtraTreesClassifier
+        
+        sklearn.neighbors.KNeighborsClassifier
+        
+        sklearn.neighbors.RadiusNeighborsClassifier
+        
+        sklearn.ensemble.RandomForestClassifier
+    '''
+
+    start = time.time()
+    print('\n\nMultinomialNB')
+    from sklearn.naive_bayes import MultinomialNB
+    clf = MultinomialNB(alpha=.01)
+    print(clf)
+    scores = cross_val_score(clf, vectors_train, y_train, cv=n_folds)
+    print('scores', scores)
+    print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+    print("MultinomialNB: It took {} seconds".format(time.time() - start))
+
+
+def grid_search():
+    global clf, scores
+    print('Grid Search')
+    from sklearn.model_selection import GridSearchCV
+    from sklearn.naive_bayes import MultinomialNB
+    tuned_parameters = [{'alpha': [0.01, 1, 0.5, 0.2, 0.1]}]
+    print('tuned_parameters', tuned_parameters)
+    clf = MultinomialNB()
+    print(clf)
+    clf = GridSearchCV(clf, tuned_parameters, cv=n_folds, refit=False)
+    clf.fit(vectors_train, y_train)
+    scores = clf.cv_results_['mean_test_score']
+    scores_std = clf.cv_results_['std_test_score']
+    print('scores:', scores)
+    print('scores_std', scores_std)
+
+
 if __name__ == '__main__':
 
     start = time.time()
@@ -100,10 +245,9 @@ if __name__ == '__main__':
     print('\nX_train[1]\n', X_train[1])
 
     # Transform text into vectors
-
     from sklearn.feature_extraction.text import CountVectorizer
     vectorizer = CountVectorizer()
-    print(vectorizer)
+    # print(vectorizer)
 
     if dataset == Datasets.NEWS_GROUPS_ADAPTED:
         vectors_train = vectorizer.fit_transform(X_train[:, 1])
@@ -142,7 +286,6 @@ if __name__ == '__main__':
     print('\nvectors_test_normalized', vectors_test_normalized)
 
     # Training
-
     from sklearn.linear_model import LogisticRegression
 
     clf = LogisticRegression()
@@ -168,32 +311,9 @@ if __name__ == '__main__':
 
     print(metrics.classification_report(y_test, y_pred))
 
-    n_folds = 5
-    print('n_folds', n_folds)
+    cross_validation()
 
-    print('\nCross Validation')
-    from sklearn.model_selection import cross_val_score
-    from sklearn.naive_bayes import MultinomialNB
-    clf = MultinomialNB(alpha=.01)
-    print(clf)
-    scores = cross_val_score(clf, vectors_train, y_train, cv=n_folds)
-    print('scores', scores)
-
-    print('Grid Search')
-    from sklearn.model_selection import GridSearchCV
-    from sklearn.naive_bayes import MultinomialNB
-
-    tuned_parameters = [{'alpha': [0.01, 1, 0.5, 0.2, 0.1]}]
-    print('tuned_parameters', tuned_parameters)
-
-    clf = MultinomialNB()
-    print(clf)
-    clf = GridSearchCV(clf, tuned_parameters, cv=n_folds, refit=False)
-    clf.fit(vectors_train, y_train)
-    scores = clf.cv_results_['mean_test_score']
-    scores_std = clf.cv_results_['std_test_score']
-    print('scores:', scores)
-    print('scores_std', scores_std)
+    grid_search()
 
     print('\n\nDONE!')
 
