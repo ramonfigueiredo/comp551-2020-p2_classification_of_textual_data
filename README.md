@@ -12,7 +12,7 @@ MiniProject 2: COMP 551 (001/002), Applied Machine Learning, Winter 2020, McGill
 6. [Evaluation](#evaluation)
 8. [How to run the Python program](#how-to-run-the-python-program)
 
-[Assignment description (PDF) (COMP551 P2 Winter 2020)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/assignment/p2.pdf)
+[Assignment description (PDF) (COMP551 P2 Winter 2020)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/assignment/P2.pdf)
 
 # General information
 
@@ -157,20 +157,6 @@ MiniProject 2: Classification of Textual Data. Authors: Ramon Figueiredo Pessoa,
 
 optional arguments:
   -h, --help            show this help message and exit
-  -c CLASSIFIER, --classifier CLASSIFIER
-                        Classifier used (Options: all,
-                        logistic_regression_sklearn OR lrskl,
-                        logistic_regression OR lr, naive_bayes_sklearn OR
-                        nbskl naive_bayes OR nb).
-  -tsize TRAINING_SET_SIZE, --train_size TRAINING_SET_SIZE
-                        Training set size (percentage). Should be between 0.0
-                        and 1.0 and represent the proportion of the dataset to
-                        include in the training split
-  -d DATASET, --dataset DATASET
-                        Database used (Options: all, ionosphere OR i adult OR
-                        a wine_quality OR wqbreast_cancer_diagnosis OR bcd).
-  -save_logs, --save_logs_in_file
-                        Save logs in a file
   -v, --version         show program's version number and exit
 
 COMP 551 (001/002), Applied Machine Learning, Winter 2020, McGill University.
