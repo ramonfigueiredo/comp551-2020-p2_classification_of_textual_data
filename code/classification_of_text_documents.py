@@ -23,16 +23,21 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import HashingVectorizer
 from sklearn.feature_selection import SelectFromModel
 from sklearn.feature_selection import SelectKBest, chi2
+############################################ Models of assigment 2
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import LinearSVC
+from sklearn.ensemble import AdaBoostClassifier
+from sklearn.ensemble import RandomForestClassifier
+############################################
 from sklearn.linear_model import RidgeClassifier
 from sklearn.pipeline import Pipeline
-from sklearn.svm import LinearSVC
 from sklearn.linear_model import SGDClassifier
 from sklearn.linear_model import Perceptron
 from sklearn.linear_model import PassiveAggressiveClassifier
 from sklearn.naive_bayes import BernoulliNB, ComplementNB, MultinomialNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neighbors import NearestCentroid
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.utils.extmath import density
 from sklearn import metrics
 
@@ -245,53 +250,56 @@ def benchmark(clf):
 
 results = []
 for clf, name in (
-        (RidgeClassifier(tol=1e-2, solver="sag"), "Ridge Classifier"),
-        (Perceptron(max_iter=50), "Perceptron"),
-        (PassiveAggressiveClassifier(max_iter=50),
-         "Passive-Aggressive"),
-        (KNeighborsClassifier(n_neighbors=10), "kNN"),
+        # (RidgeClassifier(tol=1e-2, solver="sag"), "Ridge Classifier"),
+        # (Perceptron(max_iter=50), "Perceptron"),
+        # (PassiveAggressiveClassifier(max_iter=50), "Passive-Aggressive"),
+        # (KNeighborsClassifier(n_neighbors=10), "kNN"),
+        (LogisticRegression(), "Logistic Regression"),
+        (DecisionTreeClassifier(), "Decision Tree Classifier"),
+        (AdaBoostClassifier(), "Ada Boost Classifier"),
         (RandomForestClassifier(), "Random forest")):
     print('=' * 80)
     print(name)
     results.append(benchmark(clf))
 
-for penalty in ["l2", "l1"]:
+# for penalty in ["l2", "l1"]:
+for penalty in ["l2"]:
     print('=' * 80)
     print("%s penalty" % penalty.upper())
     # Train Liblinear model
     results.append(benchmark(LinearSVC(penalty=penalty, dual=False,
                                        tol=1e-3)))
 
-    # Train SGD model
-    results.append(benchmark(SGDClassifier(alpha=.0001, max_iter=50,
-                                           penalty=penalty)))
+    # # Train SGD model
+    # results.append(benchmark(SGDClassifier(alpha=.0001, max_iter=50,
+    #                                        penalty=penalty)))
 
 # Train SGD with Elastic Net penalty
-print('=' * 80)
-print("Elastic-Net penalty")
-results.append(benchmark(SGDClassifier(alpha=.0001, max_iter=50,
-                                       penalty="elasticnet")))
+# print('=' * 80)
+# print("Elastic-Net penalty")
+# results.append(benchmark(SGDClassifier(alpha=.0001, max_iter=50,
+#                                        penalty="elasticnet")))
 
 # Train NearestCentroid without threshold
-print('=' * 80)
-print("NearestCentroid (aka Rocchio classifier)")
-results.append(benchmark(NearestCentroid()))
+# print('=' * 80)
+# print("NearestCentroid (aka Rocchio classifier)")
+# results.append(benchmark(NearestCentroid()))
 
 # Train sparse Naive Bayes classifiers
-print('=' * 80)
-print("Naive Bayes")
-results.append(benchmark(MultinomialNB(alpha=.01)))
-results.append(benchmark(BernoulliNB(alpha=.01)))
-results.append(benchmark(ComplementNB(alpha=.1)))
+# print('=' * 80)
+# print("Naive Bayes")
+# results.append(benchmark(MultinomialNB(alpha=.01)))
+# results.append(benchmark(BernoulliNB(alpha=.01)))
+# results.append(benchmark(ComplementNB(alpha=.1)))
 
-print('=' * 80)
-print("LinearSVC with L1-based feature selection")
-# The smaller C, the stronger the regularization.
-# The more regularization, the more sparsity.
-results.append(benchmark(Pipeline([
-  ('feature_selection', SelectFromModel(LinearSVC(penalty="l1", dual=False,
-                                                  tol=1e-3))),
-  ('classification', LinearSVC(penalty="l2"))])))
+# print('=' * 80)
+# print("LinearSVC with L1-based feature selection")
+# # The smaller C, the stronger the regularization.
+# # The more regularization, the more sparsity.
+# results.append(benchmark(Pipeline([
+#   ('feature_selection', SelectFromModel(LinearSVC(penalty="l1", dual=False,
+#                                                   tol=1e-3))),
+#   ('classification', LinearSVC(penalty="l2"))])))
 
 
 '''
