@@ -206,7 +206,7 @@ def trim(s):
 We train and test the datasets with 15 different classification models and get performance results for each model.
 '''
 
-def benchmark(clf):
+def benchmark(clf, classifier_name):
     print('_' * 80)
     print("Training: ")
     print(clf)
@@ -244,61 +244,63 @@ def benchmark(clf):
         print(metrics.confusion_matrix(y_test, pred))
 
     print()
-    clf_descr = str(clf).split('(')[0]
-    return clf_descr, score, train_time, test_time
+    # clf_descr = str(clf).split('(')[0]
+    return classifier_name, score, train_time, test_time
 
 
 results = []
-for clf, name in (
-        (RidgeClassifier(tol=1e-2, solver="sag"), "Ridge Classifier"),
-        (Perceptron(max_iter=50), "Perceptron"),
-        (PassiveAggressiveClassifier(max_iter=50), "Passive-Aggressive"),
-        (KNeighborsClassifier(n_neighbors=10), "kNN"),
+for clf, classifier_name in (
+        # (RidgeClassifier(tol=1e-2, solver="sag"), "Ridge Classifier"),
+        # (Perceptron(max_iter=50), "Perceptron"),
+        # (PassiveAggressiveClassifier(max_iter=50), "Passive-Aggressive"),
+        # (KNeighborsClassifier(n_neighbors=10), "kNN"),
         (LogisticRegression(), "Logistic Regression"),
         (DecisionTreeClassifier(), "Decision Tree Classifier"),
+        (LinearSVC(penalty="l2", dual=False, tol=1e-3), "Linear SVC (penalty = l2)"),
+        (LinearSVC(penalty="l1", dual=False, tol=1e-3), "Linear SVC (penalty = l1)"),
         (AdaBoostClassifier(), "Ada Boost Classifier"),
         (RandomForestClassifier(), "Random forest")):
     print('=' * 80)
-    print(name)
-    results.append(benchmark(clf))
+    print(classifier_name)
+    results.append(benchmark(clf, classifier_name))
 
-for penalty in ["l2", "l1"]:
-    print('=' * 80)
-    print("%s penalty" % penalty.upper())
-    # Train Liblinear model
-    results.append(benchmark(LinearSVC(penalty=penalty, dual=False,
-                                       tol=1e-3)))
+# for penalty in ["l2", "l1"]:
+#     print('=' * 80)
+#     print("%s penalty" % penalty.upper())
+#     # Train Liblinear model
+#     results.append(benchmark(LinearSVC(penalty=penalty, dual=False,
+#                                        tol=1e-3)))
 
-    # Train SGD model
-    results.append(benchmark(SGDClassifier(alpha=.0001, max_iter=50,
-                                           penalty=penalty)))
+    # # Train SGD model
+    # results.append(benchmark(SGDClassifier(alpha=.0001, max_iter=50,
+    #                                        penalty=penalty)))
 
 # Train SGD with Elastic Net penalty
-print('=' * 80)
-print("Elastic-Net penalty")
-results.append(benchmark(SGDClassifier(alpha=.0001, max_iter=50,
-                                       penalty="elasticnet")))
+# print('=' * 80)
+# print("Elastic-Net penalty")
+# results.append(benchmark(SGDClassifier(alpha=.0001, max_iter=50,
+#                                        penalty="elasticnet")))
 
 # Train NearestCentroid without threshold
-print('=' * 80)
-print("NearestCentroid (aka Rocchio classifier)")
-results.append(benchmark(NearestCentroid()))
+# print('=' * 80)
+# print("NearestCentroid (aka Rocchio classifier)")
+# results.append(benchmark(NearestCentroid()))
 
 # Train sparse Naive Bayes classifiers
-print('=' * 80)
-print("Naive Bayes")
-results.append(benchmark(MultinomialNB(alpha=.01)))
-results.append(benchmark(BernoulliNB(alpha=.01)))
-results.append(benchmark(ComplementNB(alpha=.1)))
+# print('=' * 80)
+# print("Naive Bayes")
+# results.append(benchmark(MultinomialNB(alpha=.01)))
+# results.append(benchmark(BernoulliNB(alpha=.01)))
+# results.append(benchmark(ComplementNB(alpha=.1)))
 
 print('=' * 80)
-print("LinearSVC with L1-based feature selection")
-# The smaller C, the stronger the regularization.
-# The more regularization, the more sparsity.
-results.append(benchmark(Pipeline([
-  ('feature_selection', SelectFromModel(LinearSVC(penalty="l1", dual=False,
-                                                  tol=1e-3))),
-  ('classification', LinearSVC(penalty="l2"))])))
+# print("LinearSVC with L1-based feature selection")
+# # The smaller C, the stronger the regularization.
+# # The more regularization, the more sparsity.
+# results.append(benchmark(Pipeline([
+#   ('feature_selection', SelectFromModel(LinearSVC(penalty="l1", dual=False,
+#                                                   tol=1e-3))),
+#   ('classification', LinearSVC(penalty="l2"))])))
 
 
 '''
@@ -319,11 +321,13 @@ training_time = np.array(training_time) / np.max(training_time)
 test_time = np.array(test_time) / np.max(test_time)
 
 plt.figure(figsize=(12, 8))
-plt.title("Score")
+if opts.filtered:
+    plt.title("Accuracy score for the 20 news group dataset (removing headers signatures and quoting)")
+else:
+    plt.title("Accuracy score for the 20 news group dataset")
 plt.barh(indices, score, .2, label="score", color='navy')
-plt.barh(indices + .3, training_time, .2, label="training time",
-         color='c')
-plt.barh(indices + .6, test_time, .2, label="test time", color='darkorange')
+# plt.barh(indices + .3, training_time, .2, label="training time", color='c')
+# plt.barh(indices + .6, test_time, .2, label="test time", color='darkorange')
 plt.yticks(())
 plt.legend(loc='best')
 plt.subplots_adjust(left=.25)
