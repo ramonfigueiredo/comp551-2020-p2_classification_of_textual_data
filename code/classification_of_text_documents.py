@@ -331,7 +331,10 @@ plt.subplots_adjust(left=.25)
 plt.subplots_adjust(top=.95)
 plt.subplots_adjust(bottom=.05)
 
-for i, c in zip(indices, clf_names):
+for i, c, s, tr, te in zip(indices, clf_names, score, training_time, test_time):
     plt.text(-.3, i, c)
+    plt.text(tr / 2, i + .3, round(tr, 2), ha='center', va='center', color='white')
+    plt.text(te / 2, i + .6, round(te, 2), ha='center', va='center', color='white')
+    plt.text(s / 2, i, round(s, 2), ha='center', va='center', color='white')
 
 plt.show()
