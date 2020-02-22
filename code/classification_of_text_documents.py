@@ -73,6 +73,13 @@ op.add_option("--filtered",
               action="store_true",
               help="Remove newsgroup information that is easily overfit: "
                    "headers, signatures, and quoting.")
+op.add_option("--just_miniproject_classifiers",
+              action="store_true", dest="just_miniproject_classifiers",
+              help="Use just the miniproject classifiers (1. LogisticRegression, 2. DecisionTreeClassifier, 3. LinearSVC (L1), 4. LinearSVC (L2), 5. AdaBoostClassifier, 6. RandomForestClassifier)")
+
+op.add_option("--plot_training_and_test_time_together_with_accuracy_score",
+              action="store_true", dest="plot_training_and_test_time_together_with_accuracy_score",
+              help="Plot training time and test time together with accuracy score")
 
 
 def is_interactive():
@@ -249,58 +256,59 @@ def benchmark(clf, classifier_name):
 
 
 results = []
-for clf, classifier_name in (
-        # (RidgeClassifier(tol=1e-2, solver="sag"), "Ridge Classifier"),
-        # (Perceptron(max_iter=50), "Perceptron"),
-        # (PassiveAggressiveClassifier(max_iter=50), "Passive-Aggressive"),
-        # (KNeighborsClassifier(n_neighbors=10), "kNN"),
-        (LogisticRegression(), "Logistic Regression"),
-        (DecisionTreeClassifier(), "Decision Tree Classifier"),
-        (LinearSVC(penalty="l2", dual=False, tol=1e-3), "Linear SVC (penalty = l2)"),
-        (LinearSVC(penalty="l1", dual=False, tol=1e-3), "Linear SVC (penalty = l1)"),
-        (AdaBoostClassifier(), "Ada Boost Classifier"),
-        (RandomForestClassifier(), "Random forest")):
+if opts.just_miniproject_classifiers:
+    for clf, classifier_name in (
+            (LogisticRegression(), "Logistic Regression"),
+            (DecisionTreeClassifier(), "Decision Tree Classifier"),
+            (LinearSVC(penalty="l2", dual=False, tol=1e-3), "Linear SVC (penalty = L2)"),
+            (LinearSVC(penalty="l1", dual=False, tol=1e-3), "Linear SVC (penalty = L1)"),
+            (AdaBoostClassifier(), "Ada Boost Classifier"),
+            (RandomForestClassifier(), "Random forest")):
+        print('=' * 80)
+        print(classifier_name)
+        results.append(benchmark(clf, classifier_name))
+else:
+    for clf, classifier_name in (
+            (RidgeClassifier(tol=1e-2, solver="sag"), "Ridge Classifier"),
+            (Perceptron(max_iter=50), "Perceptron"),
+            (PassiveAggressiveClassifier(max_iter=50), "Passive-Aggressive"),
+            (KNeighborsClassifier(n_neighbors=10), "kNN"),
+            (LogisticRegression(), "Logistic Regression"),
+            (DecisionTreeClassifier(), "Decision Tree Classifier"),
+            (LinearSVC(penalty="l2", dual=False, tol=1e-3), "Linear SVC (penalty = L2)"),
+            (LinearSVC(penalty="l1", dual=False, tol=1e-3), "Linear SVC (penalty = L1)"),
+            (SGDClassifier(alpha=.0001, max_iter=50, penalty="l2"), "SGD Classifier (penalty = L2)"),
+            (SGDClassifier(alpha=.0001, max_iter=50, penalty="l2"), "SGD Classifier (penalty = L1)"),
+            (AdaBoostClassifier(), "Ada Boost Classifier"),
+            (RandomForestClassifier(), "Random forest")):
+        print('=' * 80)
+        print(classifier_name)
+        results.append(benchmark(clf, classifier_name))
+
+    # Train SGD with Elastic Net penalty
     print('=' * 80)
-    print(classifier_name)
-    results.append(benchmark(clf, classifier_name))
+    print("Elastic-Net penalty")
+    results.append(benchmark(SGDClassifier(alpha=.0001, max_iter=50, penalty="elasticnet")))
 
-# for penalty in ["l2", "l1"]:
-#     print('=' * 80)
-#     print("%s penalty" % penalty.upper())
-#     # Train Liblinear model
-#     results.append(benchmark(LinearSVC(penalty=penalty, dual=False,
-#                                        tol=1e-3)))
+    # Train NearestCentroid without threshold
+    print('=' * 80)
+    print("NearestCentroid (aka Rocchio classifier)")
+    results.append(benchmark(NearestCentroid()))
 
-    # # Train SGD model
-    # results.append(benchmark(SGDClassifier(alpha=.0001, max_iter=50,
-    #                                        penalty=penalty)))
+    # Train sparse Naive Bayes classifiers
+    print('=' * 80)
+    print("Naive Bayes")
+    results.append(benchmark(MultinomialNB(alpha=.01)))
+    results.append(benchmark(BernoulliNB(alpha=.01)))
+    results.append(benchmark(ComplementNB(alpha=.1)))
 
-# Train SGD with Elastic Net penalty
-# print('=' * 80)
-# print("Elastic-Net penalty")
-# results.append(benchmark(SGDClassifier(alpha=.0001, max_iter=50,
-#                                        penalty="elasticnet")))
-
-# Train NearestCentroid without threshold
-# print('=' * 80)
-# print("NearestCentroid (aka Rocchio classifier)")
-# results.append(benchmark(NearestCentroid()))
-
-# Train sparse Naive Bayes classifiers
-# print('=' * 80)
-# print("Naive Bayes")
-# results.append(benchmark(MultinomialNB(alpha=.01)))
-# results.append(benchmark(BernoulliNB(alpha=.01)))
-# results.append(benchmark(ComplementNB(alpha=.1)))
-
-print('=' * 80)
-# print("LinearSVC with L1-based feature selection")
-# # The smaller C, the stronger the regularization.
-# # The more regularization, the more sparsity.
-# results.append(benchmark(Pipeline([
-#   ('feature_selection', SelectFromModel(LinearSVC(penalty="l1", dual=False,
-#                                                   tol=1e-3))),
-#   ('classification', LinearSVC(penalty="l2"))])))
+    print('=' * 80)
+    print("LinearSVC with L1-based feature selection")
+    # The smaller C, the stronger the regularization.
+    # The more regularization, the more sparsity.
+    results.append(benchmark(Pipeline([
+      ('feature_selection', SelectFromModel(LinearSVC(penalty="l1", dual=False, tol=1e-3))),
+      ('classification', LinearSVC(penalty="l2"))])))
 
 
 '''
@@ -326,8 +334,9 @@ if opts.filtered:
 else:
     plt.title("Accuracy score for the 20 news group dataset")
 plt.barh(indices, score, .2, label="score", color='navy')
-plt.barh(indices + .3, training_time, .2, label="training time (in seconds)", color='c')
-plt.barh(indices + .6, test_time, .2, label="test time (in seconds)", color='darkorange')
+if opts.plot_training_and_test_time_together_with_accuracy_score:
+    plt.barh(indices + .3, training_time, .2, label="training time", color='c')
+    plt.barh(indices + .6, test_time, .2, label="test time", color='darkorange')
 plt.yticks(())
 plt.legend(loc='best')
 plt.subplots_adjust(left=.25)
