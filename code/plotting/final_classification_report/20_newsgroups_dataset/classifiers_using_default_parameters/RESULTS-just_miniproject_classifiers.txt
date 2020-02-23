@@ -1,0 +1,494 @@
+/home/ramon/virtual_envs/comp551_p2/bin/python /home/ramon/github/comp551-2020-p2_classification_of_textual_data/code/main.py --all_categories --report --confusion_matrix --filtered --just_miniproject_classifiers --plot_training_and_test_time_together_with_accuracy_score
+
+####################################
+# Classification of text documents
+####################################
+
+This code uses many machine learning approaches to classify documents by topics using a bag-of-words approach.
+
+The datasets used in this are the 20 newsgroups dataset (https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups.html) and the IMDB Reviews dataset (http://ai.stanford.edu/~amaas/data/sentiment/).
+
+Usage: main.py [options]
+
+Options:
+  -h, --help            show this help message and exit
+  --report              Print a detailed classification report.
+  --chi2_select=SELECT_CHI2
+                        Select some number of features using a chi-squared
+                        test
+  --confusion_matrix    Print the confusion matrix.
+  --top10               Print ten most discriminative terms per class for
+                        every classifier.
+  --all_categories      Whether to use all categories or not.
+  --use_hashing         Use a hashing vectorizer.
+  --n_features=N_FEATURES
+                        n_features when using the hashing vectorizer.
+  --filtered            Remove newsgroup information that is easily overfit:
+                        headers, signatures, and quoting.
+  --just_miniproject_classifiers
+                        Use just the miniproject classifiers (1.
+                        LogisticRegression, 2. DecisionTreeClassifier, 3.
+                        LinearSVC (L1), 4. LinearSVC (L2), 5.
+                        AdaBoostClassifier, 6. RandomForestClassifier)
+  --plot_training_and_test_time_together_with_accuracy_score
+                        Plot training time and test time together with
+                        accuracy score
+
+Loading 20 newsgroups dataset for categories:
+all
+data loaded
+11314 documents - 13.782MB (training set)
+7532 documents - 8.262MB (test set)
+20 categories
+
+Extracting features from the training data using a sparse vectorizer
+done in 1.937815s at 7.112MB/s
+n_samples: 11314, n_features: 101322
+
+Extracting features from the test data using the same vectorizer
+done in 1.005430s at 8.217MB/s
+n_samples: 7532, n_features: 101322
+
+================================================================================
+Logistic Regression
+________________________________________________________________________________
+Training: 
+LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='auto', n_jobs=None, penalty='l2',
+                   random_state=None, solver='lbfgs', tol=0.0001, verbose=0,
+                   warm_start=False)
+train time: 48.668s
+test time:  0.059s
+accuracy:   0.695
+dimensionality: 101322
+density: 1.000000
+
+classification report:
+                          precision    recall  f1-score   support
+
+             alt.atheism       0.48      0.46      0.47       319
+           comp.graphics       0.64      0.71      0.67       389
+ comp.os.ms-windows.misc       0.66      0.63      0.64       394
+comp.sys.ibm.pc.hardware       0.68      0.65      0.66       392
+   comp.sys.mac.hardware       0.76      0.69      0.72       385
+          comp.windows.x       0.84      0.72      0.78       395
+            misc.forsale       0.77      0.78      0.78       390
+               rec.autos       0.75      0.73      0.74       396
+         rec.motorcycles       0.48      0.81      0.61       398
+      rec.sport.baseball       0.81      0.83      0.82       397
+        rec.sport.hockey       0.92      0.87      0.89       399
+               sci.crypt       0.89      0.68      0.77       396
+         sci.electronics       0.57      0.62      0.59       393
+                 sci.med       0.78      0.79      0.79       396
+               sci.space       0.71      0.75      0.73       394
+  soc.religion.christian       0.65      0.82      0.72       398
+      talk.politics.guns       0.58      0.68      0.63       364
+   talk.politics.mideast       0.85      0.76      0.80       376
+      talk.politics.misc       0.61      0.44      0.51       310
+      talk.religion.misc       0.57      0.18      0.27       251
+
+                accuracy                           0.69      7532
+               macro avg       0.70      0.68      0.68      7532
+            weighted avg       0.71      0.69      0.69      7532
+
+confusion matrix:
+[[146   2   3   1   1   2   1   5  19   6   1   1   3  10  17  66   6  12
+    6  11]
+ [  5 278  22   7   6  19   7   2  10   4   0   4  14   1   9   1   0   0
+    0   0]
+ [  4  21 247  39  14  13   2   3  19   2   1   3   2   8  10   0   2   0
+    3   1]
+ [  1  14  35 255  26   3  11   2   8   1   1   1  33   0   1   0   0   0
+    0   0]
+ [  2   7  10  27 266   3  13   2  16   2   1   1  26   4   4   1   0   0
+    0   0]
+ [  0  45  28   8   3 286   1   2   9   1   0   2   3   2   4   0   0   0
+    1   0]
+ [  0   2   2  15  15   0 306  10  13   2   1   1  13   2   3   1   3   0
+    1   0]
+ [  1   0   1   0   2   1  11 288  43   6   0   0  21   1   9   1   4   2
+    4   1]
+ [  5   2   0   0   1   0   7  19 323   6   0   0  12   4   7   2   3   0
+    7   0]
+ [  2   4   0   1   0   2   3   3  23 329  16   0   2   3   0   3   0   3
+    3   0]
+ [  4   2   0   0   1   0   0   3  14  17 346   0   1   2   0   0   6   1
+    2   0]
+ [  3  11   5   3   5   3   4   2  24   4   1 271  13   6   7   1  20   4
+    9   0]
+ [  4  19  12  19  10   2  14  12  19   5   0  12 242   8   9   2   1   2
+    1   0]
+ [  7   7   1   1   0   2   6   6  23   0   2   0   8 314   4   5   3   1
+    5   1]
+ [  6  11   2   0   1   1   4   7  23   3   2   0  13  11 295   2   5   2
+    6   0]
+ [ 19   3   3   0   0   0   1   0  20   3   0   0   2   3   5 326   2   3
+    2   6]
+ [ 10   1   2   0   1   1   2   7  22   3   1   7   3   5   9   8 249   6
+   19   8]
+ [ 24   2   2   0   0   0   1   3  15   6   0   2   4   2   2   7   8 284
+   13   1]
+ [ 16   1   0   0   0   1   2   2  13   3   2   1   4   7  12   2  94   9
+  137   4]
+ [ 43   3   2   0   0   1   1   4  12   3   2   0   3  10   8  76  25   7
+    7  44]]
+
+================================================================================
+Decision Tree Classifier
+________________________________________________________________________________
+Training: 
+DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None, criterion='gini',
+                       max_depth=None, max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort='deprecated',
+                       random_state=None, splitter='best')
+train time: 22.560s
+test time:  0.014s
+accuracy:   0.435
+classification report:
+                          precision    recall  f1-score   support
+
+             alt.atheism       0.32      0.28      0.30       319
+           comp.graphics       0.39      0.43      0.41       389
+ comp.os.ms-windows.misc       0.43      0.42      0.43       394
+comp.sys.ibm.pc.hardware       0.34      0.34      0.34       392
+   comp.sys.mac.hardware       0.48      0.45      0.46       385
+          comp.windows.x       0.51      0.44      0.47       395
+            misc.forsale       0.57      0.54      0.55       390
+               rec.autos       0.26      0.54      0.35       396
+         rec.motorcycles       0.60      0.54      0.57       398
+      rec.sport.baseball       0.51      0.50      0.51       397
+        rec.sport.hockey       0.61      0.61      0.61       399
+               sci.crypt       0.57      0.48      0.52       396
+         sci.electronics       0.30      0.29      0.29       393
+                 sci.med       0.48      0.40      0.43       396
+               sci.space       0.52      0.46      0.48       394
+  soc.religion.christian       0.49      0.50      0.49       398
+      talk.politics.guns       0.38      0.42      0.40       364
+   talk.politics.mideast       0.59      0.52      0.55       376
+      talk.politics.misc       0.24      0.17      0.20       310
+      talk.religion.misc       0.21      0.20      0.21       251
+
+                accuracy                           0.43      7532
+               macro avg       0.44      0.43      0.43      7532
+            weighted avg       0.45      0.43      0.44      7532
+
+confusion matrix:
+[[ 89   7   2   2   4   3   3  28   9  10   7   4   5  11  12  46   9  13
+   13  42]
+ [  2 169  33  31  17  40   5  21   3   5   2  10  20   9   8   1   7   3
+    0   3]
+ [  3  33 167  41  23  28   6  26   5   6   3   7  11   6   9   2   6   5
+    4   3]
+ [  1  37  34 132  40  16  24  21   8   5   1   6  34  11   1   2  11   1
+    3   4]
+ [  2  22  12  26 174   8  24  33   4   6   4   5  27   7   8   2   4   7
+    6   4]
+ [  4  38  55  30  15 172   3  25   3   3   0   7  11   6   8   2   4   4
+    3   2]
+ [  0  12  11  20  19   6 210  35   6   7  13   7  11   6  10   2   5   4
+    3   3]
+ [  2   8   6   4   8   8  18 215  22  11   7   6  28   6  11   3  14   8
+    5   6]
+ [  8   2   4   9   5   4  15  53 215  14   1   5  14   7   8   3  12   7
+    7   5]
+ [  4   6   2   8   4   1   4  41   4 199  66   6   4  12  11   3   7   8
+    3   4]
+ [  4   5   4   0   1   2   6  26  11  55 244   1   5   5   9   2   6   5
+    4   4]
+ [  5  17   6  10  10   6   4  42   5   8   2 189  19   8  10   7  29   3
+   13   3]
+ [  4  25  15  33  22  10  21  44  12  12   7  18 114  14  15   3   5   4
+    9   6]
+ [ 16  19   9  14   7  15   7  41  14   5   6   8  19 158   7   9   9   9
+   12  12]
+ [ 10  11   9  10   7   4   7  42   8  10  13  12  20  14 180   7  10   5
+   15   0]
+ [ 41   3   2   4   2   2   1  25   4   8   2   3  10   7   7 199   4  15
+   16  43]
+ [ 16   7   9   4   3   7   4  30   9   5   3  18   5   9  11  19 152  11
+   21  21]
+ [ 23   3   2   3   3   4   2  23   4   8   3   5   7   9   7  13  19 194
+   26  18]
+ [ 21   5   5   1   2   4   1  23  10   7  10  13  20  18   9  16  70  10
+   53  12]
+ [ 23   5   3   2   0   0   2  26   4   4   6   3   1   9   8  66  17  12
+    9  51]]
+
+================================================================================
+Linear SVC (penalty = L2)
+________________________________________________________________________________
+Training: 
+LinearSVC(C=1.0, class_weight=None, dual=False, fit_intercept=True,
+          intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+          multi_class='ovr', penalty='l2', random_state=None, tol=0.001,
+          verbose=0)
+train time: 5.899s
+test time:  0.032s
+accuracy:   0.697
+dimensionality: 101322
+density: 1.000000
+
+classification report:
+                          precision    recall  f1-score   support
+
+             alt.atheism       0.54      0.49      0.51       319
+           comp.graphics       0.66      0.72      0.69       389
+ comp.os.ms-windows.misc       0.62      0.62      0.62       394
+comp.sys.ibm.pc.hardware       0.65      0.66      0.66       392
+   comp.sys.mac.hardware       0.73      0.70      0.72       385
+          comp.windows.x       0.83      0.70      0.76       395
+            misc.forsale       0.75      0.79      0.77       390
+               rec.autos       0.75      0.71      0.73       396
+         rec.motorcycles       0.79      0.76      0.77       398
+      rec.sport.baseball       0.55      0.86      0.67       397
+        rec.sport.hockey       0.87      0.87      0.87       399
+               sci.crypt       0.83      0.72      0.77       396
+         sci.electronics       0.63      0.59      0.61       393
+                 sci.med       0.79      0.78      0.79       396
+               sci.space       0.75      0.75      0.75       394
+  soc.religion.christian       0.65      0.79      0.71       398
+      talk.politics.guns       0.60      0.66      0.63       364
+   talk.politics.mideast       0.84      0.76      0.80       376
+      talk.politics.misc       0.55      0.46      0.50       310
+      talk.religion.misc       0.45      0.29      0.35       251
+
+                accuracy                           0.70      7532
+               macro avg       0.69      0.68      0.68      7532
+            weighted avg       0.70      0.70      0.69      7532
+
+confusion matrix:
+[[155   2   4   1   1   0   4   3   4  11   4   3   7   5   8  54   7  13
+    9  24]
+ [  4 279  20   9   6  21   6   2   0   9   0  11   8   2   8   2   1   0
+    0   1]
+ [  3  22 243  37  16  11   3   4   1  16   2   3   3   6   9   2   1   2
+    8   2]
+ [  0  10  38 260  26   6  12   1   0   9   2   4  21   0   1   0   0   0
+    2   0]
+ [  2  10   8  25 271   6  14   5   1  16   1   2  16   2   1   1   3   0
+    0   1]
+ [  1  41  39   5   4 278   2   1   1   9   0   2   3   1   5   0   2   0
+    0   1]
+ [  0   3   2  12  15   0 308   8   6  10   2   1   9   2   2   2   2   3
+    2   1]
+ [  2   1   3   3   3   1  13 283  17  26   3   2  16   3   5   2   4   4
+    5   0]
+ [  5   3   1   1   2   0   7  18 302  19   2   0   9   4   7   3   4   1
+    8   2]
+ [  1   2   0   2   0   1   6   3   5 340  17   0   2   4   1   4   1   2
+    6   0]
+ [  0   1   2   2   1   0   1   2   2  27 347   0   1   3   0   1   5   0
+    1   3]
+ [  5   6   5   4   4   1   6   2   4  19   1 285  10   3   5   4  12   2
+   15   3]
+ [  4  12   9  28  13   6  13  11   9  15   4  10 233   8   9   3   1   1
+    3   1]
+ [  5   6   4   1   1   0   1   9   4  15   5   0   7 309   6   5   5   5
+    5   3]
+ [  6  11   5   2   3   1   3  11   6  20   3   0   8   6 296   1   4   0
+    6   2]
+ [ 21   1   3   0   0   1   2   0   1  15   0   3   3   5   3 315   0   1
+    5  19]
+ [  8   3   3   1   1   0   4   7   7  13   0  10   1   9   7   9 242   8
+   20  11]
+ [ 25   1   1   2   0   0   2   2   7   9   1   1   2   3   3   8   8 284
+   14   3]
+ [  9   1   0   1   2   1   0   4   5  11   2   3   4   8  11   1  84   7
+  144  12]
+ [ 31   6   2   3   2   1   1   2   1  10   1   2   4   7   6  67  19   5
+    8  73]]
+
+================================================================================
+Ada Boost Classifier
+________________________________________________________________________________
+Training: 
+AdaBoostClassifier(algorithm='SAMME.R', base_estimator=None, learning_rate=1.0,
+                   n_estimators=50, random_state=None)
+train time: 8.260s
+test time:  0.480s
+accuracy:   0.365
+classification report:
+                          precision    recall  f1-score   support
+
+             alt.atheism       0.00      0.00      0.00       319
+           comp.graphics       0.60      0.23      0.33       389
+ comp.os.ms-windows.misc       0.64      0.40      0.49       394
+comp.sys.ibm.pc.hardware       0.48      0.31      0.38       392
+   comp.sys.mac.hardware       0.69      0.37      0.48       385
+          comp.windows.x       0.73      0.41      0.52       395
+            misc.forsale       0.75      0.52      0.61       390
+               rec.autos       0.79      0.38      0.52       396
+         rec.motorcycles       0.92      0.33      0.48       398
+      rec.sport.baseball       0.74      0.19      0.30       397
+        rec.sport.hockey       0.64      0.57      0.60       399
+               sci.crypt       0.80      0.42      0.55       396
+         sci.electronics       0.08      0.82      0.15       393
+                 sci.med       0.88      0.21      0.34       396
+               sci.space       0.73      0.34      0.46       394
+  soc.religion.christian       0.52      0.65      0.58       398
+      talk.politics.guns       0.48      0.24      0.32       364
+   talk.politics.mideast       0.96      0.50      0.65       376
+      talk.politics.misc       0.29      0.17      0.21       310
+      talk.religion.misc       0.14      0.01      0.02       251
+
+                accuracy                           0.37      7532
+               macro avg       0.59      0.35      0.40      7532
+            weighted avg       0.61      0.37      0.41      7532
+
+confusion matrix:
+[[  0   0   0   0   0   3   2   0   0   0   3   4 190   1   5  95   6   1
+    6   3]
+ [  0  90  16  12   7  23   4   1   0   0   3   2 224   0   7   0   0   0
+    0   0]
+ [  0  21 157  23  15  20   2   1   0   0   1   0 148   1   3   0   2   0
+    0   0]
+ [  0  12  27 121   8   3   5   0   0   0   1   2 207   2   4   0   0   0
+    0   0]
+ [  1   2   1  27 142   0  12   0   0   0   2   5 188   0   4   0   0   0
+    1   0]
+ [  0   9  32   4   3 162   2   0   0   0   0   4 170   0   4   0   0   1
+    3   1]
+ [  0   6   5  23   9   1 202  10   2   1   3   2 120   0   3   2   1   0
+    0   0]
+ [  0   0   2  10   0   0   8 152   4   0   1   1 206   0   1   1   9   0
+    1   0]
+ [  0   0   0  12   0   1   4   7 131   1   1   2 228   1   1   4   4   0
+    1   0]
+ [  0   1   0   3   0   0   3   0   0  75  92   1 215   0   1   1   2   0
+    1   2]
+ [  0   0   0   0   0   1   7   0   1  18 228   0 140   0   0   1   1   0
+    1   1]
+ [  0   0   0   2   6   1   1   0   1   0   0 168 167   0   3   1  16   2
+   28   0]
+ [  1   6   2  12   6   2   7  13   1   1   2  13 322   0   4   0   0   0
+    1   0]
+ [  3   0   0   0   1   0   2   0   0   0   0   0 293  84   0  10   1   0
+    2   0]
+ [  3   1   1   1   9   3   3   3   1   0   8   2 212   4 132   2   2   0
+    7   0]
+ [  4   1   0   0   0   0   1   0   0   0   0   0 122   0   1 257   0   2
+    4   6]
+ [  0   0   2   1   0   3   3   1   2   1   6   3 194   0   4  12  87   1
+   43   1]
+ [  1   0   0   0   0   0   0   0   0   1   0   1 138   0   1  15   9 187
+   20   3]
+ [  0   0   0   0   1   0   0   2   0   2   4   0 202   3   1   8  34   0
+   52   1]
+ [  1   0   1   1   0   0   1   3   0   1   1   1 136   0   1  84   9   1
+    7   3]]
+
+================================================================================
+Random forest
+________________________________________________________________________________
+Training: 
+RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
+                       criterion='gini', max_depth=None, max_features='auto',
+                       max_leaf_nodes=None, max_samples=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=100,
+                       n_jobs=None, oob_score=False, random_state=None,
+                       verbose=0, warm_start=False)
+train time: 69.632s
+test time:  1.020s
+accuracy:   0.628
+classification report:
+                          precision    recall  f1-score   support
+
+             alt.atheism       0.43      0.37      0.40       319
+           comp.graphics       0.57      0.63      0.60       389
+ comp.os.ms-windows.misc       0.57      0.65      0.60       394
+comp.sys.ibm.pc.hardware       0.62      0.60      0.61       392
+   comp.sys.mac.hardware       0.65      0.65      0.65       385
+          comp.windows.x       0.68      0.67      0.68       395
+            misc.forsale       0.70      0.74      0.72       390
+               rec.autos       0.42      0.71      0.53       396
+         rec.motorcycles       0.70      0.69      0.69       398
+      rec.sport.baseball       0.67      0.80      0.73       397
+        rec.sport.hockey       0.84      0.81      0.83       399
+               sci.crypt       0.82      0.66      0.73       396
+         sci.electronics       0.53      0.43      0.47       393
+                 sci.med       0.77      0.64      0.70       396
+               sci.space       0.70      0.67      0.68       394
+  soc.religion.christian       0.58      0.79      0.67       398
+      talk.politics.guns       0.53      0.60      0.57       364
+   talk.politics.mideast       0.82      0.70      0.76       376
+      talk.politics.misc       0.55      0.33      0.41       310
+      talk.religion.misc       0.33      0.11      0.16       251
+
+                accuracy                           0.63      7532
+               macro avg       0.62      0.61      0.61      7532
+            weighted avg       0.63      0.63      0.62      7532
+
+confusion matrix:
+[[119   3   3   2   3   1   9  18   6   4   9   3   4   9  13  81   8   7
+    6  11]
+ [  1 247  30  11  10  35   6  12   3   7   3   2   6   1  12   0   1   1
+    0   1]
+ [  2  25 256  29  18  16   1  19   5   7   1   1   1   1   7   0   2   2
+    1   0]
+ [  2  15  45 236  29   9  13  10   1   4   2   1  21   1   2   0   0   0
+    1   0]
+ [  0  13  13  34 252   6  15  19   2   5   2   1  16   3   2   1   0   0
+    1   0]
+ [  1  39  42   8   7 265   2  12   2   2   0   4   1   0   7   0   2   0
+    1   0]
+ [  0   8   4  20  18   1 289  20   2   7   0   2   7   1   4   1   3   0
+    2   1]
+ [  6   5   8   2   3   7  12 280  24   4   3   1  18   2   4   1   8   2
+    4   2]
+ [  1   2   4   3   1   2   9  44 273  16   1   4  10   2   3   5   7   4
+    5   2]
+ [  2   5   3   1   1   3   1  26   7 316  19   1   0   2   3   1   0   2
+    3   1]
+ [  0   1   2   0   2   3   2  14   4  32 324   0   1   3   3   1   3   2
+    2   0]
+ [  4   8   5   5   5   6   7  21   3   4   2 262  17   3   6   1  25   4
+    6   2]
+ [  3  25  16  22  28  14  16  30  11  12   3  14 168  12  11   2   2   2
+    1   1]
+ [ 11  12   6   1   2   3  17  29  13  11   1   1   8 255   5   6   2   3
+    6   4]
+ [  5  12   4   4   5   7   5  30   7   7   2   2  14   7 263   6   8   0
+    4   2]
+ [ 16   4   2   0   0   1   3  20   6   1   1   0   3   2   4 314   2   6
+    4   9]
+ [ 13   3   4   2   2   4   1  18   5   8   4  13   7   5   7  12 220   7
+   18  11]
+ [ 26   2   0   0   1   3   2  11   3  13   1   4   5   1   4  11  10 265
+   12   2]
+ [ 18   1   2   0   0   1   3  18   7   6   3   4   7  15  10  12  86   9
+  102   6]
+ [ 44   2   4   1   2   1   1  16   5   3   3   1   1   5   4  91  25   9
+    6  27]]
+
+Final classification report: 
+1) Logistic Regression [MANDATORY FOR COMP 551, ASSIGNMENT 2]
+    Accuracy score = 0.6946362187997875   Training time = 48.668349742889404    Test time = 0.059183597564697266
+
+2) Decision Tree Classifier [MANDATORY FOR COMP 551, ASSIGNMENT 2]
+    Accuracy score = 0.4349442379182156   Training time = 22.56016778945923   Test time = 0.014076948165893555
+
+3) Linear SVC (penalty = L2) [MANDATORY FOR COMP 551, ASSIGNMENT 2]
+    Accuracy score = 0.6966277217206586   Training time = 5.898514986038208   Test time = 0.0321807861328125
+
+4) Ada Boost Classifier [MANDATORY FOR COMP 551, ASSIGNMENT 2]
+    Accuracy score = 0.36537440254912373    Training time = 8.260348558425903   Test time = 0.480010986328125
+
+5) Random forest [MANDATORY FOR COMP 551, ASSIGNMENT 2]
+    Accuracy score = 0.6283855549654807   Training time = 69.63159251213074   Test time = 1.020409107208252
+
+
+
+Best algorithm:
+===> 3) Accuracy score = Linear SVC (penalty = L2)    Training time = 0.6966277217206586    Test time = 5.898514986038208
+
+
+
+DONE!
+Program finished. It took 162.46469712257385 seconds
+
+Process finished with exit code 0

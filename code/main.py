@@ -75,8 +75,8 @@ if __name__ == '__main__':
                   action="store_true", dest="just_miniproject_classifiers",
                   help="Use just the miniproject classifiers (1. LogisticRegression, 2. DecisionTreeClassifier, 3. LinearSVC (L1), 4. LinearSVC (L2), 5. AdaBoostClassifier, 6. RandomForestClassifier)")
 
-    op.add_option("--plot_training_and_test_time_together_with_accuracy_score",
-                  action="store_true", dest="plot_training_and_test_time_together_with_accuracy_score",
+    op.add_option("--plot_accurary_and_time",
+                  action="store_true", dest="plot_accurary_and_time",
                   help="Plot training time and test time together with accuracy score")
 
 
@@ -331,7 +331,7 @@ if __name__ == '__main__':
     else:
         plt.title("Accuracy score for the 20 news group dataset")
     plt.barh(indices, score, .2, label="score", color='navy')
-    if opts.plot_training_and_test_time_together_with_accuracy_score:
+    if opts.plot_accurary_and_time:
         plt.barh(indices + .3, training_time, .2, label="training time", color='c')
         plt.barh(indices + .6, test_time, .2, label="test time", color='darkorange')
     plt.yticks(())
