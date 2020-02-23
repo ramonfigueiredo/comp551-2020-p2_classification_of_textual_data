@@ -311,7 +311,6 @@ else:
       ('classification', LinearSVC(penalty="l2"))])), "LinearSVC with L1-based feature selection")
 
 
-print(results)
 '''
 ##############
 # Add plots
@@ -353,3 +352,11 @@ for i, c, s, tr, te in zip(indices, clf_names, score, training_time, test_time):
 plt.tight_layout()
 
 plt.show()
+
+print("Final classification report: ")
+classifier_name_list = results[0]
+accuracy_score_list = results[1]
+train_time_list = results[2]
+test_time_list = results[3]
+for classifier_name, score, train_time, test_time in zip(classifier_name_list, accuracy_score_list, train_time_list, test_time_list):
+    print("{}\n\t\tAccuracy score = {}\t\tTraining time = {}\t\tTest time = {}\n\n".format(classifier_name, score, train_time, test_time))
