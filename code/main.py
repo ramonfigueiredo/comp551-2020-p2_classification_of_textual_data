@@ -306,11 +306,12 @@ else:
     print("LinearSVC with L1-based feature selection")
     # The smaller C, the stronger the regularization.
     # The more regularization, the more sparsity.
-    # results.append(benchmark(Pipeline([
-    #   ('feature_selection', SelectFromModel(LinearSVC(penalty="l1", dual=False, tol=1e-3))),
-    #   ('classification', LinearSVC(penalty="l2"))])))
+    results.append(benchmark(Pipeline([
+      ('feature_selection', SelectFromModel(LinearSVC(penalty="l1", dual=False, tol=1e-3))),
+      ('classification', LinearSVC(penalty="l2"))])), "LinearSVC with L1-based feature selection")
 
 
+print(results)
 '''
 ##############
 # Add plots
