@@ -365,7 +365,7 @@ if __name__ == '__main__':
     print("\n\nBest algorithm:")
     index_max_accuracy_score, accuracy_score = max(enumerate(accuracy_score_list), key=operator.itemgetter(1))
 
-    print("===> {}) Accuracy score = {}\t\tTraining time = {}\t\tTest time = {}\n".format(
+    print("===> {}) {}\n\t\tAccuracy score = {}\t\tTraining time = {}\t\tTest time = {}\n".format(
         index_max_accuracy_score + 1,
         classifier_name_list[index_max_accuracy_score],
         accuracy_score_list[index_max_accuracy_score],
