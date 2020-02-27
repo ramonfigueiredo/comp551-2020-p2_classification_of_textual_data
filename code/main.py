@@ -18,7 +18,6 @@ from time import time
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn import metrics
-from sklearn.datasets import fetch_20newsgroups
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import HashingVectorizer
@@ -37,8 +36,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.utils.extmath import density
-from datasets.load_dataset import load_imdb_reviews
 
+from datasets.load_dataset import load_twenty_news_groups, load_imdb_reviews
 
 if __name__ == '__main__':
     start = time()
@@ -47,6 +46,18 @@ if __name__ == '__main__':
                         format='%(asctime)s %(levelname)s %(message)s')
 
     op = OptionParser()
+    op.add_option("--dataset",
+                  action="store", dest="dataset",
+                  help="Dataset used (Options: 20news OR imdb)", default='imdb')
+    op.add_option("--use_imdb_multi_class_labels",
+                  action="store_true", default=False, dest="use_imdb_multi_class_labels",
+                  help="Use IMDB multi-class labels (review score: 1, 2, 3, 4, 7, 8, 9, 10). If --use_imdb_multi_class_labels is False, the system use binary classification: 0 = neg and 1 = pos")
+    op.add_option("--not_shuffle_dataset",
+                  action="store_true", default=False, dest="not_shuffle_dataset",
+                  help="Read dataset without shuffle data. Default: False")
+    op.add_option("--show_imdb_reviews",
+                  action="store_true", default=False, dest="show_imdb_reviews",
+                  help="Show the IMDB reviews and respective labels while read the dataset. Default: False")
     op.add_option("--report",
                   action="store_true", dest="print_report",
                   help="Print a detailed classification report.")
@@ -60,19 +71,19 @@ if __name__ == '__main__':
                   action="store_true", dest="print_top10",
                   help="Print ten most discriminative terms per class"
                        " for every classifier.")
-    op.add_option("--all_categories",
-                  action="store_true", dest="all_categories",
-                  help="Whether to use all categories or not.")
+    op.add_option("--twenty_news_using_some_categories",
+                  action="store_true", default=False, dest="twenty_news_using_some_categories",
+                  help="Whether to use all categories or not. Default: False (use all categories)")
     op.add_option("--use_hashing",
                   action="store_true",
                   help="Use a hashing vectorizer.")
     op.add_option("--n_features",
                   action="store", type=int, default=2 ** 16,
                   help="n_features when using the hashing vectorizer.")
-    op.add_option("--filtered",
-                  action="store_true",
-                  help="Remove newsgroup information that is easily overfit: "
-                       "headers, signatures, and quoting.")
+    op.add_option("--twenty_news_with_no_filter",
+                  action="store_true", default=False, dest="twenty_news_with_no_filter",
+                  help="Do not remove newsgroup information that is easily overfit: "
+                       "('headers', 'footers', 'quotes')")
     op.add_option("--just_miniproject_classifiers",
                   action="store_true", dest="just_miniproject_classifiers",
                   help="Use just the miniproject classifiers (1. LogisticRegression, 2. DecisionTreeClassifier, 3. LinearSVC (L1), 4. LinearSVC (L2), 5. AdaBoostClassifier, 6. RandomForestClassifier)")
@@ -105,68 +116,79 @@ if __name__ == '__main__':
     subsets: one for training (or development) and the other one for testing (or for performance evaluation).
     '''
 
+    dataset = opts.dataset
+    dataset = dataset.lower().strip()
 
-    if opts.all_categories:
-        categories = None
+    shuffle = (not opts.not_shuffle_dataset)
+
+    if dataset == '20news':
+
+        if opts.twenty_news_using_some_categories:
+            categories = [
+                'alt.atheism',
+                'talk.religion.misc',
+                'comp.graphics',
+                'sci.space',
+            ]
+        else:
+            categories = None
+
+        if opts.twenty_news_with_no_filter:
+            remove = ()
+        else:
+            remove = ('headers', 'footers', 'quotes')
+
+        print("Loading 20 newsgroups dataset for categories:")
+
+        data_train = load_twenty_news_groups(subset='train', categories=categories, shuffle=shuffle, random_state=0, remove=remove)
+        data_test = load_twenty_news_groups(subset='test', categories=categories, shuffle=shuffle, random_state=0, remove=remove)
+
+        X_train, y_train = data_train.data, data_train.target
+        X_test, y_test = data_test.data, data_test.target
+
+    elif dataset == 'imdb':
+
+        print("Loading IMDB Reviews dataset:")
+
+        binary_labels = (not opts.use_imdb_multi_class_labels)
+
+        X_train, y_train = load_imdb_reviews(subset='train', binary_labels=binary_labels, verbose=opts.show_imdb_reviews, shuffle=shuffle, random_state=0)
+        X_test, y_test = load_imdb_reviews(subset='test', binary_labels=binary_labels, verbose=opts.show_imdb_reviews, shuffle=shuffle, random_state=0)
     else:
-        categories = [
-            'alt.atheism',
-            'talk.religion.misc',
-            'comp.graphics',
-            'sci.space',
-        ]
+        logging.error("Loading dataset: Wrong dataset name = '{}'. Expecting: 20news OR imdb".format(dataset))
+        exit(0)
 
-    if opts.filtered:
-        remove = ('headers', 'footers', 'quotes')
-    else:
-        remove = ()
-
-    # TODO Use IMDB Reviews dataset
-    # X, y = load_imdb_reviews('train', binary_labels=False, verbose=False)
-
-    print("Loading 20 newsgroups dataset for categories:")
-    print(categories if categories else "all")
-
-    data_train = fetch_20newsgroups(subset='train', categories=categories,
-                                    shuffle=True, random_state=42,
-                                    remove=remove)
-
-    data_test = fetch_20newsgroups(subset='test', categories=categories,
-                                   shuffle=True, random_state=42,
-                                   remove=remove)
     print('data loaded')
 
-    # order of labels in `target_names` can be different from `categories`
-    target_names = data_train.target_names
-
+    if dataset == '20news':
+        # order of labels in `target_names` can be different from `categories`
+        target_names = data_train.target_names
 
     def size_mb(docs):
         return sum(len(s.encode('utf-8')) for s in docs) / 1e6
 
 
-    data_train_size_mb = size_mb(data_train.data)
-    data_test_size_mb = size_mb(data_test.data)
+    data_train_size_mb = size_mb(X_train)
+    data_test_size_mb = size_mb(X_test)
 
     print("%d documents - %0.3fMB (training set)" % (
-        len(data_train.data), data_train_size_mb))
+        len(X_train), data_train_size_mb))
     print("%d documents - %0.3fMB (test set)" % (
-        len(data_test.data), data_test_size_mb))
-    print("%d categories" % len(target_names))
+        len(X_test), data_test_size_mb))
+    if dataset == '20news':
+        print("%d categories" % len(target_names))
     print()
-
-    # split a training set and a test set
-    y_train, y_test = data_train.target, data_test.target
 
     print("Extracting features from the training data using a sparse vectorizer")
     t0 = time()
     if opts.use_hashing:
         vectorizer = HashingVectorizer(stop_words='english', alternate_sign=False,
                                        n_features=opts.n_features)
-        X_train = vectorizer.transform(data_train.data)
+        X_train = vectorizer.transform(X_train)
     else:
         vectorizer = TfidfVectorizer(sublinear_tf=True, max_df=0.5,
                                      stop_words='english')
-        X_train = vectorizer.fit_transform(data_train.data)
+        X_train = vectorizer.fit_transform(X_train)
     duration = time() - t0
     print("done in %fs at %0.3fMB/s" % (duration, data_train_size_mb / duration))
     print("n_samples: %d, n_features: %d" % X_train.shape)
@@ -174,7 +196,7 @@ if __name__ == '__main__':
 
     print("Extracting features from the test data using the same vectorizer")
     t0 = time()
-    X_test = vectorizer.transform(data_test.data)
+    X_test = vectorizer.transform(X_test)
     duration = time() - t0
     print("done in %fs at %0.3fMB/s" % (duration, data_test_size_mb / duration))
     print("n_samples: %d, n_features: %d" % X_test.shape)
@@ -331,10 +353,20 @@ if __name__ == '__main__':
     test_time = np.array(test_time) / np.max(test_time)
 
     plt.figure(figsize=(12, 8))
-    if opts.filtered:
-        plt.title("Accuracy score for the 20 news group dataset (removing headers signatures and quoting)")
-    else:
-        plt.title("Accuracy score for the 20 news group dataset")
+    if dataset == '20news':
+        if opts.twenty_news_with_no_filter:
+            plt.title("20 News Groups: Accuracy score for the 20 news group dataset")
+        else:
+            plt.title("20 News Groups: Accuracy score for the 20 news group dataset (removing headers signatures and quoting)")
+
+
+    elif dataset == 'imdb':
+        if opts.use_imdb_multi_class_labels:
+            imdb_classification_type = "Multi-class classification"
+        else:
+            imdb_classification_type = "Binary classification"
+
+        plt.title("IMDB Reviews: Accuracy score for the 20 news group dataset ({})".format(imdb_classification_type))
     plt.barh(indices, score, .2, label="score", color='navy')
     if opts.plot_accurary_and_time:
         plt.barh(indices + .3, training_time, .2, label="training time", color='c')
