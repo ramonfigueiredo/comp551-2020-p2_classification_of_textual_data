@@ -353,11 +353,14 @@ if __name__ == '__main__':
     test_time = np.array(test_time) / np.max(test_time)
 
     plt.figure(figsize=(12, 8))
+    title = ""
     if dataset == '20news':
         if opts.twenty_news_with_no_filter:
-            plt.title("20 News Groups: Accuracy score for the 20 news group dataset")
+            title = "20 News Groups: Accuracy score for the 20 news group dataset"
+            plt.title()
         else:
-            plt.title("20 News Groups: Accuracy score for the 20 news group dataset (removing headers signatures and quoting)")
+            title = "20 News Groups: Accuracy score for the 20 news group dataset (removing headers signatures and quoting)"
+            plt.title(title)
 
 
     elif dataset == 'imdb':
@@ -366,7 +369,8 @@ if __name__ == '__main__':
         else:
             imdb_classification_type = "Binary classification"
 
-        plt.title("IMDB Reviews: Accuracy score for the 20 news group dataset ({})".format(imdb_classification_type))
+        title = "IMDB Reviews: Accuracy score for the 20 news group dataset ({})".format(imdb_classification_type)
+        plt.title(title)
     plt.barh(indices, score, .2, label="score", color='navy')
     if opts.plot_accurary_and_time:
         plt.barh(indices + .3, training_time, .2, label="training time", color='c')
@@ -387,7 +391,7 @@ if __name__ == '__main__':
 
     plt.show()
 
-    print("Final classification report: ")
+    print("{}: Final classification report: ".format(title))
     classifier_name_list = results[0]
     accuracy_score_list = results[1]
     train_time_list = results[2]
