@@ -37,6 +37,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.utils.extmath import density
+from datasets.load_dataset import load_imdb_reviews
+
 
 if __name__ == '__main__':
     start = time()
@@ -118,6 +120,9 @@ if __name__ == '__main__':
         remove = ('headers', 'footers', 'quotes')
     else:
         remove = ()
+
+    # TODO Use IMDB Reviews dataset
+    # X, y = load_imdb_reviews('train', binary_labels=False, verbose=False)
 
     print("Loading 20 newsgroups dataset for categories:")
     print(categories if categories else "all")
