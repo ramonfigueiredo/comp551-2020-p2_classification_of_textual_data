@@ -266,7 +266,7 @@ if __name__ == '__main__':
             print("dimensionality: %d" % clf.coef_.shape[1])
             print("density: %f" % density(clf.coef_))
 
-            if opts.print_top10 and feature_names is not None:
+            if opts.print_top10 and feature_names is not None and not opts.use_imdb_binary_labels:
                 print("top 10 keywords per class:")
                 for i, label in enumerate(target_names):
                     top10 = np.argsort(clf.coef_[i])[-10:]
