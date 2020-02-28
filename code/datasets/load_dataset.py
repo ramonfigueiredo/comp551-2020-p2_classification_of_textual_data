@@ -15,7 +15,7 @@ def load_twenty_news_groups(subset, categories=None, shuffle=True, random_state=
     return fetch_20newsgroups(subset=subset, categories=categories, shuffle=shuffle, random_state=random_state, remove=remove)
 
 
-def load_imdb_reviews(subset, binary_labels=True, verbose=False, shuffle=True, random_state=0):
+def load_imdb_reviews(subset, binary_labels=False, verbose=False, shuffle=True, random_state=0):
     X = []
     y = []
     dataset = {}

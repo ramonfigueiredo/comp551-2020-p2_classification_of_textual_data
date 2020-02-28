@@ -49,9 +49,9 @@ if __name__ == '__main__':
     op.add_option("--dataset",
                   action="store", dest="dataset",
                   help="Dataset used (Options: 20news OR imdb)", default='imdb')
-    op.add_option("--use_imdb_multi_class_labels",
-                  action="store_true", default=False, dest="use_imdb_multi_class_labels",
-                  help="Use IMDB multi-class labels (review score: 1, 2, 3, 4, 7, 8, 9, 10). If --use_imdb_multi_class_labels is False, the system use binary classification: 0 = neg and 1 = pos")
+    op.add_option("--use_imdb_binary_labels",
+                  action="store_true", default=False, dest="use_imdb_binary_labels",
+                  help="Use binary classification: 0 = neg and 1 = pos. If --use_imdb_binary_labels is False, the system use IMDB multi-class labels (review score: 1, 2, 3, 4, 7, 8, 9, 10)")
     op.add_option("--not_shuffle_dataset",
                   action="store_true", default=False, dest="not_shuffle_dataset",
                   help="Read dataset without shuffle data. Default: False")
@@ -150,10 +150,8 @@ if __name__ == '__main__':
 
         print("Loading IMDB Reviews dataset:")
 
-        binary_labels = (not opts.use_imdb_multi_class_labels)
-
-        X_train, y_train = load_imdb_reviews(subset='train', binary_labels=binary_labels, verbose=opts.show_imdb_reviews, shuffle=shuffle, random_state=0)
-        X_test, y_test = load_imdb_reviews(subset='test', binary_labels=binary_labels, verbose=opts.show_imdb_reviews, shuffle=shuffle, random_state=0)
+        X_train, y_train = load_imdb_reviews(subset='train', binary_labels=opts.use_imdb_binary_labels, verbose=opts.show_imdb_reviews, shuffle=shuffle, random_state=0)
+        X_test, y_test = load_imdb_reviews(subset='test', binary_labels=opts.use_imdb_binary_labels, verbose=opts.show_imdb_reviews, shuffle=shuffle, random_state=0)
     else:
         logging.error("Loading dataset: Wrong dataset name = '{}'. Expecting: 20news OR imdb".format(dataset))
         exit(0)
@@ -364,10 +362,10 @@ if __name__ == '__main__':
 
 
     elif dataset == 'imdb':
-        if opts.use_imdb_multi_class_labels:
-            imdb_classification_type = "Multi-class classification"
-        else:
+        if opts.use_imdb_binary_labels:
             imdb_classification_type = "Binary classification"
+        else:
+            imdb_classification_type = "Multi-class classification"
 
         title = "IMDB Reviews: Accuracy score for the 20 news group dataset ({})".format(imdb_classification_type)
         plt.title(title)
