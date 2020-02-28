@@ -161,6 +161,15 @@ if __name__ == '__main__':
     if dataset == '20news':
         # order of labels in `target_names` can be different from `categories`
         target_names = data_train.target_names
+    else:
+        # IMDB reviews dataset
+        # If binary classification: 0 = neg and 1 = pos.
+        # If multi-class classification use the review scores: 1, 2, 3, 4, 7, 8, 9, 10
+        if opts.use_imdb_binary_labels:
+            target_names = [0, 1]
+        else:
+            target_names = [1, 2, 3, 4, 7, 8, 9, 10]
+
 
     def size_mb(docs):
         return sum(len(s.encode('utf-8')) for s in docs) / 1e6
