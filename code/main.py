@@ -84,6 +84,10 @@ if __name__ == '__main__':
                         action="store_true", dest="report",
                         help="Print a detailed classification report.")
 
+    parser.add_argument("-m", "--all_metrics",
+                        action="store_true", dest="all_metrics",
+                        help="Print all classification metrics.")
+
     parser.add_argument("--chi2_select",
                         action="store", type=int, dest="select_chi2",
                         help="Select some number of features using a chi-squared test")
@@ -129,6 +133,7 @@ if __name__ == '__main__':
     print('\tUse IMDB Binary Labels (Negative / Positive) =', options.use_imdb_binary_labels)
     print('\tShow the IMDB reviews and respective labels while read the dataset =', options.show_imdb_reviews)
     print('\tPrint Classification Report =', options.report)
+    print('\tPrint all classification metrics = ', options.all_metrics)
     print('\tSelect some number of features using a chi-squared test =', options.select_chi2)
     print('\tPrint the confusion matrix =', options.print_cm)
     print('\tPrint ten most discriminative terms per class for every classifier =', options.print_top10_terms)
@@ -285,11 +290,11 @@ if __name__ == '__main__':
         print("train time: %0.3fs" % train_time)
 
         t0 = time()
-        pred = clf.predict(X_test)
+        y_pred = clf.predict(X_test)
         test_time = time() - t0
         print("test time:  %0.3fs" % test_time)
 
-        score = metrics.accuracy_score(y_test, pred)
+        score = metrics.accuracy_score(y_test, y_pred)
         print("accuracy:   %0.3f" % score)
 
         if hasattr(clf, 'coef_'):
@@ -304,12 +309,53 @@ if __name__ == '__main__':
             print()
 
         if options.report:
-            print("classification report:")
-            print(metrics.classification_report(y_test, pred, target_names=target_names))
+            print("\n\n===> Classification Report:\n")
+            print(metrics.classification_report(y_test, y_pred, target_names=target_names))
+
+        if options.all_metrics:
+            print("\n\n===> Classification Metrics:\n")
+            print('accuracy classification score')
+            print('\taccuracy score: ', metrics.accuracy_score(y_test, y_pred))
+            print('\taccuracy score (normalize=False): ', metrics.accuracy_score(y_test, y_pred, normalize=False))
+            print()
+            print('compute the precision')
+            print('\tprecision score (average=macro): ', metrics.precision_score(y_test, y_pred, average='macro'))
+            print('\tprecision score (average=micro): ', metrics.precision_score(y_test, y_pred, average='micro'))
+            print('\tprecision score (average=weighted): ', metrics.precision_score(y_test, y_pred, average='weighted'))
+            print('\tprecision score (average=None): ', metrics.precision_score(y_test, y_pred, average=None))
+            print('\tprecision score (average=None, zero_division=1): ', metrics.precision_score(y_test, y_pred, average=None, zero_division=1))
+            print()
+            print('compute the precision')
+            print('\trecall score (average=macro): ', metrics.recall_score(y_test, y_pred, average='macro'))
+            print('\trecall score (average=micro): ', metrics.recall_score(y_test, y_pred, average='micro'))
+            print('\trecall score (average=weighted): ', metrics.recall_score(y_test, y_pred, average='weighted'))
+            print('\trecall score (average=None): ', metrics.recall_score(y_test, y_pred, average=None))
+            print('\trecall score (average=None, zero_division=1): ',
+                  metrics.recall_score(y_test, y_pred, average=None, zero_division=1))
+            print()
+            print('compute the F1 score, also known as balanced F-score or F-measure')
+            print('\tf1 score (average=macro): ', metrics.f1_score(y_test, y_pred, average='macro'))
+            print('\tf1 score (average=micro): ', metrics.f1_score(y_test, y_pred, average='micro'))
+            print('\tf1 score (average=weighted): ', metrics.f1_score(y_test, y_pred, average='weighted'))
+            print('\tf1 score (average=None): ', metrics.f1_score(y_test, y_pred, average=None))
+            print()
+            print('compute the F-beta score')
+            print('\tf beta score (average=macro): ', metrics.fbeta_score(y_test, y_pred, average='macro', beta=0.5))
+            print('\tf beta score (average=micro): ', metrics.fbeta_score(y_test, y_pred, average='micro', beta=0.5))
+            print('\tf beta score (average=weighted): ', metrics.fbeta_score(y_test, y_pred, average='weighted', beta=0.5))
+            print('\tf beta score (average=None): ', metrics.fbeta_score(y_test, y_pred, average=None, beta=0.5))
+            print()
+            print('compute the average Hamming loss')
+            print('\thamming loss: ', metrics.hamming_loss(y_test, y_pred))
+            print()
+            print('jaccard similarity coefficient score')
+            print('\tjaccard score (average=macro): ', metrics.jaccard_score(y_test, y_pred, average='macro'))
+            print('\tjaccard score (average=None): ', metrics.jaccard_score(y_test, y_pred, average=None))
+            print()
 
         if options.print_cm:
             print("confusion matrix:")
-            print(metrics.confusion_matrix(y_test, pred))
+            print(metrics.confusion_matrix(y_test, y_pred))
 
         print()
         # clf_descr = str(clf).split('(')[0]
