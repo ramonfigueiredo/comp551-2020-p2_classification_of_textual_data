@@ -8,11 +8,9 @@ This code uses many machine learning approaches to classify documents by topics 
 The datasets used in this are the 20 newsgroups dataset (https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups.html) and the IMDB Reviews dataset (http://ai.stanford.edu/~amaas/data/sentiment/).
 '''
 
-
+import argparse
 import logging
 import operator
-import sys
-from optparse import OptionParser
 from time import time
 
 import matplotlib.pyplot as plt
@@ -45,85 +43,113 @@ if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s %(levelname)s %(message)s')
 
-    op = OptionParser()
-    op.add_option("--dataset",
-                  action="store", dest="dataset",
-                  help="Dataset used (Options: 20news OR imdb)", default='imdb')
-    op.add_option("--use_imdb_binary_labels",
-                  action="store_true", default=False, dest="use_imdb_binary_labels",
-                  help="Use binary classification: 0 = neg and 1 = pos. If --use_imdb_binary_labels is False, the system use IMDB multi-class labels (review score: 1, 2, 3, 4, 7, 8, 9, 10)")
-    op.add_option("--not_shuffle_dataset",
-                  action="store_true", default=False, dest="not_shuffle_dataset",
-                  help="Read dataset without shuffle data. Default: False")
-    op.add_option("--show_imdb_reviews",
-                  action="store_true", default=False, dest="show_imdb_reviews",
-                  help="Show the IMDB reviews and respective labels while read the dataset. Default: False")
-    op.add_option("--report",
-                  action="store_true", dest="print_report",
-                  help="Print a detailed classification report.")
-    op.add_option("--chi2_select",
-                  action="store", type="int", dest="select_chi2",
-                  help="Select some number of features using a chi-squared test")
-    op.add_option("--confusion_matrix",
-                  action="store_true", dest="print_cm",
-                  help="Print the confusion matrix.")
-    op.add_option("--top10",
-                  action="store_true", dest="print_top10",
-                  help="Print ten most discriminative terms per class"
-                       " for every classifier.")
-    op.add_option("--twenty_news_using_some_categories",
-                  action="store_true", default=False, dest="twenty_news_using_some_categories",
-                  help="Whether to use all categories or not. Default: False (use all categories)")
-    op.add_option("--use_hashing",
-                  action="store_true",
-                  help="Use a hashing vectorizer.")
-    op.add_option("--n_features",
-                  action="store", type=int, default=2 ** 16,
-                  help="n_features when using the hashing vectorizer.")
-    op.add_option("--twenty_news_with_no_filter",
-                  action="store_true", default=False, dest="twenty_news_with_no_filter",
-                  help="Do not remove newsgroup information that is easily overfit: "
-                       "('headers', 'footers', 'quotes')")
-    op.add_option("--just_miniproject_classifiers",
-                  action="store_true", dest="just_miniproject_classifiers",
-                  help="Use just the miniproject classifiers (1. LogisticRegression, 2. DecisionTreeClassifier, 3. LinearSVC (L1), 4. LinearSVC (L2), 5. AdaBoostClassifier, 6. RandomForestClassifier)")
+    parser = argparse.ArgumentParser(
+        description='MiniProject 2: Classification of textual data. Authors: Ramon Figueiredo Pessoa, Rafael Gomes Braga, Ege Odaci',
+        epilog='COMP 551 (001/002), Applied Machine Learning, Winter 2020, McGill University.')
 
-    op.add_option("--plot_accurary_and_time",
-                  action="store_true", dest="plot_accurary_and_time",
-                  help="Plot training time and test time together with accuracy score")
+    parser.add_argument("-d", "--dataset",
+                        action="store", dest="dataset",
+                        help="Dataset used (Options: 20news OR imdb)", default='imdb')
 
+    parser.add_argument("-not_shuffle", "--not_shuffle_dataset",
+                        action="store_true", default=False, dest="not_shuffle_dataset",
+                        help="Read dataset without shuffle data. Default: False")
 
-    def is_interactive():
-        return not hasattr(sys.modules['__main__'], '__file__')
+    parser.add_argument("-use_5_classifiers", "--use_just_miniproject_classifiers",
+                        action="store_true", dest="use_just_miniproject_classifiers",
+                        help="Use just the miniproject classifiers (1. LogisticRegression, 2. DecisionTreeClassifier, "
+                             "3. LinearSVC (L1), 4. LinearSVC (L2), 5. AdaBoostClassifier, 6. RandomForestClassifier)")
 
+    parser.add_argument("-news_with_4_classes", "--twenty_news_using_four_categories",
+                        action="store_true", default=False, dest="twenty_news_using_four_categories",
+                        help="20 news groups dataset using some categories "
+                             "('alt.atheism', 'talk.religion.misc', 'comp.graphics', 'sci.space'). "
+                             "Default: False (use all categories)")
 
-    # work-around for Jupyter notebook and IPython console
-    argv = [] if is_interactive() else sys.argv[1:]
-    (opts, args) = op.parse_args(argv)
-    if len(args) > 0:
-        op.error("this script takes no arguments.")
-        sys.exit(1)
+    parser.add_argument("-news_no_filter", "--twenty_news_with_no_filter",
+                        action="store_true", default=False, dest="twenty_news_with_no_filter",
+                        help="Do not remove newsgroup information that is easily overfit: "
+                             "('headers', 'footers', 'quotes')")
 
-    print(__doc__)
-    op.print_help()
+    parser.add_argument("-imdb_binary", "--use_imdb_binary_labels",
+                        action="store_true", default=False, dest="use_imdb_binary_labels",
+                        help="Use binary classification: 0 = neg and 1 = pos. If --use_imdb_binary_labels is False, "
+                             "the system use IMDB multi-class labels (review score: 1, 2, 3, 4, 7, 8, 9, 10)")
+
+    parser.add_argument("-show_reviews", "--show_imdb_reviews",
+                        action="store_true", default=False, dest="show_imdb_reviews",
+                        help="Show the IMDB reviews and respective labels while read the dataset. Default: False")
+
+    parser.add_argument("-r", "--report",
+                        action="store_true", dest="report",
+                        help="Print a detailed classification report.")
+
+    parser.add_argument("--chi2_select",
+                        action="store", type=int, dest="select_chi2",
+                        help="Select some number of features using a chi-squared test")
+
+    parser.add_argument("-cm", "--confusion_matrix",
+                        action="store_true", dest="print_cm",
+                        help="Print the confusion matrix.")
+
+    parser.add_argument("-top10", "--print_top10_terms",
+                        action="store_true", dest="print_top10_terms",
+                        help="Print ten most discriminative terms per class"
+                             " for every classifier.")
+
+    parser.add_argument("-use_hashing", "--use_hashing_vectorizer", dest="use_hashing",
+                        action="store_true",
+                        help="Use a hashing vectorizer.")
+
+    parser.add_argument("-n_features", "--n_features_using_hashing", dest="n_features",
+                        action="store", type=int, default=2 ** 16,
+                        help="n_features when using the hashing vectorizer.")
+
+    parser.add_argument("-plot_time", "--plot_accurary_and_time_together",
+                        action="store_true", dest="plot_accurary_and_time_together",
+                        help="Plot training time and test time together with accuracy score")
+
+    options = parser.parse_args()
+    print('\n==================================================================================================\n')
+    print(parser.description)
+
+    print('\nRunning with options: ')
+    # print('\tClassifier =', options.classifier.upper())
+    # print('\tTraining set size =', options.training_set_size)
+    # print('\tDataset =', options.dataset.upper())
+    # print('\tSave logs in a file =', options.save_logs_in_file)
+    print('\tDataset =', options.dataset)
+    print('\tRead dataset without shuffle data =', options.not_shuffle_dataset)
+    print('\tUse just the miniproject classifiers (1. LogisticRegression, 2. DecisionTreeClassifier, '
+          '3. LinearSVC, 4. AdaBoostClassifier, 5. RandomForestClassifier) = ', options.use_just_miniproject_classifiers)
+    print('\t20 news groups dataset using some categories (alt.atheism, talk.religion.misc, comp.graphics, sci.space) =',
+          options.twenty_news_using_four_categories)
+    print('\tDo not remove newsgroup information that is easily overfit (headers, footers, quotes) =',
+          options.twenty_news_with_no_filter)
+    print('\tUse IMDB Binary Labels (Negative / Positive) =', options.use_imdb_binary_labels)
+    print('\tShow the IMDB reviews and respective labels while read the dataset =', options.show_imdb_reviews)
+    print('\nPrint Classification Report =', options.report)
+    print('\nSelect some number of features using a chi-squared test =', options.select_chi2)
+    print('\nPrint the confusion matrix =', options.print_cm)
+    print('\nPrint ten most discriminative terms per class for every classifier =', options.print_top10_terms)
+    print('\nUse a hashing vectorizer =', options.use_hashing)
+    print('\nN features when using the hashing vectorizer =', options.n_features)
+    print('\nPlot training time and test time together with accuracy score =', options.plot_accurary_and_time_together)
+    print('\n==================================================================================================')
     print()
 
-    '''
     #######################################
     # Load data from the training set
     #######################################
-    Let’s load data from the newsgroups dataset which comprises around 18000 newsgroups posts on 20 topics split in two 
-    subsets: one for training (or development) and the other one for testing (or for performance evaluation).
-    '''
 
-    dataset = opts.dataset
+    dataset = options.dataset
     dataset = dataset.lower().strip()
 
-    shuffle = (not opts.not_shuffle_dataset)
+    shuffle = (not options.not_shuffle_dataset)
 
     if dataset == '20news':
 
-        if opts.twenty_news_using_some_categories:
+        if options.twenty_news_using_four_categories:
             categories = [
                 'alt.atheism',
                 'talk.religion.misc',
@@ -133,15 +159,17 @@ if __name__ == '__main__':
         else:
             categories = None
 
-        if opts.twenty_news_with_no_filter:
+        if options.twenty_news_with_no_filter:
             remove = ()
         else:
             remove = ('headers', 'footers', 'quotes')
 
         print("Loading 20 newsgroups dataset for categories:")
 
-        data_train = load_twenty_news_groups(subset='train', categories=categories, shuffle=shuffle, random_state=0, remove=remove)
-        data_test = load_twenty_news_groups(subset='test', categories=categories, shuffle=shuffle, random_state=0, remove=remove)
+        data_train = load_twenty_news_groups(subset='train', categories=categories, shuffle=shuffle, random_state=0,
+                                             remove=remove)
+        data_test = load_twenty_news_groups(subset='test', categories=categories, shuffle=shuffle, random_state=0,
+                                            remove=remove)
 
         X_train, y_train = data_train.data, data_train.target
         X_test, y_test = data_test.data, data_test.target
@@ -150,8 +178,10 @@ if __name__ == '__main__':
 
         print("Loading IMDB Reviews dataset:")
 
-        X_train, y_train = load_imdb_reviews(subset='train', binary_labels=opts.use_imdb_binary_labels, verbose=opts.show_imdb_reviews, shuffle=shuffle, random_state=0)
-        X_test, y_test = load_imdb_reviews(subset='test', binary_labels=opts.use_imdb_binary_labels, verbose=opts.show_imdb_reviews, shuffle=shuffle, random_state=0)
+        X_train, y_train = load_imdb_reviews(subset='train', binary_labels=options.use_imdb_binary_labels,
+                                             verbose=options.show_imdb_reviews, shuffle=shuffle, random_state=0)
+        X_test, y_test = load_imdb_reviews(subset='test', binary_labels=options.use_imdb_binary_labels,
+                                           verbose=options.show_imdb_reviews, shuffle=shuffle, random_state=0)
     else:
         logging.error("Loading dataset: Wrong dataset name = '{}'. Expecting: 20news OR imdb".format(dataset))
         exit(0)
@@ -165,7 +195,7 @@ if __name__ == '__main__':
         # IMDB reviews dataset
         # If binary classification: 0 = neg and 1 = pos.
         # If multi-class classification use the review scores: 1, 2, 3, 4, 7, 8, 9, 10
-        if opts.use_imdb_binary_labels:
+        if options.use_imdb_binary_labels:
             target_names = [0, 1]
         else:
             target_names = [1, 2, 3, 4, 7, 8, 9, 10]
@@ -188,9 +218,9 @@ if __name__ == '__main__':
 
     print("Extracting features from the training data using a sparse vectorizer")
     t0 = time()
-    if opts.use_hashing:
+    if options.use_hashing:
         vectorizer = HashingVectorizer(stop_words='english', alternate_sign=False,
-                                       n_features=opts.n_features)
+                                       n_features=options.n_features)
         X_train = vectorizer.transform(X_train)
     else:
         vectorizer = TfidfVectorizer(sublinear_tf=True, max_df=0.5,
@@ -201,6 +231,10 @@ if __name__ == '__main__':
     print("n_samples: %d, n_features: %d" % X_train.shape)
     print()
 
+    #######################################
+    # Extracting features
+    #######################################
+
     print("Extracting features from the test data using the same vectorizer")
     t0 = time()
     X_test = vectorizer.transform(X_test)
@@ -210,16 +244,16 @@ if __name__ == '__main__':
     print()
 
     # mapping from integer feature name to original token string
-    if opts.use_hashing:
+    if options.use_hashing:
         feature_names = None
     else:
         feature_names = vectorizer.get_feature_names()
 
-    if opts.select_chi2:
+    if options.select_chi2:
         print("Extracting %d best featureop.print_help()s by a chi-squared test" %
-              opts.select_chi2)
+              options.select_chi2)
         t0 = time()
-        ch2 = SelectKBest(chi2, k=opts.select_chi2)
+        ch2 = SelectKBest(chi2, k=options.select_chi2)
         X_train = ch2.fit_transform(X_train, y_train)
         X_test = ch2.transform(X_test)
         if feature_names:
@@ -237,13 +271,9 @@ if __name__ == '__main__':
         """Trim string to fit on terminal (assuming 80-column display)"""
         return s if len(s) <= 80 else s[:77] + "..."
 
-    '''
     ##############################################
     # Benchmark classifiers
     ##############################################
-    
-    We train and test the datasets with different classification models and get performance results for each model.
-    '''
 
     def benchmark(clf, classifier_name):
         print('_' * 80)
@@ -266,19 +296,19 @@ if __name__ == '__main__':
             print("dimensionality: %d" % clf.coef_.shape[1])
             print("density: %f" % density(clf.coef_))
 
-            if opts.print_top10 and feature_names is not None and not opts.use_imdb_binary_labels:
+            if options.print_top10_terms and feature_names is not None and not options.use_imdb_binary_labels:
                 print("top 10 keywords per class:")
                 for i, label in enumerate(target_names):
                     top10 = np.argsort(clf.coef_[i])[-10:]
                     print(trim("%s: %s" % (label, " ".join(feature_names[top10]))))
             print()
 
-        if opts.print_report:
+        if options.report:
             print("classification report:")
             print(metrics.classification_report(y_test, pred,
                                                 target_names=target_names))
 
-        if opts.print_cm:
+        if options.print_cm:
             print("confusion matrix:")
             print(metrics.confusion_matrix(y_test, pred))
 
@@ -288,7 +318,7 @@ if __name__ == '__main__':
 
 
     results = []
-    if opts.just_miniproject_classifiers:
+    if options.use_just_miniproject_classifiers:
         for clf, classifier_name in (
                 (LogisticRegression(), "Logistic Regression"),
                 (DecisionTreeClassifier(), "Decision Tree Classifier"),
@@ -319,7 +349,8 @@ if __name__ == '__main__':
         # Train SGD with Elastic Net penalty
         print('=' * 80)
         print("SGDClassifier Elastic-Net penalty")
-        results.append(benchmark(SGDClassifier(alpha=.0001, max_iter=50, penalty="elasticnet"), "SGDClassifier using Elastic-Net penalty"))
+        results.append(benchmark(SGDClassifier(alpha=.0001, max_iter=50, penalty="elasticnet"),
+                                 "SGDClassifier using Elastic-Net penalty"))
 
         # Train NearestCentroid without threshold
         print('=' * 80)
@@ -338,18 +369,12 @@ if __name__ == '__main__':
         # The smaller C, the stronger the regularization.
         # The more regularization, the more sparsity.
         results.append(benchmark(Pipeline([
-          ('feature_selection', SelectFromModel(LinearSVC(penalty="l1", dual=False, tol=1e-3))),
-          ('classification', LinearSVC(penalty="l2"))]), "LinearSVC with L1-based feature selection"))
+            ('feature_selection', SelectFromModel(LinearSVC(penalty="l1", dual=False, tol=1e-3))),
+            ('classification', LinearSVC(penalty="l2"))]), "LinearSVC with L1-based feature selection"))
 
-
-    '''
-    ##############
-    # Add plots
-    ##############
-    
-    The bar plot indicates the accuracy, training time (normalized) and test time (normalized) of each classifier.
-    
-    '''
+    ###########################################################################################################################
+    # Add plots: The bar plot indicates the accuracy, training time (normalized) and test time (normalized) of each classifier
+    ###########################################################################################################################
 
     indices = np.arange(len(results))
 
@@ -362,7 +387,7 @@ if __name__ == '__main__':
     plt.figure(figsize=(12, 8))
     title = ""
     if dataset == '20news':
-        if opts.twenty_news_with_no_filter:
+        if options.twenty_news_with_no_filter:
             title = "20 News Groups: Accuracy score for the 20 news group dataset"
             plt.title()
         else:
@@ -371,7 +396,7 @@ if __name__ == '__main__':
 
 
     elif dataset == 'imdb':
-        if opts.use_imdb_binary_labels:
+        if options.use_imdb_binary_labels:
             imdb_classification_type = "Binary classification"
         else:
             imdb_classification_type = "Multi-class classification"
@@ -379,7 +404,7 @@ if __name__ == '__main__':
         title = "IMDB Reviews: Accuracy score for the 20 news group dataset ({})".format(imdb_classification_type)
         plt.title(title)
     plt.barh(indices, score, .2, label="score", color='navy')
-    if opts.plot_accurary_and_time:
+    if options.plot_accurary_and_time_together:
         plt.barh(indices + .3, training_time, .2, label="training time", color='c')
         plt.barh(indices + .6, test_time, .2, label="test time", color='darkorange')
     plt.yticks(())
@@ -404,10 +429,14 @@ if __name__ == '__main__':
     train_time_list = results[2]
     test_time_list = results[3]
     index = 1
-    for classifier_name, accuracy_score, train_time, test_time in zip(classifier_name_list, accuracy_score_list, train_time_list, test_time_list):
-        if classifier_name in ["Logistic Regression", "Decision Tree Classifier", "Linear SVC (penalty = L2)", "Linear SVC (penalty = L1)", "Ada Boost Classifier", "Random forest"]:
+    for classifier_name, accuracy_score, train_time, test_time in zip(classifier_name_list, accuracy_score_list,
+                                                                      train_time_list, test_time_list):
+        if classifier_name in ["Logistic Regression", "Decision Tree Classifier", "Linear SVC (penalty = L2)",
+                               "Linear SVC (penalty = L1)", "Ada Boost Classifier", "Random forest"]:
             classifier_name = classifier_name + " [MANDATORY FOR COMP 551, ASSIGNMENT 2]"
-        print("{}) {}\n\t\tAccuracy score = {}\t\tTraining time = {}\t\tTest time = {}\n".format(index, classifier_name, accuracy_score, train_time, test_time))
+        print("{}) {}\n\t\tAccuracy score = {}\t\tTraining time = {}\t\tTest time = {}\n".format(index, classifier_name,
+                                                                                                 accuracy_score,
+                                                                                                 train_time, test_time))
         index = index + 1
 
     print("\n\nBest algorithm:")
