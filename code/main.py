@@ -196,9 +196,9 @@ if __name__ == '__main__':
         # If binary classification: 0 = neg and 1 = pos.
         # If multi-class classification use the review scores: 1, 2, 3, 4, 7, 8, 9, 10
         if options.use_imdb_binary_labels:
-            target_names = [0, 1]
+            target_names = ['0', '1']
         else:
-            target_names = [1, 2, 3, 4, 7, 8, 9, 10]
+            target_names = ['1', '2', '3', '4', '7', '8', '9', '10']
 
 
     def size_mb(docs):
@@ -305,8 +305,7 @@ if __name__ == '__main__':
 
         if options.report:
             print("classification report:")
-            print(metrics.classification_report(y_test, pred,
-                                                target_names=target_names))
+            print(metrics.classification_report(y_test, pred, target_names=target_names))
 
         if options.print_cm:
             print("confusion matrix:")
