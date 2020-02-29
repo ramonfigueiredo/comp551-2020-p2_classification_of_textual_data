@@ -114,7 +114,7 @@ if __name__ == '__main__':
                         help="Plot training time and test time together with accuracy score")
 
     options = parser.parse_args()
-    print('\n==================================================================================================\n')
+    print('=' * 130)
     print(parser.description)
 
     print('\nRunning with options: ')
@@ -140,7 +140,7 @@ if __name__ == '__main__':
     print('\tUse a hashing vectorizer =', options.use_hashing)
     print('\tN features when using the hashing vectorizer =', options.n_features)
     print('\tPlot training time and test time together with accuracy score =', options.plot_accurary_and_time_together)
-    print('\n==================================================================================================')
+    print('=' * 130)
     print()
 
     #######################################
