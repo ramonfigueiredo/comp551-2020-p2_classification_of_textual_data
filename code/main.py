@@ -11,6 +11,7 @@ The datasets used in this are the 20 newsgroups dataset (https://scikit-learn.or
 import argparse
 import logging
 import operator
+import os
 from time import time
 
 import matplotlib.pyplot as plt
@@ -38,10 +39,6 @@ from sklearn.utils.extmath import density
 from datasets.load_dataset import load_twenty_news_groups, load_imdb_reviews
 
 if __name__ == '__main__':
-    start = time()
-    # Display progress logs on stdout
-    logging.basicConfig(level=logging.INFO,
-                        format='%(asctime)s %(levelname)s %(message)s')
 
     parser = argparse.ArgumentParser(
         description='MiniProject 2: Classification of textual data. Authors: Ramon Figueiredo Pessoa, Rafael Gomes Braga, Ege Odaci',
@@ -113,15 +110,18 @@ if __name__ == '__main__':
                         action="store_true", dest="plot_accurary_and_time_together",
                         help="Plot training time and test time together with accuracy score")
 
+    parser.add_argument('-save_logs', '--save_logs_in_file', action='store_true', default=False,
+                        dest='save_logs_in_file',
+                        help='Save logs in a file')
+
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.0')
+
     options = parser.parse_args()
     print('=' * 130)
     print(parser.description)
 
     print('\nRunning with options: ')
     # print('\tClassifier =', options.classifier.upper())
-    # print('\tTraining set size =', options.training_set_size)
-    # print('\tDataset =', options.dataset.upper())
-    # print('\tSave logs in a file =', options.save_logs_in_file)
     print('\tDataset =', options.dataset)
     print('\tRead dataset without shuffle data =', options.not_shuffle_dataset)
     print('\tUse just the miniproject classifiers (1. LogisticRegression, 2. DecisionTreeClassifier, '
@@ -140,8 +140,22 @@ if __name__ == '__main__':
     print('\tUse a hashing vectorizer =', options.use_hashing)
     print('\tN features when using the hashing vectorizer =', options.n_features)
     print('\tPlot training time and test time together with accuracy score =', options.plot_accurary_and_time_together)
+    print('\tSave logs in a file =', options.save_logs_in_file)
     print('=' * 130)
     print()
+
+    if options.save_logs_in_file:
+        if not os.path.exists('logs'):
+            os.mkdir('logs')
+        logging.basicConfig(filename='logs/all.log', format='%(asctime)s - %(levelname)s - %(message)s',
+                            level=logging.INFO, datefmt='%m/%d/%Y %I:%M:%S %p')
+    else:
+        logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO,
+                            datefmt='%m/%d/%Y %I:%M:%S %p')
+
+    logging.info("Program started...")
+
+    start = time()
 
     #######################################
     # Load data from the training set
