@@ -28,6 +28,7 @@ from sklearn.linear_model import PassiveAggressiveClassifier
 from sklearn.linear_model import Perceptron
 from sklearn.linear_model import RidgeClassifier
 from sklearn.linear_model import SGDClassifier
+from sklearn.model_selection import cross_val_score
 from sklearn.naive_bayes import BernoulliNB, ComplementNB, MultinomialNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neighbors import NearestCentroid
@@ -35,6 +36,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.utils.extmath import density
+import multiprocessing
 
 from datasets.load_dataset import load_twenty_news_groups, load_imdb_reviews
 
@@ -46,32 +48,46 @@ if __name__ == '__main__':
 
     parser.add_argument("-d", "--dataset",
                         action="store", dest="dataset",
-                        help="Dataset used (Options: 20news OR imdb)", default='imdb')
+                        help="Dataset used (Options: 20news OR imdb). Default: imdb", default='imdb')
 
     parser.add_argument("-not_shuffle", "--not_shuffle_dataset",
                         action="store_true", default=False, dest="not_shuffle_dataset",
                         help="Read dataset without shuffle data. Default: False")
 
+    parser.add_argument("-n_jobs",
+                        action="store", type=int, dest="n_jobs", default=-1,
+                        help="The number of CPUs to use to do the computation. "
+                             "If the provided number is negative or greater than the number of available CPUs, "
+                             "the system will use all the available CPUs. Default: -1 (-1 == all CPUs)")
+
+    parser.add_argument("-cv", "--run_cross_validation",
+                        action="store_true", dest="run_cross_validation",
+                        help="Run cross validation. Default: False")
+
+    parser.add_argument("-n_splits",
+                        action="store", type=int, dest="n_splits", default=5,
+                        help="Number of cross validation folds. Default: 5. Must be at least 2. Default: 5")
+
     parser.add_argument("-use_5_classifiers", "--use_just_miniproject_classifiers",
                         action="store_true", dest="use_just_miniproject_classifiers",
                         help="Use just the miniproject classifiers (1. LogisticRegression, 2. DecisionTreeClassifier, "
-                             "3. LinearSVC (L1), 4. LinearSVC (L2), 5. AdaBoostClassifier, 6. RandomForestClassifier)")
+                             "3. LinearSVC (L1), 4. LinearSVC (L2), 5. AdaBoostClassifier, 6. RandomForestClassifier). Default: False")
 
     parser.add_argument("-news_with_4_classes", "--twenty_news_using_four_categories",
                         action="store_true", default=False, dest="twenty_news_using_four_categories",
                         help="20 news groups dataset using some categories "
                              "('alt.atheism', 'talk.religion.misc', 'comp.graphics', 'sci.space'). "
-                             "Default: False (use all categories)")
+                             "Default: False (use all categories). Default: False")
 
     parser.add_argument("-news_no_filter", "--twenty_news_with_no_filter",
                         action="store_true", default=False, dest="twenty_news_with_no_filter",
                         help="Do not remove newsgroup information that is easily overfit: "
-                             "('headers', 'footers', 'quotes')")
+                             "('headers', 'footers', 'quotes'). Default: False")
 
     parser.add_argument("-imdb_binary", "--use_imdb_binary_labels",
                         action="store_true", default=False, dest="use_imdb_binary_labels",
                         help="Use binary classification: 0 = neg and 1 = pos. If --use_imdb_binary_labels is False, "
-                             "the system use IMDB multi-class labels (review score: 1, 2, 3, 4, 7, 8, 9, 10)")
+                             "the system use IMDB multi-class labels (review score: 1, 2, 3, 4, 7, 8, 9, 10). Default: False")
 
     parser.add_argument("-show_reviews", "--show_imdb_reviews",
                         action="store_true", default=False, dest="show_imdb_reviews",
@@ -94,33 +110,37 @@ if __name__ == '__main__':
                         help="Print the confusion matrix.")
 
     parser.add_argument("-top10", "--print_top10_terms",
-                        action="store_true", dest="print_top10_terms",
+                        action="store_true", default=False, dest="print_top10_terms",
                         help="Print ten most discriminative terms per class"
-                             " for every classifier.")
+                             " for every classifier. Default: False")
 
     parser.add_argument("-use_hashing", "--use_hashing_vectorizer", dest="use_hashing",
-                        action="store_true",
-                        help="Use a hashing vectorizer.")
+                        action="store_true", default=False,
+                        help="Use a hashing vectorizer. Default: False")
 
     parser.add_argument("-n_features", "--n_features_using_hashing", dest="n_features",
                         action="store", type=int, default=2 ** 16,
-                        help="n_features when using the hashing vectorizer.")
+                        help="n_features when using the hashing vectorizer. Default: 65536")
 
     parser.add_argument("-plot_time", "--plot_accurary_and_time_together",
-                        action="store_true", dest="plot_accurary_and_time_together",
-                        help="Plot training time and test time together with accuracy score")
+                        action="store_true", default=False, dest="plot_accurary_and_time_together",
+                        help="Plot training time and test time together with accuracy score. Default: False (Plot just accuracy)")
 
     parser.add_argument('-save_logs', '--save_logs_in_file', action='store_true', default=False,
                         dest='save_logs_in_file',
-                        help='Save logs in a file')
+                        help='Save logs in a file. Default: False (show logs in the prompt)')
 
     parser.add_argument('-verbose', '--verbosity', action='store_true', default=False,
                         dest='verbose',
-                        help='Increase output verbosity')
+                        help='Increase output verbosity. Default: False')
 
     parser.add_argument('-v', '--version', action='version', dest='version', version='%(prog)s 1.0')
 
     options = parser.parse_args()
+
+    if options.n_jobs > multiprocessing.cpu_count() or (options.n_jobs != -1 and options.n_jobs < 1):
+        options.n_jobs = -1 # use all available cpus
+
     print('=' * 130)
     print(parser.description)
 
@@ -128,6 +148,11 @@ if __name__ == '__main__':
     # print('\tClassifier =', options.classifier.upper())
     print('\tDataset =', options.dataset)
     print('\tRead dataset without shuffle data =', options.not_shuffle_dataset)
+    print('\tThe number of CPUs to use to do the computation. '
+          'If the provided number is negative or greater than the number of available CPUs, '
+          'the system will use all the available CPUs. Default: -1 (-1 == all CPUs) =', options.n_jobs)
+    print('\tRun cross validation. Default: False =', options.run_cross_validation)
+    print('\tNumber of cross validation folds. Default: 5 =', options.n_splits)
     print('\tUse just the miniproject classifiers (1. LogisticRegression, 2. DecisionTreeClassifier, '
           '3. LinearSVC, 4. AdaBoostClassifier, 5. RandomForestClassifier) = ', options.use_just_miniproject_classifiers)
     print('\t20 news groups dataset using some categories (alt.atheism, talk.religion.misc, comp.graphics, sci.space) =',
@@ -299,7 +324,7 @@ if __name__ == '__main__':
     # Benchmark classifiers
     ##############################################
 
-    def benchmark(clf, classifier_name):
+    def benchmark(clf, classifier_name, X_train, y_train, X_test, y_test):
         print('_' * 80)
         print("Training: ")
         print(clf)
@@ -315,6 +340,13 @@ if __name__ == '__main__':
 
         score = metrics.accuracy_score(y_test, y_pred)
         print("accuracy:   %0.3f" % score)
+
+        if options.run_cross_validation:
+            print("\n\ncross validation:")
+            cross_val_scores = cross_val_score(clf, X_train, y_train, cv=options.n_splits, n_jobs=options.n_jobs, verbose=options.verbose)
+            print("{}-fold cross validation: {}".format(options.n_splits, cross_val_scores))
+            cross_val_accuracy_mean_std = "%0.2f (+/- %0.2f)" % (cross_val_scores.mean(), cross_val_scores.std() * 2)
+            print("{}-fold cross validation accuracy: {}".format(options.n_splits, cross_val_accuracy_mean_std))
 
         if hasattr(clf, 'coef_'):
             print("dimensionality: %d" % clf.coef_.shape[1])
@@ -391,7 +423,7 @@ if __name__ == '__main__':
                 (RandomForestClassifier(), "Random forest")):
             print('=' * 80)
             print(classifier_name)
-            results.append(benchmark(clf, classifier_name))
+            results.append(benchmark(clf, classifier_name, X_train, y_train, X_test, y_test))
     else:
         for clf, classifier_name in (
                 (RidgeClassifier(tol=1e-2, solver="sag"), "Ridge Classifier"),
@@ -408,25 +440,25 @@ if __name__ == '__main__':
                 (RandomForestClassifier(), "Random forest")):
             print('=' * 80)
             print(classifier_name)
-            results.append(benchmark(clf, classifier_name))
+            results.append(benchmark(clf, classifier_name, X_train, y_train, X_test, y_test))
 
         # Train SGD with Elastic Net penalty
         print('=' * 80)
         print("SGDClassifier Elastic-Net penalty")
         results.append(benchmark(SGDClassifier(alpha=.0001, max_iter=50, penalty="elasticnet"),
-                                 "SGDClassifier using Elastic-Net penalty"))
+                                 "SGDClassifier using Elastic-Net penalty", X_train, y_train, X_test, y_test))
 
         # Train NearestCentroid without threshold
         print('=' * 80)
         print("NearestCentroid (aka Rocchio classifier)")
-        results.append(benchmark(NearestCentroid(), "NearestCentroid (aka Rocchio classifier)"))
+        results.append(benchmark(NearestCentroid(), "NearestCentroid (aka Rocchio classifier)", X_train, y_train, X_test, y_test))
 
         # Train sparse Naive Bayes classifiers
         print('=' * 80)
         print("Naive Bayes")
-        results.append(benchmark(MultinomialNB(alpha=.01), "MultinomialNB(alpha=.01)"))
-        results.append(benchmark(BernoulliNB(alpha=.01), "BernoulliNB(alpha=.01)"))
-        results.append(benchmark(ComplementNB(alpha=.1), "ComplementNB(alpha=.1)"))
+        results.append(benchmark(MultinomialNB(alpha=.01), "MultinomialNB(alpha=.01)", X_train, y_train, X_test, y_test))
+        results.append(benchmark(BernoulliNB(alpha=.01), "BernoulliNB(alpha=.01)", X_train, y_train, X_test, y_test))
+        results.append(benchmark(ComplementNB(alpha=.1), "ComplementNB(alpha=.1)", X_train, y_train, X_test, y_test))
 
         print('=' * 80)
         print("LinearSVC with L1-based feature selection")
@@ -434,7 +466,7 @@ if __name__ == '__main__':
         # The more regularization, the more sparsity.
         results.append(benchmark(Pipeline([
             ('feature_selection', SelectFromModel(LinearSVC(penalty="l1", dual=False, tol=1e-3))),
-            ('classification', LinearSVC(penalty="l2"))]), "LinearSVC with L1-based feature selection"))
+            ('classification', LinearSVC(penalty="l2"))]), "LinearSVC with L1-based feature selection", X_train, y_train, X_test, y_test))
 
     ###########################################################################################################################
     # Add plots: The bar plot indicates the accuracy, training time (normalized) and test time (normalized) of each classifier
