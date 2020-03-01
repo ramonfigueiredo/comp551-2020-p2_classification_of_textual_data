@@ -476,7 +476,7 @@ if __name__ == '__main__':
 
     results = [[x[i] for x in results] for i in range(6)]
 
-    clf_names, score, training_time, test_time = results
+    clf_names, score, training_time, test_time, cross_val_scores, cross_val_accuracy_score_mean_std = results
     training_time = np.array(training_time) / np.max(training_time)
     test_time = np.array(test_time) / np.max(test_time)
 
