@@ -3,17 +3,17 @@ import os
 from pprint import pprint
 from time import time
 
+from sklearn import metrics
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
-from sklearn import metrics
 
 from datasets.load_dataset import load_twenty_news_groups, load_imdb_reviews
 from utils.dataset_enum import Dataset
 
 
-def grid_search_logistic_regression(dataset):
+def random_forest_classifier_grid_search(dataset):
 
     if dataset == Dataset.TWENTY_NEWS_GROUP:
         remove = ('headers', 'footers', 'quotes')
@@ -46,8 +46,7 @@ def grid_search_logistic_regression(dataset):
         target_names = ['1', '2', '3', '4', '7', '8', '9', '10']
 
     # Extracting features
-    vectorizer = TfidfVectorizer(sublinear_tf=True, max_df=0.5,
-                                 stop_words='english')
+    vectorizer = TfidfVectorizer(sublinear_tf=True, max_df=0.5, stop_words='english')
     X_train = vectorizer.fit_transform(X_train)
     X_test = vectorizer.transform(X_test)
 
@@ -55,9 +54,10 @@ def grid_search_logistic_regression(dataset):
 
     # Create param grid.
     param_grid = [
-        {'classifier': [RandomForestClassifier()],
+        {
          'classifier__n_estimators': list(range(10, 101, 10)),
-         'classifier__max_features': list(range(6, 32, 5))}
+         'classifier__max_features': list(range(6, 32, 5))
+        }
     ]
 
     # Create grid search object
@@ -104,8 +104,8 @@ def grid_search_logistic_regression(dataset):
 
 
 if __name__ == '__main__':
-    print("### Grid search for Logistic Regression: TWENTY_NEWS_GROUP Dataset")
-    grid_search_logistic_regression(Dataset.TWENTY_NEWS_GROUP)
+    print("### Grid search for Random Forest Classifier: TWENTY_NEWS_GROUP Dataset")
+    random_forest_classifier_grid_search(Dataset.TWENTY_NEWS_GROUP)
 
-    print("### Grid search for Logistic Regression: TWENTY_NEWS_GROUP Dataset")
-    grid_search_logistic_regression(Dataset.IMDB_REVIEWS)
+    print("### Grid search for Random Forest Classifier: IMDB_REVIEWS Dataset")
+    random_forest_classifier_grid_search(Dataset.IMDB_REVIEWS)
