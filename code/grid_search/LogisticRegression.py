@@ -1,11 +1,14 @@
 # Reference: https://chrisalbon.com/machine_learning/model_selection/hyperparameter_tuning_using_grid_search/
 # Load libraries
+import os
+
 import numpy as np
 from sklearn import linear_model
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import GridSearchCV
+
 from datasets.load_dataset import load_twenty_news_groups, load_imdb_reviews
 from utils.dataset_enum import Dataset
-from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 def grid_search_logistic_regression(dataset):
@@ -19,8 +22,11 @@ def grid_search_logistic_regression(dataset):
         X_train, y_train = data_train.data, data_train.target
 
     elif dataset == Dataset.IMDB_REVIEWS:
+        db_parent_path = os.getcwd()
+        db_parent_path = db_parent_path.replace('grid_search', '')
+
         X_train, y_train = \
-            load_imdb_reviews(subset='train', binary_labels=False, verbose=False, shuffle=True, random_state=0)
+            load_imdb_reviews(subset='train', binary_labels=False, verbose=False, shuffle=True, random_state=0, db_parent_path=db_parent_path)
 
     vectorizer = TfidfVectorizer(sublinear_tf=True, max_df=0.5,
                                  stop_words='english')

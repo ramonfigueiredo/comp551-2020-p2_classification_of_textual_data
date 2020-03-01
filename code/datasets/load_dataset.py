@@ -15,7 +15,7 @@ def load_twenty_news_groups(subset, categories=None, shuffle=True, random_state=
     return fetch_20newsgroups(subset=subset, categories=categories, shuffle=shuffle, random_state=random_state, remove=remove)
 
 
-def load_imdb_reviews(subset, binary_labels=False, verbose=False, shuffle=True, random_state=0):
+def load_imdb_reviews(subset, binary_labels=False, verbose=False, shuffle=True, random_state=0, db_parent_path=None):
     X = []
     y = []
     dataset = {}
@@ -40,7 +40,11 @@ def load_imdb_reviews(subset, binary_labels=False, verbose=False, shuffle=True, 
 
     for folder in subfolders:
 
-        path = os.path.join(os.getcwd(), 'datasets/imdb_reviews/aclImdb', subset, folder)
+        if db_parent_path == None:
+            path = os.path.join(os.getcwd(), 'datasets/imdb_reviews/aclImdb', subset, folder)
+        else:
+            path = os.path.join(db_parent_path, 'datasets/imdb_reviews/aclImdb', subset, folder)
+
         files_list = [f for f in listdir(path) if isfile(join(path, f))]
 
         print('\n===> Reading files from {}'.format(path))
