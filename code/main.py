@@ -40,7 +40,7 @@ from datasets.load_dataset import load_twenty_news_groups, load_imdb_reviews
 
 if __name__ == '__main__':
 
-    parser = argparse.ArgumentParser(
+    parser = argparse.ArgumentParser(prog='main.py',
         description='MiniProject 2: Classification of textual data. Authors: Ramon Figueiredo Pessoa, Rafael Gomes Braga, Ege Odaci',
         epilog='COMP 551 (001/002), Applied Machine Learning, Winter 2020, McGill University.')
 
@@ -114,7 +114,11 @@ if __name__ == '__main__':
                         dest='save_logs_in_file',
                         help='Save logs in a file')
 
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.0')
+    parser.add_argument('-verbose', '--verbosity', action='store_true', default=False,
+                        dest='verbose',
+                        help='Increase output verbosity')
+
+    parser.add_argument('-v', '--version', action='version', dest='version', version='%(prog)s 1.0')
 
     options = parser.parse_args()
     print('=' * 130)
@@ -141,6 +145,7 @@ if __name__ == '__main__':
     print('\tN features when using the hashing vectorizer =', options.n_features)
     print('\tPlot training time and test time together with accuracy score =', options.plot_accurary_and_time_together)
     print('\tSave logs in a file =', options.save_logs_in_file)
+    print('\tVerbose =', options.verbose)
     print('=' * 130)
     print()
 
