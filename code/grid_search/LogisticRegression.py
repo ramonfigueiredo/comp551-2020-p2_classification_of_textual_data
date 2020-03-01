@@ -40,7 +40,7 @@ def grid_search_logistic_regression(dataset):
     hyperparameters = dict(C=C, penalty=penalty)
 
     # Create grid search using 5-fold cross validation
-    clf = GridSearchCV(logistic, hyperparameters, cv=5, verbose=0)
+    clf = GridSearchCV(logistic, hyperparameters, cv=5, verbose=False, n_jobs=-1)
 
     # Fit grid search
     best_model = clf.fit(X_train, y_train)
