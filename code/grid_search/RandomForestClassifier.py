@@ -50,6 +50,7 @@ def random_forest_classifier_grid_search(dataset):
     X_train = vectorizer.fit_transform(X_train)
     X_test = vectorizer.transform(X_test)
 
+    # Create pipeline
     pipeline = Pipeline([('classifier', RandomForestClassifier())])
 
     # Create param grid.
