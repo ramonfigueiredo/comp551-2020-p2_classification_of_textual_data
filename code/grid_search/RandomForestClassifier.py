@@ -54,12 +54,10 @@ def random_forest_classifier_grid_search(dataset):
     pipeline = Pipeline([('classifier', RandomForestClassifier())])
 
     # Create param grid.
-    param_grid = [
-        {
-         'classifier__n_estimators': list(range(10, 101, 10)),
-         'classifier__max_features': list(range(6, 32, 5))
-        }
-    ]
+    param_grid = {
+     'classifier__n_estimators': list(range(10, 101, 10)),
+     'classifier__max_features': list(range(6, 32, 5))
+    }
 
     # Create grid search object
     grid_search = GridSearchCV(pipeline, param_grid=param_grid, cv=5, verbose=True, n_jobs=-1)
@@ -101,7 +99,7 @@ def random_forest_classifier_grid_search(dataset):
     print("\n\n===> Classification Report:\n")
     print(metrics.classification_report(y_test, y_pred, target_names=target_names))
 
-    # TODO: Use RandomForestClassifier with best parameters
+    # TODO: Run with best parameters
 
 
 if __name__ == '__main__':

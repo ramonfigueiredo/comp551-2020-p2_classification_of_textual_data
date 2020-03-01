@@ -70,12 +70,10 @@ def logistic_regression_grid_search(dataset):
     '''
     # penalty = ['l1', 'l2', 'elasticnet', None]
 
-    param_grid = [
-        {
+    param_grid = {
             'classifier__penalty': ['l2'],
             'classifier__C': np.logspace(0, 4, 10)
-        }
-    ]
+    }
 
     # Create grid search object
     grid_search = GridSearchCV(pipeline, param_grid=param_grid, cv=5, verbose=True, n_jobs=-1)
@@ -116,6 +114,8 @@ def logistic_regression_grid_search(dataset):
 
     print("\n\n===> Classification Report:\n")
     print(metrics.classification_report(y_test, y_pred, target_names=target_names))
+
+    # TODO: Run with best parameters
 
 
 if __name__ == '__main__':
