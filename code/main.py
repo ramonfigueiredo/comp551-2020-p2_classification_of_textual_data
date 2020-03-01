@@ -474,7 +474,7 @@ if __name__ == '__main__':
 
     indices = np.arange(len(results))
 
-    results = [[x[i] for x in results] for i in range(4)]
+    results = [[x[i] for x in results] for i in range(6)]
 
     clf_names, score, training_time, test_time = results
     training_time = np.array(training_time) / np.max(training_time)
@@ -534,7 +534,7 @@ if __name__ == '__main__':
                                "Linear SVC (penalty = L1)", "Ada Boost Classifier", "Random forest"]:
             classifier_name = classifier_name + " [MANDATORY FOR COMP 551, ASSIGNMENT 2]"
         if options.run_cross_validation:
-            print("{}) {}\n\t\tAccuracy score = {}\t\tTraining time = {}\t\tTest time = {}\t\tAverage Accuracy Score (Cross Validation)\n".format(index,
+            print("{}) {}\n\t\tAccuracy score = {}\t\tTraining time = {}\t\tTest time = {}\t\tCross validation scores = {}\t\tAverage accuracy score (Cross Validation) = {}\n".format(index,
                                                                                                      classifier_name,
                                                                                                      accuracy_score,
                                                                                                      train_time,
