@@ -410,7 +410,7 @@ if __name__ == '__main__':
 
         print()
         # clf_descr = str(clf).split('(')[0]
-        return classifier_name, score, train_time, test_time, cross_val_accuracy_score_mean_std
+        return classifier_name, score, train_time, test_time, cross_val_scores, cross_val_accuracy_score_mean_std
 
 
     results = []
@@ -525,7 +525,8 @@ if __name__ == '__main__':
     train_time_list = results[2]
     test_time_list = results[3]
     if options.run_cross_validation:
-        cross_val_accuracy_score_mean_std = results[4]
+        cross_val_scores = results[4]
+        cross_val_accuracy_score_mean_std = results[5]
     index = 1
     for classifier_name, accuracy_score, train_time, test_time in zip(classifier_name_list, accuracy_score_list,
                                                                       train_time_list, test_time_list):
@@ -537,7 +538,7 @@ if __name__ == '__main__':
                                                                                                      classifier_name,
                                                                                                      accuracy_score,
                                                                                                      train_time,
-                                                                                                     test_time, cross_val_accuracy_score_mean_std))
+                                                                                                     test_time, cross_val_scores, cross_val_accuracy_score_mean_std))
         else:
             print("{}) {}\n\t\tAccuracy score = {}\t\tTraining time = {}\t\tTest time = {}\n".format(index, classifier_name,
                                                                                                  accuracy_score,
