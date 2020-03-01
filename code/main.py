@@ -345,8 +345,8 @@ if __name__ == '__main__':
             print("\n\ncross validation:")
             cross_val_scores = cross_val_score(clf, X_train, y_train, cv=options.n_splits, n_jobs=options.n_jobs, verbose=options.verbose)
             print("{}-fold cross validation: {}".format(options.n_splits, cross_val_scores))
-            cross_val_accuracy_mean_std = "%0.2f (+/- %0.2f)" % (cross_val_scores.mean(), cross_val_scores.std() * 2)
-            print("{}-fold cross validation accuracy: {}".format(options.n_splits, cross_val_accuracy_mean_std))
+            cross_val_accuracy_score_mean_std = "%0.2f (+/- %0.2f)" % (cross_val_scores.mean(), cross_val_scores.std() * 2)
+            print("{}-fold cross validation accuracy: {}".format(options.n_splits, cross_val_accuracy_score_mean_std))
 
         if hasattr(clf, 'coef_'):
             print("dimensionality: %d" % clf.coef_.shape[1])
@@ -410,7 +410,7 @@ if __name__ == '__main__':
 
         print()
         # clf_descr = str(clf).split('(')[0]
-        return classifier_name, score, train_time, test_time
+        return classifier_name, score, train_time, test_time, cross_val_accuracy_score_mean_std
 
 
     results = []
@@ -524,13 +524,22 @@ if __name__ == '__main__':
     accuracy_score_list = results[1]
     train_time_list = results[2]
     test_time_list = results[3]
+    if options.run_cross_validation:
+        cross_val_accuracy_score_mean_std = results[4]
     index = 1
     for classifier_name, accuracy_score, train_time, test_time in zip(classifier_name_list, accuracy_score_list,
                                                                       train_time_list, test_time_list):
         if classifier_name in ["Logistic Regression", "Decision Tree Classifier", "Linear SVC (penalty = L2)",
                                "Linear SVC (penalty = L1)", "Ada Boost Classifier", "Random forest"]:
             classifier_name = classifier_name + " [MANDATORY FOR COMP 551, ASSIGNMENT 2]"
-        print("{}) {}\n\t\tAccuracy score = {}\t\tTraining time = {}\t\tTest time = {}\n".format(index, classifier_name,
+        if options.run_cross_validation:
+            print("{}) {}\n\t\tAccuracy score = {}\t\tTraining time = {}\t\tTest time = {}\t\tAverage Accuracy Score (Cross Validation)\n".format(index,
+                                                                                                     classifier_name,
+                                                                                                     accuracy_score,
+                                                                                                     train_time,
+                                                                                                     test_time, cross_val_accuracy_score_mean_std))
+        else:
+            print("{}) {}\n\t\tAccuracy score = {}\t\tTraining time = {}\t\tTest time = {}\n".format(index, classifier_name,
                                                                                                  accuracy_score,
                                                                                                  train_time, test_time))
         index = index + 1
