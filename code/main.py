@@ -412,9 +412,11 @@ if __name__ == '__main__':
             print(metrics.confusion_matrix(y_test, y_pred))
 
         print()
-        # clf_descr = str(clf).split('(')[0]
-        return classifier_name, score, train_time, test_time, cv_test_accuracy, cv_accuracy_score_mean_std
 
+        if options.run_cross_validation:
+            return classifier_name, score, train_time, test_time, cv_test_accuracy, cv_accuracy_score_mean_std
+        else:
+            return classifier_name, score, train_time, test_time
 
     results = []
     if options.use_just_miniproject_classifiers:
@@ -477,9 +479,13 @@ if __name__ == '__main__':
 
     indices = np.arange(len(results))
 
-    results = [[x[i] for x in results] for i in range(6)]
+    if options.run_cross_validation:
+        results = [[x[i] for x in results] for i in range(6)]
+        clf_names, score, training_time, test_time, cross_val_scores, cross_val_accuracy_score_mean_std = results
+    else:
+        results = [[x[i] for x in results] for i in range(4)]
+        clf_names, score, training_time, test_time = results
 
-    clf_names, score, training_time, test_time, cross_val_scores, cross_val_accuracy_score_mean_std = results
     training_time = np.array(training_time) / np.max(training_time)
     test_time = np.array(test_time) / np.max(test_time)
 
