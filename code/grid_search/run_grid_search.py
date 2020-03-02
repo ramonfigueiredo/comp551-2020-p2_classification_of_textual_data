@@ -29,6 +29,7 @@ from utils.ml_classifiers_enum import Classifier
 
 
 def run_classifier_grid_search(classifer, param_grid, dataset):
+
     if param_grid is None:
         return
 
@@ -153,33 +154,71 @@ def run_grid_search(save_logs_in_file):
     for classifier in classifier_list:
         logging.info("\n")
         logging.info("#" * 80)
+        if save_logs_in_file:
+            print("#" * 80)
         logging.info("{})".format(c_count))
 
         if classifier == Classifier.ADA_BOOST_CLASSIFIER:
+            '''
+            AdaBoostClassifier(algorithm='SAMME.R', base_estimator=None, learning_rate=1.0,
+                   n_estimators=50, random_state=None)
+            '''
             clf = AdaBoostClassifier()
             parameters = None
 
         elif classifier == Classifier.BERNOULLI_NB:
+            '''
+            BernoulliNB(alpha=1.0, binarize=0.0, class_prior=None, fit_prior=True)
+            '''
             clf = BernoulliNB()
             parameters = None
 
         elif classifier == Classifier.COMPLEMENT_NB:
+            '''
+            ComplementNB(alpha=1.0, class_prior=None, fit_prior=True, norm=False)
+            '''
             clf = ComplementNB()
             parameters = None
 
         elif classifier == Classifier.DECISION_TREE_CLASSIFIER:
+            '''
+            DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None, criterion='gini',
+                       max_depth=None, max_features=None, max_leaf_nodes=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, presort='deprecated',
+                       random_state=None, splitter='best')
+            '''
             clf = DecisionTreeClassifier()
             parameters = None
 
         elif classifier == Classifier.K_NEIGHBORS_CLASSIFIER:
+            '''
+            KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
+                     metric_params=None, n_jobs=None, n_neighbors=5, p=2,
+                     weights='uniform')
+            '''
             clf = KNeighborsClassifier()
             parameters = None
 
         elif classifier == Classifier.LINEAR_SVC:
+            '''
+            LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+                      intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+                      multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
+                      verbose=0)
+            '''
             clf = LinearSVC()
             parameters = None
 
         elif classifier == Classifier.LOGISTIC_REGRESSION:
+            '''
+            LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
+                               intercept_scaling=1, l1_ratio=None, max_iter=100,
+                               multi_class='auto', n_jobs=None, penalty='l2',
+                               random_state=None, solver='lbfgs', tol=0.0001, verbose=0,
+                               warm_start=False)
+            '''
             clf = LogisticRegression()
             parameters = {
                 'classifier__penalty': ['l2'],
@@ -187,22 +226,52 @@ def run_grid_search(save_logs_in_file):
             }
 
         elif classifier == Classifier.MULTINOMIAL_NB:
+            '''
+            MultinomialNB(alpha=1.0, class_prior=None, fit_prior=True)
+            '''
             clf = MultinomialNB()
             parameters = None
 
         elif classifier == Classifier.NEAREST_CENTROID:
+            '''
+            NearestCentroid(metric='euclidean', shrink_threshold=None)
+            '''
             clf = NearestCentroid()
             parameters = None
 
         elif classifier == Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER:
+            '''
+            PassiveAggressiveClassifier(C=1.0, average=False, class_weight=None,
+                            early_stopping=False, fit_intercept=True,
+                            loss='hinge', max_iter=1000, n_iter_no_change=5,
+                            n_jobs=None, random_state=None, shuffle=True,
+                            tol=0.001, validation_fraction=0.1, verbose=0,
+                            warm_start=False)
+            '''
             clf = PassiveAggressiveClassifier()
             parameters = None
 
         elif classifier == Classifier.PERCEPTRON:
+            '''
+            Perceptron(alpha=0.0001, class_weight=None, early_stopping=False, eta0=1.0,
+                       fit_intercept=True, max_iter=1000, n_iter_no_change=5, n_jobs=None,
+                       penalty=None, random_state=0, shuffle=True, tol=0.001,
+                       validation_fraction=0.1, verbose=0, warm_start=False)
+            '''
             clf = Perceptron()
             parameters = None
 
         elif classifier == Classifier.RANDOM_FOREST_CLASSIFIER:
+            '''
+            RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
+                                   criterion='gini', max_depth=None, max_features='auto',
+                                   max_leaf_nodes=None, max_samples=None,
+                                   min_impurity_decrease=0.0, min_impurity_split=None,
+                                   min_samples_leaf=1, min_samples_split=2,
+                                   min_weight_fraction_leaf=0.0, n_estimators=100,
+                                   n_jobs=None, oob_score=False, random_state=None,
+                                   verbose=0, warm_start=False)
+            '''
             clf = RandomForestClassifier()
             parameters = {
                 'classifier__n_estimators': list(range(10, 101, 10)),
@@ -210,10 +279,23 @@ def run_grid_search(save_logs_in_file):
             }
 
         elif classifier == Classifier.RIDGE_CLASSIFIER:
+            '''
+            RidgeClassifier(alpha=1.0, class_weight=None, copy_X=True, fit_intercept=True,
+                            max_iter=None, normalize=False, random_state=None,
+                            solver='auto', tol=0.001)
+            '''
             clf = RidgeClassifier()
             parameters = None
 
         elif classifier == Classifier.SGD_CLASSIFIER:
+            '''
+            SGDClassifier(alpha=0.0001, average=False, class_weight=None,
+                          early_stopping=False, epsilon=0.1, eta0=0.0, fit_intercept=True,
+                          l1_ratio=0.15, learning_rate='optimal', loss='hinge',
+                          max_iter=1000, n_iter_no_change=5, n_jobs=None, penalty='l2',
+                          power_t=0.5, random_state=None, shuffle=True, tol=0.001,
+                          validation_fraction=0.1, verbose=0, warm_start=False)
+            '''
             clf = SGDClassifier()
             parameters = {
                 'classifier__max_iter': (20,),
@@ -223,14 +305,23 @@ def run_grid_search(save_logs_in_file):
 
         for dataset in dataset_list:
             logging.info("*" * 80)
-            logging.info("*" * 80)
-            print("Classifier: {}, Dataset: {}".format(classifier.name, dataset.name))
             logging.info("Classifier: {}, Dataset: {}".format(classifier.name, dataset.name))
             start = time()
             run_classifier_grid_search(clf, parameters, dataset)
-            logging.info("It took {} seconds".format(time() - start))
+            end = time() - start
+            logging.info("It took {} seconds".format(end))
             logging.info("*" * 80)
+
+            if save_logs_in_file:
+                print("*" * 80)
+                print("Classifier: {}, Dataset: {}".format(classifier.name, dataset.name))
+                print(clf)
+                print("It took {} seconds".format(end))
+                print("*" * 80)
+
         logging.info("#" * 80)
+        if save_logs_in_file:
+            print("#" * 80)
         c_count = c_count + 1
 
 
