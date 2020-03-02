@@ -10,6 +10,7 @@ The datasets used in this are the 20 newsgroups dataset (https://scikit-learn.or
 
 import argparse
 import logging
+import multiprocessing
 import operator
 import os
 from time import time
@@ -28,7 +29,7 @@ from sklearn.linear_model import PassiveAggressiveClassifier
 from sklearn.linear_model import Perceptron
 from sklearn.linear_model import RidgeClassifier
 from sklearn.linear_model import SGDClassifier
-from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import cross_validate
 from sklearn.naive_bayes import BernoulliNB, ComplementNB, MultinomialNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neighbors import NearestCentroid
@@ -36,7 +37,6 @@ from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.utils.extmath import density
-import multiprocessing
 
 from datasets.load_dataset import load_twenty_news_groups, load_imdb_reviews
 
@@ -343,10 +343,13 @@ if __name__ == '__main__':
 
         if options.run_cross_validation:
             print("\n\ncross validation:")
-            cross_val_scores = cross_val_score(clf, X_train, y_train, cv=options.n_splits, n_jobs=options.n_jobs, verbose=options.verbose)
-            print("{}-fold cross validation: {}".format(options.n_splits, cross_val_scores))
-            cross_val_accuracy_score_mean_std = "%0.2f (+/- %0.2f)" % (cross_val_scores.mean(), cross_val_scores.std() * 2)
-            print("{}-fold cross validation accuracy: {}".format(options.n_splits, cross_val_accuracy_score_mean_std))
+            scoring = ['accuracy', 'precision_macro', 'precision_micro', 'precision_weighted', 'recall_macro', 'recall_micro', 'recall_weighted', 'f1_macro', 'f1_micro', 'f1_weighted', 'jaccard_macro']
+            cross_val_scores = cross_validate(clf, X_train, y_train, scoring=scoring, cv=options.n_splits, n_jobs=options.n_jobs, verbose=options.verbose)
+
+            cv_test_accuracy = cross_val_scores['test_accuracy']
+            print("\taccuracy: {}-fold cross validation: {}".format(options.n_splits, cv_test_accuracy))
+            cv_accuracy_score_mean_std = "%0.2f (+/- %0.2f)" % (cv_test_accuracy.mean(), cv_test_accuracy.std() * 2)
+            print("\ttest accuracy: {}-fold cross validation accuracy: {}".format(options.n_splits, cv_accuracy_score_mean_std))
 
         if hasattr(clf, 'coef_'):
             print("dimensionality: %d" % clf.coef_.shape[1])
@@ -410,7 +413,7 @@ if __name__ == '__main__':
 
         print()
         # clf_descr = str(clf).split('(')[0]
-        return classifier_name, score, train_time, test_time, cross_val_scores, cross_val_accuracy_score_mean_std
+        return classifier_name, score, train_time, test_time, cv_test_accuracy, cv_accuracy_score_mean_std
 
 
     results = []
