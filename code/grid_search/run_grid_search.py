@@ -91,7 +91,7 @@ def run_classifier_grid_search(classifer, param_grid, dataset):
     for param_name in sorted(param_grid.keys()):
         logging.info("\t\t%s: %r" % (param_name, best_parameters[param_name]))
 
-    logging.info("Running RandomForestClassifier with default values")
+    logging.info("Running Classifier with default values")
     logging.info('_' * 80)
     clf = classifer
     logging.info('_' * 80)
