@@ -78,13 +78,11 @@ def run_classifier_grid_search(classifer, param_grid, dataset):
     grid_search = GridSearchCV(pipeline, param_grid=param_grid, cv=5, verbose=True, n_jobs=-1)
 
     logging.info("\n\nPerforming grid search...\n")
-    logging.info("\tPipeline:", [name for name, _ in pipeline.steps])
     logging.info("\tParameters:")
     logging.info(param_grid)
     t0 = time()
     grid_search.fit(X_train, y_train)
     logging.info("\tDone in %0.3fs" % (time() - t0))
-    logging.info()
 
     # Fit on data
     logging.info("\tBest score: %0.3f" % grid_search.best_score_)
@@ -164,21 +162,33 @@ def run_grid_search(save_logs_in_file):
                    n_estimators=50, random_state=None)
             '''
             clf = AdaBoostClassifier()
-            parameters = None
+            parameters = {
+                'classifier__algorithm': ['SAMME', 'SAMME.R'],
+                'classifier__learning_rate': [0.01, 0.05, 0.1, 1],
+                'classifier__n_estimators': [10, 30, 50, 100, 200, 500],
+            }
 
         elif classifier == Classifier.BERNOULLI_NB:
             '''
             BernoulliNB(alpha=1.0, binarize=0.0, class_prior=None, fit_prior=True)
             '''
             clf = BernoulliNB()
-            parameters = None
+            parameters = {
+                'classifier__alpha': [0.0001, 0.001, 0.01, 0.1, 0.5, 1.0, 2.0, 4.0, 6.0, 8.0, 10.0],
+                'classifier__binarize': [0.0001, 0.001, 0.01, 0.1, 0.5, 1.0, 2.0, 4.0, 6.0, 8.0, 10.0],
+                'classifier__fit_prior': [False, True],
+            }
 
         elif classifier == Classifier.COMPLEMENT_NB:
             '''
             ComplementNB(alpha=1.0, class_prior=None, fit_prior=True, norm=False)
             '''
             clf = ComplementNB()
-            parameters = None
+            parameters = {
+                'classifier__alpha': [0.0001, 0.001, 0.01, 0.1, 0.5, 1.0, 2.0, 4.0, 6.0, 8.0, 10.0],
+                'classifier__fit_prior': [False, True],
+                'classifier__norm': [False, True]
+            }
 
         elif classifier == Classifier.DECISION_TREE_CLASSIFIER:
             '''
@@ -190,7 +200,12 @@ def run_grid_search(save_logs_in_file):
                        random_state=None, splitter='best')
             '''
             clf = DecisionTreeClassifier()
-            parameters = None
+            parameters = {
+                'classifier__criterion': ["gini", "entropy"],
+                'classifier__splitter': ["best", "random"],
+                'classifier__min_samples_split': range(10, 500, 20),
+                'classifier__max_depth': range(1, 20, 2)
+            }
 
         elif classifier == Classifier.K_NEIGHBORS_CLASSIFIER:
             '''
@@ -199,7 +214,12 @@ def run_grid_search(save_logs_in_file):
                      weights='uniform')
             '''
             clf = KNeighborsClassifier()
-            parameters = None
+            parameters = {
+                'classifier__leaf_size': [5, 10, 20, 30, 40, 50, 100],
+                'classifier__metric': ['euclidean', 'manhattan', 'minkowski'],
+                'classifier__n_neighbors': [3, 5, 8, 12, 15, 20, 50],
+                'classifier__weights': ['uniform', 'distance']
+            }
 
         elif classifier == Classifier.LINEAR_SVC:
             '''
@@ -209,7 +229,15 @@ def run_grid_search(save_logs_in_file):
                       verbose=0)
             '''
             clf = LinearSVC()
-            parameters = None
+            clf_C = np.arange(0.01, 100, 10).tolist()
+            clf_C.append(1.0)
+            parameters = {
+                'classifier__C': clf_C,
+                'classifier__dual': [False, True],
+                'classifier__max_iter': [100, 1000, 5000],
+                'classifier__multi_class': ['ovr', 'crammer_singer'],
+                'classifier__tol': [0.0001, 0.001, 0.01, 0.1]
+            }
 
         elif classifier == Classifier.LOGISTIC_REGRESSION:
             '''
@@ -220,9 +248,14 @@ def run_grid_search(save_logs_in_file):
                                warm_start=False)
             '''
             clf = LogisticRegression()
+            clf_C = np.arange(0.01, 100, 10).tolist()
+            clf_C.append(1.0)
             parameters = {
-                'classifier__penalty': ['l2'],
-                'classifier__C': np.logspace(0, 4, 10)
+                'classifier__C': clf_C,
+                'classifier__dual': [False, True],
+                'classifier__max_iter': [100, 1000, 5000],
+                'classifier__multi_class': ['ovr', 'multinomial'],
+                'classifier__tol': [0.0001, 0.001, 0.01, 0.1]
             }
 
         elif classifier == Classifier.MULTINOMIAL_NB:
@@ -230,14 +263,19 @@ def run_grid_search(save_logs_in_file):
             MultinomialNB(alpha=1.0, class_prior=None, fit_prior=True)
             '''
             clf = MultinomialNB()
-            parameters = None
+            parameters = {
+                'classifier__alpha': [0.0001, 0.001, 0.01, 0.1, 0.5, 1.0, 2.0, 4.0, 6.0, 8.0, 10.0],
+                'classifier__fit_prior': [False, True]
+            }
 
         elif classifier == Classifier.NEAREST_CENTROID:
             '''
             NearestCentroid(metric='euclidean', shrink_threshold=None)
             '''
             clf = NearestCentroid()
-            parameters = None
+            parameters = {
+                'classifier__metric': ['euclidean', 'cosine']
+            }
 
         elif classifier == Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER:
             '''
@@ -249,7 +287,18 @@ def run_grid_search(save_logs_in_file):
                             warm_start=False)
             '''
             clf = PassiveAggressiveClassifier()
-            parameters = None
+            clf_C = np.arange(0.01, 100, 10).tolist()
+            clf_C.append(1.0)
+            parameters = {
+                'classifier__C': clf_C,
+                'classifier__average': [False, True],
+                'classifier__class_weight': ['balanced', None],
+                'classifier__early_stopping': [False, True],
+                'classifier__max_iter': [100, 1000, 5000],
+                'classifier__n_iter_no_change': [3, 5, 10, 15],
+                'classifier__tol': [0.0001, 0.001, 0.01, 0.1],
+                'classifier__validation_fraction': [0.0001, 0.001, 0.01, 0.1]
+            }
 
         elif classifier == Classifier.PERCEPTRON:
             '''
@@ -259,7 +308,16 @@ def run_grid_search(save_logs_in_file):
                        validation_fraction=0.1, verbose=0, warm_start=False)
             '''
             clf = Perceptron()
-            parameters = None
+            parameters = {
+                'classifier__alpha': [0.0001, 0.001, 0.01, 0.1],
+                'classifier__class_weight': ['balanced', None],
+                'classifier__early_stopping': [False, True],
+                'classifier__max_iter': [100, 1000, 5000],
+                'classifier__n_iter_no_change': [3, 5, 10, 15],
+                'classifier__penalty': ['l2', 'l1', 'elasticnet'],
+                'classifier__tol': [0.0001, 0.001, 0.01, 0.1],
+                'classifier__validation_fraction': [0.0001, 0.001, 0.01, 0.1]
+            }
 
         elif classifier == Classifier.RANDOM_FOREST_CLASSIFIER:
             '''
@@ -274,8 +332,15 @@ def run_grid_search(save_logs_in_file):
             '''
             clf = RandomForestClassifier()
             parameters = {
-                'classifier__n_estimators': list(range(10, 101, 10)),
-                'classifier__max_features': list(range(6, 32, 5))
+                'classifier__bootstrap': [True, False],
+                'classifier__class_weight': ['balanced', 'balanced_subsample', None],
+                'classifier__criterion': ['gini', 'entropy'],
+                'classifier__max_depth': [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, None],
+                'classifier__max_features': ['sqrt', 'log2', None],
+                'classifier__min_samples_leaf': [1, 2, 4],
+                'classifier__min_samples_split': [2, 5, 10],
+                'classifier__n_estimators': [100, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000],
+                'classifier__oob_score': [True, False],
             }
 
         elif classifier == Classifier.RIDGE_CLASSIFIER:
@@ -285,7 +350,14 @@ def run_grid_search(save_logs_in_file):
                             solver='auto', tol=0.001)
             '''
             clf = RidgeClassifier()
-            parameters = None
+            parameters = {
+                'classifier__alpha': [0.0001, 0.001, 0.01, 0.1, 1],
+                'classifier__class_weight': ['balanced', None],
+                'classifier__copy_X': [True, False],
+                'classifier__max_iter': [100, 1000, 5000],
+                'classifier__normalize': [False, True],
+                'classifier__tol': [0.0001, 0.001, 0.01, 0.1]
+            }
 
         elif classifier == Classifier.SGD_CLASSIFIER:
             '''
@@ -298,9 +370,14 @@ def run_grid_search(save_logs_in_file):
             '''
             clf = SGDClassifier()
             parameters = {
-                'classifier__max_iter': (20,),
-                'classifier__alpha': (0.00001, 0.000001),
-                'classifier__penalty': ('l2', 'elasticnet')
+                'classifier__alpha': [0.0001, 0.001, 0.01, 0.1, 1],
+                'classifier__average': [True, False],
+                'classifier__class_weight': ['balanced', None],
+                'classifier__early_stopping': [False, True],
+                'classifier__max_iter': [100, 1000, 5000],
+                'classifier__n_iter_no_change': [3, 5, 10, 15],
+                'classifier__penalty': ['l2', 'l1', 'elasticnet'],
+                'classifier__tol': [0.0001, 0.001, 0.01, 0.1]
             }
 
         for dataset in dataset_list:
