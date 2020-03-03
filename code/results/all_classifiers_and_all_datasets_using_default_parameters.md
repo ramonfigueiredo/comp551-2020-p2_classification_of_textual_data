@@ -2,7 +2,7 @@
 
 ### TWENTY_NEWS_GROUPS dataset (removing headers signatures and quoting)  
 
-#### TWENTY_NEWS_GROUPS: Accuracy score table
+#### TWENTY_NEWS_GROUPS: Final classification table
 
 | ID | ML Algorithm                     | Accuracy Score   | K-fold Cross Validation (CV) (k = 5)  |  CV (Mean +/- Std)       | Training time (seconds)  | Test time (seconds)  | 
 | -- | -------------------------------  | ---------------- | ------------------------------------- |------------------------  | ------------------------ | -------------------  |
@@ -37,31 +37,31 @@
 
 ### IMDB_REVIEWS dataset (Multi-class classification)  
 
-#### IMDB_REVIEWS: Accuracy score table
+#### IMDB_REVIEWS: Final classification table
 
-| ID | ML Algorithm 				    | Accuracy Score   |
-| -- | -------------------------------  | ---------------- |
-| 1  | ADA_BOOST_CLASSIFIER             | 35.86		       |
-| 2  | BERNOULLI_NB                     | 37.132           |
-| 3  | COMPLEMENT_NB                    | 37.312		   |
-| 4  | DECISION_TREE_CLASSIFIER         | 25.764		   |
-| 5  | EXTRA_TREE_CLASSIFIER            | 22.12		       |
-| 6  | EXTRA_TREES_CLASSIFIER           | 37.404		   |
-| 7  | GRADIENT_BOOSTING_CLASSIFIER     | 37.624		   |
-| 8  | K_NEIGHBORS_CLASSIFIER           | 26.352	       |
-| 9  | LINEAR_SVC                       | 37.328		   |
-| 10 | LOGISTIC_REGRESSION              | 42.084		   |
-| 11 | LOGISTIC_REGRESSION_CV           | 40.532		   |
-| 12 | MLP_CLASSIFIER                   | 34.468	       |
-| 13 | MULTINOMIAL_NB                   | 34.924		   |
-| 14 | NEAREST_CENTROID                 | 36.844    	   |
-| 15 | NU_SVC                           | **42.32**	       |
-| 16 | PASSIVE_AGGRESSIVE_CLASSIFIER    | 33.112		   |
-| 17 | PERCEPTRON                       | 32.66		       |
-| 18 | RANDOM_FOREST_CLASSIFIER         | 37.54	           |
-| 19 | RIDGE_CLASSIFIER                 | 38.716		   |
-| 20 | RIDGE_CLASSIFIERCV               | 41.54		       |
-| 21 | SGD_CLASSIFIER                   | 40.676	       |
+| ID | ML Algorithm                     | Accuracy Score   | K-fold Cross Validation (CV) (k = 5)  |  CV (Mean +/- Std)       | Training time (seconds)  | Test time (seconds)  | 
+| -- | -------------------------------  | ---------------- | ------------------------------------- |------------------------  | ------------------------ | -------------------  |
+| 1  | ADA_BOOST_CLASSIFIER             | 35.86            |                                       |                          |  11.368                  | 0.717                |
+| 2  | BERNOULLI_NB                     | 37.132           |                                       |                          |  0.039                   | 0.038                |
+| 3  | COMPLEMENT_NB                    | 37.312           |                                       |                          |  **0.034**               | **0.019**                |
+| 4  | DECISION_TREE_CLASSIFIER         | 25.764           |                                       |                          |  35.066                  | *0.014*                |
+| 5  | EXTRA_TREE_CLASSIFIER            | 22.12            |                                       |                          |  1.008                   | 0.020                |
+| 6  | EXTRA_TREES_CLASSIFIER           | 37.404           |                                       |                          |  15.878                  | 0.510                |
+| 7  | GRADIENT_BOOSTING_CLASSIFIER     | 37.624           |                                       |                          |  397.786                 | 0.258                |
+| 8  | K_NEIGHBORS_CLASSIFIER           | 26.352           |                                       |                          |  *0.006*                 | 12.872               |
+| 9  | LINEAR_SVC                       | 37.328           |                                       |                          |  1.769                   | 0.018                |
+| 10 | LOGISTIC_REGRESSION              | 42.084           |                                       |                          |  9.818                   | 0.021                |
+| 11 | LOGISTIC_REGRESSION_CV           | 40.532           |                                       |                          |  152.318                 | 0.038                |
+| 12 | MLP_CLASSIFIER                   | 34.468           |                                       |                          |  2304.338                | 0.161                |
+| 13 | MULTINOMIAL_NB                   | 34.924           |                                       |                          |  0.067                   | 0.019                |
+| 14 | NEAREST_CENTROID                 | 36.844           |                                       |                          |  0.023                   | 0.023                |
+| 15 | NU_SVC                           | **42.32**        |                                       |                          |  726.955                 | 359.606              |
+| 16 | PASSIVE_AGGRESSIVE_CLASSIFIER    | 33.112           |                                       |                          |  0.508                   | 0.028                |
+| 17 | PERCEPTRON                       | 32.66            |                                       |                          |  0.314                   | 0.027                |
+| 18 | RANDOM_FOREST_CLASSIFIER         | 37.54            |                                       |                          |  10.693                  | 0.417                |
+| 19 | RIDGE_CLASSIFIER                 | 38.716           |                                       |                          |  3.194                   | 0.043                |
+| 20 | RIDGE_CLASSIFIERCV               | 41.54            |                                       |                          |  1730.003                | 0.037                |
+| 21 | SGD_CLASSIFIER                   | 40.676           |                                       |                          |  0.320                   | 0.021                |
 
 #### IMDB_REVIEWS: Plotting
 
