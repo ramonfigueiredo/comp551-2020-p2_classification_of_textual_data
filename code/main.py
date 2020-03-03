@@ -5,7 +5,7 @@
 
 This code uses many machine learning approaches to classify documents by topics using a bag-of-words approach.
 
-The datasets used in this are the 20 newsgroups dataset (https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups.html) and the IMDB Reviews dataset (http://ai.stanford.edu/~amaas/data/sentiment/).
+The datasets used in this are the 20 news groups dataset (https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups.html) and the IMDB Reviews dataset (http://ai.stanford.edu/~amaas/data/sentiment/).
 '''
 
 import argparse
@@ -19,26 +19,33 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn import metrics
 from sklearn.ensemble import AdaBoostClassifier
+from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import HashingVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.feature_selection import SelectFromModel
 from sklearn.feature_selection import SelectKBest, chi2
 from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegressionCV
 from sklearn.linear_model import PassiveAggressiveClassifier
 from sklearn.linear_model import Perceptron
 from sklearn.linear_model import RidgeClassifier
+from sklearn.linear_model import RidgeClassifierCV
 from sklearn.linear_model import SGDClassifier
 from sklearn.model_selection import cross_validate
 from sklearn.naive_bayes import BernoulliNB, ComplementNB, MultinomialNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neighbors import NearestCentroid
-from sklearn.pipeline import Pipeline
+from sklearn.neural_network import MLPClassifier
 from sklearn.svm import LinearSVC
+from sklearn.svm import NuSVC
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.tree import ExtraTreeClassifier
 from sklearn.utils.extmath import density
 
 from datasets.load_dataset import load_twenty_news_groups, load_imdb_reviews
+from utils.dataset_enum import Dataset
+from utils.ml_classifiers_enum import Classifier
 
 if __name__ == '__main__':
 
@@ -48,7 +55,7 @@ if __name__ == '__main__':
 
     parser.add_argument("-d", "--dataset",
                         action="store", dest="dataset",
-                        help="Dataset used (Options: 20news OR imdb). Default: imdb", default='imdb')
+                        help="Dataset used (Options: TWENTY_NEWS_GROUP OR IMDB_REVIEWS). Default: IMDB_REVIEWS", default='IMDB_REVIEWS')
 
     parser.add_argument("-not_shuffle", "--not_shuffle_dataset",
                         action="store_true", default=False, dest="not_shuffle_dataset",
@@ -75,7 +82,7 @@ if __name__ == '__main__':
 
     parser.add_argument("-news_with_4_classes", "--twenty_news_using_four_categories",
                         action="store_true", default=False, dest="twenty_news_using_four_categories",
-                        help="20 news groups dataset using some categories "
+                        help="TWENTY_NEWS_GROUP dataset using some categories "
                              "('alt.atheism', 'talk.religion.misc', 'comp.graphics', 'sci.space'). "
                              "Default: False (use all categories). Default: False")
 
@@ -91,7 +98,7 @@ if __name__ == '__main__':
 
     parser.add_argument("-show_reviews", "--show_imdb_reviews",
                         action="store_true", default=False, dest="show_imdb_reviews",
-                        help="Show the IMDB reviews and respective labels while read the dataset. Default: False")
+                        help="Show the IMDB_REVIEWS and respective labels while read the dataset. Default: False")
 
     parser.add_argument("-r", "--report",
                         action="store_true", dest="report",
@@ -134,6 +141,10 @@ if __name__ == '__main__':
                         dest='verbose',
                         help='Increase output verbosity. Default: False')
 
+    parser.add_argument("-random_state",
+                        action="store", type=int, dest="random_state", default=0,
+                        help="Seed used by the random number generator. Default: 0")
+
     parser.add_argument('-v', '--version', action='version', dest='version', version='%(prog)s 1.0')
 
     options = parser.parse_args()
@@ -155,12 +166,12 @@ if __name__ == '__main__':
     print('\tNumber of cross validation folds. Default: 5 =', options.n_splits)
     print('\tUse just the miniproject classifiers (1. LogisticRegression, 2. DecisionTreeClassifier, '
           '3. LinearSVC, 4. AdaBoostClassifier, 5. RandomForestClassifier) = ', options.use_just_miniproject_classifiers)
-    print('\t20 news groups dataset using some categories (alt.atheism, talk.religion.misc, comp.graphics, sci.space) =',
+    print('\tTWENTY_NEWS_GROUPS dataset using some categories (alt.atheism, talk.religion.misc, comp.graphics, sci.space) =',
           options.twenty_news_using_four_categories)
     print('\tDo not remove newsgroup information that is easily overfit (headers, footers, quotes) =',
           options.twenty_news_with_no_filter)
     print('\tUse IMDB Binary Labels (Negative / Positive) =', options.use_imdb_binary_labels)
-    print('\tShow the IMDB reviews and respective labels while read the dataset =', options.show_imdb_reviews)
+    print('\tShow the IMDB_REVIEWS and respective labels while read the dataset =', options.show_imdb_reviews)
     print('\tPrint Classification Report =', options.report)
     print('\tPrint all classification metrics = ', options.all_metrics)
     print('\tSelect some number of features using a chi-squared test =', options.select_chi2)
@@ -170,6 +181,7 @@ if __name__ == '__main__':
     print('\tN features when using the hashing vectorizer =', options.n_features)
     print('\tPlot training time and test time together with accuracy score =', options.plot_accurary_and_time_together)
     print('\tSave logs in a file =', options.save_logs_in_file)
+    print('\tSeed used by the random number generator (random_state) =', options.random_state)
     print('\tVerbose =', options.verbose)
     print('=' * 130)
     print()
@@ -192,11 +204,11 @@ if __name__ == '__main__':
     #######################################
 
     dataset = options.dataset
-    dataset = dataset.lower().strip()
+    dataset = dataset.upper().strip()
 
     shuffle = (not options.not_shuffle_dataset)
 
-    if dataset == '20news':
+    if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
 
         if options.twenty_news_using_four_categories:
             categories = [
@@ -213,35 +225,35 @@ if __name__ == '__main__':
         else:
             remove = ('headers', 'footers', 'quotes')
 
-        print("Loading 20 newsgroups dataset for categories:")
+        print("Loading {} dataset for categories:".format(Dataset.TWENTY_NEWS_GROUPS.name))
 
         data_train = load_twenty_news_groups(subset='train', categories=categories, shuffle=shuffle, random_state=0,
                                              remove=remove)
-        data_test = load_twenty_news_groups(subset='test', categories=categories, shuffle=shuffle, random_state=0,
+        data_test = load_twenty_news_groups(subset='test', categories=categories, shuffle=shuffle, random_state=options.random_state,
                                             remove=remove)
 
         X_train, y_train = data_train.data, data_train.target
         X_test, y_test = data_test.data, data_test.target
 
-    elif dataset == 'imdb':
+    elif dataset == Dataset.IMDB_REVIEWS.name:
 
-        print("Loading IMDB Reviews dataset:")
+        print("Loading {} dataset:".format(Dataset.IMDB_REVIEWS.name))
 
         X_train, y_train = load_imdb_reviews(subset='train', binary_labels=options.use_imdb_binary_labels,
-                                             verbose=options.show_imdb_reviews, shuffle=shuffle, random_state=0)
+                                             verbose=options.show_imdb_reviews, shuffle=shuffle, random_state=options.random_state)
         X_test, y_test = load_imdb_reviews(subset='test', binary_labels=options.use_imdb_binary_labels,
-                                           verbose=options.show_imdb_reviews, shuffle=shuffle, random_state=0)
+                                           verbose=options.show_imdb_reviews, shuffle=shuffle, random_state=options.random_state)
     else:
-        logging.error("Loading dataset: Wrong dataset name = '{}'. Expecting: 20news OR imdb".format(dataset))
+        logging.error("Loading dataset: Wrong dataset name = '{}'. Expecting: {} OR {}".format(dataset, Dataset.TWENTY_NEWS_GROUPS.name, Dataset.IMDB_REVIEWS.name))
         exit(0)
 
     print('data loaded')
 
-    if dataset == '20news':
+    if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
         # order of labels in `target_names` can be different from `categories`
         target_names = data_train.target_names
     else:
-        # IMDB reviews dataset
+        # IMDB_REVIEWS dataset
         # If binary classification: 0 = neg and 1 = pos.
         # If multi-class classification use the review scores: 1, 2, 3, 4, 7, 8, 9, 10
         if options.use_imdb_binary_labels:
@@ -261,7 +273,7 @@ if __name__ == '__main__':
         len(X_train), data_train_size_mb))
     print("%d documents - %0.3fMB (test set)" % (
         len(X_test), data_test_size_mb))
-    if dataset == '20news':
+    if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
         print("%d categories" % len(target_names))
     print()
 
@@ -324,7 +336,7 @@ if __name__ == '__main__':
     # Benchmark classifiers
     ##############################################
 
-    def benchmark(clf, classifier_name, X_train, y_train, X_test, y_test):
+    def benchmark(clf, classifier_enum, X_train, y_train, X_test, y_test):
         print('_' * 80)
         print("Training: ")
         print(clf)
@@ -414,64 +426,77 @@ if __name__ == '__main__':
         print()
 
         if options.run_cross_validation:
-            return classifier_name, score, train_time, test_time, cv_test_accuracy, cv_accuracy_score_mean_std
+            return classifier_enum.name, score, train_time, test_time, cv_test_accuracy, cv_accuracy_score_mean_std
         else:
-            return classifier_name, score, train_time, test_time
+            return classifier_enum.name, score, train_time, test_time
 
     results = []
     if options.use_just_miniproject_classifiers:
         for clf, classifier_name in (
-                (LogisticRegression(), "Logistic Regression"),
-                (DecisionTreeClassifier(), "Decision Tree Classifier"),
-                (LinearSVC(penalty="l2", dual=False, tol=1e-3), "Linear SVC (penalty = L2)"),
-                (AdaBoostClassifier(), "Ada Boost Classifier"),
-                (RandomForestClassifier(), "Random forest")):
+                (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION),
+                (DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER),
+                (LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC),
+                (AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER),
+                (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.RANDOM_FOREST_CLASSIFIER)
+        ):
             print('=' * 80)
             print(classifier_name)
             results.append(benchmark(clf, classifier_name, X_train, y_train, X_test, y_test))
     else:
         for clf, classifier_name in (
-                (RidgeClassifier(tol=1e-2, solver="sag"), "Ridge Classifier"),
-                (Perceptron(max_iter=50), "Perceptron"),
-                (PassiveAggressiveClassifier(max_iter=50), "Passive-Aggressive"),
-                (KNeighborsClassifier(n_neighbors=10), "kNN"),
-                (LogisticRegression(), "Logistic Regression"),
-                (DecisionTreeClassifier(), "Decision Tree Classifier"),
-                (LinearSVC(penalty="l2", dual=False, tol=1e-3), "Linear SVC (penalty = L2)"),
-                (LinearSVC(penalty="l1", dual=False, tol=1e-3), "Linear SVC (penalty = L1)"),
-                (SGDClassifier(alpha=.0001, max_iter=50, penalty="l2"), "SGD Classifier (penalty = L2)"),
-                (SGDClassifier(alpha=.0001, max_iter=50, penalty="l2"), "SGD Classifier (penalty = L1)"),
-                (AdaBoostClassifier(), "Ada Boost Classifier"),
-                (RandomForestClassifier(), "Random forest")):
+
+                (AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER),
+
+                (BernoulliNB(), Classifier.BERNOULLI_NB),
+
+                (ComplementNB(), Classifier.COMPLEMENT_NB),
+
+                (DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER),
+
+                (ExtraTreeClassifier(random_state=options.random_state), Classifier.EXTRA_TREE_CLASSIFIER),
+
+                (ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
+                 Classifier.EXTRA_TREES_CLASSIFIER),
+
+                (GradientBoostingClassifier(verbose=options.verbose, random_state=options.random_state),
+                 Classifier.GRADIENT_BOOSTING_CLASSIFIER),
+
+                (KNeighborsClassifier(n_jobs=options.n_jobs), Classifier.K_NEIGHBORS_CLASSIFIER),
+
+                (LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC),
+
+                (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
+                 Classifier.LOGISTIC_REGRESSION),
+
+                (LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
+                 Classifier.LOGISTIC_REGRESSION_CV),
+
+                (MLPClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.MLP_CLASSIFIER),
+
+                (MultinomialNB(), Classifier.MULTINOMIAL_NB),
+
+                (NearestCentroid(), Classifier.NEAREST_CENTROID),
+
+                (NuSVC(verbose=options.verbose, random_state=options.random_state), Classifier.NU_SVC),
+
+                (PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
+                 Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER),
+
+                (Perceptron(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.PERCEPTRON),
+
+                (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
+                 Classifier.RANDOM_FOREST_CLASSIFIER),
+
+                (RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER),
+
+                (RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV),
+
+                (SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.SGD_CLASSIFIER)
+        ):
             print('=' * 80)
             print(classifier_name)
             results.append(benchmark(clf, classifier_name, X_train, y_train, X_test, y_test))
 
-        # Train SGD with Elastic Net penalty
-        print('=' * 80)
-        print("SGDClassifier Elastic-Net penalty")
-        results.append(benchmark(SGDClassifier(alpha=.0001, max_iter=50, penalty="elasticnet"),
-                                 "SGDClassifier using Elastic-Net penalty", X_train, y_train, X_test, y_test))
-
-        # Train NearestCentroid without threshold
-        print('=' * 80)
-        print("NearestCentroid (aka Rocchio classifier)")
-        results.append(benchmark(NearestCentroid(), "NearestCentroid (aka Rocchio classifier)", X_train, y_train, X_test, y_test))
-
-        # Train sparse Naive Bayes classifiers
-        print('=' * 80)
-        print("Naive Bayes")
-        results.append(benchmark(MultinomialNB(alpha=.01), "MultinomialNB(alpha=.01)", X_train, y_train, X_test, y_test))
-        results.append(benchmark(BernoulliNB(alpha=.01), "BernoulliNB(alpha=.01)", X_train, y_train, X_test, y_test))
-        results.append(benchmark(ComplementNB(alpha=.1), "ComplementNB(alpha=.1)", X_train, y_train, X_test, y_test))
-
-        print('=' * 80)
-        print("LinearSVC with L1-based feature selection")
-        # The smaller C, the stronger the regularization.
-        # The more regularization, the more sparsity.
-        results.append(benchmark(Pipeline([
-            ('feature_selection', SelectFromModel(LinearSVC(penalty="l1", dual=False, tol=1e-3))),
-            ('classification', LinearSVC(penalty="l2"))]), "LinearSVC with L1-based feature selection", X_train, y_train, X_test, y_test))
 
     ###########################################################################################################################
     # Add plots: The bar plot indicates the accuracy, training time (normalized) and test time (normalized) of each classifier
@@ -491,22 +516,22 @@ if __name__ == '__main__':
 
     plt.figure(figsize=(12, 8))
     title = ""
-    if dataset == '20news':
+    if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
         if options.twenty_news_with_no_filter:
-            title = "20 News Groups: Accuracy score for the 20 news group dataset"
+            title = "Accuracy score for the {} dataset".format(Dataset.TWENTY_NEWS_GROUPS.name)
             plt.title()
         else:
-            title = "20 News Groups: Accuracy score for the 20 news group dataset (removing headers signatures and quoting)"
+            title = "Accuracy score for the {} dataset (removing headers signatures and quoting)".format(Dataset.TWENTY_NEWS_GROUPS.name)
             plt.title(title)
 
 
-    elif dataset == 'imdb':
+    elif dataset == Dataset.IMDB_REVIEWS.name:
         if options.use_imdb_binary_labels:
             imdb_classification_type = "Binary classification"
         else:
             imdb_classification_type = "Multi-class classification"
 
-        title = "IMDB Reviews: Accuracy score for the 20 news group dataset ({})".format(imdb_classification_type)
+        title = "Accuracy score for the {} dataset ({})".format(Dataset.IMDB_REVIEWS.name, imdb_classification_type)
         plt.title(title)
     plt.barh(indices, score, .2, label="score", color='navy')
     if options.plot_accurary_and_time_together:

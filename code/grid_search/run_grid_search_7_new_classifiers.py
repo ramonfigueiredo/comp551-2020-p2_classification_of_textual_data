@@ -21,6 +21,13 @@ from sklearn.neighbors import NearestCentroid
 from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.tree import ExtraTreeClassifier
+from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.linear_model import LogisticRegressionCV
+from sklearn.neural_network import MLPClassifier
+from sklearn.svm import NuSVC
+from sklearn.linear_model import RidgeClassifierCV
 
 from datasets.load_dataset import load_twenty_news_groups, load_imdb_reviews
 from utils.dataset_enum import Dataset
@@ -28,7 +35,6 @@ from utils.ml_classifiers_enum import Classifier
 
 
 def run_classifier_grid_search(classifer, param_grid, dataset):
-
     if param_grid is None:
         return
 
@@ -72,7 +78,6 @@ def run_classifier_grid_search(classifer, param_grid, dataset):
 
     # Create param grid.
 
-
     # Create grid search object
     grid_search = GridSearchCV(pipeline, param_grid=param_grid, cv=5, verbose=True, n_jobs=-1)
 
@@ -90,7 +95,7 @@ def run_classifier_grid_search(classifer, param_grid, dataset):
     for param_name in sorted(param_grid.keys()):
         logging.info("\t\t%s: %r" % (param_name, best_parameters[param_name]))
 
-    logging.info("Running Classifier with default values")
+    logging.info("Running RandomForestClassifier with default values")
     logging.info('_' * 80)
     clf = classifer
     logging.info('_' * 80)
@@ -114,31 +119,38 @@ def run_classifier_grid_search(classifer, param_grid, dataset):
 
 
 def run_grid_search(save_logs_in_file):
-
     if save_logs_in_file:
-        if not os.path.exists('logs_grid_search'):
-            os.mkdir('logs_grid_search')
-        logging.basicConfig(filename='logs_grid_search/all.log', format='%(asctime)s - %(levelname)s - %(message)s',
+        if not os.path.exists('logs_grid_search_7_new_classifiers'):
+            os.mkdir('logs_grid_search_7_new_classifiers')
+        logging.basicConfig(filename='logs_grid_search_7_new_classifiers/all.log', format='%(asctime)s - %(levelname)s - %(message)s',
                             level=logging.INFO, datefmt='%m/%d/%Y %I:%M:%S %p')
     else:
         logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO,
                             datefmt='%m/%d/%Y %I:%M:%S %p')
 
     classifier_list = [
-        Classifier.ADA_BOOST_CLASSIFIER,
-        Classifier.BERNOULLI_NB,
-        Classifier.COMPLEMENT_NB,
-        Classifier.DECISION_TREE_CLASSIFIER,
-        Classifier.K_NEIGHBORS_CLASSIFIER,
-        Classifier.LINEAR_SVC,
-        Classifier.LOGISTIC_REGRESSION,
-        Classifier.MULTINOMIAL_NB,
-        Classifier.NEAREST_CENTROID,
-        Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER,
-        Classifier.PERCEPTRON,
-        Classifier.RANDOM_FOREST_CLASSIFIER,
-        Classifier.RIDGE_CLASSIFIER,
-        Classifier.SGD_CLASSIFIER
+        # Classifier.ADA_BOOST_CLASSIFIER,
+        # Classifier.BERNOULLI_NB,
+        # Classifier.COMPLEMENT_NB,
+        # Classifier.DECISION_TREE_CLASSIFIER,
+        # Classifier.K_NEIGHBORS_CLASSIFIER,
+        # Classifier.LINEAR_SVC,
+        # Classifier.LOGISTIC_REGRESSION,
+        # Classifier.MULTINOMIAL_NB,
+        # Classifier.NEAREST_CENTROID,
+        # Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER,
+        # Classifier.PERCEPTRON,
+        # Classifier.RANDOM_FOREST_CLASSIFIER,
+        # Classifier.RIDGE_CLASSIFIER,
+        # Classifier.SGD_CLASSIFIER,
+
+        Classifier.EXTRA_TREE_CLASSIFIER,
+        Classifier.EXTRA_TREES_CLASSIFIER,
+        Classifier.GRADIENT_BOOSTING_CLASSIFIER,
+        Classifier.LOGISTIC_REGRESSION_CV,
+        Classifier.MLP_CLASSIFIER,
+        Classifier.NU_SVC,
+        Classifier.RIDGE_CLASSIFIERCV
     ]
 
     dataset_list = [
@@ -378,6 +390,92 @@ def run_grid_search(save_logs_in_file):
                 'classifier__penalty': ['l2', 'l1', 'elasticnet'],
                 'classifier__tol': [0.0001, 0.001, 0.01, 0.1]
             }
+
+        elif classifier == Classifier.EXTRA_TREE_CLASSIFIER:
+            '''
+            ExtraTreeClassifier(ccp_alpha=0.0, class_weight=None, criterion='gini',
+                    max_depth=None, max_features='auto', max_leaf_nodes=None,
+                    min_impurity_decrease=0.0, min_impurity_split=None,
+                    min_samples_leaf=1, min_samples_split=2,
+                    min_weight_fraction_leaf=0.0, random_state=None,
+                    splitter='random')
+            '''
+            clf = ExtraTreeClassifier()
+            parameters = None
+
+        elif classifier == Classifier.EXTRA_TREES_CLASSIFIER:
+            '''
+            ExtraTreesClassifier(bootstrap=False, ccp_alpha=0.0, class_weight=None,
+                     criterion='gini', max_depth=None, max_features='auto',
+                     max_leaf_nodes=None, max_samples=None,
+                     min_impurity_decrease=0.0, min_impurity_split=None,
+                     min_samples_leaf=1, min_samples_split=2,
+                     min_weight_fraction_leaf=0.0, n_estimators=100,
+                     n_jobs=None, oob_score=False, random_state=None, verbose=0,
+                     warm_start=False)
+            '''
+            clf = ExtraTreesClassifier()
+            parameters = None
+
+        elif classifier == Classifier.GRADIENT_BOOSTING_CLASSIFIER:
+            '''
+            GradientBoostingClassifier(ccp_alpha=0.0, criterion='friedman_mse', init=None,
+                           learning_rate=0.1, loss='deviance', max_depth=3,
+                           max_features=None, max_leaf_nodes=None,
+                           min_impurity_decrease=0.0, min_impurity_split=None,
+                           min_samples_leaf=1, min_samples_split=2,
+                           min_weight_fraction_leaf=0.0, n_estimators=100,
+                           n_iter_no_change=None, presort='deprecated',
+                           random_state=None, subsample=1.0, tol=0.0001,
+                           validation_fraction=0.1, verbose=0,
+                           warm_start=False)
+            '''
+            clf = GradientBoostingClassifier()
+            parameters = None
+
+        elif classifier == Classifier.LOGISTIC_REGRESSION_CV:
+            '''
+            LogisticRegressionCV(Cs=10, class_weight=None, cv=None, dual=False,
+                     fit_intercept=True, intercept_scaling=1.0, l1_ratios=None,
+                     max_iter=100, multi_class='auto', n_jobs=None,
+                     penalty='l2', random_state=None, refit=True, scoring=None,
+                     solver='lbfgs', tol=0.0001, verbose=0)
+            '''
+            clf = LogisticRegressionCV()
+            parameters = None
+
+        elif classifier == Classifier.MLP_CLASSIFIER:
+            '''
+            MLPClassifier(activation='relu', alpha=0.0001, batch_size='auto', beta_1=0.9,
+                     beta_2=0.999, early_stopping=False, epsilon=1e-08,
+                     hidden_layer_sizes=(100,), learning_rate='constant',
+                     learning_rate_init=0.001, max_fun=15000, max_iter=200,
+                     momentum=0.9, n_iter_no_change=10, nesterovs_momentum=True,
+                     power_t=0.5, random_state=None, shuffle=True, solver='adam',
+                     tol=0.0001, validation_fraction=0.1, verbose=False,
+                     warm_start=False)
+            '''
+            clf = MLPClassifier()
+            parameters = None
+
+        elif classifier == Classifier.NU_SVC:
+            '''
+            NuSVC(break_ties=False, cache_size=200, class_weight=None, coef0=0.0,
+                    decision_function_shape='ovr', degree=3, gamma='scale', kernel='rbf',
+                    max_iter=-1, nu=0.5, probability=False, random_state=None, shrinking=True,
+                    tol=0.001, verbose=False)
+            '''
+            clf = NuSVC()
+            parameters = None
+
+        elif classifier == Classifier.RIDGE_CLASSIFIERCV:
+            '''
+            RidgeClassifierCV(alphas=array([ 0.1,  1. , 10. ]), class_weight=None, cv=None,
+                    fit_intercept=True, normalize=False, scoring=None,
+                    store_cv_values=False)
+            '''
+            clf = RidgeClassifierCV()
+            parameters = None
 
         for dataset in dataset_list:
             logging.info("*" * 80)
