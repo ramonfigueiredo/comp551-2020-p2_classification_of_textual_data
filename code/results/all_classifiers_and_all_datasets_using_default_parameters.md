@@ -69,7 +69,9 @@
  
     ![IMDB_REVIEWS](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/IMDB_REVIEWS-ml_with_default_parameters.png)
 
-### Logs
+### Logs: TWENTY_NEWS_GROUPS dataset and IMDB_REVIEWS dataset (Multi-class classification)
+
+Logs after run all classifiers using the TWENTY_NEWS_GROUPS dataset (removing headers signatures and quoting) and IMDB_REVIEWS dataset (Multi-class classification).
 
 ```
 python /comp551-2020-p2_classification_of_textual_data/code/main.py -verbose
