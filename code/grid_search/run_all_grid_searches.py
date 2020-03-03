@@ -65,7 +65,7 @@ def get_classifier_with_best_parameters(classifier_enum, best_parameters):
         return LinearSVC(**best_parameters)
 
     elif classifier_enum == Classifier.LOGISTIC_REGRESSION:
-       return LogisticRegression(**best_parameters)
+        return LogisticRegression(**best_parameters)
 
     elif classifier_enum == Classifier.LOGISTIC_REGRESSION_CV:
         return LogisticRegressionCV(**best_parameters)
