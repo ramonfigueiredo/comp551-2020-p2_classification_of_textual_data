@@ -7,9 +7,9 @@
 | ID | ML Algorithm                     | Accuracy Score   | K-fold Cross Validation (CV) (k = 5)  |  CV (Mean +/- Std)       | Training time (seconds)  | Test time (seconds)  | 
 | -- | -------------------------------  | ---------------- | ------------------------------------- |------------------------  | ------------------------ | -------------------  |
 | 1  | ADA_BOOST_CLASSIFIER             | 36.54%           |                                       |                          | 4.842                    | 0.256                |
-| 2  | BERNOULLI_NB                     | 45.84%           |                                       |                          | 0.062                    | 0.053                |
-| 3  | COMPLEMENT_NB                    | **71.34%**       |                                       |                          | 0.063                    | 0.010                |
-| 4  | DECISION_TREE_CLASSIFIER         | 43.92%           |                                       |                          | 10.921                   | 0.006                |
+| 2  | BERNOULLI_NB                     | 45.84%           |                                       |                          | *0.062*                  | 0.053                |
+| 3  | COMPLEMENT_NB                    | **71.34%**       |                                       |                          | **0.063**                | **0.010**            |
+| 4  | DECISION_TREE_CLASSIFIER         | 43.92%           |                                       |                          | 10.921                   | *0.006*              |
 | 5  | EXTRA_TREE_CLASSIFIER            | 29.42%           |                                       |                          | 0.578                    | 0.009                |
 | 6  | EXTRA_TREES_CLASSIFIER           | 65.31%           |                                       |                          | 10.459                   | 0.204                |
 | 7  | GRADIENT_BOOSTING_CLASSIFIER     | 59.68%           |                                       |                          | 337.842                  | 0.181                |
