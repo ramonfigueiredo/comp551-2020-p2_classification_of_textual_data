@@ -437,11 +437,11 @@ if __name__ == '__main__':
     results = []
     if options.use_just_miniproject_classifiers:
         for clf, classifier_name in (
-                (LogisticRegression(), "Logistic Regression"),
-                (DecisionTreeClassifier(), "Decision Tree Classifier"),
-                (LinearSVC(penalty="l2", dual=False, tol=1e-3), "Linear SVC (penalty = L2)"),
-                (AdaBoostClassifier(), "Ada Boost Classifier"),
-                (RandomForestClassifier(), "Random forest")):
+                (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "Logistic Regression"),
+                (DecisionTreeClassifier(random_state=0), "Decision Tree Classifier"),
+                (LinearSVC(verbose=options.verbfose, random_state=0), "Linear SVC"),
+                (AdaBoostClassifier(random_state=0), "Ada Boost Classifier"),
+                (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "Random forest"),):
             print('=' * 80)
             print(classifier_name)
             results.append(benchmark(clf, classifier_name, X_train, y_train, X_test, y_test))
