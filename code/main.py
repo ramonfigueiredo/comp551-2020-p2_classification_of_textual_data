@@ -439,7 +439,7 @@ if __name__ == '__main__':
         for clf, classifier_name in (
                 (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "Logistic Regression"),
                 (DecisionTreeClassifier(random_state=0), "Decision Tree Classifier"),
-                (LinearSVC(verbose=options.verbfose, random_state=0), "Linear SVC"),
+                (LinearSVC(verbose=options.verbose, random_state=0), "Linear SVC"),
                 (AdaBoostClassifier(random_state=0), "Ada Boost Classifier"),
                 (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "Random forest"),):
             print('=' * 80)
