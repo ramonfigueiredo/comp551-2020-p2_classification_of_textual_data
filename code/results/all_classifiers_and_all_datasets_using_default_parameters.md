@@ -4,6 +4,7 @@
 
 ### Final classification report: Accuracy score and normalized time  
 
+#### Accuracy score table
 
 | ID | ML Algorithm 				    | Accuracy Score   |
 | -- | -------------------------------  | ---------------- |
@@ -28,6 +29,17 @@
 | 19 | RIDGE_CLASSIFIER                 | 70.35%           |
 | 20 | RIDGE_CLASSIFIERCV               | 70.37%           |
 | 21 | SGD_CLASSIFIER                   | 70.11%           |
+
+#### Plotting:
+
+1) Accuracy score for the TWENTY_NEWS_GROUPS dataset (Removing headers signatures and quoting)
+ 
+    ![TWENTY_NEWS_GROUPS](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/TWENTY_NEWS_GROUPS-ml_with_default_parameters.png)
+
+2) Accuracy score of IMDB_REVIEWS dataset (Multi-class classification)
+ 
+    ![IMDB_REVIEWS](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/IMDB_REVIEWS-ml_with_default_parameters.png)
+
 
 1) ADA_BOOST_CLASSIFIER
     * Accuracy score = 0.36537440254912373 (36.54%)	
@@ -140,17 +152,6 @@
 	* Accuracy score = 0.7133563462559745 (71.33%)	
 	* Training time = 0.06284403800964355		
 	* Test time = 0.010244131088256836
-
-### Plotting:
-
-1) Accuracy score for the TWENTY_NEWS_GROUPS dataset (Removing headers signatures and quoting)
- 
-    ![TWENTY_NEWS_GROUPS](https://github.com/ramonfigueiredopessoa/.png)
-
-2) Accuracy score of IMDB_REVIEWS dataset (Multi-class classification)
- 
-    ![IMDB_REVIEWS](https://github.com/ramonfigueiredopessoa/.png)
-
 
 ### Logs
 
