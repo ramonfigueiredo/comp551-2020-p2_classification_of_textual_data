@@ -2,7 +2,7 @@
 
 ### TWENTY_NEWS_GROUPS dataset (removing headers signatures and quoting)  
 
-#### Accuracy score table
+#### TWENTY_NEWS_GROUPS: Accuracy score table
 
 | ID | ML Algorithm 				    | Accuracy Score   |
 | -- | -------------------------------  | ---------------- |
@@ -28,130 +28,46 @@
 | 20 | RIDGE_CLASSIFIERCV               | 70.37%           |
 | 21 | SGD_CLASSIFIER                   | 70.11%           |
 
-#### Plotting
+#### TWENTY_NEWS_GROUPS: Plotting
 
 * Accuracy score for the TWENTY_NEWS_GROUPS dataset (Removing headers signatures and quoting)
  
     ![TWENTY_NEWS_GROUPS](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/TWENTY_NEWS_GROUPS-ml_with_default_parameters.png)
 
+
+### IMDB_REVIEWS dataset (Multi-class classification)  
+
+#### IMDB_REVIEWS: Accuracy score table
+
+| ID | ML Algorithm 				    | Accuracy Score   |
+| -- | -------------------------------  | ---------------- |
+| 1  | ADA_BOOST_CLASSIFIER             | 35.86		       |
+| 2  | BERNOULLI_NB                     | 37.132           |
+| 3  | COMPLEMENT_NB                    | 37.312		   |
+| 4  | DECISION_TREE_CLASSIFIER         | 25.764		   |
+| 5  | EXTRA_TREE_CLASSIFIER            | 22.12		       |
+| 6  | EXTRA_TREES_CLASSIFIER           | 37.404		   |
+| 7  | GRADIENT_BOOSTING_CLASSIFIER     | 37.624		   |
+| 8  | K_NEIGHBORS_CLASSIFIER           | 26.352	       |
+| 9  | LINEAR_SVC                       | 37.328		   |
+| 10 | LOGISTIC_REGRESSION              | 42.084		   |
+| 11 | LOGISTIC_REGRESSION_CV           | 40.532		   |
+| 12 | MLP_CLASSIFIER                   | 34.468	       |
+| 13 | MULTINOMIAL_NB                   | 34.924		   |
+| 14 | NEAREST_CENTROID                 | 36.844    	   |
+| 15 | NU_SVC                           | **42.32**	       |
+| 16 | PASSIVE_AGGRESSIVE_CLASSIFIER    | 33.112		   |
+| 17 | PERCEPTRON                       | 32.66		       |
+| 18 | RANDOM_FOREST_CLASSIFIER         | 37.54	           |
+| 19 | RIDGE_CLASSIFIER                 | 38.716		   |
+| 20 | RIDGE_CLASSIFIERCV               | 41.54		       |
+| 21 | SGD_CLASSIFIER                   | 40.676	       |
+
+#### IMDB_REVIEWS: Plotting
+
 * Accuracy score of IMDB_REVIEWS dataset (Multi-class classification)
  
     ![IMDB_REVIEWS](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/IMDB_REVIEWS-ml_with_default_parameters.png)
-
-
-#### Accuracy score and training and test normalized time
-
-1) ADA_BOOST_CLASSIFIER
-    * Accuracy score = 0.36537440254912373 (36.54%)	
-    * Training time = 4.842162132263184		
-    * Test time = 0.2556889057159424
-
-2) BERNOULLI_NB
-    * Accuracy score = 0.4584439723844928 (45.84%)
-    * Training time = 0.06185650825500488		
-    * Test time = 0.05335426330566406
-
-3) COMPLEMENT_NB
-	* Accuracy score = 0.7133563462559745 (71.34%)
-	* Training time = 0.06284403800964355		
-	* Test time = 0.010244131088256836
-
-4) DECISION_TREE_CLASSIFIER
-	* Accuracy score = 0.4391927774827403 (43.92%)
-	* Training time = 10.920867204666138		
-	* Test time = 0.0055506229400634766
-
-5) EXTRA_TREE_CLASSIFIER
-	* Accuracy score = 0.2942113648433351 (29.42%)
-	* Training time = 0.5782861709594727		
-	* Test time = 0.008541107177734375
-
-6) EXTRA_TREES_CLASSIFIER
-	* Accuracy score = 0.6530801911842804 (65.31%)
-	* Training time = 10.459269046783447		
-	* Test time = 0.203660249710083
-
-7) GRADIENT_BOOSTING_CLASSIFIER
-	* Accuracy score = 0.5967870419543282 (59.68%)
-	* Training time = 337.8422865867615		
-	* Test time = 0.1811671257019043
-
-8) K_NEIGHBORS_CLASSIFIER
-	* Accuracy score = 0.07010090281465746 (07.01%)	
-	* Training time = 0.002396821975708008		
-	* Test time = 1.6931359767913818
-
-9) LINEAR_SVC
-	* Accuracy score = 0.69676048858205 (69.68%)
-	* Training time = 0.7634968757629395		
-	* Test time = 0.008660554885864258
-
-10) LOGISTIC_REGRESSION
-	* Accuracy score = 0.6946362187997875 (69.46%)
-	* Training time = 17.368773460388184		
-	* Test time = 0.011348724365234375
-
-11) LOGISTIC_REGRESSION_CV
-	* Accuracy score = 0.6935740839086564 (69.35%)
-	* Training time = 409.5075442790985		
-	* Test time = 0.010601282119750977
-
-12) MLP_CLASSIFIER
-	* Accuracy score = 0.699814126394052 (69.98%)
-	* Training time = 1357.2824909687042		
-	* Test time = 0.04013490676879883
-
-13) MULTINOMIAL_NB
-	* Accuracy score = 0.6712692511949018 (67.13%)
-	* Training time = 0.08335185050964355		
-	* Test time = 0.009906768798828125
-
-14) NEAREST_CENTROID
-	* Accuracy score = 0.6427243759957515 (64.27%)
-	* Training time = 0.016117095947265625		
-	* Test time = 0.013181686401367188
-
-15) NU_SVC
-	* Accuracy score = 0.6919808815719597 (69.20%)
-	* Training time = 82.38007354736328		
-	* Test time = 27.44763970375061
-
-16) PASSIVE_AGGRESSIVE_CLASSIFIER
-	* Accuracy score = 0.6848114710568242 (68.48%)
-	* Training time = 0.40989017486572266		
-	* Test time = 0.012604236602783203
-
-17) PERCEPTRON
-	* Accuracy score = 0.6336962294211365 (63.36%)
-	* Training time = 0.41126322746276855		
-	* Test time = 0.013092756271362305
-
-18) RANDOM_FOREST_CLASSIFIER
-	* Accuracy score = 0.6267923526287839 (62.68%)
-	* Training time = 6.5693678855896		
-	* Test time = 0.30539488792419434
-
-19) RIDGE_CLASSIFIER
-	* Accuracy score = 0.7035315985130112 (70.35%)
-	* Training time = 2.367365598678589		
-	* Test time = 0.02110910415649414
-
-20) RIDGE_CLASSIFIERCV
-	* Accuracy score = 0.7036643653744026 (70.37%)
-	* Training time = 173.8229410648346		
-	* Test time = 0.017713546752929688
-
-21) SGD_CLASSIFIER
-	* Accuracy score = 0.701141795007966 (70.11%)
-	* Training time = 0.421708345413208		
-	* Test time = 0.011092901229858398
-
-#### Best algorithm:
-
-3) COMPLEMENT_NB
-	* Accuracy score = 0.7133563462559745 (71.33%)	
-	* Training time = 0.06284403800964355		
-	* Test time = 0.010244131088256836
 
 ### Logs
 
