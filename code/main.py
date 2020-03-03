@@ -566,7 +566,7 @@ def run_all_classifiers(options, X_train, y_train, X_test, y_test):
 
                 (RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER),
 
-                # (RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV), # MemoryError: Unable to allocate 4.27 GiB for an array with shape (573553844,) and data type float64
+                (RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV),
 
                 (SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.SGD_CLASSIFIER)
         ):
