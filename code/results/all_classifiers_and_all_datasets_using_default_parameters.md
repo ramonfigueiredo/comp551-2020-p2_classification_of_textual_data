@@ -1,8 +1,6 @@
 ## Results using all classifiers and all datasets (classifier with default parameters)
 
-### TWENTY_NEWS_GROUPS dataset (removing headers signatures and quoting)
-
-### Final classification report: Accuracy score and normalized time  
+### TWENTY_NEWS_GROUPS dataset (removing headers signatures and quoting)  
 
 #### Accuracy score table
 
