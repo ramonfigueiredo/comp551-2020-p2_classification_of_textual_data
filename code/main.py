@@ -18,43 +18,42 @@ from time import time
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn import metrics
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 from sklearn.ensemble import AdaBoostClassifier
+from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import HashingVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.feature_selection import SelectFromModel
 from sklearn.feature_selection import SelectKBest, chi2
+from sklearn.gaussian_process import GaussianProcessClassifier
 from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegressionCV
 from sklearn.linear_model import PassiveAggressiveClassifier
 from sklearn.linear_model import Perceptron
 from sklearn.linear_model import RidgeClassifier
+from sklearn.linear_model import RidgeClassifierCV
 from sklearn.linear_model import SGDClassifier
 from sklearn.model_selection import cross_validate
 from sklearn.naive_bayes import BernoulliNB, ComplementNB, MultinomialNB
+from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neighbors import NearestCentroid
-from sklearn.pipeline import Pipeline
-from sklearn.svm import LinearSVC
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.utils.extmath import density
-
-from sklearn.tree import ExtraTreeClassifier
-from sklearn.ensemble import ExtraTreesClassifier
-from sklearn.naive_bayes import GaussianNB
+from sklearn.neighbors import RadiusNeighborsClassifier
+from sklearn.neural_network import MLPClassifier
 from sklearn.semi_supervised import LabelPropagation
 from sklearn.semi_supervised import LabelSpreading
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn.linear_model import LogisticRegressionCV
-from sklearn.neural_network import MLPClassifier
-from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
-from sklearn.neighbors import RadiusNeighborsClassifier
-from sklearn.linear_model import RidgeClassifierCV
+from sklearn.svm import LinearSVC
 from sklearn.svm import NuSVC
 from sklearn.svm import SVC
-from sklearn.gaussian_process import GaussianProcessClassifier
-from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.tree import ExtraTreeClassifier
+from sklearn.utils.extmath import density
 
 from datasets.load_dataset import load_twenty_news_groups, load_imdb_reviews
+from utils.dataset_enum import Dataset
+from utils.ml_classifiers_enum import Classifier
 
 if __name__ == '__main__':
 
@@ -340,7 +339,7 @@ if __name__ == '__main__':
     # Benchmark classifiers
     ##############################################
 
-    def benchmark(clf, classifier_name, X_train, y_train, X_test, y_test):
+    def benchmark(clf, classifier_enum, X_train, y_train, X_test, y_test):
         print('_' * 80)
         print("Training: ")
         print(clf)
@@ -430,47 +429,72 @@ if __name__ == '__main__':
         print()
 
         if options.run_cross_validation:
-            return classifier_name, score, train_time, test_time, cv_test_accuracy, cv_accuracy_score_mean_std
+            return classifier_enum.name, score, train_time, test_time, cv_test_accuracy, cv_accuracy_score_mean_std
         else:
-            return classifier_name, score, train_time, test_time
+            return classifier_enum.name, score, train_time, test_time
 
     results = []
     if options.use_just_miniproject_classifiers:
         for clf, classifier_name in (
-                (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "Logistic Regression"),
-                (DecisionTreeClassifier(random_state=0), "Decision Tree Classifier"),
-                (LinearSVC(verbose=options.verbose, random_state=0), "Linear SVC"),
-                (AdaBoostClassifier(random_state=0), "Ada Boost Classifier"),
-                (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "Random forest"),):
+                (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), Classifier.LOGISTIC_REGRESSION),
+                (DecisionTreeClassifier(random_state=0), Classifier.DECISION_TREE_CLASSIFIER),
+                (LinearSVC(verbose=options.verbose, random_state=0), Classifier.LINEAR_SVC),
+                (AdaBoostClassifier(random_state=0), Classifier.ADA_BOOST_CLASSIFIER),
+                (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), Classifier.RANDOM_FOREST_CLASSIFIER)
+        ):
             print('=' * 80)
             print(classifier_name)
             results.append(benchmark(clf, classifier_name, X_train, y_train, X_test, y_test))
     else:
         for clf, classifier_name in (
 
-                (RidgeClassifier(random_state=0), "Ridge Classifier"),
-                (Perceptron(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "Perceptron"),
-                (PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "Passive-Aggressive"),
-                (KNeighborsClassifier(n_jobs=options.n_jobs), "kNN"),
-                (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "Logistic Regression"),
-                (DecisionTreeClassifier(random_state=0), "Decision Tree Classifier"),
-                (LinearSVC(verbose=options.verbose, random_state=0), "Linear SVC"),
-                (SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "SGD Classifier"),
-                (AdaBoostClassifier(random_state=0), "Ada Boost Classifier"),
-                (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "Random forest"),
-                (NearestCentroid(), "NearestCentroid (aka Rocchio classifier)"),
-                (MultinomialNB(), "Multinomial NB"),
-                (BernoulliNB(), "Bernoulli NB)"),
-                (ComplementNB(), "Complement NB"),
+                (AdaBoostClassifier(random_state=0), Classifier.ADA_BOOST_CLASSIFIER),
 
-                # New classifiers
-                (GradientBoostingClassifier(verbose=options.verbose, random_state=0), "Gradient Boosting Classifier"),
-                (ExtraTreeClassifier(random_state=0), "Extra Tree Classifier"),
-                (ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "Extra Tree Classifier"),
-                (LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "Logistic Regression CV"),
-                (MLPClassifier(verbose=options.verbose, random_state=0), "MLP Classifier"),
-                (RidgeClassifierCV(), "Ridge Classifier CV"),
-                (NuSVC(verbose=options.verbose, random_state=0), "Nu SVC")
+                (BernoulliNB(), Classifier.BERNOULLI_NB),
+
+                (ComplementNB(), Classifier.COMPLEMENT_NB),
+
+                (DecisionTreeClassifier(random_state=0), Classifier.DECISION_TREE_CLASSIFIER),
+
+                (ExtraTreeClassifier(random_state=0), Classifier.EXTRA_TREE_CLASSIFIER),
+
+                (ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0),
+                 Classifier.EXTRA_TREES_CLASSIFIER),
+
+                (GradientBoostingClassifier(verbose=options.verbose, random_state=0),
+                 Classifier.GRADIENT_BOOSTING_CLASSIFIER),
+
+                (KNeighborsClassifier(n_jobs=options.n_jobs), Classifier.K_NEIGHBORS_CLASSIFIER),
+
+                (LinearSVC(verbose=options.verbose, random_state=0), Classifier.LINEAR_SVC),
+
+                (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0),
+                 Classifier.LOGISTIC_REGRESSION),
+
+                (LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0),
+                 Classifier.LOGISTIC_REGRESSION_CV),
+
+                (MLPClassifier(verbose=options.verbose, random_state=0), Classifier.MLP_CLASSIFIER),
+
+                (MultinomialNB(), Classifier.MULTINOMIAL_NB),
+
+                (NearestCentroid(), Classifier.NEAREST_CENTROID),
+
+                (NuSVC(verbose=options.verbose, random_state=0), Classifier.NU_SVC),
+
+                (PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0),
+                 Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER),
+
+                (Perceptron(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), Classifier.PERCEPTRON),
+
+                (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0),
+                 Classifier.RANDOM_FOREST_CLASSIFIER),
+
+                (RidgeClassifier(random_state=0), Classifier.RIDGE_CLASSIFIER),
+
+                (RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV),
+
+                (SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), Classifier.SGD_CLASSIFIER)
 
                 # TODO: Fix: TypeError: A sparse matrix was passed, but dense data is required. Use X.toarray() to convert to a dense numpy array.
                 # (GaussianNB(), "Extra Tree Classifier"),
