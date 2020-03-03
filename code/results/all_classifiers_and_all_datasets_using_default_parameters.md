@@ -4,29 +4,29 @@
 
 #### TWENTY_NEWS_GROUPS: Accuracy score table
 
-| ID | ML Algorithm 				    | Accuracy Score   |
-| -- | -------------------------------  | ---------------- |
-| 1  | ADA_BOOST_CLASSIFIER             | 36.54%           | 
-| 2  | BERNOULLI_NB                     | 45.84%           |
-| 3  | COMPLEMENT_NB                    | **71.34%**       |
-| 4  | DECISION_TREE_CLASSIFIER         | 43.92%           |
-| 5  | EXTRA_TREE_CLASSIFIER            | 29.42%           |
-| 6  | EXTRA_TREES_CLASSIFIER           | 65.31%           |
-| 7  | GRADIENT_BOOSTING_CLASSIFIER     | 59.68%           |
-| 8  | K_NEIGHBORS_CLASSIFIER           | 07.01%           |
-| 9  | LINEAR_SVC                       | 69.68%           |
-| 10 | LOGISTIC_REGRESSION              | 69.46%           |
-| 11 | LOGISTIC_REGRESSION_CV           | 69.35%           |
-| 12 | MLP_CLASSIFIER                   | 69.98%           |
-| 13 | MULTINOMIAL_NB                   | 67.13%           |
-| 14 | NEAREST_CENTROID                 | 64.27%           |
-| 15 | NU_SVC                           | 69.20%           |
-| 16 | PASSIVE_AGGRESSIVE_CLASSIFIER    | 68.48%           |
-| 17 | PERCEPTRON                       | 63.36%           |
-| 18 | RANDOM_FOREST_CLASSIFIER         | 62.68%           |
-| 19 | RIDGE_CLASSIFIER                 | 70.35%           |
-| 20 | RIDGE_CLASSIFIERCV               | 70.37%           |
-| 21 | SGD_CLASSIFIER                   | 70.11%           |
+| ID | ML Algorithm                     | Accuracy Score   | K-fold Cross Validation (CV) (k = 5)  |  CV (Mean +/- Std)       | Training time (seconds)  | Test time (seconds)  | 
+| -- | -------------------------------  | ---------------- | ------------------------------------- |------------------------  | ------------------------ |                      |
+| 1  | ADA_BOOST_CLASSIFIER             | 36.54%           |                                       |                          | 4.842                    | 0.256                |
+| 2  | BERNOULLI_NB                     | 45.84%           |                                       |                          | 0.062                    | 0.053                |
+| 3  | COMPLEMENT_NB                    | **71.34%**       |                                       |                          | 0.063                    | 0.010                |
+| 4  | DECISION_TREE_CLASSIFIER         | 43.92%           |                                       |                          | 10.921                   | 0.006                |
+| 5  | EXTRA_TREE_CLASSIFIER            | 29.42%           |                                       |                          | 0.578                    | 0.009                |
+| 6  | EXTRA_TREES_CLASSIFIER           | 65.31%           |                                       |                          | 10.459                   | 0.204                |
+| 7  | GRADIENT_BOOSTING_CLASSIFIER     | 59.68%           |                                       |                          | 337.842                  | 0.181                |
+| 8  | K_NEIGHBORS_CLASSIFIER           | 07.01%           |                                       |                          | 0.002                    | 1.693                |
+| 9  | LINEAR_SVC                       | 69.68%           |                                       |                          | 0.763                    | 0.009                |
+| 10 | LOGISTIC_REGRESSION              | 69.46%           |                                       |                          | 17.369                   | 0.011                |
+| 11 | LOGISTIC_REGRESSION_CV           | 69.35%           |                                       |                          | 409.508                  | 0.011                |
+| 12 | MLP_CLASSIFIER                   | 69.98%           |                                       |                          | 1357.282                 | 0.040                |
+| 13 | MULTINOMIAL_NB                   | 67.13%           |                                       |                          | 0.083                    | 0.010                |
+| 14 | NEAREST_CENTROID                 | 64.27%           |                                       |                          | 0.016                    | 0.013                |
+| 15 | NU_SVC                           | 69.20%           |                                       |                          | 82.380                   | 27.448               |
+| 16 | PASSIVE_AGGRESSIVE_CLASSIFIER    | 68.48%           |                                       |                          | 0.410                    | 0.013                |
+| 17 | PERCEPTRON                       | 63.36%           |                                       |                          | 0.411                    | 0.013                |
+| 18 | RANDOM_FOREST_CLASSIFIER         | 62.68%           |                                       |                          | 6.569                    | 0.305                |
+| 19 | RIDGE_CLASSIFIER                 | 70.35%           |                                       |                          | 2.367                    | 0.021                |
+| 20 | RIDGE_CLASSIFIERCV               | 70.37%           |                                       |                          | 173.823                  | 0.018                |
+| 21 | SGD_CLASSIFIER                   | 70.11%           |                                       |                          | 0.422                    | 0.011                |
 
 #### TWENTY_NEWS_GROUPS: Plotting
 
