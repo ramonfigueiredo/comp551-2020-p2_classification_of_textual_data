@@ -607,31 +607,33 @@ def run_grid_search(save_logs_in_file):
                 print("#" * 80)
             c_count = c_count + 1
 
-        logging.info('\n\nFINAL CLASSIFICATION TABLE: {} DATASET, CLASSIFIER WITH DEFAULT PARAMETERS'.format(dataset.name))
-        logging.info(
-            '| ID | ML Algorithm | Accuracy Score (%) | K-fold Cross Validation (CV) (k = 5) | CV (Mean +/- Std) | '
-            'Training time (seconds) | Test time (seconds) |')
-        logging.info(
-            '| -- | ------------ | ------------------ | ------------------------------------ | ----------------- | '
-            ' ------------------ | ------------------ |')
-        for key in sorted(final_classification_table_default_parameters.keys()):
-            values = final_classification_table_default_parameters[key]
             logging.info(
-                "|  {}  |  {}  |  {}  |  {}  |  {}  |  {}  |  {}  |".format(key, values[0], values[1], values[2],
-                                                                            values[3], values[4], values[5]))
+                '\n\nCURRENT CLASSIFICATION TABLE: {} DATASET, CLASSIFIER WITH DEFAULT PARAMETERS'.format(dataset.name))
+            print_final_classification_table(final_classification_table_default_parameters)
+
+            logging.info(
+                '\n\nCURRENT CLASSIFICATION TABLE: {} DATASET, CLASSIFIER WITH BEST PARAMETERS'.format(dataset.name))
+            print_final_classification_table(final_classification_table_best_parameters)
+
+        logging.info('\n\nFINAL CLASSIFICATION TABLE: {} DATASET, CLASSIFIER WITH DEFAULT PARAMETERS'.format(dataset.name))
+        print_final_classification_table(final_classification_table_default_parameters)
 
         logging.info('\n\nFINAL CLASSIFICATION TABLE: {} DATASET, CLASSIFIER WITH BEST PARAMETERS'.format(dataset.name))
+        print_final_classification_table(final_classification_table_best_parameters)
+
+
+def print_final_classification_table(final_classification_table_default_parameters):
+    logging.info(
+        '| ID | ML Algorithm | Accuracy Score (%) | K-fold Cross Validation (CV) (k = 5) | CV (Mean +/- Std) | '
+        'Training time (seconds) | Test time (seconds) |')
+    logging.info(
+        '| -- | ------------ | ------------------ | ------------------------------------ | ----------------- | '
+        ' ------------------ | ------------------ |')
+    for key in sorted(final_classification_table_default_parameters.keys()):
+        values = final_classification_table_default_parameters[key]
         logging.info(
-            '| ID | ML Algorithm | Accuracy Score (%) | K-fold Cross Validation (CV) (k = 5) | CV (Mean +/- Std) | '
-            'Training time (seconds) | Test time (seconds) |')
-        logging.info(
-            '| -- | ------------ | ------------------ | ------------------------------------ | ----------------- | '
-            ' ------------------ | ------------------ |')
-        for key in sorted(final_classification_table_best_parameters.keys()):
-            values = final_classification_table_best_parameters[key]
-            logging.info(
-                "|  {}  |  {}  |  {}  |  {}  |  {}  |  {}  |  {}  |".format(key, values[0], values[1], values[2],
-                                                                            values[3], values[4], values[5]))
+            "|  {}  |  {}  |  {}  |  {}  |  {}  |  {}  |  {}  |".format(key, values[0], values[1], values[2],
+                                                                        values[3], values[4], values[5]))
 
 
 if __name__ == '__main__':
