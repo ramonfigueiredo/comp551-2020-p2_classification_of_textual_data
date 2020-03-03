@@ -38,22 +38,6 @@ from sklearn.svm import LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.utils.extmath import density
 
-from sklearn.tree import ExtraTreeClassifier
-from sklearn.ensemble import ExtraTreesClassifier
-from sklearn.naive_bayes import GaussianNB
-from sklearn.semi_supervised import LabelPropagation
-from sklearn.semi_supervised import LabelSpreading
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn.linear_model import LogisticRegressionCV
-from sklearn.neural_network import MLPClassifier
-from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
-from sklearn.neighbors import RadiusNeighborsClassifier
-from sklearn.linear_model import RidgeClassifierCV
-from sklearn.svm import NuSVC
-from sklearn.svm import SVC
-from sklearn.gaussian_process import GaussianProcessClassifier
-from sklearn.ensemble import GradientBoostingClassifier
-
 from datasets.load_dataset import load_twenty_news_groups, load_imdb_reviews
 
 if __name__ == '__main__':
@@ -447,48 +431,47 @@ if __name__ == '__main__':
             results.append(benchmark(clf, classifier_name, X_train, y_train, X_test, y_test))
     else:
         for clf, classifier_name in (
-
-                (RidgeClassifier(random_state=0), "Ridge Classifier"),
-                (Perceptron(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "Perceptron"),
-                (PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "Passive-Aggressive"),
-                (KNeighborsClassifier(n_jobs=options.n_jobs), "kNN"),
-                (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "Logistic Regression"),
-                (DecisionTreeClassifier(random_state=0), "Decision Tree Classifier"),
-                (LinearSVC(verbose=options.verbose, random_state=0), "Linear SVC"),
-                (SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "SGD Classifier"),
-                (AdaBoostClassifier(random_state=0), "Ada Boost Classifier"),
-                (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "Random forest"),
-                (NearestCentroid(), "NearestCentroid (aka Rocchio classifier)"),
-                (MultinomialNB(), "Multinomial NB"),
-                (BernoulliNB(), "Bernoulli NB)"),
-                (ComplementNB(), "Complement NB"),
-
-                # New classifiers
-                (GradientBoostingClassifier(verbose=options.verbose, random_state=0), "Gradient Boosting Classifier"),
-                (ExtraTreeClassifier(random_state=0), "Extra Tree Classifier"),
-                (ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "Extra Tree Classifier"),
-                (LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), "Logistic Regression CV"),
-                (MLPClassifier(verbose=options.verbose, random_state=0), "MLP Classifier"),
-                (RidgeClassifierCV(), "Ridge Classifier CV"),
-                (NuSVC(verbose=options.verbose, random_state=0), "Nu SVC")
-
-                # TODO: Fix: TypeError: A sparse matrix was passed, but dense data is required. Use X.toarray() to convert to a dense numpy array.
-                # (GaussianNB(), "Extra Tree Classifier"),
-                # (LabelPropagation(), "Extra Tree Classifier"),
-                # (LabelSpreading(), "Extra Tree Classifier"),
-                # (LinearDiscriminantAnalysis(), "Extra Tree Classifier"),
-                # (QuadraticDiscriminantAnalysis(), "Quadratic Discriminant Analysis"),
-                # (SVC(verbose=options.verbose, random_state=0), "SVC"),
-                # (GaussianProcessClassifier(n_jobs=options.n_jobs, random_state=0), "Gaussian Process Classifier"),
-
-                # TODO: Fix
-                # ValueError: No neighbors found for test samples array([    0,     1,     2, ..., 24997, 24998, 24999]), you can try using larger radius, giving a label for outliers, or considering removing them from your dataset.
-                # (RadiusNeighborsClassifier(radius=.5, n_jobs=options.n_jobs), "RadiusNeighborsClassifier")
-        ):
+                (RidgeClassifier(tol=1e-2, solver="sag"), "Ridge Classifier"),
+                (Perceptron(max_iter=50), "Perceptron"),
+                (PassiveAggressiveClassifier(max_iter=50), "Passive-Aggressive"),
+                (KNeighborsClassifier(n_neighbors=10), "kNN"),
+                (LogisticRegression(), "Logistic Regression"),
+                (DecisionTreeClassifier(), "Decision Tree Classifier"),
+                (LinearSVC(penalty="l2", dual=False, tol=1e-3), "Linear SVC (penalty = L2)"),
+                (LinearSVC(penalty="l1", dual=False, tol=1e-3), "Linear SVC (penalty = L1)"),
+                (SGDClassifier(alpha=.0001, max_iter=50, penalty="l2"), "SGD Classifier (penalty = L2)"),
+                (SGDClassifier(alpha=.0001, max_iter=50, penalty="l2"), "SGD Classifier (penalty = L1)"),
+                (AdaBoostClassifier(), "Ada Boost Classifier"),
+                (RandomForestClassifier(), "Random forest")):
             print('=' * 80)
             print(classifier_name)
             results.append(benchmark(clf, classifier_name, X_train, y_train, X_test, y_test))
 
+        # Train SGD with Elastic Net penalty
+        print('=' * 80)
+        print("SGDClassifier Elastic-Net penalty")
+        results.append(benchmark(SGDClassifier(alpha=.0001, max_iter=50, penalty="elasticnet"),
+                                 "SGDClassifier using Elastic-Net penalty", X_train, y_train, X_test, y_test))
+
+        # Train NearestCentroid without threshold
+        print('=' * 80)
+        print("NearestCentroid (aka Rocchio classifier)")
+        results.append(benchmark(NearestCentroid(), "NearestCentroid (aka Rocchio classifier)", X_train, y_train, X_test, y_test))
+
+        # Train sparse Naive Bayes classifiers
+        print('=' * 80)
+        print("Naive Bayes")
+        results.append(benchmark(MultinomialNB(alpha=.01), "MultinomialNB(alpha=.01)", X_train, y_train, X_test, y_test))
+        results.append(benchmark(BernoulliNB(alpha=.01), "BernoulliNB(alpha=.01)", X_train, y_train, X_test, y_test))
+        results.append(benchmark(ComplementNB(alpha=.1), "ComplementNB(alpha=.1)", X_train, y_train, X_test, y_test))
+
+        print('=' * 80)
+        print("LinearSVC with L1-based feature selection")
+        # The smaller C, the stronger the regularization.
+        # The more regularization, the more sparsity.
+        results.append(benchmark(Pipeline([
+            ('feature_selection', SelectFromModel(LinearSVC(penalty="l1", dual=False, tol=1e-3))),
+            ('classification', LinearSVC(penalty="l2"))]), "LinearSVC with L1-based feature selection", X_train, y_train, X_test, y_test))
 
     ###########################################################################################################################
     # Add plots: The bar plot indicates the accuracy, training time (normalized) and test time (normalized) of each classifier
