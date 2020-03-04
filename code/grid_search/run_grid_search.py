@@ -1,4 +1,3 @@
-# https://towardsdatascience.com/logistic-regression-model-tuning-with-scikit-learn-part-1-425142e01af5
 import logging
 import os
 from time import time
