@@ -773,7 +773,7 @@ def show_final_classification_report(results, title):
                     classifier_name,
                     accuracy_score,
                     train_time,
-                    test_time, cross_val_scores, cross_val_accuracy_score_mean_std))
+                    test_time, cross_val_scores[index-1], cross_val_accuracy_score_mean_std[index-1]))
         else:
             print("{}) {}\n\t\tAccuracy score = {}\t\tTraining time = {}\t\tTest time = {}\n".format(index,
                                                                                                      classifier_name,
