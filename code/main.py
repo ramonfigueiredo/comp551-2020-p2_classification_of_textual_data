@@ -26,7 +26,7 @@ from sklearn.model_selection import cross_validate
 from sklearn.utils.extmath import density
 
 from datasets.load_dataset import load_twenty_news_groups, load_imdb_reviews
-from model_selection import get_ml_algorithm_pair_list
+from model_selection.ml_algorithm_pair_list import get_ml_algorithm_pair_list
 from utils.dataset_enum import Dataset
 from utils.ml_classifiers_enum import Classifier
 
