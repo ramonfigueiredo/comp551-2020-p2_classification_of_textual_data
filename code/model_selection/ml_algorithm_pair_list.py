@@ -30,7 +30,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
             ml_final_list.append \
                 ((AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 '''
                 03/01/2020 11:03:56 PM - INFO - Classifier: ADA_BOOST_CLASSIFIER, Dataset: TWENTY_NEWS_GROUP
                 03/01/2020 11:03:59 PM - INFO - 
@@ -47,7 +47,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                 03/02/2020 12:14:09 AM - INFO - 		classifier__n_estimators: 200
                 '''
                 ml_final_list.append((AdaBoostClassifier(random_state=options.random_state, algorithm='SAMME.R', learning_rate=1, n_estimators=200), Classifier.ADA_BOOST_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 '''
                 03/02/2020 12:14:15 AM - INFO - Classifier: ADA_BOOST_CLASSIFIER, Dataset: IMDB_REVIEWS
                 03/02/2020 12:14:21 AM - INFO -
@@ -69,7 +69,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
         if use_classifiers_with_default_parameters:
             ml_final_list.append((BernoulliNB(), Classifier.BERNOULLI_NB))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 '''
                 03/02/2020 01:48:20 AM - INFO - Classifier: BERNOULLI_NB, Dataset: TWENTY_NEWS_GROUP
                 03/02/2020 01:48:23 AM - INFO -
@@ -86,7 +86,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                 03/02/2020 01:48:59 AM - INFO - 		classifier__fit_prior: False
                 '''
                 ml_final_list.append((BernoulliNB(alpha=0.1, binarize=0.1, fit_prior=False), Classifier.BERNOULLI_NB))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 '''
                 03/02/2020 01:49:00 AM - INFO - Classifier: BERNOULLI_NB, Dataset: IMDB_REVIEWS
                 03/02/2020 01:49:06 AM - INFO -
@@ -108,7 +108,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
         if use_classifiers_with_default_parameters:
             ml_final_list.append((ComplementNB(), Classifier.COMPLEMENT_NB))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 '''
                 03/02/2020 01:49:33 AM - INFO - Classifier: COMPLEMENT_NB, Dataset: TWENTY_NEWS_GROUP
                 03/02/2020 01:49:36 AM - INFO -
@@ -125,7 +125,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                 03/02/2020 01:49:43 AM - INFO - 		classifier__norm: False
                 '''
                 ml_final_list.append((ComplementNB(alpha=0.5, fit_prior=False, norm=False), Classifier.COMPLEMENT_NB))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 '''
                 03/02/2020 01:49:43 AM - INFO - Classifier: COMPLEMENT_NB, Dataset: IMDB_REVIEWS
                 03/02/2020 01:49:49 AM - INFO -
@@ -148,7 +148,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
             ml_final_list.append \
                 ((DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 '''
                 03/02/2020 01:49:54 AM - INFO - Classifier: DECISION_TREE_CLASSIFIER, Dataset: TWENTY_NEWS_GROUP
                 03/02/2020 01:49:57 AM - INFO -
@@ -166,7 +166,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                 03/02/2020 02:18:00 AM - INFO - 		classifier__splitter: 'best'
                 '''
                 ml_final_list.append((DecisionTreeClassifier(random_state=options.random_state, criterion='entropy', max_depth=19, min_samples_split=110, splitter='best'), Classifier.DECISION_TREE_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 '''
                 03/02/2020 02:18:12 AM - INFO - Classifier: DECISION_TREE_CLASSIFIER, Dataset: IMDB_REVIEWS
                 03/02/2020 02:18:17 AM - INFO -
@@ -191,10 +191,10 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                 ((ExtraTreeClassifier(random_state=options.random_state), Classifier.EXTRA_TREE_CLASSIFIER))
         else:
             # TODO: Include best machine learning parameters
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 ml_final_list.append \
                     ((ExtraTreeClassifier(random_state=options.random_state), Classifier.EXTRA_TREE_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 ml_final_list.append \
                     ((ExtraTreeClassifier(random_state=options.random_state), Classifier.EXTRA_TREE_CLASSIFIER))
 
@@ -203,9 +203,9 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
             ml_final_list.append((ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.EXTRA_TREES_CLASSIFIER))
         else:
             # TODO: Include best machine learning parameters
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 ml_final_list.append((ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.EXTRA_TREES_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 ml_final_list.append((ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.EXTRA_TREES_CLASSIFIER))
 
     if Classifier.GRADIENT_BOOSTING_CLASSIFIER.name in ml_algorithm_list:
@@ -214,16 +214,16 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                                  (GradientBoostingClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.GRADIENT_BOOSTING_CLASSIFIER))
         else:
             # TODO: Include best machine learning parameters
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 ml_final_list.append((GradientBoostingClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.GRADIENT_BOOSTING_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 ml_final_list.append((GradientBoostingClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.GRADIENT_BOOSTING_CLASSIFIER))
 
     if Classifier.K_NEIGHBORS_CLASSIFIER.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
             ml_final_list.append((KNeighborsClassifier(n_jobs=options.n_jobs), Classifier.K_NEIGHBORS_CLASSIFIER))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 '''
                 03/02/2020 03:11:41 AM - INFO - Classifier: K_NEIGHBORS_CLASSIFIER, Dataset: TWENTY_NEWS_GROUP
                 03/02/2020 03:11:44 AM - INFO -
@@ -241,7 +241,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                 03/02/2020 03:30:35 AM - INFO - 		classifier__weights: 'distance'
                 '''
                 ml_final_list.append((KNeighborsClassifier(n_jobs=options.n_jobs, leaf_size=5, metric='euclidean', n_neighbors=3, weights='distance'), Classifier.K_NEIGHBORS_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 '''
                 03/02/2020 03:30:37 AM - INFO - Classifier: K_NEIGHBORS_CLASSIFIER, Dataset: IMDB_REVIEWS
                 03/02/2020 03:30:43 AM - INFO -
@@ -265,7 +265,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
             ml_final_list.append \
                 ((LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 '''
                 03/02/2020 05:58:49 AM - INFO - Classifier: LINEAR_SVC, Dataset: TWENTY_NEWS_GROUP
                 03/02/2020 05:58:52 AM - INFO -
@@ -284,7 +284,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                 03/02/2020 11:28:11 AM - INFO - 		classifier__tol: 0.1
                 '''
                 ml_final_list.append((LinearSVC(verbose=options.verbose, random_state=options.random_state, C=1.0, dual=True, max_iter=100, multi_class='ovr', tol=0.1), Classifier.LINEAR_SVC))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 '''
                 03/02/2020 11:28:12 AM - INFO - Classifier: LINEAR_SVC, Dataset: IMDB_REVIEWS
                 03/02/2020 11:32:08 AM - INFO -
@@ -308,7 +308,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
         if use_classifiers_with_default_parameters:
             ml_final_list.append((LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 '''
                 03/02/2020 02:28:34 PM - INFO - Classifier: LOGISTIC_REGRESSION, Dataset: TWENTY_NEWS_GROUP
                 03/02/2020 02:28:37 PM - INFO -
@@ -327,7 +327,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                 03/02/2020 07:45:04 PM - INFO - 		classifier__tol: 0.01
                 '''
                 ml_final_list.append((LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state, C=10.01, dual=False, max_iter=100, multi_class='ovr', tol=0.01), Classifier.LOGISTIC_REGRESSION))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 '''
                 03/02/2020 07:45:28 PM - INFO - Classifier: LOGISTIC_REGRESSION, Dataset: IMDB_REVIEWS
                 03/02/2020 07:45:35 PM - INFO -
@@ -352,9 +352,9 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
             ml_final_list.append((LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION_CV))
         else:
             # TODO: Include best machine learning parameters
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 ml_final_list.append((LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION_CV))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 ml_final_list.append((LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION_CV))
 
     if Classifier.MLP_CLASSIFIER.name in ml_algorithm_list:
@@ -363,16 +363,16 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                 ((MLPClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.MLP_CLASSIFIER))
         else:
             # TODO: Include best machine learning parameters
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 ml_final_list.append((MLPClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.MLP_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 ml_final_list.append((MLPClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.MLP_CLASSIFIER))
 
     if Classifier.MULTINOMIAL_NB.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
             ml_final_list.append((MultinomialNB(), Classifier.MULTINOMIAL_NB))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 '''
                 03/02/2020 11:52:04 PM - INFO - Classifier: MULTINOMIAL_NB, Dataset: TWENTY_NEWS_GROUP
                 03/02/2020 11:52:07 PM - INFO -
@@ -388,7 +388,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                 03/02/2020 11:52:10 PM - INFO - 		classifier__fit_prior: True
                 '''
                 ml_final_list.append((MultinomialNB(alpha=0.01, fit_prior=True), Classifier.MULTINOMIAL_NB))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 '''
                 03/02/2020 11:52:10 PM - INFO - Classifier: MULTINOMIAL_NB, Dataset: IMDB_REVIEWS
                 03/02/2020 11:52:16 PM - INFO -
@@ -409,7 +409,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
         if use_classifiers_with_default_parameters:
             ml_final_list.append((NearestCentroid(), Classifier.NEAREST_CENTROID))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 '''
                 03/02/2020 11:52:19 PM - INFO - Classifier: NEAREST_CENTROID, Dataset: TWENTY_NEWS_GROUP
                 03/02/2020 11:52:22 PM - INFO -
@@ -424,7 +424,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                 03/02/2020 11:52:22 PM - INFO - 		classifier__metric: 'cosine'
                 '''
                 ml_final_list.append((NearestCentroid(metric='cosine'), Classifier.NEAREST_CENTROID))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 '''
                 03/02/2020 11:52:22 PM - INFO - Classifier: NEAREST_CENTROID, Dataset: IMDB_REVIEWS
                 03/02/2020 11:52:28 PM - INFO -
@@ -445,10 +445,10 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
             ml_final_list.append((NuSVC(verbose=options.verbose, random_state=options.random_state), Classifier.NU_SVC))
         else:
             # TODO: Include best machine learning parameters
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 ml_final_list.append \
                     ((NuSVC(verbose=options.verbose, random_state=options.random_state), Classifier.NU_SVC))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 ml_final_list.append \
                     ((NuSVC(verbose=options.verbose, random_state=options.random_state), Classifier.NU_SVC))
 
@@ -456,7 +456,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
         if use_classifiers_with_default_parameters:
             ml_final_list.append((PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 '''
                 03/02/2020 11:52:29 PM - INFO - Classifier: PASSIVE_AGGRESSIVE_CLASSIFIER, Dataset: TWENTY_NEWS_GROUP
                 03/02/2020 11:52:32 PM - INFO -
@@ -478,7 +478,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                 03/03/2020 06:29:41 AM - INFO - 		classifier__validation_fraction: 0.1
                 '''
                 ml_final_list.append((PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state, C=0.01, average=False, class_weight='balanced', early_stopping=False, max_iter=100, n_iter_no_change=5, tol=0.0001, validation_fraction=0.1), Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 '''
                 03/03/2020 06:29:42 AM - INFO - Classifier: PASSIVE_AGGRESSIVE_CLASSIFIER, Dataset: IMDB_REVIEWS
                 03/03/2020 06:29:48 AM - INFO -
@@ -505,7 +505,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
         if use_classifiers_with_default_parameters:
             ml_final_list.append((Perceptron(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.PERCEPTRON))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 '''
                 03/03/2020 05:03:42 PM - INFO - Classifier: PERCEPTRON, Dataset: TWENTY_NEWS_GROUP
                 03/03/2020 05:03:45 PM - INFO -
@@ -527,7 +527,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                 03/03/2020 08:24:28 PM - INFO - 		classifier__validation_fraction: 0.01
                 '''
                 ml_final_list.append((Perceptron(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state, alpha=0.0001, class_weight='balanced', early_stopping=True, max_iter=100, n_iter_no_change=15, penalty='l2', tol=0.1, validation_fraction=0.01), Classifier.PERCEPTRON))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 '''
                 03/03/2020 08:24:29 PM - INFO - Classifier: PERCEPTRON, Dataset: IMDB_REVIEWS
                 03/03/2020 08:24:35 PM - INFO -
@@ -555,9 +555,9 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
             ml_final_list.append((RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.RANDOM_FOREST_CLASSIFIER))
         else:
             # TODO: Include best machine learning parameters
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 ml_final_list.append((RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.RANDOM_FOREST_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 ml_final_list.append((RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.RANDOM_FOREST_CLASSIFIER))
 
     if Classifier.RIDGE_CLASSIFIER.name in ml_algorithm_list:
@@ -565,9 +565,9 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
             ml_final_list.append((RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER))
         else:
             # TODO: Include best machine learning parameters
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 ml_final_list.append((RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 ml_final_list.append((RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER))
 
     if Classifier.RIDGE_CLASSIFIERCV.name in ml_algorithm_list:
@@ -575,9 +575,9 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
             ml_final_list.append((RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV))
         else:
             # TODO: Include best machine learning parameters
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 ml_final_list.append((RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 ml_final_list.append((RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV))
 
     if Classifier.SGD_CLASSIFIER.name in ml_algorithm_list:
@@ -585,9 +585,9 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
             ml_final_list.append((SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.SGD_CLASSIFIER))
         else:
             # TODO: Include best machine learning parameters
-            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 ml_final_list.append((SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.SGD_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS:
+            elif dataset == Dataset.IMDB_REVIEWS.name:
                 ml_final_list.append((SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.SGD_CLASSIFIER))
 
     return ml_final_list
