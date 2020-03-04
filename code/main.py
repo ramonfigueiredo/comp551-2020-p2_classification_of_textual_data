@@ -63,7 +63,7 @@ if __name__ == '__main__':
 
     parser.add_argument("-d", "--dataset",
                         action="store", dest="dataset",
-                        help="Dataset used (Options: TWENTY_NEWS_GROUP OR IMDB_REVIEWS). Default: IMDB_REVIEWS", default='imdb')
+                        help="Dataset used (Options: TWENTY_NEWS_GROUP OR IMDB_REVIEWS). Default: IMDB_REVIEWS", default='IMDB_REVIEWS')
 
     parser.add_argument("-not_shuffle", "--not_shuffle_dataset",
                         action="store_true", default=False, dest="not_shuffle_dataset",
@@ -149,6 +149,10 @@ if __name__ == '__main__':
                         dest='verbose',
                         help='Increase output verbosity. Default: False')
 
+    parser.add_argument("-random_state",
+                        action="store", type=int, dest="random_state", default=0,
+                        help="Seed used by the random number generator. Default: 0")
+
     parser.add_argument('-v', '--version', action='version', dest='version', version='%(prog)s 1.0')
 
     options = parser.parse_args()
@@ -185,6 +189,7 @@ if __name__ == '__main__':
     print('\tN features when using the hashing vectorizer =', options.n_features)
     print('\tPlot training time and test time together with accuracy score =', options.plot_accurary_and_time_together)
     print('\tSave logs in a file =', options.save_logs_in_file)
+    print('\tSeed used by the random number generator (random_state) =', options.random_state)
     print('\tVerbose =', options.verbose)
     print('=' * 130)
     print()
@@ -232,7 +237,7 @@ if __name__ == '__main__':
 
         data_train = load_twenty_news_groups(subset='train', categories=categories, shuffle=shuffle, random_state=0,
                                              remove=remove)
-        data_test = load_twenty_news_groups(subset='test', categories=categories, shuffle=shuffle, random_state=0,
+        data_test = load_twenty_news_groups(subset='test', categories=categories, shuffle=shuffle, random_state=options.random_state,
                                             remove=remove)
 
         X_train, y_train = data_train.data, data_train.target
@@ -243,9 +248,9 @@ if __name__ == '__main__':
         print("Loading IMDB Reviews dataset:")
 
         X_train, y_train = load_imdb_reviews(subset='train', binary_labels=options.use_imdb_binary_labels,
-                                             verbose=options.show_imdb_reviews, shuffle=shuffle, random_state=0)
+                                             verbose=options.show_imdb_reviews, shuffle=shuffle, random_state=options.random_state)
         X_test, y_test = load_imdb_reviews(subset='test', binary_labels=options.use_imdb_binary_labels,
-                                           verbose=options.show_imdb_reviews, shuffle=shuffle, random_state=0)
+                                           verbose=options.show_imdb_reviews, shuffle=shuffle, random_state=options.random_state)
     else:
         logging.error("Loading dataset: Wrong dataset name = '{}'. Expecting: 20news OR imdb".format(dataset))
         exit(0)
@@ -436,11 +441,11 @@ if __name__ == '__main__':
     results = []
     if options.use_just_miniproject_classifiers:
         for clf, classifier_name in (
-                (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), Classifier.LOGISTIC_REGRESSION),
-                (DecisionTreeClassifier(random_state=0), Classifier.DECISION_TREE_CLASSIFIER),
-                (LinearSVC(verbose=options.verbose, random_state=0), Classifier.LINEAR_SVC),
-                (AdaBoostClassifier(random_state=0), Classifier.ADA_BOOST_CLASSIFIER),
-                (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), Classifier.RANDOM_FOREST_CLASSIFIER)
+                (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION),
+                (DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER),
+                (LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC),
+                (AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER),
+                (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.RANDOM_FOREST_CLASSIFIER)
         ):
             print('=' * 80)
             print(classifier_name)
@@ -448,53 +453,53 @@ if __name__ == '__main__':
     else:
         for clf, classifier_name in (
 
-                (AdaBoostClassifier(random_state=0), Classifier.ADA_BOOST_CLASSIFIER),
+                (AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER),
 
                 (BernoulliNB(), Classifier.BERNOULLI_NB),
 
                 (ComplementNB(), Classifier.COMPLEMENT_NB),
 
-                (DecisionTreeClassifier(random_state=0), Classifier.DECISION_TREE_CLASSIFIER),
+                (DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER),
 
-                (ExtraTreeClassifier(random_state=0), Classifier.EXTRA_TREE_CLASSIFIER),
+                (ExtraTreeClassifier(random_state=options.random_state), Classifier.EXTRA_TREE_CLASSIFIER),
 
-                (ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0),
+                (ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
                  Classifier.EXTRA_TREES_CLASSIFIER),
 
-                (GradientBoostingClassifier(verbose=options.verbose, random_state=0),
+                (GradientBoostingClassifier(verbose=options.verbose, random_state=options.random_state),
                  Classifier.GRADIENT_BOOSTING_CLASSIFIER),
 
                 (KNeighborsClassifier(n_jobs=options.n_jobs), Classifier.K_NEIGHBORS_CLASSIFIER),
 
-                (LinearSVC(verbose=options.verbose, random_state=0), Classifier.LINEAR_SVC),
+                (LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC),
 
-                (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0),
+                (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
                  Classifier.LOGISTIC_REGRESSION),
 
-                (LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0),
+                (LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
                  Classifier.LOGISTIC_REGRESSION_CV),
 
-                (MLPClassifier(verbose=options.verbose, random_state=0), Classifier.MLP_CLASSIFIER),
+                (MLPClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.MLP_CLASSIFIER),
 
                 (MultinomialNB(), Classifier.MULTINOMIAL_NB),
 
                 (NearestCentroid(), Classifier.NEAREST_CENTROID),
 
-                (NuSVC(verbose=options.verbose, random_state=0), Classifier.NU_SVC),
+                (NuSVC(verbose=options.verbose, random_state=options.random_state), Classifier.NU_SVC),
 
-                (PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0),
+                (PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
                  Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER),
 
-                (Perceptron(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), Classifier.PERCEPTRON),
+                (Perceptron(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.PERCEPTRON),
 
-                (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0),
+                (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
                  Classifier.RANDOM_FOREST_CLASSIFIER),
 
-                (RidgeClassifier(random_state=0), Classifier.RIDGE_CLASSIFIER),
+                (RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER),
 
                 (RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV),
 
-                (SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=0), Classifier.SGD_CLASSIFIER)
+                (SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.SGD_CLASSIFIER)
 
                 # TODO: Fix: TypeError: A sparse matrix was passed, but dense data is required. Use X.toarray() to convert to a dense numpy array.
                 # (GaussianNB(), "Extra Tree Classifier"),
@@ -502,8 +507,8 @@ if __name__ == '__main__':
                 # (LabelSpreading(), "Extra Tree Classifier"),
                 # (LinearDiscriminantAnalysis(), "Extra Tree Classifier"),
                 # (QuadraticDiscriminantAnalysis(), "Quadratic Discriminant Analysis"),
-                # (SVC(verbose=options.verbose, random_state=0), "SVC"),
-                # (GaussianProcessClassifier(n_jobs=options.n_jobs, random_state=0), "Gaussian Process Classifier"),
+                # (SVC(verbose=options.verbose, random_state=options.random_state), "SVC"),
+                # (GaussianProcessClassifier(n_jobs=options.n_jobs, random_state=options.random_state), "Gaussian Process Classifier"),
 
                 # TODO: Fix
                 # ValueError: No neighbors found for test samples array([    0,     1,     2, ..., 24997, 24998, 24999]), you can try using larger radius, giving a label for outliers, or considering removing them from your dataset.
