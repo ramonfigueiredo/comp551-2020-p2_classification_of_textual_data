@@ -138,7 +138,7 @@ def run_classifier_grid_search(classifer, classifier_enum, param_grid, dataset, 
 
     try:
         # Extracting features
-        vectorizer = TfidfVectorizer(sublinear_tf=True, max_df=0.5, stop_words='english')
+        vectorizer = TfidfVectorizer(stop_words='english', strip_accents='unicode', analyzer='word', binary=True)
         X_train = vectorizer.fit_transform(X_train)
         X_test = vectorizer.transform(X_test)
 

@@ -301,15 +301,13 @@ def extracting_features(X_train, X_test):
     print("Extracting features from the training data using a vectorizer")
     t0 = time()
     if options.use_hashing:
-        vectorizer = HashingVectorizer(stop_words='english', alternate_sign=False,
-                                       n_features=options.n_features)
+        vectorizer = HashingVectorizer(stop_words='english', strip_accents='unicode', analyzer='word', binary=True)
         X_train = vectorizer.transform(X_train)
     elif options.use_count_vectorizer:
-        vectorizer = CountVectorizer(stop_words='english')
+        vectorizer = CountVectorizer(stop_words='english', strip_accents='unicode', analyzer='word', binary=True)
         X_train = vectorizer.fit_transform(X_train)
     else:
-        vectorizer = TfidfVectorizer(sublinear_tf=True, max_df=0.5,
-                                     stop_words='english')
+        vectorizer = TfidfVectorizer(stop_words='english', strip_accents='unicode', analyzer='word', binary=True)
         X_train = vectorizer.fit_transform(X_train)
     duration = time() - t0
     print("done in %fs at %0.3fMB/s" % (duration, data_train_size_mb / duration))
