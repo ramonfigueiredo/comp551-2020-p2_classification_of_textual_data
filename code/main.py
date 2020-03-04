@@ -155,7 +155,8 @@ def show_option(options, parser):
 
     print('\nRunning with options: ')
     print('\tDataset =', options.dataset)
-    print('\tML algorithm list (If ml_algorithm_list = None, all ML algorithms will be executed) =', options.ml_algorithm_list)
+    print('\tML algorithm list (If ml_algorithm_list = None, all ML algorithms will be executed) =',
+          options.ml_algorithm_list)
     print('\tRead dataset without shuffle data =', options.not_shuffle_dataset)
     print('\tThe number of CPUs to use to do the computation. '
           'If the provided number is negative or greater than the number of available CPUs, '
@@ -208,7 +209,6 @@ def pre_process_options():
 
 
 def load_dataset(dataset):
-
     if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
 
         X_test, X_train, data_train, y_test, y_train = load_twenty_news_group_dataset()
@@ -297,7 +297,6 @@ def load_twenty_news_group_dataset():
 
 
 def extracting_features(X_train, X_test):
-
     print("Extracting features from the training data using a vectorizer")
     t0 = time()
     if options.use_hashing:
@@ -331,7 +330,6 @@ def trim(s):
 
 
 def options_select_chi2(X_train, X_test, feature_names):
-
     if options.chi2_select:
         print("Extracting %d best features using the chi-squared test" %
               options.chi2_select)
@@ -361,13 +359,16 @@ def benchmark(clf, classifier_enum, X_train, y_train, X_test, y_test):
 
     if options.run_cross_validation:
         print("\n\ncross validation:")
-        scoring = ['accuracy', 'precision_macro', 'precision_micro', 'precision_weighted', 'recall_macro', 'recall_micro', 'recall_weighted', 'f1_macro', 'f1_micro', 'f1_weighted', 'jaccard_macro']
-        cross_val_scores = cross_validate(clf, X_train, y_train, scoring=scoring, cv=options.n_splits, n_jobs=options.n_jobs, verbose=options.verbose)
+        scoring = ['accuracy', 'precision_macro', 'precision_micro', 'precision_weighted', 'recall_macro',
+                   'recall_micro', 'recall_weighted', 'f1_macro', 'f1_micro', 'f1_weighted', 'jaccard_macro']
+        cross_val_scores = cross_validate(clf, X_train, y_train, scoring=scoring, cv=options.n_splits,
+                                          n_jobs=options.n_jobs, verbose=options.verbose)
 
         cv_test_accuracy = cross_val_scores['test_accuracy']
         print("\taccuracy: {}-fold cross validation: {}".format(options.n_splits, cv_test_accuracy))
         cv_accuracy_score_mean_std = "%0.2f (+/- %0.2f)" % (cv_test_accuracy.mean(), cv_test_accuracy.std() * 2)
-        print("\ttest accuracy: {}-fold cross validation accuracy: {}".format(options.n_splits, cv_accuracy_score_mean_std))
+        print("\ttest accuracy: {}-fold cross validation accuracy: {}".format(options.n_splits,
+                                                                              cv_accuracy_score_mean_std))
 
     if hasattr(clf, 'coef_'):
         print("dimensionality: %d" % clf.coef_.shape[1])
@@ -486,13 +487,14 @@ def train_model(X_train, clf, y_train):
 def run_just_miniproject_classifiers(options, X_train, y_train, X_test, y_test):
     try:
         for clf, classifier_name in (
-                # (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
-                #  Classifier.LOGISTIC_REGRESSION),
+                (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
+                 Classifier.LOGISTIC_REGRESSION),
                 (DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER),
-                # (LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC),
-                (AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER)#,
-                # (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
-                #  Classifier.RANDOM_FOREST_CLASSIFIER)
+                (LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC),
+                (AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER),
+                (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
+                                        random_state=options.random_state),
+                 Classifier.RANDOM_FOREST_CLASSIFIER)
         ):
             print('=' * 80)
             print(classifier_name)
@@ -525,6 +527,7 @@ def validate_ml_list(ml_algorithm_list):
                           "You should provide one of the following ML algorithms names: {}".format(ml, ml_options))
             exit(0)
 
+
 def run_all_classifiers(options, X_train, y_train, X_test, y_test):
     try:
         for clf, classifier_name in (
@@ -539,8 +542,9 @@ def run_all_classifiers(options, X_train, y_train, X_test, y_test):
 
                 (ExtraTreeClassifier(random_state=options.random_state), Classifier.EXTRA_TREE_CLASSIFIER),
 
-                (ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
-                 Classifier.EXTRA_TREES_CLASSIFIER),
+                (
+                ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
+                Classifier.EXTRA_TREES_CLASSIFIER),
 
                 (GradientBoostingClassifier(verbose=options.verbose, random_state=options.random_state),
                  Classifier.GRADIENT_BOOSTING_CLASSIFIER),
@@ -552,8 +556,9 @@ def run_all_classifiers(options, X_train, y_train, X_test, y_test):
                 (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
                  Classifier.LOGISTIC_REGRESSION),
 
-                (LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
-                 Classifier.LOGISTIC_REGRESSION_CV),
+                (
+                LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
+                Classifier.LOGISTIC_REGRESSION_CV),
 
                 (MLPClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.MLP_CLASSIFIER),
 
@@ -563,19 +568,23 @@ def run_all_classifiers(options, X_train, y_train, X_test, y_test):
 
                 (NuSVC(verbose=options.verbose, random_state=options.random_state), Classifier.NU_SVC),
 
-                (PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
+                (PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
+                                             random_state=options.random_state),
                  Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER),
 
-                (Perceptron(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.PERCEPTRON),
+                (Perceptron(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
+                 Classifier.PERCEPTRON),
 
-                (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
+                (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
+                                        random_state=options.random_state),
                  Classifier.RANDOM_FOREST_CLASSIFIER),
 
                 (RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER),
 
                 (RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV),
 
-                (SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.SGD_CLASSIFIER)
+                (SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
+                 Classifier.SGD_CLASSIFIER)
         ):
             print('=' * 80)
             print(classifier_name)
@@ -592,7 +601,6 @@ def run_all_classifiers(options, X_train, y_train, X_test, y_test):
 
 
 def get_ml_algorithm_pair_list(options, ml_algorithm_list):
-
     ml_final_list = []
 
     if Classifier.ADA_BOOST_CLASSIFIER.name in ml_algorithm_list:
@@ -605,31 +613,40 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list):
         ml_final_list.append((ComplementNB(), Classifier.COMPLEMENT_NB))
 
     if Classifier.DECISION_TREE_CLASSIFIER.name in ml_algorithm_list:
-        ml_final_list.append((DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER))
+        ml_final_list.append(
+            (DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER))
 
     if Classifier.EXTRA_TREE_CLASSIFIER.name in ml_algorithm_list:
         ml_final_list.append((ExtraTreeClassifier(random_state=options.random_state), Classifier.EXTRA_TREE_CLASSIFIER))
 
     if Classifier.EXTRA_TREES_CLASSIFIER.name in ml_algorithm_list:
-        ml_final_list.append((ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.EXTRA_TREES_CLASSIFIER))
+        ml_final_list.append((ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
+                                                   random_state=options.random_state),
+                              Classifier.EXTRA_TREES_CLASSIFIER))
 
     if Classifier.GRADIENT_BOOSTING_CLASSIFIER.name in ml_algorithm_list:
-        ml_final_list.append((GradientBoostingClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.GRADIENT_BOOSTING_CLASSIFIER))
+        ml_final_list.append((GradientBoostingClassifier(verbose=options.verbose, random_state=options.random_state),
+                              Classifier.GRADIENT_BOOSTING_CLASSIFIER))
 
     if Classifier.K_NEIGHBORS_CLASSIFIER.name in ml_algorithm_list:
         ml_final_list.append((KNeighborsClassifier(n_jobs=options.n_jobs), Classifier.K_NEIGHBORS_CLASSIFIER))
 
     if Classifier.LINEAR_SVC.name in ml_algorithm_list:
-        ml_final_list.append((LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC))
+        ml_final_list.append(
+            (LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC))
 
     if Classifier.LOGISTIC_REGRESSION.name in ml_algorithm_list:
-        ml_final_list.append((LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION))
+        ml_final_list.append((LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose,
+                                                 random_state=options.random_state), Classifier.LOGISTIC_REGRESSION))
 
     if Classifier.LOGISTIC_REGRESSION_CV.name in ml_algorithm_list:
-        ml_final_list.append((LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION_CV))
+        ml_final_list.append((LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose,
+                                                   random_state=options.random_state),
+                              Classifier.LOGISTIC_REGRESSION_CV))
 
     if Classifier.MLP_CLASSIFIER.name in ml_algorithm_list:
-        ml_final_list.append((MLPClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.MLP_CLASSIFIER))
+        ml_final_list.append(
+            (MLPClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.MLP_CLASSIFIER))
 
     if Classifier.MULTINOMIAL_NB.name in ml_algorithm_list:
         ml_final_list.append((MultinomialNB(), Classifier.MULTINOMIAL_NB))
@@ -641,13 +658,18 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list):
         ml_final_list.append((NuSVC(verbose=options.verbose, random_state=options.random_state), Classifier.NU_SVC))
 
     if Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER.name in ml_algorithm_list:
-        ml_final_list.append((PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER))
+        ml_final_list.append((PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
+                                                          random_state=options.random_state),
+                              Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER))
 
     if Classifier.PERCEPTRON.name in ml_algorithm_list:
-        ml_final_list.append((Perceptron(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.PERCEPTRON))
+        ml_final_list.append((Perceptron(n_jobs=options.n_jobs, verbose=options.verbose,
+                                         random_state=options.random_state), Classifier.PERCEPTRON))
 
     if Classifier.RANDOM_FOREST_CLASSIFIER.name in ml_algorithm_list:
-        ml_final_list.append((RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.RANDOM_FOREST_CLASSIFIER))
+        ml_final_list.append((RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
+                                                     random_state=options.random_state),
+                              Classifier.RANDOM_FOREST_CLASSIFIER))
 
     if Classifier.RIDGE_CLASSIFIER.name in ml_algorithm_list:
         ml_final_list.append((RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER))
@@ -656,7 +678,8 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list):
         ml_final_list.append((RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV))
 
     if Classifier.SGD_CLASSIFIER.name in ml_algorithm_list:
-        ml_final_list.append((SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.SGD_CLASSIFIER))
+        ml_final_list.append((SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
+                                            random_state=options.random_state), Classifier.SGD_CLASSIFIER))
 
     return ml_final_list
 
@@ -725,7 +748,6 @@ def plot_results(dataset, options):
 
 
 def show_final_classification_report(results, title):
-
     print("{}: Final classification report: ".format(title))
 
     classifier_name_list = results[0]
