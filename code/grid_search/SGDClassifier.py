@@ -1,6 +1,6 @@
+import logging
 from pprint import pprint
 from time import time
-import logging
 
 from sklearn.datasets import fetch_20newsgroups
 from sklearn.feature_extraction.text import CountVectorizer
@@ -8,6 +8,8 @@ from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.linear_model import SGDClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
+
+from utils.dataset_enum import Dataset
 
 print(__doc__)
 
@@ -25,7 +27,7 @@ logging.basicConfig(level=logging.INFO,
 # Uncomment the following to do the analysis on all the categories
 categories = None
 
-print("Loading 20 newsgroups dataset for categories:")
+print("Loading {} dataset for categories:".format(Dataset.TWENTY_NEWS_GROUPS.name))
 print(categories)
 
 data = fetch_20newsgroups(subset='train', categories=categories)

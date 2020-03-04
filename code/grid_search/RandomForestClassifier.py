@@ -15,7 +15,7 @@ from utils.dataset_enum import Dataset
 
 def random_forest_classifier_grid_search(dataset):
 
-    if dataset == Dataset.TWENTY_NEWS_GROUP:
+    if dataset == Dataset.TWENTY_NEWS_GROUPS:
         remove = ('headers', 'footers', 'quotes')
 
         data_train = \
@@ -40,7 +40,7 @@ def random_forest_classifier_grid_search(dataset):
             load_imdb_reviews(subset='test', binary_labels=False, verbose=False, shuffle=True, random_state=0,
                               db_parent_path=db_parent_path)
 
-        # IMDB reviews dataset
+        # IMDB_REVIEWS dataset
         # If binary classification: 0 = neg and 1 = pos.
         # If multi-class classification use the review scores: 1, 2, 3, 4, 7, 8, 9, 10
         target_names = ['1', '2', '3', '4', '7', '8', '9', '10']
@@ -104,7 +104,7 @@ def random_forest_classifier_grid_search(dataset):
 
 if __name__ == '__main__':
     print("### Grid search for Random Forest Classifier: TWENTY_NEWS_GROUP Dataset")
-    random_forest_classifier_grid_search(Dataset.TWENTY_NEWS_GROUP)
+    random_forest_classifier_grid_search(Dataset.TWENTY_NEWS_GROUPS)
 
     print("### Grid search for Random Forest Classifier: IMDB_REVIEWS Dataset")
     random_forest_classifier_grid_search(Dataset.IMDB_REVIEWS)

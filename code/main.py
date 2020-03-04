@@ -5,7 +5,7 @@
 
 This code uses many machine learning approaches to classify documents by topics using a bag-of-words approach.
 
-The datasets used in this are the 20 newsgroups dataset (https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups.html) and the IMDB Reviews dataset (http://ai.stanford.edu/~amaas/data/sentiment/).
+The datasets used in this are the 20 news groups dataset (https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_20newsgroups.html) and the IMDB Reviews dataset (http://ai.stanford.edu/~amaas/data/sentiment/).
 '''
 
 import argparse
@@ -90,7 +90,7 @@ if __name__ == '__main__':
 
     parser.add_argument("-news_with_4_classes", "--twenty_news_using_four_categories",
                         action="store_true", default=False, dest="twenty_news_using_four_categories",
-                        help="20 news groups dataset using some categories "
+                        help="TWENTY_NEWS_GROUP dataset using some categories "
                              "('alt.atheism', 'talk.religion.misc', 'comp.graphics', 'sci.space'). "
                              "Default: False (use all categories). Default: False")
 
@@ -106,7 +106,7 @@ if __name__ == '__main__':
 
     parser.add_argument("-show_reviews", "--show_imdb_reviews",
                         action="store_true", default=False, dest="show_imdb_reviews",
-                        help="Show the IMDB reviews and respective labels while read the dataset. Default: False")
+                        help="Show the IMDB_REVIEWS and respective labels while read the dataset. Default: False")
 
     parser.add_argument("-r", "--report",
                         action="store_true", dest="report",
@@ -174,12 +174,12 @@ if __name__ == '__main__':
     print('\tNumber of cross validation folds. Default: 5 =', options.n_splits)
     print('\tUse just the miniproject classifiers (1. LogisticRegression, 2. DecisionTreeClassifier, '
           '3. LinearSVC, 4. AdaBoostClassifier, 5. RandomForestClassifier) = ', options.use_just_miniproject_classifiers)
-    print('\t20 news groups dataset using some categories (alt.atheism, talk.religion.misc, comp.graphics, sci.space) =',
+    print('\tTWENTY_NEWS_GROUPS dataset using some categories (alt.atheism, talk.religion.misc, comp.graphics, sci.space) =',
           options.twenty_news_using_four_categories)
     print('\tDo not remove newsgroup information that is easily overfit (headers, footers, quotes) =',
           options.twenty_news_with_no_filter)
     print('\tUse IMDB Binary Labels (Negative / Positive) =', options.use_imdb_binary_labels)
-    print('\tShow the IMDB reviews and respective labels while read the dataset =', options.show_imdb_reviews)
+    print('\tShow the IMDB_REVIEWS and respective labels while read the dataset =', options.show_imdb_reviews)
     print('\tPrint Classification Report =', options.report)
     print('\tPrint all classification metrics = ', options.all_metrics)
     print('\tSelect some number of features using a chi-squared test =', options.select_chi2)
@@ -216,7 +216,7 @@ if __name__ == '__main__':
 
     shuffle = (not options.not_shuffle_dataset)
 
-    if dataset == Dataset.TWENTY_NEWS_GROUP.name:
+    if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
 
         if options.twenty_news_using_four_categories:
             categories = [
@@ -233,7 +233,7 @@ if __name__ == '__main__':
         else:
             remove = ('headers', 'footers', 'quotes')
 
-        print("Loading 20 newsgroups dataset for categories:")
+        print("Loading {} dataset for categories:".format(Dataset.TWENTY_NEWS_GROUPS.name))
 
         data_train = load_twenty_news_groups(subset='train', categories=categories, shuffle=shuffle, random_state=0,
                                              remove=remove)
@@ -245,23 +245,23 @@ if __name__ == '__main__':
 
     elif dataset == Dataset.IMDB_REVIEWS.name:
 
-        print("Loading IMDB Reviews dataset:")
+        print("Loading {} dataset:".format(Dataset.IMDB_REVIEWS.name))
 
         X_train, y_train = load_imdb_reviews(subset='train', binary_labels=options.use_imdb_binary_labels,
                                              verbose=options.show_imdb_reviews, shuffle=shuffle, random_state=options.random_state)
         X_test, y_test = load_imdb_reviews(subset='test', binary_labels=options.use_imdb_binary_labels,
                                            verbose=options.show_imdb_reviews, shuffle=shuffle, random_state=options.random_state)
     else:
-        logging.error("Loading dataset: Wrong dataset name = '{}'. Expecting: 20news OR imdb".format(dataset))
+        logging.error("Loading dataset: Wrong dataset name = '{}'. Expecting: {} OR {}".format(dataset, Dataset.TWENTY_NEWS_GROUPS.name, Dataset.IMDB_REVIEWS.name))
         exit(0)
 
     print('data loaded')
 
-    if dataset == Dataset.TWENTY_NEWS_GROUP.name:
+    if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
         # order of labels in `target_names` can be different from `categories`
         target_names = data_train.target_names
     else:
-        # IMDB reviews dataset
+        # IMDB_REVIEWS dataset
         # If binary classification: 0 = neg and 1 = pos.
         # If multi-class classification use the review scores: 1, 2, 3, 4, 7, 8, 9, 10
         if options.use_imdb_binary_labels:
@@ -281,7 +281,7 @@ if __name__ == '__main__':
         len(X_train), data_train_size_mb))
     print("%d documents - %0.3fMB (test set)" % (
         len(X_test), data_test_size_mb))
-    if dataset == Dataset.TWENTY_NEWS_GROUP.name:
+    if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
         print("%d categories" % len(target_names))
     print()
 
@@ -537,12 +537,12 @@ if __name__ == '__main__':
 
     plt.figure(figsize=(12, 8))
     title = ""
-    if dataset == Dataset.TWENTY_NEWS_GROUP.name:
+    if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
         if options.twenty_news_with_no_filter:
-            title = "20 News Groups: Accuracy score for the 20 news group dataset"
+            title = "Accuracy score for the {} dataset".format(Dataset.TWENTY_NEWS_GROUPS.name)
             plt.title()
         else:
-            title = "20 News Groups: Accuracy score for the 20 news group dataset (removing headers signatures and quoting)"
+            title = "Accuracy score for the {} dataset (removing headers signatures and quoting)".format(Dataset.TWENTY_NEWS_GROUPS.name)
             plt.title(title)
 
 
@@ -552,7 +552,7 @@ if __name__ == '__main__':
         else:
             imdb_classification_type = "Multi-class classification"
 
-        title = "IMDB Reviews: Accuracy score for the 20 news group dataset ({})".format(imdb_classification_type)
+        title = "Accuracy score for the {} dataset ({})".format(Dataset.IMDB_REVIEWS.name, imdb_classification_type)
         plt.title(title)
     plt.barh(indices, score, .2, label="score", color='navy')
     if options.plot_accurary_and_time_together:

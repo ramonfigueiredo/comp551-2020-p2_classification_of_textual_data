@@ -33,7 +33,7 @@ def run_classifier_grid_search(classifer, param_grid, dataset):
     if param_grid is None:
         return
 
-    if dataset == Dataset.TWENTY_NEWS_GROUP:
+    if dataset == Dataset.TWENTY_NEWS_GROUPS:
         remove = ('headers', 'footers', 'quotes')
 
         data_train = \
@@ -58,7 +58,7 @@ def run_classifier_grid_search(classifer, param_grid, dataset):
             load_imdb_reviews(subset='test', binary_labels=False, verbose=False, shuffle=True, random_state=0,
                               db_parent_path=db_parent_path)
 
-        # IMDB reviews dataset
+        # IMDB_REVIEWS dataset
         # If binary classification: 0 = neg and 1 = pos.
         # If multi-class classification use the review scores: 1, 2, 3, 4, 7, 8, 9, 10
         target_names = ['1', '2', '3', '4', '7', '8', '9', '10']
@@ -143,7 +143,7 @@ def run_grid_search(save_logs_in_file):
     ]
 
     dataset_list = [
-        Dataset.TWENTY_NEWS_GROUP,
+        Dataset.TWENTY_NEWS_GROUPS,
         Dataset.IMDB_REVIEWS
     ]
 
