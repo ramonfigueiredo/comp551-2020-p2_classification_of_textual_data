@@ -1,34 +1,6 @@
 from enum import Enum, unique
 
 
-def get_all_ml_classifiers_names():
-    ml_algorithms_list = [
-        Classifier.ADA_BOOST_CLASSIFIER.name,
-        Classifier.BERNOULLI_NB.name,
-        Classifier.COMPLEMENT_NB.name,
-        Classifier.DECISION_TREE_CLASSIFIER.name,
-        Classifier.EXTRA_TREE_CLASSIFIER.name,
-        Classifier.EXTRA_TREES_CLASSIFIER.name,
-        Classifier.GRADIENT_BOOSTING_CLASSIFIER.name,
-        Classifier.K_NEIGHBORS_CLASSIFIER.name,
-        Classifier.LINEAR_SVC.name,
-        Classifier.LOGISTIC_REGRESSION.name,
-        Classifier.LOGISTIC_REGRESSION_CV.name,
-        Classifier.MLP_CLASSIFIER.name,
-        Classifier.MULTINOMIAL_NB.name,
-        Classifier.NEAREST_CENTROID.name,
-        Classifier.NU_SVC.name,
-        Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER.name,
-        Classifier.PERCEPTRON.name,
-        Classifier.RANDOM_FOREST_CLASSIFIER.name,
-        Classifier.RIDGE_CLASSIFIER.name,
-        Classifier.RIDGE_CLASSIFIERCV.name,
-        Classifier.SGD_CLASSIFIER.name
-    ]
-
-    return ml_algorithms_list
-
-
 @unique
 class Classifier(Enum):
     ADA_BOOST_CLASSIFIER = 1

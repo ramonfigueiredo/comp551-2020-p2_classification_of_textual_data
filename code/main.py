@@ -22,8 +22,8 @@ from sklearn.ensemble import AdaBoostClassifier
 from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.feature_extraction.text import HashingVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import HashingVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_selection import SelectKBest, chi2
 from sklearn.linear_model import LogisticRegression
@@ -46,7 +46,7 @@ from sklearn.utils.extmath import density
 
 from datasets.load_dataset import load_twenty_news_groups, load_imdb_reviews
 from utils.dataset_enum import Dataset
-from utils.ml_classifiers_enum import Classifier, get_all_ml_classifiers_names
+from utils.ml_classifiers_enum import Classifier
 
 
 def get_options():
@@ -519,7 +519,7 @@ def run_just_miniproject_classifiers(options, X_train, y_train, X_test, y_test,
 
 
 def validate_ml_list(ml_algorithm_list):
-    ml_options = get_all_ml_classifiers_names()
+    ml_options = {classifier.name for classifier in Classifier}
 
     for ml in ml_algorithm_list:
         if ml not in ml_options:
@@ -529,7 +529,7 @@ def validate_ml_list(ml_algorithm_list):
 
 
 def run_all_classifiers(options, X_train, y_train, X_test, y_test, use_classifiers_with_default_parameters):
-    ml_algorithm_list = get_all_ml_classifiers_names()
+    ml_algorithm_list = {classifier.name for classifier in Classifier}
 
     try:
         for clf, classifier_name in (
