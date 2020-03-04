@@ -46,7 +46,7 @@ from sklearn.utils.extmath import density
 
 from datasets.load_dataset import load_twenty_news_groups, load_imdb_reviews
 from utils.dataset_enum import Dataset
-from utils.ml_classifiers_enum import Classifier
+from utils.ml_classifiers_enum import Classifier, get_all_ml_classifiers_names
 
 
 def get_options():
@@ -73,6 +73,10 @@ def get_options():
                              "21) SGD_CLASSIFIER,). "
                              "Default: None. If ml_algorithm_list = None, all ML algorithms will be executed.",
                         default=None)
+    parser.add_argument("-use_default_parameters", "--use_classifiers_with_default_parameters",
+                        action="store_true", default=False, dest="use_classifiers_with_default_parameters",
+                        help="Use classifiers with default parameters. "
+                             "Default: False = Use classifiers with best parameters found using grid search.")
     parser.add_argument("-not_shuffle", "--not_shuffle_dataset",
                         action="store_true", default=False, dest="not_shuffle_dataset",
                         help="Read dataset without shuffle data. Default: False")
@@ -157,6 +161,9 @@ def show_option(options, parser):
     print('\tDataset =', options.dataset)
     print('\tML algorithm list (If ml_algorithm_list = None, all ML algorithms will be executed) =',
           options.ml_algorithm_list)
+    print('\tUse classifiers with default parameters. '
+          'Default: False = Use classifiers with best parameters found using grid search.',
+          options.use_classifiers_with_default_parameters)
     print('\tRead dataset without shuffle data =', options.not_shuffle_dataset)
     print('\tThe number of CPUs to use to do the computation. '
           'If the provided number is negative or greater than the number of available CPUs, '
@@ -484,17 +491,18 @@ def train_model(X_train, clf, y_train):
     return train_time
 
 
-def run_just_miniproject_classifiers(options, X_train, y_train, X_test, y_test):
+def run_just_miniproject_classifiers(options, X_train, y_train, X_test, y_test,
+                                     use_classifiers_with_default_parameters):
+    ml_algorithm_list = [
+        Classifier.ADA_BOOST_CLASSIFIER.name,
+        Classifier.DECISION_TREE_CLASSIFIER.name,
+        Classifier.LINEAR_SVC.name,
+        Classifier.LOGISTIC_REGRESSION.name
+    ]
+
     try:
         for clf, classifier_name in (
-                (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
-                 Classifier.LOGISTIC_REGRESSION),
-                (DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER),
-                (LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC),
-                (AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER),
-                (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
-                                        random_state=options.random_state),
-                 Classifier.RANDOM_FOREST_CLASSIFIER)
+                get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_default_parameters)
         ):
             print('=' * 80)
             print(classifier_name)
@@ -511,15 +519,7 @@ def run_just_miniproject_classifiers(options, X_train, y_train, X_test, y_test):
 
 
 def validate_ml_list(ml_algorithm_list):
-    ml_options = [Classifier.ADA_BOOST_CLASSIFIER.name, Classifier.BERNOULLI_NB.name, Classifier.COMPLEMENT_NB.name,
-                  Classifier.DECISION_TREE_CLASSIFIER.name, Classifier.EXTRA_TREE_CLASSIFIER.name,
-                  Classifier.EXTRA_TREES_CLASSIFIER.name, Classifier.GRADIENT_BOOSTING_CLASSIFIER.name,
-                  Classifier.K_NEIGHBORS_CLASSIFIER.name, Classifier.LINEAR_SVC.name,
-                  Classifier.LOGISTIC_REGRESSION.name, Classifier.LOGISTIC_REGRESSION_CV.name,
-                  Classifier.MLP_CLASSIFIER.name, Classifier.MULTINOMIAL_NB.name, Classifier.NEAREST_CENTROID.name,
-                  Classifier.NU_SVC.name, Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER.name, Classifier.PERCEPTRON.name,
-                  Classifier.RANDOM_FOREST_CLASSIFIER.name, Classifier.RIDGE_CLASSIFIER.name,
-                  Classifier.RIDGE_CLASSIFIERCV.name, Classifier.SGD_CLASSIFIER.name]
+    ml_options = get_all_ml_classifiers_names()
 
     for ml in ml_algorithm_list:
         if ml not in ml_options:
@@ -528,63 +528,12 @@ def validate_ml_list(ml_algorithm_list):
             exit(0)
 
 
-def run_all_classifiers(options, X_train, y_train, X_test, y_test):
+def run_all_classifiers(options, X_train, y_train, X_test, y_test, use_classifiers_with_default_parameters):
+    ml_algorithm_list = get_all_ml_classifiers_names()
+
     try:
         for clf, classifier_name in (
-
-                (AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER),
-
-                (BernoulliNB(), Classifier.BERNOULLI_NB),
-
-                (ComplementNB(), Classifier.COMPLEMENT_NB),
-
-                (DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER),
-
-                (ExtraTreeClassifier(random_state=options.random_state), Classifier.EXTRA_TREE_CLASSIFIER),
-
-                (
-                ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
-                Classifier.EXTRA_TREES_CLASSIFIER),
-
-                (GradientBoostingClassifier(verbose=options.verbose, random_state=options.random_state),
-                 Classifier.GRADIENT_BOOSTING_CLASSIFIER),
-
-                (KNeighborsClassifier(n_jobs=options.n_jobs), Classifier.K_NEIGHBORS_CLASSIFIER),
-
-                (LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC),
-
-                (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
-                 Classifier.LOGISTIC_REGRESSION),
-
-                (
-                LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
-                Classifier.LOGISTIC_REGRESSION_CV),
-
-                (MLPClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.MLP_CLASSIFIER),
-
-                (MultinomialNB(), Classifier.MULTINOMIAL_NB),
-
-                (NearestCentroid(), Classifier.NEAREST_CENTROID),
-
-                (NuSVC(verbose=options.verbose, random_state=options.random_state), Classifier.NU_SVC),
-
-                (PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
-                                             random_state=options.random_state),
-                 Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER),
-
-                (Perceptron(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
-                 Classifier.PERCEPTRON),
-
-                (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
-                                        random_state=options.random_state),
-                 Classifier.RANDOM_FOREST_CLASSIFIER),
-
-                (RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER),
-
-                (RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV),
-
-                (SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
-                 Classifier.SGD_CLASSIFIER)
+                get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_default_parameters)
         ):
             print('=' * 80)
             print(classifier_name)
@@ -600,7 +549,7 @@ def run_all_classifiers(options, X_train, y_train, X_test, y_test):
     return results
 
 
-def get_ml_algorithm_pair_list(options, ml_algorithm_list):
+def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_default_parameters):
     ml_final_list = []
 
     if Classifier.ADA_BOOST_CLASSIFIER.name in ml_algorithm_list:
@@ -684,10 +633,11 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list):
     return ml_final_list
 
 
-def run_ml_algorithm_list(options, X_train, y_train, X_test, y_test, ml_algorithm_list):
+def run_ml_algorithm_list(options, X_train, y_train, X_test, y_test, ml_algorithm_list,
+                          use_classifiers_with_default_parameters):
     try:
         for clf, classifier_name in (
-                get_ml_algorithm_pair_list(options, ml_algorithm_list)
+                get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_default_parameters)
         ):
             print('=' * 80)
             print(classifier_name)
@@ -761,7 +711,7 @@ def show_final_classification_report(results, title):
 
     if options.run_cross_validation:
         print('| ID | ML Algorithm | Accuracy Score (%) | K-fold Cross Validation (CV) (k = 5) | CV (Mean +/- Std) | '
-            'Training time (seconds) | Test time (seconds) |')
+              'Training time (seconds) | Test time (seconds) |')
         print(
             '| --- | ------------- | ------------------ | ------------------------------------ | ----------------- | '
             ' ------------------ | ------------------ |')
@@ -778,13 +728,16 @@ def show_final_classification_report(results, title):
             classifier_name = classifier_name + " [MANDATORY FOR COMP 551, ASSIGNMENT 2]"
         if options.run_cross_validation:
             print("|  {}  |  {}  |  {}  |  {}  |  {}  |  {}  |  {}  |".format(index, classifier_name,
-                    format(accuracy_score, ".2%"), cross_val_scores[index-1],
-                    cross_val_accuracy_score_mean_std[index-1], format(train_time, ".4"), format(test_time, ".4")))
+                                                                              format(accuracy_score, ".2%"),
+                                                                              cross_val_scores[index - 1],
+                                                                              cross_val_accuracy_score_mean_std[
+                                                                                  index - 1], format(train_time, ".4"),
+                                                                              format(test_time, ".4")))
         else:
             print("|  {}  |  {}  |  {}  |  {}  |  {}  |".format(index, classifier_name,
-                                                                              format(accuracy_score, ".2%"),
-                                                                              format(train_time, ".4"),
-                                                                              format(test_time, ".4")))
+                                                                format(accuracy_score, ".2%"),
+                                                                format(train_time, ".4"),
+                                                                format(test_time, ".4")))
         index = index + 1
 
     print("\n\nBest algorithm:")
@@ -835,12 +788,15 @@ if __name__ == '__main__':
 
         results = []
         if options.use_just_miniproject_classifiers:
-            results = run_just_miniproject_classifiers(options, X_train, y_train, X_test, y_test)
+            results = run_just_miniproject_classifiers(options, X_train, y_train, X_test, y_test,
+                                                       options.use_classifiers_with_default_parameters)
         elif options.ml_algorithm_list:
             validate_ml_list(options.ml_algorithm_list)
-            results = run_ml_algorithm_list(options, X_train, y_train, X_test, y_test, options.ml_algorithm_list)
+            results = run_ml_algorithm_list(options, X_train, y_train, X_test, y_test, options.ml_algorithm_list,
+                                            options.use_classifiers_with_default_parameters)
         else:
-            results = run_all_classifiers(options, X_train, y_train, X_test, y_test)
+            results = run_all_classifiers(options, X_train, y_train, X_test, y_test,
+                                          options.use_classifiers_with_default_parameters)
 
         indices = np.arange(len(results))
 
