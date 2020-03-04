@@ -151,7 +151,7 @@ def show_option(options, parser):
 
     print('\nRunning with options: ')
     print('\tDataset =', options.dataset)
-    print('\tML algorithm list =', options.ml_algorithm_list)
+    print('\tML algorithm list (If ml_algorithm_list = None, all ML algorithms will be executed) =', options.ml_algorithm_list)
     print('\tRead dataset without shuffle data =', options.not_shuffle_dataset)
     print('\tThe number of CPUs to use to do the computation. '
           'If the provided number is negative or greater than the number of available CPUs, '
