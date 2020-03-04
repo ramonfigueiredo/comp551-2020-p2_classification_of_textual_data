@@ -588,9 +588,9 @@ def get_classifier_with_default_parameters(classifier_enum):
 
 def run_grid_search(save_logs_in_file):
     if save_logs_in_file:
-        if not os.path.exists('logs_grid_search_7_new_classifiers'):
-            os.mkdir('logs_grid_search_7_new_classifiers')
-        logging.basicConfig(filename='logs_grid_search_7_new_classifiers/all.log', format='%(asctime)s - %(levelname)s - %(message)s',
+        if not os.path.exists('logs_all_grid_searches'):
+            os.mkdir('logs_all_grid_searches')
+        logging.basicConfig(filename='logs_all_grid_searches/all.log', format='%(asctime)s - %(levelname)s - %(message)s',
                             level=logging.INFO, datefmt='%m/%d/%Y %I:%M:%S %p')
     else:
         logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO,
@@ -693,4 +693,4 @@ def print_final_classification_table(final_classification_table_default_paramete
 
 
 if __name__ == '__main__':
-    run_grid_search(False)
+    run_grid_search(True)
