@@ -59,15 +59,30 @@ def run_classifier_grid_search(classifer, vectorizer_enum, classifier_enum, para
         target_names = ['1', '2', '3', '4', '7', '8', '9', '10']
 
     try:
+        # 'vectorizer__decode_error': ['strict', 'ignore', 'replace'], ==> No impact
+        # 'vectorizer__strip_accents': ['ascii', 'unicode', None (default)], => Best: 'unicode'
+        # 'vectorizer__stop_words': ['english', None (default)], => Best: 'english'
+        # 'vectorizer__ngram_range': ((1, 1), (1, 2)),  # unigrams (default) or bigrams => unigrams better at TWENTY_NEWS_GROUPS, bigrams better at IMDB_REVIEWS
+        # 'vectorizer__analyzer': ['word' (default), 'char', 'char_wb'], => Best: word (default)
+        # 'vectorizer__binary': [False (default), True]
         # Extracting features
         if vectorizer_enum == Vectorizer.COUNT_VECTORIZER:
-            vectorizer = CountVectorizer()
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                vectorizer = CountVectorizer(stop_words='english', strip_accents='unicode', analyzer='word', binary=True)
+            elif dataset == Dataset.IMDB_REVIEWS:
+                vectorizer = CountVectorizer(stop_words='english', strip_accents='unicode', ngram_range=(1, 2), analyzer='word', binary=True)
 
         if vectorizer_enum == Vectorizer.HASHING_VECTORIZER:
-            vectorizer = HashingVectorizer()
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                vectorizer = HashingVectorizer(stop_words='english', strip_accents='unicode', analyzer='word', binary=True)
+            elif dataset == Dataset.IMDB_REVIEWS:
+                vectorizer = HashingVectorizer(stop_words='english', strip_accents='unicode', ngram_range=(1, 2), analyzer='word', binary=True)
 
         if vectorizer_enum == Vectorizer.TF_IDF_VECTORIZER:
-            vectorizer = TfidfVectorizer()
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                vectorizer = TfidfVectorizer(stop_words='english', strip_accents='unicode', analyzer='word', binary=True)
+            elif dataset == Dataset.IMDB_REVIEWS:
+                vectorizer = TfidfVectorizer(stop_words='english', strip_accents='unicode', ngram_range=(1, 2), analyzer='word', binary=True)
 
         if vectorizer_enum == Vectorizer.HASHING_VECTORIZER:
             X_train = vectorizer.transform(X_train)
@@ -78,8 +93,9 @@ def run_classifier_grid_search(classifer, vectorizer_enum, classifier_enum, para
 
         # Create pipeline
         pipeline = Pipeline([
-            ('classifier', classifer),
-            ('vectorizer', vectorizer)
+            ('classifier', classifer)
+            # ,
+            # ('vectorizer', vectorizer)
         ])
 
         # Create grid search object
@@ -207,15 +223,20 @@ def get_classifier_with_parameters(classifier_enum):
     if classifier_enum == Classifier.BERNOULLI_NB:
         clf = BernoulliNB()
         parameters = {
-            'classifier__alpha': [0.1, 0.5],
-            'classifier__binarize': [0.0001, 0.1],
-            'classifier__fit_prior': [False, True],
-            'vectorizer__decode_error': ['strict', 'ignore', 'replace'],
-            'vectorizer__strip_accents': ['ascii', 'unicode', None],
-            'vectorizer__stop_words': ['english', None],
-            'vectorizer__ngram_range': ((1, 1), (1, 2)),  # unigrams or bigrams
-            'vectorizer__analyzer': ['word', 'char', 'char_wb'],
-            'vectorizer__binary': [False, True]
+            'classifier__alpha': [0.1],
+            'classifier__binarize': [0.0001],
+            'classifier__fit_prior': [False]
+
+            # 'classifier__alpha': [0.1, 0.5],
+            # 'classifier__binarize': [0.0001, 0.1],
+            # 'classifier__fit_prior': [False, True]
+            # ,
+            # 'vectorizer__decode_error': ['strict', 'ignore', 'replace'],
+            # 'vectorizer__strip_accents': ['ascii', 'unicode', None],
+            # 'vectorizer__stop_words': ['english', None],
+            # 'vectorizer__ngram_range': ((1, 1), (1, 2)),  # unigrams or bigrams
+            # 'vectorizer__analyzer': ['word', 'char', 'char_wb'],
+            # 'vectorizer__binary': [False, True]
 
         }
 
