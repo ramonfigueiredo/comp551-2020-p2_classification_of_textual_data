@@ -477,18 +477,26 @@ def train_model(X_train, clf, y_train):
 
 
 def run_just_miniproject_classifiers(options, X_train, y_train, X_test, y_test):
-    for clf, classifier_name in (
-            # (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
-            #  Classifier.LOGISTIC_REGRESSION),
-            (DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER),
-            # (LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC),
-            (AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER)#,
-            # (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
-            #  Classifier.RANDOM_FOREST_CLASSIFIER)
-    ):
-        print('=' * 80)
-        print(classifier_name)
-        results.append(benchmark(clf, classifier_name, X_train, y_train, X_test, y_test))
+    try:
+        for clf, classifier_name in (
+                # (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
+                #  Classifier.LOGISTIC_REGRESSION),
+                (DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER),
+                # (LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC),
+                (AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER)#,
+                # (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
+                #  Classifier.RANDOM_FOREST_CLASSIFIER)
+        ):
+            print('=' * 80)
+            print(classifier_name)
+            results.append(benchmark(clf, classifier_name, X_train, y_train, X_test, y_test))
+    except MemoryError as error:
+        # Output expected MemoryErrors.
+        logging.error(error)
+
+    except Exception as exception:
+        # Output unexpected Exceptions.
+        logging.error(exception)
 
     return results
 
@@ -511,60 +519,67 @@ def validate_ml_list(ml_algorithm_list):
             exit(0)
 
 def run_all_classifiers(options, X_train, y_train, X_test, y_test):
+    try:
+        for clf, classifier_name in (
 
-    for clf, classifier_name in (
+                (AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER),
 
-            (AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER),
+                (BernoulliNB(), Classifier.BERNOULLI_NB),
 
-            (BernoulliNB(), Classifier.BERNOULLI_NB),
+                (ComplementNB(), Classifier.COMPLEMENT_NB),
 
-            (ComplementNB(), Classifier.COMPLEMENT_NB),
+                (DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER),
 
-            (DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER),
+                (ExtraTreeClassifier(random_state=options.random_state), Classifier.EXTRA_TREE_CLASSIFIER),
 
-            (ExtraTreeClassifier(random_state=options.random_state), Classifier.EXTRA_TREE_CLASSIFIER),
+                (ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
+                 Classifier.EXTRA_TREES_CLASSIFIER),
 
-            (ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
-             Classifier.EXTRA_TREES_CLASSIFIER),
+                (GradientBoostingClassifier(verbose=options.verbose, random_state=options.random_state),
+                 Classifier.GRADIENT_BOOSTING_CLASSIFIER),
 
-            (GradientBoostingClassifier(verbose=options.verbose, random_state=options.random_state),
-             Classifier.GRADIENT_BOOSTING_CLASSIFIER),
+                (KNeighborsClassifier(n_jobs=options.n_jobs), Classifier.K_NEIGHBORS_CLASSIFIER),
 
-            (KNeighborsClassifier(n_jobs=options.n_jobs), Classifier.K_NEIGHBORS_CLASSIFIER),
+                (LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC),
 
-            (LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC),
+                (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
+                 Classifier.LOGISTIC_REGRESSION),
 
-            (LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
-             Classifier.LOGISTIC_REGRESSION),
+                (LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
+                 Classifier.LOGISTIC_REGRESSION_CV),
 
-            (LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
-             Classifier.LOGISTIC_REGRESSION_CV),
+                (MLPClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.MLP_CLASSIFIER),
 
-            (MLPClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.MLP_CLASSIFIER),
+                (MultinomialNB(), Classifier.MULTINOMIAL_NB),
 
-            (MultinomialNB(), Classifier.MULTINOMIAL_NB),
+                (NearestCentroid(), Classifier.NEAREST_CENTROID),
 
-            (NearestCentroid(), Classifier.NEAREST_CENTROID),
+                (NuSVC(verbose=options.verbose, random_state=options.random_state), Classifier.NU_SVC),
 
-            (NuSVC(verbose=options.verbose, random_state=options.random_state), Classifier.NU_SVC),
+                (PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
+                 Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER),
 
-            (PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
-             Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER),
+                (Perceptron(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.PERCEPTRON),
 
-            (Perceptron(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.PERCEPTRON),
+                (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
+                 Classifier.RANDOM_FOREST_CLASSIFIER),
 
-            (RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state),
-             Classifier.RANDOM_FOREST_CLASSIFIER),
+                (RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER),
 
-            (RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER),
+                # (RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV), # MemoryError: Unable to allocate 4.27 GiB for an array with shape (573553844,) and data type float64
 
-            # (RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV), # MemoryError: Unable to allocate 4.27 GiB for an array with shape (573553844,) and data type float64
+                (SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.SGD_CLASSIFIER)
+        ):
+            print('=' * 80)
+            print(classifier_name)
+            results.append(benchmark(clf, classifier_name, X_train, y_train, X_test, y_test))
+    except MemoryError as error:
+        # Output expected MemoryErrors.
+        logging.error(error)
 
-            (SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.SGD_CLASSIFIER)
-    ):
-        print('=' * 80)
-        print(classifier_name)
-        results.append(benchmark(clf, classifier_name, X_train, y_train, X_test, y_test))
+    except Exception as exception:
+        # Output unexpected Exceptions.
+        logging.error(exception)
 
     return results
 
@@ -640,13 +655,21 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list):
 
 
 def run_ml_algorithm_list(options, X_train, y_train, X_test, y_test, ml_algorithm_list):
+    try:
+        for clf, classifier_name in (
+                get_ml_algorithm_pair_list(options, ml_algorithm_list)
+        ):
+            print('=' * 80)
+            print(classifier_name)
+            results.append(benchmark(clf, classifier_name, X_train, y_train, X_test, y_test))
 
-    for clf, classifier_name in (
-            get_ml_algorithm_pair_list(options, ml_algorithm_list)
-    ):
-        print('=' * 80)
-        print(classifier_name)
-        results.append(benchmark(clf, classifier_name, X_train, y_train, X_test, y_test))
+    except MemoryError as error:
+        # Output expected MemoryErrors.
+        logging.error(error)
+
+    except Exception as exception:
+        # Output unexpected Exceptions.
+        logging.error(exception)
 
     return results
 
