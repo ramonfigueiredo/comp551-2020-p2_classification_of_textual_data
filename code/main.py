@@ -492,7 +492,7 @@ def train_model(X_train, clf, y_train):
 
 
 def run_just_miniproject_classifiers(options, X_train, y_train, X_test, y_test,
-                                     use_classifiers_with_default_parameters):
+                                     use_classifiers_with_default_parameters, dataset):
     ml_algorithm_list = [
         Classifier.ADA_BOOST_CLASSIFIER.name,
         Classifier.DECISION_TREE_CLASSIFIER.name,
@@ -502,7 +502,7 @@ def run_just_miniproject_classifiers(options, X_train, y_train, X_test, y_test,
 
     try:
         for clf, classifier_name in (
-                get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_default_parameters)
+                get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_default_parameters, dataset)
         ):
             print('=' * 80)
             print(classifier_name)
@@ -528,12 +528,12 @@ def validate_ml_list(ml_algorithm_list):
             exit(0)
 
 
-def run_all_classifiers(options, X_train, y_train, X_test, y_test, use_classifiers_with_default_parameters):
+def run_all_classifiers(options, X_train, y_train, X_test, y_test, use_classifiers_with_default_parameters, dataset):
     ml_algorithm_list = {classifier.name for classifier in Classifier}
 
     try:
         for clf, classifier_name in (
-                get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_default_parameters)
+                get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_default_parameters, dataset)
         ):
             print('=' * 80)
             print(classifier_name)
@@ -549,95 +549,208 @@ def run_all_classifiers(options, X_train, y_train, X_test, y_test, use_classifie
     return results
 
 
-def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_default_parameters):
+def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_default_parameters, dataset):
     ml_final_list = []
 
+    # TODO: Include best machine learning parameters found using grid search
+
     if Classifier.ADA_BOOST_CLASSIFIER.name in ml_algorithm_list:
-        ml_final_list.append((AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER))
 
     if Classifier.BERNOULLI_NB.name in ml_algorithm_list:
-        ml_final_list.append((BernoulliNB(), Classifier.BERNOULLI_NB))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((BernoulliNB(), Classifier.BERNOULLI_NB))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((BernoulliNB(), Classifier.BERNOULLI_NB))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((BernoulliNB(), Classifier.BERNOULLI_NB))
 
     if Classifier.COMPLEMENT_NB.name in ml_algorithm_list:
-        ml_final_list.append((ComplementNB(), Classifier.COMPLEMENT_NB))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((ComplementNB(), Classifier.COMPLEMENT_NB))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((ComplementNB(), Classifier.COMPLEMENT_NB))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((ComplementNB(), Classifier.COMPLEMENT_NB))
 
     if Classifier.DECISION_TREE_CLASSIFIER.name in ml_algorithm_list:
-        ml_final_list.append(
-            (DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER))
 
     if Classifier.EXTRA_TREE_CLASSIFIER.name in ml_algorithm_list:
-        ml_final_list.append((ExtraTreeClassifier(random_state=options.random_state), Classifier.EXTRA_TREE_CLASSIFIER))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((ExtraTreeClassifier(random_state=options.random_state), Classifier.EXTRA_TREE_CLASSIFIER))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((ExtraTreeClassifier(random_state=options.random_state), Classifier.EXTRA_TREE_CLASSIFIER))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((ExtraTreeClassifier(random_state=options.random_state), Classifier.EXTRA_TREE_CLASSIFIER))
 
     if Classifier.EXTRA_TREES_CLASSIFIER.name in ml_algorithm_list:
-        ml_final_list.append((ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                   random_state=options.random_state),
-                              Classifier.EXTRA_TREES_CLASSIFIER))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.EXTRA_TREES_CLASSIFIER))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.EXTRA_TREES_CLASSIFIER))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.EXTRA_TREES_CLASSIFIER))
 
     if Classifier.GRADIENT_BOOSTING_CLASSIFIER.name in ml_algorithm_list:
-        ml_final_list.append((GradientBoostingClassifier(verbose=options.verbose, random_state=options.random_state),
-                              Classifier.GRADIENT_BOOSTING_CLASSIFIER))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((GradientBoostingClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.GRADIENT_BOOSTING_CLASSIFIER))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((GradientBoostingClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.GRADIENT_BOOSTING_CLASSIFIER))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((GradientBoostingClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.GRADIENT_BOOSTING_CLASSIFIER))
 
     if Classifier.K_NEIGHBORS_CLASSIFIER.name in ml_algorithm_list:
-        ml_final_list.append((KNeighborsClassifier(n_jobs=options.n_jobs), Classifier.K_NEIGHBORS_CLASSIFIER))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((KNeighborsClassifier(n_jobs=options.n_jobs), Classifier.K_NEIGHBORS_CLASSIFIER))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((KNeighborsClassifier(n_jobs=options.n_jobs), Classifier.K_NEIGHBORS_CLASSIFIER))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((KNeighborsClassifier(n_jobs=options.n_jobs), Classifier.K_NEIGHBORS_CLASSIFIER))
 
     if Classifier.LINEAR_SVC.name in ml_algorithm_list:
-        ml_final_list.append(
-            (LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC))
 
     if Classifier.LOGISTIC_REGRESSION.name in ml_algorithm_list:
-        ml_final_list.append((LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                 random_state=options.random_state), Classifier.LOGISTIC_REGRESSION))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION))
 
     if Classifier.LOGISTIC_REGRESSION_CV.name in ml_algorithm_list:
-        ml_final_list.append((LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                   random_state=options.random_state),
-                              Classifier.LOGISTIC_REGRESSION_CV))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION_CV))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION_CV))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION_CV))
 
     if Classifier.MLP_CLASSIFIER.name in ml_algorithm_list:
-        ml_final_list.append(
-            (MLPClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.MLP_CLASSIFIER))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((MLPClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.MLP_CLASSIFIER))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((MLPClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.MLP_CLASSIFIER))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((MLPClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.MLP_CLASSIFIER))
 
     if Classifier.MULTINOMIAL_NB.name in ml_algorithm_list:
-        ml_final_list.append((MultinomialNB(), Classifier.MULTINOMIAL_NB))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((MultinomialNB(), Classifier.MULTINOMIAL_NB))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((MultinomialNB(), Classifier.MULTINOMIAL_NB))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((MultinomialNB(), Classifier.MULTINOMIAL_NB))
 
     if Classifier.NEAREST_CENTROID.name in ml_algorithm_list:
-        ml_final_list.append((NearestCentroid(), Classifier.NEAREST_CENTROID))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((NearestCentroid(), Classifier.NEAREST_CENTROID))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((NearestCentroid(), Classifier.NEAREST_CENTROID))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((NearestCentroid(), Classifier.NEAREST_CENTROID))
 
     if Classifier.NU_SVC.name in ml_algorithm_list:
-        ml_final_list.append((NuSVC(verbose=options.verbose, random_state=options.random_state), Classifier.NU_SVC))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((NuSVC(verbose=options.verbose, random_state=options.random_state), Classifier.NU_SVC))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((NuSVC(verbose=options.verbose, random_state=options.random_state), Classifier.NU_SVC))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((NuSVC(verbose=options.verbose, random_state=options.random_state), Classifier.NU_SVC))
 
     if Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER.name in ml_algorithm_list:
-        ml_final_list.append((PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                          random_state=options.random_state),
-                              Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER))
 
     if Classifier.PERCEPTRON.name in ml_algorithm_list:
-        ml_final_list.append((Perceptron(n_jobs=options.n_jobs, verbose=options.verbose,
-                                         random_state=options.random_state), Classifier.PERCEPTRON))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((Perceptron(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.PERCEPTRON))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((Perceptron(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.PERCEPTRON))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((Perceptron(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.PERCEPTRON))
 
     if Classifier.RANDOM_FOREST_CLASSIFIER.name in ml_algorithm_list:
-        ml_final_list.append((RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                     random_state=options.random_state),
-                              Classifier.RANDOM_FOREST_CLASSIFIER))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.RANDOM_FOREST_CLASSIFIER))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.RANDOM_FOREST_CLASSIFIER))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.RANDOM_FOREST_CLASSIFIER))
 
     if Classifier.RIDGE_CLASSIFIER.name in ml_algorithm_list:
-        ml_final_list.append((RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER))
 
     if Classifier.RIDGE_CLASSIFIERCV.name in ml_algorithm_list:
-        ml_final_list.append((RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV))
 
     if Classifier.SGD_CLASSIFIER.name in ml_algorithm_list:
-        ml_final_list.append((SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
-                                            random_state=options.random_state), Classifier.SGD_CLASSIFIER))
+        if use_classifiers_with_default_parameters:
+            ml_final_list.append((SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.SGD_CLASSIFIER))
+        else:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                ml_final_list.append((SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.SGD_CLASSIFIER))
+            elif dataset == Dataset.IMDB_REVIEWS:
+                ml_final_list.append((SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.SGD_CLASSIFIER))
 
     return ml_final_list
 
 
 def run_ml_algorithm_list(options, X_train, y_train, X_test, y_test, ml_algorithm_list,
-                          use_classifiers_with_default_parameters):
+                          use_classifiers_with_default_parameters, dataset):
     try:
         for clf, classifier_name in (
-                get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_default_parameters)
+                get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_default_parameters, dataset)
         ):
             print('=' * 80)
             print(classifier_name)
@@ -789,14 +902,14 @@ if __name__ == '__main__':
         results = []
         if options.use_just_miniproject_classifiers:
             results = run_just_miniproject_classifiers(options, X_train, y_train, X_test, y_test,
-                                                       options.use_classifiers_with_default_parameters)
+                                                       options.use_classifiers_with_default_parameters, dataset)
         elif options.ml_algorithm_list:
             validate_ml_list(options.ml_algorithm_list)
             results = run_ml_algorithm_list(options, X_train, y_train, X_test, y_test, options.ml_algorithm_list,
-                                            options.use_classifiers_with_default_parameters)
+                                            options.use_classifiers_with_default_parameters, dataset)
         else:
             results = run_all_classifiers(options, X_train, y_train, X_test, y_test,
-                                          options.use_classifiers_with_default_parameters)
+                                          options.use_classifiers_with_default_parameters, dataset)
 
         indices = np.arange(len(results))
 
