@@ -500,19 +500,6 @@ if __name__ == '__main__':
                 (RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV),
 
                 (SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.SGD_CLASSIFIER)
-
-                # TODO: Fix: TypeError: A sparse matrix was passed, but dense data is required. Use X.toarray() to convert to a dense numpy array.
-                # (GaussianNB(), "Extra Tree Classifier"),
-                # (LabelPropagation(), "Extra Tree Classifier"),
-                # (LabelSpreading(), "Extra Tree Classifier"),
-                # (LinearDiscriminantAnalysis(), "Extra Tree Classifier"),
-                # (QuadraticDiscriminantAnalysis(), "Quadratic Discriminant Analysis"),
-                # (SVC(verbose=options.verbose, random_state=options.random_state), "SVC"),
-                # (GaussianProcessClassifier(n_jobs=options.n_jobs, random_state=options.random_state), "Gaussian Process Classifier"),
-
-                # TODO: Fix
-                # ValueError: No neighbors found for test samples array([    0,     1,     2, ..., 24997, 24998, 24999]), you can try using larger radius, giving a label for outliers, or considering removing them from your dataset.
-                # (RadiusNeighborsClassifier(radius=.5, n_jobs=options.n_jobs), "RadiusNeighborsClassifier")
         ):
             print('=' * 80)
             print(classifier_name)
