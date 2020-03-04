@@ -23,6 +23,7 @@ from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import HashingVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_selection import SelectKBest, chi2
 from sklearn.linear_model import LogisticRegression
@@ -125,6 +126,9 @@ def get_options():
     parser.add_argument("-use_hashing", "--use_hashing_vectorizer", dest="use_hashing",
                         action="store_true", default=False,
                         help="Use a hashing vectorizer. Default: False")
+    parser.add_argument("-use_count", "--use_count_vectorizer", dest="use_count_vectorizer",
+                        action="store_true", default=False,
+                        help="Use a count vectorizer. Default: False")
     parser.add_argument("-n_features", "--n_features_using_hashing", dest="n_features",
                         action="store", type=int, default=2 ** 16,
                         help="n_features when using the hashing vectorizer. Default: 65536")
@@ -174,6 +178,8 @@ def show_option(options, parser):
     print('\tPrint the confusion matrix =', options.print_cm)
     print('\tPrint ten most discriminative terms per class for every classifier =', options.print_top10_terms)
     print('\tUse a hashing vectorizer =', options.use_hashing)
+    print('\tUse a count vectorizer =', options.use_count_vectorizer)
+    print('\tUse a tf-idf vectorizer =', (not options.use_hashing and not options.use_count_vectorizer))
     print('\tN features when using the hashing vectorizer =', options.n_features)
     print('\tPlot training time and test time together with accuracy score =', options.plot_accurary_and_time_together)
     print('\tSave logs in a file =', options.save_logs_in_file)
@@ -298,6 +304,9 @@ def extracting_features(X_train, X_test):
         vectorizer = HashingVectorizer(stop_words='english', alternate_sign=False,
                                        n_features=options.n_features)
         X_train = vectorizer.transform(X_train)
+    elif options.use_count_vectorizer:
+        vectorizer = CountVectorizer(stop_words='english')
+        X_train = vectorizer.fit_transform(X_train)
     else:
         vectorizer = TfidfVectorizer(sublinear_tf=True, max_df=0.5,
                                      stop_words='english')
