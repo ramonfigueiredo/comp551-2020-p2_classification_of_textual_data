@@ -63,7 +63,7 @@ if __name__ == '__main__':
 
     parser.add_argument("-d", "--dataset",
                         action="store", dest="dataset",
-                        help="Dataset used (Options: 20news OR imdb). Default: imdb", default='imdb')
+                        help="Dataset used (Options: TWENTY_NEWS_GROUP OR IMDB_REVIEWS). Default: IMDB_REVIEWS", default='imdb')
 
     parser.add_argument("-not_shuffle", "--not_shuffle_dataset",
                         action="store_true", default=False, dest="not_shuffle_dataset",
@@ -207,11 +207,11 @@ if __name__ == '__main__':
     #######################################
 
     dataset = options.dataset
-    dataset = dataset.lower().strip()
+    dataset = dataset.upper().strip()
 
     shuffle = (not options.not_shuffle_dataset)
 
-    if dataset == '20news':
+    if dataset == Dataset.TWENTY_NEWS_GROUP.name:
 
         if options.twenty_news_using_four_categories:
             categories = [
@@ -238,7 +238,7 @@ if __name__ == '__main__':
         X_train, y_train = data_train.data, data_train.target
         X_test, y_test = data_test.data, data_test.target
 
-    elif dataset == 'imdb':
+    elif dataset == Dataset.IMDB_REVIEWS.name:
 
         print("Loading IMDB Reviews dataset:")
 
@@ -252,7 +252,7 @@ if __name__ == '__main__':
 
     print('data loaded')
 
-    if dataset == '20news':
+    if dataset == Dataset.TWENTY_NEWS_GROUP.name:
         # order of labels in `target_names` can be different from `categories`
         target_names = data_train.target_names
     else:
@@ -276,7 +276,7 @@ if __name__ == '__main__':
         len(X_train), data_train_size_mb))
     print("%d documents - %0.3fMB (test set)" % (
         len(X_test), data_test_size_mb))
-    if dataset == '20news':
+    if dataset == Dataset.TWENTY_NEWS_GROUP.name:
         print("%d categories" % len(target_names))
     print()
 
@@ -532,7 +532,7 @@ if __name__ == '__main__':
 
     plt.figure(figsize=(12, 8))
     title = ""
-    if dataset == '20news':
+    if dataset == Dataset.TWENTY_NEWS_GROUP.name:
         if options.twenty_news_with_no_filter:
             title = "20 News Groups: Accuracy score for the 20 news group dataset"
             plt.title()
@@ -541,7 +541,7 @@ if __name__ == '__main__':
             plt.title(title)
 
 
-    elif dataset == 'imdb':
+    elif dataset == Dataset.IMDB_REVIEWS.name:
         if options.use_imdb_binary_labels:
             imdb_classification_type = "Binary classification"
         else:
