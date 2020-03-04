@@ -709,10 +709,10 @@ def plot_results(dataset, options):
     title = ""
     if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
         if options.twenty_news_with_no_filter:
-            title = "Accuracy score for the {} dataset".format(Dataset.TWENTY_NEWS_GROUPS.name)
+            title = "{} dataset".format(Dataset.TWENTY_NEWS_GROUPS.name)
             plt.title()
         else:
-            title = "Accuracy score for the {} dataset (removing headers signatures and quoting)".format(
+            title = "{} dataset (removing headers signatures and quoting)".format(
                 Dataset.TWENTY_NEWS_GROUPS.name)
             plt.title(title)
 
@@ -723,7 +723,7 @@ def plot_results(dataset, options):
         else:
             imdb_classification_type = "Multi-class classification"
 
-        title = "Accuracy score for the {} dataset ({})".format(Dataset.IMDB_REVIEWS.name, imdb_classification_type)
+        title = "{} dataset ({})".format(Dataset.IMDB_REVIEWS.name, imdb_classification_type)
         plt.title(title)
     plt.barh(indices, score, .2, label="score", color='navy')
     if options.plot_accurary_and_time_together:
@@ -748,7 +748,7 @@ def plot_results(dataset, options):
 
 
 def show_final_classification_report(results, title):
-    print("{}: Final classification report: ".format(title))
+    print("FINAL CLASSIFICATION TABLE: {}".format(title))
 
     classifier_name_list = results[0]
     accuracy_score_list = results[1]
@@ -759,6 +759,16 @@ def show_final_classification_report(results, title):
         cross_val_scores = results[4]
         cross_val_accuracy_score_mean_std = results[5]
 
+    if options.run_cross_validation:
+        print('| ID | ML Algorithm | Accuracy Score (%) | K-fold Cross Validation (CV) (k = 5) | CV (Mean +/- Std) | '
+            'Training time (seconds) | Test time (seconds) |')
+        print(
+            '| --- | ------------- | ------------------ | ------------------------------------ | ----------------- | '
+            ' ------------------ | ------------------ |')
+    else:
+        print('| ID | ML Algorithm | Accuracy Score (%) | Training time (seconds) | Test time (seconds) |')
+        print('| --- | ------------- | ------------------ | ----------------------- | ------------------- |')
+
     index = 1
 
     for classifier_name, accuracy_score, train_time, test_time in zip(classifier_name_list, accuracy_score_list,
@@ -767,19 +777,14 @@ def show_final_classification_report(results, title):
                                "Linear SVC (penalty = L1)", "Ada Boost Classifier", "Random forest"]:
             classifier_name = classifier_name + " [MANDATORY FOR COMP 551, ASSIGNMENT 2]"
         if options.run_cross_validation:
-            print(
-                "{}) {}\n\t\tAccuracy score = {}\t\tTraining time = {}\t\tTest time = {}\t\tCross validation scores = {}\t\tAverage accuracy score (Cross Validation) = {}\n".format(
-                    index,
-                    classifier_name,
-                    accuracy_score,
-                    train_time,
-                    test_time, cross_val_scores[index-1], cross_val_accuracy_score_mean_std[index-1]))
+            print("|  {}  |  {}  |  {}  |  {}  |  {}  |  {}  |  {}  |".format(index, classifier_name,
+                    format(accuracy_score, ".2%"), cross_val_scores[index-1],
+                    cross_val_accuracy_score_mean_std[index-1], format(train_time, ".4"), format(test_time, ".4")))
         else:
-            print("{}) {}\n\t\tAccuracy score = {}\t\tTraining time = {}\t\tTest time = {}\n".format(index,
-                                                                                                     classifier_name,
-                                                                                                     accuracy_score,
-                                                                                                     train_time,
-                                                                                                     test_time))
+            print("|  {}  |  {}  |  {}  |  {}  |  {}  |".format(index, classifier_name,
+                                                                              format(accuracy_score, ".2%"),
+                                                                              format(train_time, ".4"),
+                                                                              format(test_time, ".4")))
         index = index + 1
 
     print("\n\nBest algorithm:")
@@ -787,9 +792,9 @@ def show_final_classification_report(results, title):
     print("===> {}) {}\n\t\tAccuracy score = {}\t\tTraining time = {}\t\tTest time = {}\n".format(
         index_max_accuracy_score + 1,
         classifier_name_list[index_max_accuracy_score],
-        accuracy_score_list[index_max_accuracy_score],
-        train_time_list[index_max_accuracy_score],
-        test_time_list[index_max_accuracy_score]))
+        format(accuracy_score_list[index_max_accuracy_score], ".2%"),
+        format(train_time_list[index_max_accuracy_score], ".4"),
+        format(test_time_list[index_max_accuracy_score], ".4")))
 
 
 if __name__ == '__main__':
