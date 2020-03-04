@@ -18,8 +18,6 @@ from time import time
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn import metrics
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.ensemble import GradientBoostingClassifier
@@ -27,7 +25,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import HashingVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_selection import SelectKBest, chi2
-from sklearn.gaussian_process import GaussianProcessClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.linear_model import LogisticRegressionCV
 from sklearn.linear_model import PassiveAggressiveClassifier
@@ -37,16 +34,11 @@ from sklearn.linear_model import RidgeClassifierCV
 from sklearn.linear_model import SGDClassifier
 from sklearn.model_selection import cross_validate
 from sklearn.naive_bayes import BernoulliNB, ComplementNB, MultinomialNB
-from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neighbors import NearestCentroid
-from sklearn.neighbors import RadiusNeighborsClassifier
 from sklearn.neural_network import MLPClassifier
-from sklearn.semi_supervised import LabelPropagation
-from sklearn.semi_supervised import LabelSpreading
 from sklearn.svm import LinearSVC
 from sklearn.svm import NuSVC
-from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.tree import ExtraTreeClassifier
 from sklearn.utils.extmath import density
