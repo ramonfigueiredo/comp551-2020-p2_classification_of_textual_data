@@ -9,7 +9,6 @@ The datasets used in this are the 20 news groups dataset (https://scikit-learn.o
 '''
 
 import logging
-import multiprocessing
 import operator
 import os
 from time import time
@@ -28,23 +27,6 @@ from model_selection.ml_algorithm_pair_list import get_ml_algorithm_pair_list
 from utils.dataset_enum import Dataset
 from utils.ml_classifiers_enum import Classifier
 from utils.string_utils import trim
-
-
-def pre_process_options():
-    if options.n_jobs > multiprocessing.cpu_count() or (options.n_jobs != -1 and options.n_jobs < 1):
-        options.n_jobs = -1  # use all available cpus
-    if options.save_logs_in_file:
-        if not os.path.exists('logs'):
-            os.mkdir('logs')
-        logging.basicConfig(filename='logs/all.log', format='%(asctime)s - %(levelname)s - %(message)s',
-                            level=logging.INFO, datefmt='%m/%d/%Y %I:%M:%S %p')
-    else:
-        logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO,
-                            datefmt='%m/%d/%Y %I:%M:%S %p')
-    dataset = options.dataset
-    dataset = dataset.upper().strip()
-
-    return options, dataset
 
 
 def options_select_chi2(X_train, X_test, feature_names):
@@ -379,11 +361,16 @@ def show_final_classification_report(results, title):
 
 if __name__ == '__main__':
 
-    options, parser = get_options()
+    options = get_options()
 
-    options, dataset_option = pre_process_options()
-
-    show_option(options, parser)
+    if options.save_logs_in_file:
+        if not os.path.exists('logs'):
+            os.mkdir('logs')
+        logging.basicConfig(filename='logs/all.log', format='%(asctime)s - %(levelname)s - %(message)s',
+                            level=logging.INFO, datefmt='%m/%d/%Y %I:%M:%S %p')
+    else:
+        logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO,
+                            datefmt='%m/%d/%Y %I:%M:%S %p')
 
     logging.info("Program started...")
 
@@ -391,9 +378,9 @@ if __name__ == '__main__':
 
     dataset_list = []
 
-    if dataset_option == Dataset.TWENTY_NEWS_GROUPS.name:
+    if options.dataset == Dataset.TWENTY_NEWS_GROUPS.name:
         dataset_list.append(Dataset.TWENTY_NEWS_GROUPS.name)
-    elif dataset_option == Dataset.IMDB_REVIEWS.name:
+    elif options.dataset == Dataset.IMDB_REVIEWS.name:
         dataset_list.append(Dataset.IMDB_REVIEWS.name)
     else:
         dataset_list.append(Dataset.TWENTY_NEWS_GROUPS.name)

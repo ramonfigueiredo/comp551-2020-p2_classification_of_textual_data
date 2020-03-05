@@ -1,4 +1,5 @@
 import argparse
+import multiprocessing
 
 
 def get_options():
@@ -102,7 +103,16 @@ def get_options():
                         help="Seed used by the random number generator. Default: 0")
     parser.add_argument('-v', '--version', action='version', dest='version', version='%(prog)s 1.0')
 
-    return parser.parse_args(), parser
+    options = parser.parse_args()
+
+    if options.n_jobs > multiprocessing.cpu_count() or (options.n_jobs != -1 and options.n_jobs < 1):
+        options.n_jobs = -1  # use all available cpus
+
+    options.dataset = options.dataset.upper().strip()
+
+    show_option(options, parser)
+
+    return options
 
 
 def show_option(options, parser):
