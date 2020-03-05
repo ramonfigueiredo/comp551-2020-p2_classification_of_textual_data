@@ -104,11 +104,9 @@ def run_just_miniproject_classifiers(options, X_train, y_train, X_test, y_test,
             results.append(benchmark(clf, classifier_name, X_train, y_train, X_test, y_test,
                                      options, feature_names, target_names))
     except MemoryError as error:
-        # Output expected MemoryErrors.
         logging.error(error)
 
     except Exception as exception:
-        # Output unexpected Exceptions.
         logging.error(exception)
 
     return results
@@ -127,11 +125,9 @@ def run_all_classifiers(options, X_train, y_train, X_test, y_test, use_classifie
             results.append(benchmark(clf, classifier_name, X_train, y_train, X_test, y_test,
                                      options, feature_names, target_names))
     except MemoryError as error:
-        # Output expected MemoryErrors.
         logging.error(error)
 
     except Exception as exception:
-        # Output unexpected Exceptions.
         logging.error(exception)
 
     return results
@@ -150,11 +146,9 @@ def run_ml_algorithm_list(options, X_train, y_train, X_test, y_test, ml_algorith
                                      options, feature_names, target_names))
 
     except MemoryError as error:
-        # Output expected MemoryErrors.
         logging.error(error)
 
     except Exception as exception:
-        # Output unexpected Exceptions.
         logging.error(exception)
 
     return results
