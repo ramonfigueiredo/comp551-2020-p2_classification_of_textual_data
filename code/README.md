@@ -30,13 +30,14 @@ deactivate
 For more help you can type ```python main.py -h```.
 
 ```
-usage: main.py [-h] [-d DATASET] [-ml ML_ALGORITHM_LIST] [-not_shuffle]
-               [-n_jobs N_JOBS] [-cv] [-n_splits N_SPLITS]
-               [-use_5_classifiers] [-news_with_4_classes] [-news_no_filter]
-               [-imdb_binary] [-show_reviews] [-r] [-m]
-               [--chi2_select CHI2_SELECT] [-cm] [-top10] [-use_hashing]
-               [-use_count] [-n_features N_FEATURES] [-plot_time] [-save_logs]
-               [-verbose] [-random_state RANDOM_STATE] [-v]
+usage: main.py [-h] [-d DATASET] [-ml ML_ALGORITHM_LIST]
+               [-use_default_parameters] [-not_shuffle] [-n_jobs N_JOBS] [-cv]
+               [-n_splits N_SPLITS] [-required_classifiers]
+               [-news_with_4_classes] [-news_no_filter] [-imdb_binary]
+               [-show_reviews] [-r] [-m] [--chi2_select CHI2_SELECT] [-cm]
+               [-top10] [-use_hashing] [-use_count] [-n_features N_FEATURES]
+               [-plot_time] [-save_logs] [-verbose]
+               [-random_state RANDOM_STATE] [-v]
 
 MiniProject 2: Classification of textual data. Authors: Ramon Figueiredo
 Pessoa, Rafael Gomes Braga, Ege Odaci
@@ -66,6 +67,10 @@ optional arguments:
                         RIDGE_CLASSIFIERCV, 21) SGD_CLASSIFIER,). Default:
                         None. If ml_algorithm_list = None, all ML algorithms
                         will be executed.
+  -use_default_parameters, --use_classifiers_with_default_parameters
+                        Use classifiers with default parameters. Default:
+                        False = Use classifiers with best parameters found
+                        using grid search.
   -not_shuffle, --not_shuffle_dataset
                         Read dataset without shuffle data. Default: False
   -n_jobs N_JOBS        The number of CPUs to use to do the computation. If
@@ -76,7 +81,7 @@ optional arguments:
                         Run cross validation. Default: False
   -n_splits N_SPLITS    Number of cross validation folds. Default: 5. Must be
                         at least 2. Default: 5
-  -use_5_classifiers, --use_just_miniproject_classifiers
+  -required_classifiers, --use_just_miniproject_classifiers
                         Use just the miniproject classifiers (1.
                         LogisticRegression, 2. DecisionTreeClassifier, 3.
                         LinearSVC (L1), 4. LinearSVC (L2), 5.
