@@ -27,6 +27,7 @@ from feature_extraction.vectorizer import extract_text_features
 from model_selection.ml_algorithm_pair_list import get_ml_algorithm_pair_list
 from utils.dataset_enum import Dataset
 from utils.ml_classifiers_enum import Classifier
+from utils.string_utils import trim
 
 
 def pre_process_options():
@@ -44,11 +45,6 @@ def pre_process_options():
     dataset = dataset.upper().strip()
 
     return options, dataset
-
-
-def trim(s):
-    """Trim string to fit on terminal (assuming 80-column display)"""
-    return s if len(s) <= 80 else s[:77] + "..."
 
 
 def options_select_chi2(X_train, X_test, feature_names):
