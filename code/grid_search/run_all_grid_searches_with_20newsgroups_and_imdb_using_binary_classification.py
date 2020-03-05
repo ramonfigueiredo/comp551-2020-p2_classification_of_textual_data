@@ -134,7 +134,7 @@ def run_classifier_grid_search(classifer, classifier_enum, param_grid, dataset, 
         # IMDB_REVIEWS dataset
         # If binary classification: 0 = neg and 1 = pos.
         # If multi-class classification use the review scores: 1, 2, 3, 4, 7, 8, 9, 10
-        target_names = ['1', '2', '3', '4', '7', '8', '9', '10']
+        target_names = ['0', '1']
 
     try:
         # Extracting features
@@ -200,7 +200,8 @@ def final_classification_report(clf, X_train, y_train,  X_test, y_test, target_n
     accuracy_score = metrics.accuracy_score(y_test, y_pred)
     logging.info("Accuracy score:   %0.3f" % accuracy_score)
     logging.info("\n\n===> Classification Report:\n")
-    logging.info(metrics.classification_report(y_test, y_pred, target_names=target_names))
+    # logging.info(metrics.classification_report(y_test, y_pred, target_names=target_names))
+    logging.info(metrics.classification_report(y_test, y_pred))
 
     n_splits = 5
     logging.info("\n\nCross validation:")
