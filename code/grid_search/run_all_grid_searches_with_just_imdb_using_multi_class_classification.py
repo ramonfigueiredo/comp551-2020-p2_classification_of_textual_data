@@ -598,14 +598,6 @@ def run_grid_search(save_logs_in_file):
 
     classifier_list = [
 
-        Classifier.EXTRA_TREE_CLASSIFIER,
-        Classifier.EXTRA_TREES_CLASSIFIER,
-        Classifier.GRADIENT_BOOSTING_CLASSIFIER,
-        Classifier.LOGISTIC_REGRESSION_CV,
-        Classifier.MLP_CLASSIFIER,
-        Classifier.NU_SVC,
-        Classifier.RIDGE_CLASSIFIERCV,
-
         Classifier.DECISION_TREE_CLASSIFIER,
         Classifier.ADA_BOOST_CLASSIFIER,
         Classifier.RANDOM_FOREST_CLASSIFIER,
@@ -620,11 +612,20 @@ def run_grid_search(save_logs_in_file):
         Classifier.K_NEIGHBORS_CLASSIFIER,
         Classifier.PERCEPTRON,
         Classifier.RIDGE_CLASSIFIER,
-        Classifier.SGD_CLASSIFIER
+        Classifier.SGD_CLASSIFIER,
+
+        Classifier.EXTRA_TREE_CLASSIFIER,
+        Classifier.GRADIENT_BOOSTING_CLASSIFIER,
+        Classifier.LOGISTIC_REGRESSION_CV,
+        Classifier.MLP_CLASSIFIER,
+        Classifier.NU_SVC,
+        Classifier.RIDGE_CLASSIFIERCV,
+        Classifier.EXTRA_TREES_CLASSIFIER
+
     ]
 
     dataset_list = [
-        Dataset.TWENTY_NEWS_GROUPS,
+        # Dataset.TWENTY_NEWS_GROUPS,
         Dataset.IMDB_REVIEWS
     ]
 
