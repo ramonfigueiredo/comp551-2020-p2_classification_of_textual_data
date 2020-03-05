@@ -23,10 +23,10 @@ from sklearn.utils.extmath import density
 
 from argument_parser.argument_parser import get_options, show_option
 from datasets.load_dataset import load_dataset
+from feature_extraction.vectorizer import extract_text_features
 from model_selection.ml_algorithm_pair_list import get_ml_algorithm_pair_list
 from utils.dataset_enum import Dataset
 from utils.ml_classifiers_enum import Classifier
-from feature_extraction.vectorizer import extract_text_features
 
 
 def pre_process_options():
