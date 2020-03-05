@@ -1,4 +1,15 @@
+import logging
 from enum import Enum, unique
+
+
+def validate_ml_list(ml_algorithm_list):
+    ml_options = {classifier.name for classifier in Classifier}
+
+    for ml in ml_algorithm_list:
+        if ml not in ml_options:
+            logging.error("Invalid ML algorithm name: {}. "
+                          "You should provide one of the following ML algorithms names: {}".format(ml, ml_options))
+            exit(0)
 
 
 @unique
