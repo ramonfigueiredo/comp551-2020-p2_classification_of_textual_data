@@ -17,9 +17,6 @@ from time import time
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn import metrics
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.feature_extraction.text import HashingVectorizer
-from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_selection import SelectKBest, chi2
 from sklearn.model_selection import cross_validate
 from sklearn.utils.extmath import density
@@ -29,6 +26,7 @@ from datasets.load_dataset import load_dataset
 from model_selection.ml_algorithm_pair_list import get_ml_algorithm_pair_list
 from utils.dataset_enum import Dataset
 from utils.ml_classifiers_enum import Classifier
+from feature_extraction.vectorizer import extract_text_features
 
 
 def pre_process_options():
@@ -46,34 +44,6 @@ def pre_process_options():
     dataset = dataset.upper().strip()
 
     return options, dataset
-
-
-def extracting_features(X_train, X_test):
-    print("Extracting features from the training data using a vectorizer")
-    t0 = time()
-    if options.use_hashing:
-        vectorizer = HashingVectorizer(stop_words='english', strip_accents='unicode', analyzer='word', binary=True)
-        X_train = vectorizer.transform(X_train)
-    elif options.use_count_vectorizer:
-        vectorizer = CountVectorizer(stop_words='english', strip_accents='unicode', analyzer='word', binary=True)
-        X_train = vectorizer.fit_transform(X_train)
-    else:
-        vectorizer = TfidfVectorizer(stop_words='english', strip_accents='unicode', analyzer='word', binary=True)
-        X_train = vectorizer.fit_transform(X_train)
-    duration = time() - t0
-    print("done in %fs at %0.3fMB/s" % (duration, data_train_size_mb / duration))
-    print("n_samples: %d, n_features: %d" % X_train.shape)
-    print()
-
-    print("Extracting features from the test data using the same vectorizer")
-    t0 = time()
-    X_test = vectorizer.transform(X_test)
-    duration = time() - t0
-    print("done in %fs at %0.3fMB/s" % (duration, data_test_size_mb / duration))
-    print("n_samples: %d, n_features: %d" % X_test.shape)
-    print()
-
-    return vectorizer, X_train, X_test
 
 
 def trim(s):
@@ -437,7 +407,7 @@ if __name__ == '__main__':
 
         X_train, y_train, X_test, y_test, target_names, data_train_size_mb, data_test_size_mb = load_dataset(dataset, options)
 
-        vectorizer, X_train, X_test = extracting_features(X_train, X_test)
+        vectorizer, X_train, X_test = extract_text_features(X_train, X_test, options, data_train_size_mb, data_test_size_mb)
 
         # mapping from integer feature name to original token string
         if options.use_hashing:
