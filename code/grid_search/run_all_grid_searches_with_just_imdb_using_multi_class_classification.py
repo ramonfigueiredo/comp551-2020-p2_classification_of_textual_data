@@ -588,23 +588,15 @@ def get_classifier_with_default_parameters(classifier_enum):
 
 def run_grid_search(save_logs_in_file):
     if save_logs_in_file:
-        if not os.path.exists('logs_all_grid_searches'):
-            os.mkdir('logs_all_grid_searches')
-        logging.basicConfig(filename='logs_all_grid_searches/all.log', format='%(asctime)s - %(levelname)s - %(message)s',
+        if not os.path.exists('run_all_grid_searches_with_just_imdb_using_multi_class_classification'):
+            os.mkdir('run_all_grid_searches_with_just_imdb_using_multi_class_classification')
+        logging.basicConfig(filename='run_all_grid_searches_with_just_imdb_using_multi_class_classification/all.log', format='%(asctime)s - %(levelname)s - %(message)s',
                             level=logging.INFO, datefmt='%m/%d/%Y %I:%M:%S %p')
     else:
         logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO,
                             datefmt='%m/%d/%Y %I:%M:%S %p')
 
     classifier_list = [
-
-        Classifier.EXTRA_TREE_CLASSIFIER,
-        Classifier.EXTRA_TREES_CLASSIFIER,
-        Classifier.GRADIENT_BOOSTING_CLASSIFIER,
-        Classifier.LOGISTIC_REGRESSION_CV,
-        Classifier.MLP_CLASSIFIER,
-        Classifier.NU_SVC,
-        Classifier.RIDGE_CLASSIFIERCV,
 
         Classifier.DECISION_TREE_CLASSIFIER,
         Classifier.ADA_BOOST_CLASSIFIER,
@@ -620,11 +612,20 @@ def run_grid_search(save_logs_in_file):
         Classifier.K_NEIGHBORS_CLASSIFIER,
         Classifier.PERCEPTRON,
         Classifier.RIDGE_CLASSIFIER,
-        Classifier.SGD_CLASSIFIER
+        Classifier.SGD_CLASSIFIER,
+
+        Classifier.EXTRA_TREE_CLASSIFIER,
+        Classifier.GRADIENT_BOOSTING_CLASSIFIER,
+        Classifier.LOGISTIC_REGRESSION_CV,
+        Classifier.MLP_CLASSIFIER,
+        Classifier.NU_SVC,
+        Classifier.RIDGE_CLASSIFIERCV,
+        Classifier.EXTRA_TREES_CLASSIFIER
+
     ]
 
     dataset_list = [
-        Dataset.TWENTY_NEWS_GROUPS,
+        # Dataset.TWENTY_NEWS_GROUPS,
         Dataset.IMDB_REVIEWS
     ]
 
