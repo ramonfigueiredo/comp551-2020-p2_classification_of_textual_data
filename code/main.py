@@ -16,38 +16,17 @@ from time import time
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn import metrics
-from sklearn.feature_selection import SelectKBest, chi2
 from sklearn.model_selection import cross_validate
 from sklearn.utils.extmath import density
 
-from argument_parser.argument_parser import get_options, show_option
+from argument_parser.argument_parser import get_options
 from datasets.load_dataset import load_dataset
 from feature_extraction.vectorizer import extract_text_features
+from feature_selection.select_k_best import select_k_best_using_chi2
 from model_selection.ml_algorithm_pair_list import get_ml_algorithm_pair_list
 from utils.dataset_enum import Dataset
 from utils.ml_classifiers_enum import Classifier
 from utils.string_utils import trim
-
-
-def options_select_chi2(X_train, X_test, feature_names):
-    if options.chi2_select:
-        print("Extracting %d best features using the chi-squared test" %
-              options.chi2_select)
-        t0 = time()
-        ch2 = SelectKBest(chi2, k=options.chi2_select)
-        X_train = ch2.fit_transform(X_train, y_train)
-        X_test = ch2.transform(X_test)
-        if feature_names:
-            # keep selected feature names
-            feature_names = [feature_names[i] for i
-                             in ch2.get_support(indices=True)]
-        print("done in %fs" % (time() - t0))
-        print()
-
-    if feature_names:
-        feature_names = np.asarray(feature_names)
-
-    return X_train, X_test, feature_names
 
 
 def benchmark(clf, classifier_enum, X_train, y_train, X_test, y_test):
@@ -398,7 +377,7 @@ if __name__ == '__main__':
         else:
             feature_names = vectorizer.get_feature_names()
 
-        options_select_chi2(X_train, X_test, feature_names)
+        select_k_best_using_chi2(X_train, y_train, X_test, feature_names, options)
 
         results = []
         if options.use_just_miniproject_classifiers:
