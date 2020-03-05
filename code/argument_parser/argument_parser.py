@@ -44,7 +44,7 @@ def get_options():
     parser.add_argument("-n_splits",
                         action="store", type=int, dest="n_splits", default=5,
                         help="Number of cross validation folds. Default: 5. Must be at least 2. Default: 5")
-    parser.add_argument("-use_5_classifiers", "--use_just_miniproject_classifiers",
+    parser.add_argument("-required_classifiers", "--use_just_miniproject_classifiers",
                         action="store_true", dest="use_just_miniproject_classifiers",
                         help="Use just the miniproject classifiers (1. LogisticRegression, 2. DecisionTreeClassifier, "
                              "3. LinearSVC (L1), 4. LinearSVC (L2), 5. AdaBoostClassifier, 6. RandomForestClassifier). Default: False")
