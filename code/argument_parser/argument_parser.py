@@ -116,8 +116,9 @@ def get_options():
 
 
 def show_option(options, parser):
+
+    print(parser.print_help())
     print('=' * 130)
-    print(parser.description)
 
     print('\nRunning with options: ')
     print('\tDataset =', options.dataset)
@@ -142,9 +143,13 @@ def show_option(options, parser):
           options.twenty_news_with_no_filter)
     print('\tUse IMDB Binary Labels (Negative / Positive) =', options.use_imdb_binary_labels)
     print('\tShow the IMDB_REVIEWS and respective labels while read the dataset =', options.show_imdb_reviews)
-    print('\tPrint Classification Report =', options.report)
-    print('\tPrint all classification metrics = ', options.all_metrics)
-    print('\tSelect some number of features using a chi-squared test =', options.chi2_select)
+    print('\tPrint classification report =', options.report)
+    print('\tPrint all classification metrics (accuracy score, precision score, recall score, f1 score, f-beta score, jaccard score) = ', options.all_metrics)
+    if options.chi2_select == None:
+        chi2_select_option = "No number provided"
+    else:
+        chi2_select_option = str(options.chi2_select)
+    print('\tSelect some number of features using a chi-squared test (For example: --chi2_select 10 = select 10 features using a chi-squared test) = ', chi2_select_option)
     print('\tPrint the confusion matrix =', options.print_cm)
     print('\tPrint ten most discriminative terms per class for every classifier =', options.print_top10_terms)
     print('\tUse a hashing vectorizer =', options.use_hashing)
