@@ -226,7 +226,7 @@ def get_classifier_with_default_parameters(classifier_enum):
         parameters = {
             'classifier__algorithm': ['SAMME', 'SAMME.R'],
             'classifier__learning_rate': [0.01, 0.05, 0.1, 1],
-            'classifier__n_estimators': [10, 30, 50, 100, 200, 500],
+            'classifier__n_estimators': [10, 30, 50, 100, 200, 500]
         }
 
     elif classifier_enum == Classifier.BERNOULLI_NB:
@@ -237,7 +237,7 @@ def get_classifier_with_default_parameters(classifier_enum):
         parameters = {
             'classifier__alpha': [0.0001, 0.001, 0.01, 0.1, 0.5, 1.0, 2.0, 4.0, 6.0, 8.0, 10.0],
             'classifier__binarize': [0.0001, 0.001, 0.01, 0.1, 0.5, 1.0, 2.0, 4.0, 6.0, 8.0, 10.0],
-            'classifier__fit_prior': [False, True],
+            'classifier__fit_prior': [False, True]
         }
 
     elif classifier_enum == Classifier.COMPLEMENT_NB:
@@ -295,9 +295,9 @@ def get_classifier_with_default_parameters(classifier_enum):
         parameters = {
             'classifier__C': clf_C,
             'classifier__dual': [False, True],
-            'classifier__max_iter': [100, 1000, 5000],
+            'classifier__max_iter': [100, 1000],
             'classifier__multi_class': ['ovr', 'crammer_singer'],
-            'classifier__tol': [0.0001, 0.001, 0.01, 0.1]
+            'classifier__tol': [0.0001, 0.001, 0.01]
         }
 
     elif classifier_enum == Classifier.LOGISTIC_REGRESSION:
@@ -314,9 +314,9 @@ def get_classifier_with_default_parameters(classifier_enum):
         parameters = {
             'classifier__C': clf_C,
             'classifier__dual': [False, True],
-            'classifier__max_iter': [100, 1000, 5000],
+            'classifier__max_iter': [100, 1000],
             'classifier__multi_class': ['ovr', 'multinomial'],
-            'classifier__tol': [0.0001, 0.001, 0.01, 0.1]
+            'classifier__tol': [0.0001, 0.001, 0.01]
         }
 
     elif classifier_enum == Classifier.MULTINOMIAL_NB:
@@ -355,10 +355,10 @@ def get_classifier_with_default_parameters(classifier_enum):
             'classifier__average': [False, True],
             'classifier__class_weight': ['balanced', None],
             'classifier__early_stopping': [False, True],
-            'classifier__max_iter': [100, 1000, 5000],
-            'classifier__n_iter_no_change': [3, 5, 10, 15],
-            'classifier__tol': [0.0001, 0.001, 0.01, 0.1],
-            'classifier__validation_fraction': [0.0001, 0.001, 0.01, 0.1]
+            'classifier__max_iter': [100, 1000],
+            'classifier__n_iter_no_change': [3, 5, 10],
+            'classifier__tol': [0.0001, 0.001, 0.01],
+            'classifier__validation_fraction': [0.001, 0.01, 0.1]
         }
 
     elif classifier_enum == Classifier.PERCEPTRON:
@@ -370,14 +370,14 @@ def get_classifier_with_default_parameters(classifier_enum):
         '''
         clf = Perceptron()
         parameters = {
-            'classifier__alpha': [0.0001, 0.001, 0.01, 0.1],
+            'classifier__alpha': [0.0001, 0.001, 0.01],
             'classifier__class_weight': ['balanced', None],
             'classifier__early_stopping': [False, True],
-            'classifier__max_iter': [100, 1000, 5000],
-            'classifier__n_iter_no_change': [3, 5, 10, 15],
+            'classifier__max_iter': [100, 1000],
+            'classifier__n_iter_no_change': [3, 5, 10],
             'classifier__penalty': ['l2', 'l1', 'elasticnet'],
-            'classifier__tol': [0.0001, 0.001, 0.01, 0.1],
-            'classifier__validation_fraction': [0.0001, 0.001, 0.01, 0.1]
+            'classifier__tol': [0.0001, 0.001, 0.01],
+            'classifier__validation_fraction': [0.001, 0.01, 0.1]
         }
 
     elif classifier_enum == Classifier.RANDOM_FOREST_CLASSIFIER:
@@ -394,14 +394,12 @@ def get_classifier_with_default_parameters(classifier_enum):
         clf = RandomForestClassifier()
         parameters = {
             'classifier__bootstrap': [True, False],
-            'classifier__class_weight': ['balanced', 'balanced_subsample', None],
             'classifier__criterion': ['gini', 'entropy'],
-            'classifier__max_depth': [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, None],
             'classifier__max_features': ['sqrt', 'log2', None],
             'classifier__min_samples_leaf': [1, 2, 4],
             'classifier__min_samples_split': [2, 5, 10],
-            'classifier__n_estimators': [100, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000],
-            'classifier__oob_score': [True, False],
+            'classifier__n_estimators': [100, 200, 400],
+            'classifier__oob_score': [True, False]
         }
 
     elif classifier_enum == Classifier.RIDGE_CLASSIFIER:
@@ -412,12 +410,11 @@ def get_classifier_with_default_parameters(classifier_enum):
         '''
         clf = RidgeClassifier()
         parameters = {
-            'classifier__alpha': [0.0001, 0.001, 0.01, 0.1, 1],
-            'classifier__class_weight': ['balanced', None],
+            'classifier__alpha': [0.01, 0.1, 1],
             'classifier__copy_X': [True, False],
-            'classifier__max_iter': [100, 1000, 5000],
+            'classifier__max_iter': [100, 1000],
             'classifier__normalize': [False, True],
-            'classifier__tol': [0.0001, 0.001, 0.01, 0.1]
+            'classifier__tol': [0.0001, 0.001, 0.01]
         }
 
     elif classifier_enum == Classifier.SGD_CLASSIFIER:
@@ -431,14 +428,13 @@ def get_classifier_with_default_parameters(classifier_enum):
         '''
         clf = SGDClassifier()
         parameters = {
-            'classifier__alpha': [0.0001, 0.001, 0.01, 0.1, 1],
+            'classifier__alpha': [0.0001, 0.001, 0.01],
             'classifier__average': [True, False],
-            'classifier__class_weight': ['balanced', None],
             'classifier__early_stopping': [False, True],
-            'classifier__max_iter': [100, 1000, 5000],
-            'classifier__n_iter_no_change': [3, 5, 10, 15],
+            'classifier__max_iter': [100, 1000],
+            'classifier__n_iter_no_change': [3, 5, 10],
             'classifier__penalty': ['l2', 'l1', 'elasticnet'],
-            'classifier__tol': [0.0001, 0.001, 0.01, 0.1]
+            'classifier__tol': [0.0001, 0.001, 0.01]
         }
 
     elif classifier_enum == Classifier.EXTRA_TREE_CLASSIFIER:
@@ -452,9 +448,7 @@ def get_classifier_with_default_parameters(classifier_enum):
         '''
         clf = ExtraTreeClassifier()
         parameters = {
-            'classifier__class_weight': ['balanced', None],
             'classifier__criterion': ['gini', 'entropy'],
-            'classifier__max_depth': [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, None],
             'classifier__max_features': ['sqrt', 'log2', None],
             'classifier__min_samples_leaf': [1, 2, 4],
             'classifier__min_samples_split': [2, 5, 10]
@@ -474,13 +468,10 @@ def get_classifier_with_default_parameters(classifier_enum):
         clf = ExtraTreesClassifier()
         parameters = {
             'classifier__bootstrap': [True, False],
-            'classifier__class_weight': ['balanced', 'balanced_subsample', None],
             'classifier__criterion': ['gini', 'entropy'],
-            'classifier__max_depth': [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, None],
-            'classifier__max_features': ['sqrt', 'log2', None],
             'classifier__min_samples_leaf': [1, 2, 4],
             'classifier__min_samples_split': [2, 5, 10],
-            'classifier__n_estimators': [100, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000],
+            'classifier__n_estimators': [100, 200, 400],
             'classifier__oob_score': [True, False]
         }
 
@@ -500,15 +491,11 @@ def get_classifier_with_default_parameters(classifier_enum):
         clf = GradientBoostingClassifier()
         parameters = {
             'classifier__criterion': ['friedman_mse', 'mse', 'mae'],
-            'classifier__learning_rate': [0.01, 0.05, 0.1, 1],
+            'classifier__learning_rate': [0.01, 0.1, 1],
             'classifier__loss': ['deviance', 'exponential'],
-            'classifier__max_depth': [3, 5, 10, 20, 30, 40, 50],
-            'classifier__max_features': ['sqrt', 'log2', None],
-            'classifier__min_samples_leaf': [1, 2, 4],
-            'classifier__min_samples_split': [2, 5, 10],
-            'classifier__n_estimators': [100, 200, 400, 600, 800, 1000],
-            'classifier__tol': [0.0001, 0.001, 0.01, 0.1],
-            'classifier__validation_fraction': [0.001, 0.01, 0.1]
+            'classifier__max_depth': [3, 5, 10],
+            'classifier__n_estimators': [100, 200, 400],
+            'classifier__tol': [0.0001, 0.001, 0.01]
         }
 
     elif classifier_enum == Classifier.LOGISTIC_REGRESSION_CV:
@@ -521,11 +508,9 @@ def get_classifier_with_default_parameters(classifier_enum):
         '''
         clf = LogisticRegressionCV()
         parameters = {
-            'classifier__class_weight': ['balanced', None],
             'classifier__dual': [False, True],
             'classifier__fit_intercept': [False, True],
-            'classifier__max_iter': [100, 1000, 5000],
-            'classifier__tol': [0.0001, 0.001, 0.01, 0.1]
+            'classifier__tol': [0.0001, 0.001, 0.01]
         }
 
     elif classifier_enum == Classifier.MLP_CLASSIFIER:
@@ -542,10 +527,8 @@ def get_classifier_with_default_parameters(classifier_enum):
         clf = MLPClassifier()
 
         parameters = {
-            'classifier__activation': ['identity', 'logistic', 'tanh', 'relu'],
-            'classifier__alpha': [0.0001, 0.05],
+            'classifier__activation': ['logistic', 'tanh', 'relu'],
             'classifier__early_stopping': [True, False],
-            'classifier__hidden_layer_sizes': [(50, 50, 50), (50, 100, 50), (100,)],
             'classifier__learning_rate': ['constant', 'invscaling', 'adaptive'],
             'classifier__solver': ['lbfgs', 'sgd', 'adam'],
             'classifier__tol': [0.0001, 0.001]
@@ -560,8 +543,6 @@ def get_classifier_with_default_parameters(classifier_enum):
         '''
         clf = NuSVC()
         parameters = {
-            'classifier__break_ties': [False, True],
-            'classifier__cache_size': [200, 300],
             'classifier__decision_function_shape': ['ovo', 'ovr'],
             'classifier__gamma': ['scale', 'auto'],
             'classifier__kernel': ['poly', 'rbf', 'sigmoid'],
@@ -577,7 +558,6 @@ def get_classifier_with_default_parameters(classifier_enum):
         '''
         clf = RidgeClassifierCV()
         parameters = {
-            'classifier__class_weight': ['balanced', None],
             'classifier__fit_intercept': [False, True],
             'classifier__normalize': [False, True],
             'classifier__store_cv_values': [False, True]
