@@ -33,7 +33,7 @@ For more help you can type ```python main.py -h```.
 usage: main.py [-h] [-d DATASET] [-ml ML_ALGORITHM_LIST]
                [-use_default_parameters] [-not_shuffle] [-n_jobs N_JOBS] [-cv]
                [-n_splits N_SPLITS] [-required_classifiers]
-               [-news_with_4_classes] [-news_no_filter] [-imdb_binary]
+               [-news_with_4_classes] [-news_no_filter] [-imdb_multi_class]
                [-show_reviews] [-r] [-m] [--chi2_select CHI2_SELECT] [-cm]
                [-top10] [-use_hashing] [-use_count] [-n_features N_FEATURES]
                [-plot_time] [-save_logs] [-verbose]
@@ -96,11 +96,11 @@ optional arguments:
                         Do not remove newsgroup information that is easily
                         overfit: ('headers', 'footers', 'quotes'). Default:
                         False
-  -imdb_binary, --use_imdb_binary_labels
-                        Use binary classification: 0 = neg and 1 = pos. If
-                        --use_imdb_binary_labels is False, the system use IMDB
-                        multi-class labels (review score: 1, 2, 3, 4, 7, 8, 9,
-                        10). Default: False
+  -imdb_multi_class, --use_imdb_multi_class_labels
+                        Use IMDB multi-class labels (review score: 1, 2, 3, 4,
+                        7, 8, 9, 10): 0 = neg and 1 = pos. If
+                        --use_imdb_multi_class_labels is False, the system
+                        uses binary classification. Default: False
   -show_reviews, --show_imdb_reviews
                         Show the IMDB_REVIEWS and respective labels while read
                         the dataset. Default: False

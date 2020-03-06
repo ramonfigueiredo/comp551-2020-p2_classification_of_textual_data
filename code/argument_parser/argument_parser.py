@@ -24,7 +24,7 @@ def get_options():
                              "15) NU_SVC, 16) PASSIVE_AGGRESSIVE_CLASSIFIER, 17) PERCEPTRON, "
                              "18) RANDOM_FOREST_CLASSIFIER, 19) RIDGE_CLASSIFIER, 20) RIDGE_CLASSIFIERCV, "
                              "21) SGD_CLASSIFIER,). "
-                             "Default: None. If ml_algorithm_list = None, all ML algorithms will be executed.",
+                             "Default: None. If ml_algorithm_list is not provided, all ML algorithms will be executed.",
                         default=None)
     parser.add_argument("-use_default_parameters", "--use_classifiers_with_default_parameters",
                         action="store_true", default=False, dest="use_classifiers_with_default_parameters",
@@ -57,10 +57,11 @@ def get_options():
                         action="store_true", default=False, dest="twenty_news_with_no_filter",
                         help="Do not remove newsgroup information that is easily overfit: "
                              "('headers', 'footers', 'quotes'). Default: False")
-    parser.add_argument("-imdb_binary", "--use_imdb_binary_labels",
-                        action="store_true", default=False, dest="use_imdb_binary_labels",
-                        help="Use binary classification: 0 = neg and 1 = pos. If --use_imdb_binary_labels is False, "
-                             "the system use IMDB multi-class labels (review score: 1, 2, 3, 4, 7, 8, 9, 10). Default: False")
+    parser.add_argument("-imdb_multi_class", "--use_imdb_multi_class_labels",
+                        action="store_true", default=False, dest="use_imdb_multi_class_labels",
+                        help="Use IMDB multi-class labels (review score: 1, 2, 3, 4, 7, 8, 9, 10)."
+                             " If --use_imdb_multi_class_labels is False, the system uses binary classification. "
+                             "(0 = neg and 1 = pos) Default: False")
     parser.add_argument("-show_reviews", "--show_imdb_reviews",
                         action="store_true", default=False, dest="show_imdb_reviews",
                         help="Show the IMDB_REVIEWS and respective labels while read the dataset. Default: False")
@@ -76,10 +77,6 @@ def get_options():
     parser.add_argument("-cm", "--confusion_matrix",
                         action="store_true", dest="print_cm",
                         help="Print the confusion matrix.")
-    parser.add_argument("-top10", "--print_top10_terms",
-                        action="store_true", default=False, dest="print_top10_terms",
-                        help="Print ten most discriminative terms per class"
-                             " for every classifier. Default: False")
     parser.add_argument("-use_hashing", "--use_hashing_vectorizer", dest="use_hashing",
                         action="store_true", default=False,
                         help="Use a hashing vectorizer. Default: False")
@@ -116,12 +113,13 @@ def get_options():
 
 
 def show_option(options, parser):
+
+    print(parser.print_help())
     print('=' * 130)
-    print(parser.description)
 
     print('\nRunning with options: ')
     print('\tDataset =', options.dataset)
-    print('\tML algorithm list (If ml_algorithm_list = None, all ML algorithms will be executed) =',
+    print('\tML algorithm list (If ml_algorithm_list is not provided, all ML algorithms will be executed) =',
           options.ml_algorithm_list)
     print('\tUse classifiers with default parameters. '
           'Default: False = Use classifiers with best parameters found using grid search.',
@@ -140,13 +138,18 @@ def show_option(options, parser):
         options.twenty_news_using_four_categories)
     print('\tDo not remove newsgroup information that is easily overfit (headers, footers, quotes) =',
           options.twenty_news_with_no_filter)
-    print('\tUse IMDB Binary Labels (Negative / Positive) =', options.use_imdb_binary_labels)
+    print('\tUse IMDB multi-class labels (review score: 1, 2, 3, 4, 7, 8, 9, 10). '
+          'If --use_imdb_multi_class_labels is False, the system uses binary classification (0 = neg and 1 = pos). '
+          'Default: False =', options.use_imdb_multi_class_labels)
     print('\tShow the IMDB_REVIEWS and respective labels while read the dataset =', options.show_imdb_reviews)
-    print('\tPrint Classification Report =', options.report)
-    print('\tPrint all classification metrics = ', options.all_metrics)
-    print('\tSelect some number of features using a chi-squared test =', options.chi2_select)
+    print('\tPrint classification report =', options.report)
+    print('\tPrint all classification metrics (accuracy score, precision score, recall score, f1 score, f-beta score, jaccard score) = ', options.all_metrics)
+    if options.chi2_select == None:
+        chi2_select_option = "No number provided"
+    else:
+        chi2_select_option = str(options.chi2_select)
+    print('\tSelect some number of features using a chi-squared test (For example: --chi2_select 10 = select 10 features using a chi-squared test) = ', chi2_select_option)
     print('\tPrint the confusion matrix =', options.print_cm)
-    print('\tPrint ten most discriminative terms per class for every classifier =', options.print_top10_terms)
     print('\tUse a hashing vectorizer =', options.use_hashing)
     print('\tUse a count vectorizer =', options.use_count_vectorizer)
     print('\tUse a tf-idf vectorizer =', (not options.use_hashing and not options.use_count_vectorizer))

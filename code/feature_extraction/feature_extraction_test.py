@@ -47,10 +47,10 @@ def run_classifier_grid_search(classifer, vectorizer_enum, classifier_enum, para
         db_parent_path = db_parent_path.replace('feature_extraction_testing', '')
 
         X_train, y_train = \
-            load_imdb_reviews(subset='train', binary_labels=False, verbose=False, shuffle=True, random_state=0,
+            load_imdb_reviews(subset='train', multi_class_labels=False, verbose=False, shuffle=True, random_state=0,
                               db_parent_path=db_parent_path)
         X_test, y_test = \
-            load_imdb_reviews(subset='test', binary_labels=False, verbose=False, shuffle=True, random_state=0,
+            load_imdb_reviews(subset='test', multi_class_labels=False, verbose=False, shuffle=True, random_state=0,
                               db_parent_path=db_parent_path)
 
         # IMDB_REVIEWS dataset
