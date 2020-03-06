@@ -16,10 +16,10 @@ def plot_results(dataset, options, indices, clf_name_list, accuracy_score_list, 
             plt.title(title)
 
     elif dataset == Dataset.IMDB_REVIEWS.name:
-        if options.use_imdb_binary_labels:
-            imdb_classification_type = "Binary classification"
-        else:
+        if options.use_imdb_multi_class_labels:
             imdb_classification_type = "Multi-class classification"
+        else:
+            imdb_classification_type = "Binary classification"
 
         title = "{} dataset ({})".format(Dataset.IMDB_REVIEWS.name, imdb_classification_type)
         plt.title(title)

@@ -38,11 +38,6 @@ def benchmark(clf, classifier_enum, X_train, y_train, X_test, y_test, options, f
         print("dimensionality: %d" % clf.coef_.shape[1])
         print("density: %f" % density(clf.coef_))
 
-        if options.print_top10_terms and feature_names is not None and not options.use_imdb_binary_labels:
-            print("top 10 keywords per class:")
-            for i, label in enumerate(target_names):
-                top10 = np.argsort(clf.coef_[i])[-10:]
-                print(trim("%s: %s" % (label, " ".join(feature_names[top10]))))
         print()
 
     print_classification_report(options, y_pred, y_test, target_names)

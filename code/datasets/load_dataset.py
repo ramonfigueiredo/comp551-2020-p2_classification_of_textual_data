@@ -30,12 +30,12 @@ def load_dataset(dataset, options):
         target_names = data_train.target_names
     else:
         # IMDB_REVIEWS dataset
-        # If binary classification: 0 = neg and 1 = pos.
         # If multi-class classification use the review scores: 1, 2, 3, 4, 7, 8, 9, 10
-        if options.use_imdb_binary_labels:
-            target_names = ['0', '1']
-        else:
+        # If binary classification: 0 = neg and 1 = pos.
+        if options.use_imdb_multi_class_labels:
             target_names = ['1', '2', '3', '4', '7', '8', '9', '10']
+        else:
+            target_names = ['0', '1']
 
     def size_mb(docs):
         return sum(len(s.encode('utf-8')) for s in docs) / 1e6
@@ -58,10 +58,10 @@ def load_dataset(dataset, options):
 
 def load_imdb_reviews_dataset(options):
     print("Loading {} dataset:".format(Dataset.IMDB_REVIEWS.name))
-    X_train, y_train = load_imdb_reviews(subset='train', binary_labels=options.use_imdb_binary_labels,
+    X_train, y_train = load_imdb_reviews(subset='train', multi_class_labels=options.use_imdb_multi_class_labels,
                                          verbose=options.show_imdb_reviews, shuffle=(not options.not_shuffle_dataset),
                                          random_state=options.random_state)
-    X_test, y_test = load_imdb_reviews(subset='test', binary_labels=options.use_imdb_binary_labels,
+    X_test, y_test = load_imdb_reviews(subset='test', multi_class_labels=options.use_imdb_multi_class_labels,
                                        verbose=options.show_imdb_reviews, shuffle=(not options.not_shuffle_dataset),
                                        random_state=options.random_state)
     return X_test, X_train, y_test, y_train
@@ -105,7 +105,7 @@ def load_twenty_news_groups(subset, categories=None, shuffle=True, random_state=
     return fetch_20newsgroups(subset=subset, categories=categories, shuffle=shuffle, random_state=random_state, remove=remove)
 
 
-def load_imdb_reviews(subset, binary_labels=False, verbose=False, shuffle=True, random_state=0, db_parent_path=None):
+def load_imdb_reviews(subset, multi_class_labels=False, verbose=False, shuffle=True, random_state=0, db_parent_path=None):
     X = []
     y = []
     dataset = {}
@@ -141,13 +141,13 @@ def load_imdb_reviews(subset, binary_labels=False, verbose=False, shuffle=True, 
         file_id = 1
         for f in files_list:
 
-            if binary_labels:
+            if multi_class_labels:
+                label = f[f.index('_') + 1:f.index('.')]
+            else:
                 if folder == 'neg':
                     label = 0
                 else:
                     label = 1
-            else:
-                label = f[f.index('_')+1:f.index('.')]
 
             file_path = os.path.join(path, f)
             if verbose:
