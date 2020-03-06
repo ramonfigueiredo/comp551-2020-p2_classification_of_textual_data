@@ -62,16 +62,19 @@ if __name__ == '__main__':
         results = []
         if options.use_just_miniproject_classifiers:
             results = run_just_miniproject_classifiers(options, X_train, y_train, X_test, y_test,
-                                                       options.use_classifiers_with_default_parameters, dataset,
+                                                       options.use_classifiers_with_default_parameters,
+                                                       options.use_imdb_multi_class_labels, dataset,
                                                        feature_names, target_names, results)
         elif options.ml_algorithm_list:
             validate_ml_list(options.ml_algorithm_list)
             results = run_ml_algorithm_list(options, X_train, y_train, X_test, y_test, options.ml_algorithm_list,
-                                            options.use_classifiers_with_default_parameters, dataset,
+                                            options.use_classifiers_with_default_parameters,
+                                            options.use_imdb_multi_class_labels, dataset,
                                             feature_names, target_names, results)
         else:
             results = run_all_classifiers(options, X_train, y_train, X_test, y_test,
-                                          options.use_classifiers_with_default_parameters, dataset,
+                                          options.use_classifiers_with_default_parameters,
+                                          options.use_imdb_multi_class_labels, dataset,
                                           feature_names, target_names, results)
 
         indices = np.arange(len(results))

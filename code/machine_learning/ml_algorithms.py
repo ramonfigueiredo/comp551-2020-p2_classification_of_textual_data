@@ -81,7 +81,8 @@ def train_model(X_train, clf, y_train):
 
 
 def run_just_miniproject_classifiers(options, X_train, y_train, X_test, y_test,
-                                     use_classifiers_with_default_parameters, dataset,
+                                     use_classifiers_with_default_parameters,
+                                     use_imdb_multi_class_labels, dataset,
                                      feature_names, target_names, results):
     ml_algorithm_list = [
         Classifier.ADA_BOOST_CLASSIFIER.name,
@@ -92,7 +93,8 @@ def run_just_miniproject_classifiers(options, X_train, y_train, X_test, y_test,
 
     try:
         for clf, classifier_name in (
-                get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_default_parameters, dataset)
+                get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_default_parameters,
+                                           use_imdb_multi_class_labels, dataset)
         ):
             print('=' * 80)
             print(classifier_name)
@@ -107,13 +109,15 @@ def run_just_miniproject_classifiers(options, X_train, y_train, X_test, y_test,
     return results
 
 
-def run_all_classifiers(options, X_train, y_train, X_test, y_test, use_classifiers_with_default_parameters, dataset,
+def run_all_classifiers(options, X_train, y_train, X_test, y_test, use_classifiers_with_default_parameters,
+                        use_imdb_multi_class_labels, dataset,
                         feature_names, target_names, results):
     ml_algorithm_list = {classifier.name for classifier in Classifier}
 
     try:
         for clf, classifier_name in (
-                get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_default_parameters, dataset)
+                get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_default_parameters,
+                                           use_imdb_multi_class_labels, dataset)
         ):
             print('=' * 80)
             print(classifier_name)
@@ -129,11 +133,13 @@ def run_all_classifiers(options, X_train, y_train, X_test, y_test, use_classifie
 
 
 def run_ml_algorithm_list(options, X_train, y_train, X_test, y_test, ml_algorithm_list,
-                          use_classifiers_with_default_parameters, dataset,
+                          use_classifiers_with_default_parameters,
+                          use_imdb_multi_class_labels, dataset,
                           feature_names, target_names, results):
     try:
         for clf, classifier_name in (
-                get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_default_parameters, dataset)
+                get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_default_parameters,
+                                           use_imdb_multi_class_labels, dataset)
         ):
             print('=' * 80)
             print(classifier_name)
