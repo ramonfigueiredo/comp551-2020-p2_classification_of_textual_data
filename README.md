@@ -157,7 +157,6 @@ MiniProject 2: Classification of Textual Data. Authors: Ramon Figueiredo Pessoa,
 
 optional arguments:
   -h, --help            show this help message and exit
-  -v, --version         show program's version number and exit
 
 COMP 551 (001/002), Applied Machine Learning, Winter 2020, McGill University.
 ```
