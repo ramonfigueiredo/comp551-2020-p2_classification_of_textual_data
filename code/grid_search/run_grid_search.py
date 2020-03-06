@@ -125,17 +125,17 @@ def run_grid_search(save_logs_in_file):
                             datefmt='%m/%d/%Y %I:%M:%S %p')
 
     classifier_list = [
-        Classifier.ADA_BOOST_CLASSIFIER,
-        Classifier.BERNOULLI_NB,
-        Classifier.COMPLEMENT_NB,
-        Classifier.DECISION_TREE_CLASSIFIER,
-        Classifier.K_NEIGHBORS_CLASSIFIER,
-        Classifier.LINEAR_SVC,
-        Classifier.LOGISTIC_REGRESSION,
-        Classifier.MULTINOMIAL_NB,
-        Classifier.NEAREST_CENTROID,
-        Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER,
-        Classifier.PERCEPTRON,
+        # Classifier.ADA_BOOST_CLASSIFIER,
+        # Classifier.BERNOULLI_NB,
+        # Classifier.COMPLEMENT_NB,
+        # Classifier.DECISION_TREE_CLASSIFIER,
+        # Classifier.K_NEIGHBORS_CLASSIFIER,
+        # Classifier.LINEAR_SVC,
+        # Classifier.LOGISTIC_REGRESSION,
+        # Classifier.MULTINOMIAL_NB,
+        # Classifier.NEAREST_CENTROID,
+        # Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER,
+        # Classifier.PERCEPTRON,
         Classifier.RANDOM_FOREST_CLASSIFIER,
         Classifier.RIDGE_CLASSIFIER,
         Classifier.SGD_CLASSIFIER
@@ -332,13 +332,11 @@ def run_grid_search(save_logs_in_file):
             clf = RandomForestClassifier()
             parameters = {
                 'classifier__bootstrap': [True, False],
-                'classifier__class_weight': ['balanced', 'balanced_subsample', None],
                 'classifier__criterion': ['gini', 'entropy'],
-                'classifier__max_depth': [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, None],
                 'classifier__max_features': ['sqrt', 'log2', None],
                 'classifier__min_samples_leaf': [1, 2, 4],
                 'classifier__min_samples_split': [2, 5, 10],
-                'classifier__n_estimators': [100, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000],
+                'classifier__n_estimators': [100, 200, 400],
                 'classifier__oob_score': [True, False],
             }
 
@@ -350,12 +348,11 @@ def run_grid_search(save_logs_in_file):
             '''
             clf = RidgeClassifier()
             parameters = {
-                'classifier__alpha': [0.0001, 0.001, 0.01, 0.1, 1],
-                'classifier__class_weight': ['balanced', None],
+                'classifier__alpha': [0.01, 0.1, 1],
                 'classifier__copy_X': [True, False],
-                'classifier__max_iter': [100, 1000, 5000],
+                'classifier__max_iter': [100, 1000],
                 'classifier__normalize': [False, True],
-                'classifier__tol': [0.0001, 0.001, 0.01, 0.1]
+                'classifier__tol': [0.0001, 0.001, 0.01]
             }
 
         elif classifier == Classifier.SGD_CLASSIFIER:
@@ -369,14 +366,13 @@ def run_grid_search(save_logs_in_file):
             '''
             clf = SGDClassifier()
             parameters = {
-                'classifier__alpha': [0.0001, 0.001, 0.01, 0.1, 1],
+                'classifier__alpha': [0.0001, 0.001, 0.01],
                 'classifier__average': [True, False],
-                'classifier__class_weight': ['balanced', None],
                 'classifier__early_stopping': [False, True],
-                'classifier__max_iter': [100, 1000, 5000],
-                'classifier__n_iter_no_change': [3, 5, 10, 15],
+                'classifier__max_iter': [100, 1000],
+                'classifier__n_iter_no_change': [3, 5, 10],
                 'classifier__penalty': ['l2', 'l1', 'elasticnet'],
-                'classifier__tol': [0.0001, 0.001, 0.01, 0.1]
+                'classifier__tol': [0.0001, 0.001, 0.01]
             }
 
         for dataset in dataset_list:
