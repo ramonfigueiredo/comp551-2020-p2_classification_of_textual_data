@@ -1,22 +1,15 @@
 from sklearn.ensemble import AdaBoostClassifier
-from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.linear_model import LogisticRegressionCV
 from sklearn.linear_model import PassiveAggressiveClassifier
 from sklearn.linear_model import Perceptron
 from sklearn.linear_model import RidgeClassifier
-from sklearn.linear_model import RidgeClassifierCV
-from sklearn.linear_model import SGDClassifier
 from sklearn.naive_bayes import BernoulliNB, ComplementNB, MultinomialNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neighbors import NearestCentroid
-from sklearn.neural_network import MLPClassifier
 from sklearn.svm import LinearSVC
-from sklearn.svm import NuSVC
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.tree import ExtraTreeClassifier
 
 from utils.dataset_enum import Dataset
 from utils.ml_classifiers_enum import Classifier
@@ -208,40 +201,6 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                     ml_final_list.append \
                         ((DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER))
 
-    if Classifier.EXTRA_TREE_CLASSIFIER.name in ml_algorithm_list:
-        if use_classifiers_with_default_parameters:
-            ml_final_list.append \
-                ((ExtraTreeClassifier(random_state=options.random_state), Classifier.EXTRA_TREE_CLASSIFIER))
-        else:
-            # TODO: Include best machine learning parameters
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                ml_final_list.append \
-                    ((ExtraTreeClassifier(random_state=options.random_state), Classifier.EXTRA_TREE_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    ml_final_list.append \
-                        ((ExtraTreeClassifier(random_state=options.random_state), Classifier.EXTRA_TREE_CLASSIFIER))
-                else:
-                    # IMDb with binary classification
-                    # TODO: Include best machine learning parameters
-                    ml_final_list.append \
-                        ((ExtraTreeClassifier(random_state=options.random_state), Classifier.EXTRA_TREE_CLASSIFIER))
-
-    if Classifier.EXTRA_TREES_CLASSIFIER.name in ml_algorithm_list:
-        if use_classifiers_with_default_parameters:
-            ml_final_list.append((ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.EXTRA_TREES_CLASSIFIER))
-        else:
-            # TODO: Include best machine learning parameters
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                ml_final_list.append((ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.EXTRA_TREES_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    ml_final_list.append((ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.EXTRA_TREES_CLASSIFIER))
-                else:
-                    # IMDb with binary classification
-                    # TODO: Include best machine learning parameters
-                    ml_final_list.append((ExtraTreesClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.EXTRA_TREES_CLASSIFIER))
-
     if Classifier.GRADIENT_BOOSTING_CLASSIFIER.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
             ml_final_list.append(
@@ -404,39 +363,6 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                     # TODO: Include best machine learning parameters
                     ml_final_list.append((LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION))
 
-    if Classifier.LOGISTIC_REGRESSION_CV.name in ml_algorithm_list:
-        if use_classifiers_with_default_parameters:
-            ml_final_list.append((LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION_CV))
-        else:
-            # TODO: Include best machine learning parameters
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                ml_final_list.append((LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION_CV))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    ml_final_list.append((LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION_CV))
-                else:
-                    # IMDb with binary classification
-                    # TODO: Include best machine learning parameters
-                    ml_final_list.append((LogisticRegressionCV(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION_CV))
-
-    if Classifier.MLP_CLASSIFIER.name in ml_algorithm_list:
-        if use_classifiers_with_default_parameters:
-            ml_final_list.append \
-                ((MLPClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.MLP_CLASSIFIER))
-        else:
-            # TODO: Include best machine learning parameters
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                ml_final_list.append((MLPClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.MLP_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    ml_final_list.append((MLPClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.MLP_CLASSIFIER))
-                else:
-                    # IMDb with binary classification
-                    # TODO: Include best machine learning parameters
-                    ml_final_list.append \
-                        ((MLPClassifier(verbose=options.verbose, random_state=options.random_state),
-                          Classifier.MLP_CLASSIFIER))
-
     if Classifier.MULTINOMIAL_NB.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
             ml_final_list.append((MultinomialNB(), Classifier.MULTINOMIAL_NB))
@@ -518,23 +444,6 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                     # IMDb with binary classification
                     # TODO: Include best machine learning parameters
                     ml_final_list.append((NearestCentroid(), Classifier.NEAREST_CENTROID))
-
-    if Classifier.NU_SVC.name in ml_algorithm_list:
-        if use_classifiers_with_default_parameters:
-            ml_final_list.append((NuSVC(verbose=options.verbose, random_state=options.random_state), Classifier.NU_SVC))
-        else:
-            # TODO: Include best machine learning parameters
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                ml_final_list.append \
-                    ((NuSVC(verbose=options.verbose, random_state=options.random_state), Classifier.NU_SVC))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    ml_final_list.append \
-                        ((NuSVC(verbose=options.verbose, random_state=options.random_state), Classifier.NU_SVC))
-                else:
-                    # IMDb with binary classification
-                    # TODO: Include best machine learning parameters
-                    ml_final_list.append((NuSVC(verbose=options.verbose, random_state=options.random_state), Classifier.NU_SVC))
 
     if Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
@@ -673,35 +582,5 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                     # IMDb with binary classification
                     # TODO: Include best machine learning parameters
                     ml_final_list.append((RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER))
-
-    if Classifier.RIDGE_CLASSIFIERCV.name in ml_algorithm_list:
-        if use_classifiers_with_default_parameters:
-            ml_final_list.append((RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV))
-        else:
-            # TODO: Include best machine learning parameters
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                ml_final_list.append((RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    ml_final_list.append((RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV))
-                else:
-                    # IMDb with binary classification
-                    # TODO: Include best machine learning parameters
-                    ml_final_list.append((RidgeClassifierCV(), Classifier.RIDGE_CLASSIFIERCV))
-
-    if Classifier.SGD_CLASSIFIER.name in ml_algorithm_list:
-        if use_classifiers_with_default_parameters:
-            ml_final_list.append((SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.SGD_CLASSIFIER))
-        else:
-            # TODO: Include best machine learning parameters
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                ml_final_list.append((SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.SGD_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    ml_final_list.append((SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.SGD_CLASSIFIER))
-                else:
-                    # IMDb with binary classification
-                    # TODO: Include best machine learning parameters
-                    ml_final_list.append((SGDClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.SGD_CLASSIFIER))
 
     return ml_final_list

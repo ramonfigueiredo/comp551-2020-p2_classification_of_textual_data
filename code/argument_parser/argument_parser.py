@@ -18,12 +18,10 @@ def get_options():
                              "ml_algorithm_list = ['LINEAR_SVC', 'RANDOM_FOREST_CLASSIFIER']. "
                              "(Options of ML algorithms: "
                              "1) ADA_BOOST_CLASSIFIER, 2) BERNOULLI_NB, 3) COMPLEMENT_NB, 4) DECISION_TREE_CLASSIFIER, "
-                             "5) EXTRA_TREE_CLASSIFIER, 6) EXTRA_TREES_CLASSIFIER, 7) GRADIENT_BOOSTING_CLASSIFIER, "
-                             "8) K_NEIGHBORS_CLASSIFIER, 9) LINEAR_SVC, 10) LOGISTIC_REGRESSION, "
-                             "11) LOGISTIC_REGRESSION_CV, 12) MLP_CLASSIFIER, 13) MULTINOMIAL_NB, 14) NEAREST_CENTROID, "
-                             "15) NU_SVC, 16) PASSIVE_AGGRESSIVE_CLASSIFIER, 17) PERCEPTRON, "
-                             "18) RANDOM_FOREST_CLASSIFIER, 19) RIDGE_CLASSIFIER, 20) RIDGE_CLASSIFIERCV, "
-                             "21) SGD_CLASSIFIER,). "
+                             "5) GRADIENT_BOOSTING_CLASSIFIER, 6) K_NEIGHBORS_CLASSIFIER, 7) LINEAR_SVC, "
+                             "8) LOGISTIC_REGRESSION, 9) MULTINOMIAL_NB, 10) NEAREST_CENTROID, "
+                             "11) PASSIVE_AGGRESSIVE_CLASSIFIER, 12) PERCEPTRON, 13) RANDOM_FOREST_CLASSIFIER, "
+                             "14) RIDGE_CLASSIFIER). "
                              "Default: None. If ml_algorithm_list is not provided, all ML algorithms will be executed.",
                         default=None)
     parser.add_argument("-use_default_parameters", "--use_classifiers_with_default_parameters",

@@ -1,7 +1,6 @@
 import logging
 from time import time
 
-import numpy as np
 from sklearn.model_selection import cross_validate
 from sklearn.utils.extmath import density
 
@@ -11,7 +10,6 @@ from metrics.ml_metrics import print_confusion_matrix
 from metrics.ml_metrics import print_ml_metrics
 from model_selection.ml_algorithm_pair_list import get_ml_algorithm_pair_list
 from utils.ml_classifiers_enum import Classifier
-from utils.string_utils import trim
 
 
 def benchmark(clf, classifier_enum, X_train, y_train, X_test, y_test, options, feature_names, target_names):
