@@ -21,7 +21,7 @@ from utils.ml_classifiers_enum import Classifier
 JSON_FOLDER = 'model_selection' + os.sep + 'json_with_best_parameters'
 
 
-def get_json_with_best_parameters(filename):
+def open_json_with_best_parameters(filename):
     try:
         with open(filename) as json_file:
             return (json.load(json_file))
@@ -33,6 +33,26 @@ def get_json_with_best_parameters(filename):
         exit()
 
 
+def get_json_with_best_parameters(dataset, classifier_enum, imdb_multi_class):
+    # read json with best parameters
+    if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
+        json_path = os.path.join(os.getcwd(), JSON_FOLDER, dataset, classifier_enum.name + ".json")
+        classification_type = "multi-class classification"
+    else:
+        if imdb_multi_class:
+            classification_type = "multi-class classification"
+            json_path = os.path.join(os.getcwd(), JSON_FOLDER, dataset, 'multi_class_classification', classifier_enum.name + ".json")
+        else:
+            classification_type = "binary classification"
+            json_path = os.path.join(os.getcwd(), JSON_FOLDER, dataset, 'binary_classification', classifier_enum.name + ".json")
+
+    json_with_best_parameters = open_json_with_best_parameters(json_path)
+
+    print("\t==> Using JSON with best parameters (selected using grid search) to the {} classifier ({}) and {} dataset ===> JSON in dictionary format: {}".format(classifier_enum.name, classification_type, dataset, json_with_best_parameters))
+
+    return json_with_best_parameters
+
+
 def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_default_parameters,
                                use_imdb_multi_class_labels, dataset):
     ml_final_list = []
@@ -42,10 +62,7 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
             ml_final_list.append((AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER))
         else:
             if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                # read json with best parameters
-                json_path = os.path.join(os.getcwd(), JSON_FOLDER, dataset, Classifier.ADA_BOOST_CLASSIFIER.name + ".json")
-                json_with_best_parameters = get_json_with_best_parameters(json_path)
-                print("\t==> Using JSON with best parameters (selected using grid search) to the {} classifier and {} dataset ===> JSON in dictionary format: {}".format(Classifier.ADA_BOOST_CLASSIFIER.name, dataset, json_with_best_parameters))
+                json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.ADA_BOOST_CLASSIFIER, use_imdb_multi_class_labels)
 
                 # adding options.random_state in the map
                 json_with_best_parameters['random_state'] = options.random_state
@@ -57,55 +74,89 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                 ml_final_list.append((classifier_with_best_parameters, Classifier.ADA_BOOST_CLASSIFIER))
             elif dataset == Dataset.IMDB_REVIEWS.name:
                 if use_imdb_multi_class_labels:
-                    ml_final_list.append((AdaBoostClassifier(random_state=options.random_state, algorithm='SAMME.R',
-                                                             learning_rate=0.1, n_estimators=500),
-                                          Classifier.ADA_BOOST_CLASSIFIER))
+                    json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.ADA_BOOST_CLASSIFIER, use_imdb_multi_class_labels)
+
+                    # adding options.random_state in the map
+                    json_with_best_parameters['random_state'] = options.random_state
+
+                    # create classifier with best parameters
+                    classifier_with_best_parameters = AdaBoostClassifier(**json_with_best_parameters)
+                    print('\t', classifier_with_best_parameters)
+
+                    ml_final_list.append((classifier_with_best_parameters, Classifier.ADA_BOOST_CLASSIFIER))
                 else:
                     # IMDb with binary classification
-                    ml_final_list.append(
-                        (AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER))
+                    json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.ADA_BOOST_CLASSIFIER, use_imdb_multi_class_labels)
+
+                    # adding options.random_state in the map
+                    json_with_best_parameters['random_state'] = options.random_state
+
+                    # create classifier with best parameters
+                    classifier_with_best_parameters = AdaBoostClassifier(**json_with_best_parameters)
+                    print('\t', classifier_with_best_parameters)
+
+                    ml_final_list.append((classifier_with_best_parameters, Classifier.ADA_BOOST_CLASSIFIER))
 
     if Classifier.BERNOULLI_NB.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
             ml_final_list.append((BernoulliNB(), Classifier.BERNOULLI_NB))
         else:
             if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                '''
-                
-                '''
-                ml_final_list.append((BernoulliNB(alpha=0.1, binarize=0.1, fit_prior=False), Classifier.BERNOULLI_NB))
+                json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.BERNOULLI_NB, use_imdb_multi_class_labels)
+
+                # create classifier with best parameters
+                classifier_with_best_parameters = BernoulliNB(**json_with_best_parameters)
+                print('\t', classifier_with_best_parameters)
+
+                ml_final_list.append((classifier_with_best_parameters, Classifier.BERNOULLI_NB))
             elif dataset == Dataset.IMDB_REVIEWS.name:
                 if use_imdb_multi_class_labels:
-                    '''
-                    
-                    '''
-                    ml_final_list.append(
-                        (BernoulliNB(alpha=0.5, binarize=0.0001, fit_prior=True), Classifier.BERNOULLI_NB))
+                    json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.BERNOULLI_NB, use_imdb_multi_class_labels)
+
+                    # create classifier with best parameters
+                    classifier_with_best_parameters = BernoulliNB(**json_with_best_parameters)
+                    print('\t', classifier_with_best_parameters)
+
+                    ml_final_list.append((classifier_with_best_parameters, Classifier.BERNOULLI_NB))
                 else:
-                    # IMDb with binary classification
-                    # TODO: Include best machine learning parameters
-                    ml_final_list.append((BernoulliNB(), Classifier.BERNOULLI_NB))
+                    json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.BERNOULLI_NB, use_imdb_multi_class_labels)
+
+                    # create classifier with best parameters
+                    classifier_with_best_parameters = BernoulliNB(**json_with_best_parameters)
+                    print('\t', classifier_with_best_parameters)
+
+                    ml_final_list.append((classifier_with_best_parameters, Classifier.BERNOULLI_NB))
 
     if Classifier.COMPLEMENT_NB.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
             ml_final_list.append((ComplementNB(), Classifier.COMPLEMENT_NB))
         else:
             if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                '''
-                
-                '''
-                ml_final_list.append((ComplementNB(alpha=0.5, fit_prior=False, norm=False), Classifier.COMPLEMENT_NB))
+                json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.COMPLEMENT_NB, use_imdb_multi_class_labels)
+
+                # create classifier with best parameters
+                classifier_with_best_parameters = ComplementNB(**json_with_best_parameters)
+                print('\t', classifier_with_best_parameters)
+
+                ml_final_list.append((classifier_with_best_parameters, Classifier.COMPLEMENT_NB))
             elif dataset == Dataset.IMDB_REVIEWS.name:
                 if use_imdb_multi_class_labels:
-                    '''
-                    
-                    '''
-                    ml_final_list.append(
-                        (ComplementNB(alpha=0.5, fit_prior=False, norm=False), Classifier.COMPLEMENT_NB))
+                    json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.COMPLEMENT_NB, use_imdb_multi_class_labels)
+
+                    # create classifier with best parameters
+                    classifier_with_best_parameters = ComplementNB(**json_with_best_parameters)
+                    print('\t', classifier_with_best_parameters)
+
+                    ml_final_list.append((classifier_with_best_parameters, Classifier.COMPLEMENT_NB))
                 else:
                     # IMDb with binary classification
-                    # TODO: Include best machine learning parameters
-                    ml_final_list.append((ComplementNB(), Classifier.COMPLEMENT_NB))
+                    json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.COMPLEMENT_NB, use_imdb_multi_class_labels)
+
+                    # create classifier with best parameters
+                    classifier_with_best_parameters = ComplementNB(**json_with_best_parameters)
+                    print('\t', classifier_with_best_parameters)
+
+                    ml_final_list.append((classifier_with_best_parameters, Classifier.COMPLEMENT_NB))
 
     if Classifier.DECISION_TREE_CLASSIFIER.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
