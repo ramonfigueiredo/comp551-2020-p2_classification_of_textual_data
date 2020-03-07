@@ -205,7 +205,8 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
                 else:
                     # IMDb with binary classification
                     # TODO: Include best machine learning parameters
-                    ((DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER))
+                    ml_final_list.append \
+                        ((DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER))
 
     if Classifier.EXTRA_TREE_CLASSIFIER.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
