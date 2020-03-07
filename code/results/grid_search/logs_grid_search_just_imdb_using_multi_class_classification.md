@@ -3,7 +3,8 @@
 ### IMDB using Multi-class Classification
 
 
-FINAL CLASSIFICATION TABLE: IMDB_REVIEWS DATASET, CLASSIFIER WITH DEFAULT PARAMETERS
+#### FINAL CLASSIFICATION TABLE: IMDB_REVIEWS DATASET, CLASSIFIER WITH DEFAULT PARAMETERS
+
 | ID | ML Algorithm | Accuracy Score (%) | K-fold Cross Validation (CV) (k = 5) | CV (Mean +/- Std) | Training time (seconds) | Test time (seconds) |
 | -- | ------------ | ------------------ | ------------------------------------ | ----------------- |  ------------------ | ------------------ |
 |  1  |  ADA_BOOST_CLASSIFIER  |  35.78%  |  [0.352  0.3546 0.3442 0.3492 0.3464]  |  34.93 (+/- 0.75)  |  12.15  |  0.7267  |
@@ -22,7 +23,8 @@ FINAL CLASSIFICATION TABLE: IMDB_REVIEWS DATASET, CLASSIFIER WITH DEFAULT PARAME
 |  14  |  RIDGE_CLASSIFIER  |  38.56%  |  [0.4036 0.4074 0.402  0.3954 0.4   ]  |  40.17 (+/- 0.79)  |  3.0  |  0.04056  |
 
 
-FINAL CLASSIFICATION TABLE: IMDB_REVIEWS DATASET, CLASSIFIER WITH BEST PARAMETERS
+#### FINAL CLASSIFICATION TABLE: IMDB_REVIEWS DATASET, CLASSIFIER WITH BEST PARAMETERS
+
 | ID | ML Algorithm | Accuracy Score (%) | K-fold Cross Validation (CV) (k = 5) | CV (Mean +/- Std) | Training time (seconds) | Test time (seconds) |
 | -- | ------------ | ------------------ | ------------------------------------ | ----------------- |  ------------------ | ------------------ |
 |  1  |  ADA_BOOST_CLASSIFIER  |  38.02%  |  [0.3792 0.379  0.374  0.3704 0.3746]  |  37.54 (+/- 0.66)  |  120.6  |  7.146  |
@@ -41,7 +43,7 @@ FINAL CLASSIFICATION TABLE: IMDB_REVIEWS DATASET, CLASSIFIER WITH BEST PARAMETER
 |  14  |  RIDGE_CLASSIFIER  |  38.56%  |  [0.4036 0.4074 0.402  0.3954 0.4   ]  |  40.17 (+/- 0.79)  |  2.98  |  0.04123  |
 
 
-All logs:
+#### All logs:
 
 ```
 03/07/2020 12:47:04 AM - INFO - 

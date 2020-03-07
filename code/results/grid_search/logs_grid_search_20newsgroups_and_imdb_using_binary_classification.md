@@ -1,9 +1,11 @@
 ## Grid search logs: IMDB using Binary Classification and 20 News Groups dataset (removing headers signatures and quoting)
 
+
+
 ### IMDB using Binary Classification
 
+#### FINAL CLASSIFICATION TABLE: IMDB_REVIEWS DATASET, CLASSIFIER WITH DEFAULT PARAMETERS
 
-FINAL CLASSIFICATION TABLE: IMDB_REVIEWS DATASET, CLASSIFIER WITH DEFAULT PARAMETERS
 | ID | ML Algorithm | Accuracy Score (%) | K-fold Cross Validation (CV) (k = 5) | CV (Mean +/- Std) | Training time (seconds) | Test time (seconds) |
 | -- | ------------ | ------------------ | ------------------------------------ | ----------------- |  ------------------ | ------------------ |
 |  1  |  ADA_BOOST_CLASSIFIER  |  80.24%  |  [0.801  0.803  0.799  0.7968 0.7986]  |  79.97 (+/- 0.43)  |  10.44  |  0.5797  |
@@ -21,8 +23,8 @@ FINAL CLASSIFICATION TABLE: IMDB_REVIEWS DATASET, CLASSIFIER WITH DEFAULT PARAME
 |  13  |  RANDOM_FOREST_CLASSIFIER  |  84.94%  |  [0.8498 0.8534 0.8468 0.8452 0.8464]  |  84.83 (+/- 0.59)  |  35.85  |  1.299  |
 |  14  |  RIDGE_CLASSIFIER  |  86.90%  |  [0.8836 0.895  0.8888 0.882  0.8788]  |  88.56 (+/- 1.14)  |  0.4334  |  0.008216  |
 
+#### FINAL CLASSIFICATION TABLE: IMDB_REVIEWS DATASET, CLASSIFIER WITH BEST PARAMETERS
 
-FINAL CLASSIFICATION TABLE: IMDB_REVIEWS DATASET, CLASSIFIER WITH BEST PARAMETERS
 | ID | ML Algorithm | Accuracy Score (%) | K-fold Cross Validation (CV) (k = 5) | CV (Mean +/- Std) | Training time (seconds) | Test time (seconds) |
 | -- | ------------ | ------------------ | ------------------------------------ | ----------------- |  ------------------ | ------------------ |
 |  1  |  ADA_BOOST_CLASSIFIER  |  84.60%  |  [0.8398 0.8516 0.8416 0.8366 0.8416]  |  84.22 (+/- 1.00)  |  103.8  |  5.642  |
@@ -40,12 +42,12 @@ FINAL CLASSIFICATION TABLE: IMDB_REVIEWS DATASET, CLASSIFIER WITH BEST PARAMETER
 |  13  |  RANDOM_FOREST_CLASSIFIER  |  85.39%  |  [0.8488 0.8534 0.8516 0.8448 0.8564]  |  85.10 (+/- 0.79)  |  33.64  |  2.238  |
 |  14  |  RIDGE_CLASSIFIER  |  86.90%  |  [0.8838 0.8952 0.8892 0.882  0.8788]  |  88.58 (+/- 1.16)  |  0.4678  |  0.008244  |
 
-```
+
 
 ### 20 News Groups dataset (removing headers signatures and quoting)
 
-```
-FINAL CLASSIFICATION TABLE: TWENTY_NEWS_GROUPS DATASET, CLASSIFIER WITH DEFAULT PARAMETERS
+#### FINAL CLASSIFICATION TABLE: TWENTY_NEWS_GROUPS DATASET, CLASSIFIER WITH DEFAULT PARAMETERS
+
 | ID | ML Algorithm | Accuracy Score (%) | K-fold Cross Validation (CV) (k = 5) | CV (Mean +/- Std) | Training time (seconds) | Test time (seconds) |
 | -- | ------------ | ------------------ | ------------------------------------ | ----------------- |  ------------------ | ------------------ |
 |  1  |  ADA_BOOST_CLASSIFIER  |  36.52%  |  [0.39460893 0.39019001 0.39991162 0.39019001 0.40539346]  |  39.61 (+/- 1.18)  |  4.665  |  0.2575  |
@@ -64,7 +66,8 @@ FINAL CLASSIFICATION TABLE: TWENTY_NEWS_GROUPS DATASET, CLASSIFIER WITH DEFAULT 
 |  14  |  RIDGE_CLASSIFIER  |  70.67%  |  [0.76623951 0.74900574 0.76889085 0.77330977 0.75464191]  |  76.24 (+/- 1.82)  |  2.184  |  0.02251  |
 
 
-FINAL CLASSIFICATION TABLE: TWENTY_NEWS_GROUPS DATASET, CLASSIFIER WITH BEST PARAMETERS
+#### FINAL CLASSIFICATION TABLE: TWENTY_NEWS_GROUPS DATASET, CLASSIFIER WITH BEST PARAMETERS
+
 | ID | ML Algorithm | Accuracy Score (%) | K-fold Cross Validation (CV) (k = 5) | CV (Mean +/- Std) | Training time (seconds) | Test time (seconds) |
 | -- | ------------ | ------------------ | ------------------------------------ | ----------------- |  ------------------ | ------------------ |
 |  1  |  ADA_BOOST_CLASSIFIER  |  44.04%  |  [0.4719399  0.45735749 0.46531153 0.46973045 0.47126437]  |  46.71 (+/- 1.08)  |  18.42  |  0.9331  |
@@ -83,7 +86,7 @@ FINAL CLASSIFICATION TABLE: TWENTY_NEWS_GROUPS DATASET, CLASSIFIER WITH BEST PAR
 |  14  |  RIDGE_CLASSIFIER  |  70.02%  |  [0.76756518 0.74502872 0.76800707 0.776403   0.76083112]  |  76.36 (+/- 2.10)  |  2.765  |  0.02252  |
 
 
-All logs:
+#### All logs
 
 ```
 03/07/2020 12:43:50 AM - INFO - 
