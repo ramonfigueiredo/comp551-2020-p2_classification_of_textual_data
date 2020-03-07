@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 from time import time
@@ -23,6 +24,7 @@ from sklearn.svm import LinearSVC
 from sklearn.tree import DecisionTreeClassifier
 
 from datasets.load_dataset import load_twenty_news_groups, load_imdb_reviews
+from model_selection.ml_algorithm_pair_list import JSON_FOLDER
 from utils.dataset_enum import Dataset
 from utils.ml_classifiers_enum import Classifier
 
@@ -72,7 +74,7 @@ def get_classifier_with_best_parameters(classifier_enum, best_parameters):
         return RidgeClassifier(**best_parameters)
 
 
-def run_classifier_grid_search(classifer, classifier_enum, param_grid, dataset, final_classification_table_default_parameters, final_classification_table_best_parameters, imdb_multi_class):
+def run_classifier_grid_search(classifer, classifier_enum, param_grid, dataset, final_classification_table_default_parameters, final_classification_table_best_parameters, imdb_multi_class, save_json_with_best_parameters):
 
     if param_grid is None:
         return
@@ -144,12 +146,28 @@ def run_classifier_grid_search(classifer, classifier_enum, param_grid, dataset, 
         logging.info("\tBest score: %0.3f" % grid_search.best_score_)
         logging.info("\tBest parameters set:")
         best_parameters = grid_search.best_estimator_.get_params()
+
         new_parameters = {}
         for param_name in sorted(param_grid.keys()):
             logging.info("\t\t%s: %r" % (param_name, best_parameters[param_name]))
             key = param_name.replace('classifier__', '')
             value = best_parameters[param_name]
             new_parameters[key] = value
+
+        if save_json_with_best_parameters:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS:
+                json_path = os.path.join(os.getcwd(), JSON_FOLDER, dataset.name, classifier_enum.name + ".json")
+                with open(json_path, 'w') as outfile:
+                    json.dump(new_parameters, outfile)
+            else:
+                if imdb_multi_class:
+                    json_path = os.path.join(os.getcwd(), JSON_FOLDER, dataset.name, 'multi_class_classification', classifier_enum.name + ".json")
+                    with open(json_path, 'w') as outfile:
+                        json.dump(new_parameters, outfile)
+                else:
+                    json_path = os.path.join(os.getcwd(), JSON_FOLDER, dataset.name, 'binary_classification', classifier_enum.name + ".json")
+                    with open(json_path, 'w') as outfile:
+                        json.dump(new_parameters, outfile)
 
         logging.info('\n\nUSING {} WITH DEFAULT PARAMETERS'.format(classifier_enum.name))
         clf = classifer
@@ -399,7 +417,7 @@ def get_classifier_with_default_parameters(classifier_enum):
     return clf, parameters
 
 
-def run_grid_search(save_logs_in_file, just_imdb_dataset, imdb_multi_class):
+def run_grid_search(save_logs_in_file, just_imdb_dataset, imdb_multi_class, save_json_with_best_parameters=False):
     if imdb_multi_class:
         if save_logs_in_file:
             if not os.path.exists('grid_search/just_imdb_using_multi_class_classification'):
@@ -465,7 +483,7 @@ def run_grid_search(save_logs_in_file, just_imdb_dataset, imdb_multi_class):
             logging.info("Classifier: {}, Dataset: {}".format(classifier_enum.name, dataset.name))
             logging.info("*" * 80)
             start = time()
-            run_classifier_grid_search(clf, classifier_enum, parameters, dataset, final_classification_table_default_parameters, final_classification_table_best_parameters, imdb_multi_class)
+            run_classifier_grid_search(clf, classifier_enum, parameters, dataset, final_classification_table_default_parameters, final_classification_table_best_parameters, imdb_multi_class, save_json_with_best_parameters)
             end = time() - start
             logging.info("It took {} seconds".format(end))
             logging.info("*" * 80)
