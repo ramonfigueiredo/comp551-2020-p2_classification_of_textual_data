@@ -42,6 +42,12 @@
 |  13  |  RANDOM_FOREST_CLASSIFIER  |  85.45%  |  [0.8504 0.8584 0.8488 0.8518 0.8568]  |  0.85 (+/- 0.01)  |  9.593  |  0.6074  |
 |  14  |  RIDGE_CLASSIFIER  |  86.90%  |  [0.8838 0.8952 0.8892 0.882  0.8788]  |  0.89 (+/- 0.01)  |  0.541  |  0.008644  |
 
+#### Computer settings used to run
+
+* Operating system: Ubuntu 18.04.4 LTS (64-bit)
+* Processor: Intel® Core™ i7-8700 CPU @ 3.20GHz × 12
+* Memory: 64 GB
+
 #### All logs
 
 ```

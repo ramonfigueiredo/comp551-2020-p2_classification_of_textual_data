@@ -85,6 +85,11 @@
 03/07/2020 10:00:05 PM - INFO - |  14  |  RIDGE_CLASSIFIER  |  70.02%  |  [0.76756518 0.74502872 0.76800707 0.776403   0.76083112]  |  76.36 (+/- 2.10)  |  2.787  |  0.02243  |
 
 
+#### Computer settings used to run
+
+* Operating system: Ubuntu 18.04.4 LTS (64-bit)
+* Processor: Intel® Core™ i7-8700 CPU @ 3.20GHz × 12
+* Memory: 64 GB
 
 #### All logs
 
