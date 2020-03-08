@@ -18,7 +18,7 @@ warnings.filterwarnings('always')
 warnings.filterwarnings('ignore')
 
 
-def plot_history(history):
+def plot_history(history, dataset):
     print("Plotting the grapsh")
     acc = history.history['accuracy']
     val_acc = history.history['val_accuracy']
@@ -121,4 +121,4 @@ def run_deep_learning_using_keras(options):
 
         plt.style.use('ggplot')
 
-        plot_history(history)
+        plot_history(history, dataset)
