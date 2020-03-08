@@ -1,0 +1,1 @@
+{"leaf_size": 5, "metric": "euclidean", "n_neighbors": 50, "weights": "distance"}
