@@ -18,6 +18,7 @@ from sklearn.tree import DecisionTreeClassifier
 from utils.dataset_enum import Dataset
 from utils.ml_classifiers_enum import Classifier
 
+
 JSON_FOLDER = 'model_selection' + os.sep + 'json_with_best_parameters'
 
 
@@ -61,410 +62,210 @@ def get_ml_algorithm_pair_list(options, ml_algorithm_list, use_classifiers_with_
         if use_classifiers_with_default_parameters:
             ml_final_list.append((AdaBoostClassifier(random_state=options.random_state), Classifier.ADA_BOOST_CLASSIFIER))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.ADA_BOOST_CLASSIFIER, use_imdb_multi_class_labels)
+            json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.ADA_BOOST_CLASSIFIER, use_imdb_multi_class_labels)
+            # adding options.random_state in the map
+            json_with_best_parameters['random_state'] = options.random_state
 
-                # adding options.random_state in the map
-                json_with_best_parameters['random_state'] = options.random_state
+            # create classifier with best parameters
+            classifier_with_best_parameters = AdaBoostClassifier(**json_with_best_parameters)
+            print('\t', classifier_with_best_parameters)
 
-                # create classifier with best parameters
-                classifier_with_best_parameters = AdaBoostClassifier(**json_with_best_parameters)
-                print('\t', classifier_with_best_parameters)
+            ml_final_list.append((classifier_with_best_parameters, Classifier.ADA_BOOST_CLASSIFIER))
 
-                ml_final_list.append((classifier_with_best_parameters, Classifier.ADA_BOOST_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.ADA_BOOST_CLASSIFIER, use_imdb_multi_class_labels)
-
-                    # adding options.random_state in the map
-                    json_with_best_parameters['random_state'] = options.random_state
-
-                    # create classifier with best parameters
-                    classifier_with_best_parameters = AdaBoostClassifier(**json_with_best_parameters)
-                    print('\t', classifier_with_best_parameters)
-
-                    ml_final_list.append((classifier_with_best_parameters, Classifier.ADA_BOOST_CLASSIFIER))
-                else:
-                    # IMDb with binary classification
-                    json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.ADA_BOOST_CLASSIFIER, use_imdb_multi_class_labels)
-
-                    # adding options.random_state in the map
-                    json_with_best_parameters['random_state'] = options.random_state
-
-                    # create classifier with best parameters
-                    classifier_with_best_parameters = AdaBoostClassifier(**json_with_best_parameters)
-                    print('\t', classifier_with_best_parameters)
-
-                    ml_final_list.append((classifier_with_best_parameters, Classifier.ADA_BOOST_CLASSIFIER))
 
     if Classifier.BERNOULLI_NB.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
             ml_final_list.append((BernoulliNB(), Classifier.BERNOULLI_NB))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.BERNOULLI_NB, use_imdb_multi_class_labels)
+            json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.BERNOULLI_NB, use_imdb_multi_class_labels)
 
-                # create classifier with best parameters
-                classifier_with_best_parameters = BernoulliNB(**json_with_best_parameters)
-                print('\t', classifier_with_best_parameters)
+            # create classifier with best parameters
+            classifier_with_best_parameters = BernoulliNB(**json_with_best_parameters)
+            print('\t', classifier_with_best_parameters)
 
-                ml_final_list.append((classifier_with_best_parameters, Classifier.BERNOULLI_NB))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.BERNOULLI_NB, use_imdb_multi_class_labels)
-
-                    # create classifier with best parameters
-                    classifier_with_best_parameters = BernoulliNB(**json_with_best_parameters)
-                    print('\t', classifier_with_best_parameters)
-
-                    ml_final_list.append((classifier_with_best_parameters, Classifier.BERNOULLI_NB))
-                else:
-                    json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.BERNOULLI_NB, use_imdb_multi_class_labels)
-
-                    # create classifier with best parameters
-                    classifier_with_best_parameters = BernoulliNB(**json_with_best_parameters)
-                    print('\t', classifier_with_best_parameters)
-
-                    ml_final_list.append((classifier_with_best_parameters, Classifier.BERNOULLI_NB))
+            ml_final_list.append((classifier_with_best_parameters, Classifier.BERNOULLI_NB))
 
     if Classifier.COMPLEMENT_NB.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
             ml_final_list.append((ComplementNB(), Classifier.COMPLEMENT_NB))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.COMPLEMENT_NB, use_imdb_multi_class_labels)
+            json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.COMPLEMENT_NB, use_imdb_multi_class_labels)
 
-                # create classifier with best parameters
-                classifier_with_best_parameters = ComplementNB(**json_with_best_parameters)
-                print('\t', classifier_with_best_parameters)
+            # create classifier with best parameters
+            classifier_with_best_parameters = ComplementNB(**json_with_best_parameters)
+            print('\t', classifier_with_best_parameters)
 
-                ml_final_list.append((classifier_with_best_parameters, Classifier.COMPLEMENT_NB))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.COMPLEMENT_NB, use_imdb_multi_class_labels)
-
-                    # create classifier with best parameters
-                    classifier_with_best_parameters = ComplementNB(**json_with_best_parameters)
-                    print('\t', classifier_with_best_parameters)
-
-                    ml_final_list.append((classifier_with_best_parameters, Classifier.COMPLEMENT_NB))
-                else:
-                    # IMDb with binary classification
-                    json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.COMPLEMENT_NB, use_imdb_multi_class_labels)
-
-                    # create classifier with best parameters
-                    classifier_with_best_parameters = ComplementNB(**json_with_best_parameters)
-                    print('\t', classifier_with_best_parameters)
-
-                    ml_final_list.append((classifier_with_best_parameters, Classifier.COMPLEMENT_NB))
+            ml_final_list.append((classifier_with_best_parameters, Classifier.COMPLEMENT_NB))
 
     if Classifier.DECISION_TREE_CLASSIFIER.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
-            ml_final_list.append \
-                ((DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER))
+            ml_final_list.append((DecisionTreeClassifier(random_state=options.random_state), Classifier.DECISION_TREE_CLASSIFIER))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                '''
-                
-                '''
-                ml_final_list.append((DecisionTreeClassifier(random_state=options.random_state, criterion='entropy',
-                                                             max_depth=19, min_samples_split=110, splitter='best'),
-                                      Classifier.DECISION_TREE_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    '''
-                    
-                    '''
-                    ml_final_list.append((DecisionTreeClassifier(random_state=options.random_state, criterion='entropy',
-                                                                 max_depth=19, min_samples_split=250,
-                                                                 splitter='random'),
-                                          Classifier.DECISION_TREE_CLASSIFIER))
-                else:
-                    # IMDb with binary classification
-                    '''
-                    
-                    '''
-                    ml_final_list.append \
-                        ((DecisionTreeClassifier(random_state=options.random_state),
-                          Classifier.DECISION_TREE_CLASSIFIER))
+            json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.DECISION_TREE_CLASSIFIER, use_imdb_multi_class_labels)
+            # adding options.random_state in the map
+            json_with_best_parameters['random_state'] = options.random_state
+
+            # create classifier with best parameters
+            classifier_with_best_parameters = DecisionTreeClassifier(**json_with_best_parameters)
+            print('\t', classifier_with_best_parameters)
+
+            ml_final_list.append((classifier_with_best_parameters, Classifier.DECISION_TREE_CLASSIFIER))
 
     if Classifier.GRADIENT_BOOSTING_CLASSIFIER.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
             ml_final_list.append(
-                (GradientBoostingClassifier(verbose=options.verbose, random_state=options.random_state),
-                 Classifier.GRADIENT_BOOSTING_CLASSIFIER))
+                (GradientBoostingClassifier(verbose=options.verbose, random_state=options.random_state), Classifier.GRADIENT_BOOSTING_CLASSIFIER))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                '''
-                
-                '''
-                ml_final_list.append((GradientBoostingClassifier(verbose=options.verbose,
-                                                                 random_state=options.random_state),
-                                      Classifier.GRADIENT_BOOSTING_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    '''
-                    
-                    '''
-                    ml_final_list.append((GradientBoostingClassifier(verbose=options.verbose,
-                                                                     random_state=options.random_state),
-                                          Classifier.GRADIENT_BOOSTING_CLASSIFIER))
-                else:
-                    # IMDb with binary classification
-                    '''
-                    
-                    '''
-                    ml_final_list.append(
-                        (GradientBoostingClassifier(verbose=options.verbose, random_state=options.random_state),
-                         Classifier.GRADIENT_BOOSTING_CLASSIFIER))
+            json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.GRADIENT_BOOSTING_CLASSIFIER, use_imdb_multi_class_labels)
+            # adding options.verbose in the map
+            json_with_best_parameters['verbose'] = options.verbose
+            # adding options.random_state in the map
+            json_with_best_parameters['random_state'] = options.random_state
+
+            # create classifier with best parameters
+            classifier_with_best_parameters = GradientBoostingClassifier(**json_with_best_parameters)
+            print('\t', classifier_with_best_parameters)
+
+            ml_final_list.append((classifier_with_best_parameters, Classifier.GRADIENT_BOOSTING_CLASSIFIER))
 
     if Classifier.K_NEIGHBORS_CLASSIFIER.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
-            '''
-            
-            '''
             ml_final_list.append((KNeighborsClassifier(n_jobs=options.n_jobs), Classifier.K_NEIGHBORS_CLASSIFIER))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                '''
-                
-                '''
-                ml_final_list.append((KNeighborsClassifier(n_jobs=options.n_jobs, leaf_size=5, metric='euclidean',
-                                                           n_neighbors=3, weights='distance'),
-                                      Classifier.K_NEIGHBORS_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    '''
-                    
-                    '''
-                    ml_final_list.append((KNeighborsClassifier(n_jobs=options.n_jobs, leaf_size=5, metric='euclidean',
-                                                               n_neighbors=50, weights='distance'),
-                                          Classifier.K_NEIGHBORS_CLASSIFIER))
-                else:
-                    # IMDb with binary classification
-                    '''
-                    
-                    '''
-                    ml_final_list.append(
-                        (KNeighborsClassifier(n_jobs=options.n_jobs), Classifier.K_NEIGHBORS_CLASSIFIER))
+            json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.K_NEIGHBORS_CLASSIFIER, use_imdb_multi_class_labels)
+            # adding options.random_state in the map
+            json_with_best_parameters['n_jobs'] = options.n_jobs
+
+            # create classifier with best parameters
+            classifier_with_best_parameters = KNeighborsClassifier(**json_with_best_parameters)
+            print('\t', classifier_with_best_parameters)
+
+            ml_final_list.append((classifier_with_best_parameters, Classifier.K_NEIGHBORS_CLASSIFIER))
 
     if Classifier.LINEAR_SVC.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
-            ml_final_list.append \
-                ((LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC))
+            ml_final_list.append((LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                '''
-                
-                '''
-                ml_final_list.append((LinearSVC(verbose=options.verbose, random_state=options.random_state, C=1.0,
-                                                dual=True, max_iter=100, multi_class='ovr', tol=0.1),
-                                      Classifier.LINEAR_SVC))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    '''
-                    
-                    '''
-                    ml_final_list.append((LinearSVC(verbose=options.verbose, random_state=options.random_state, C=0.01,
-                                                    dual=True, max_iter=5000, multi_class='crammer_singer', tol=0.001),
-                                          Classifier.LINEAR_SVC))
-                else:
-                    # IMDb with binary classification
-                    '''
-                    
-                    '''
-                    ml_final_list.append \
-                        ((LinearSVC(verbose=options.verbose, random_state=options.random_state), Classifier.LINEAR_SVC))
+            json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.LINEAR_SVC, use_imdb_multi_class_labels)
+            # adding options.verbose in the map
+            json_with_best_parameters['verbose'] = options.verbose
+            # adding options.random_state in the map
+            json_with_best_parameters['random_state'] = options.random_state
+
+            # create classifier with best parameters
+            classifier_with_best_parameters = LinearSVC(**json_with_best_parameters)
+            print('\t', classifier_with_best_parameters)
+
+            ml_final_list.append((classifier_with_best_parameters, Classifier.LINEAR_SVC))
 
     if Classifier.LOGISTIC_REGRESSION.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
-            ml_final_list.append((LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                     random_state=options.random_state),
-                                  Classifier.LOGISTIC_REGRESSION))
+            ml_final_list.append((LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.LOGISTIC_REGRESSION))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                '''
-                
-                '''
-                ml_final_list.append((LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                         random_state=options.random_state, C=10.01, dual=False,
-                                                         max_iter=100, multi_class='ovr', tol=0.01),
-                                      Classifier.LOGISTIC_REGRESSION))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    '''
-                    
-                    '''
-                    ml_final_list.append((LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                             random_state=options.random_state, C=1.0, dual=False,
-                                                             max_iter=100, multi_class='ovr', tol=0.01),
-                                          Classifier.LOGISTIC_REGRESSION))
-                else:
-                    # IMDb with binary classification
-                    ml_final_list.append((LogisticRegression(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                             random_state=options.random_state),
-                                          Classifier.LOGISTIC_REGRESSION))
+            json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.LOGISTIC_REGRESSION, use_imdb_multi_class_labels)
+            # adding options.n_jobs in the map
+            json_with_best_parameters['n_jobs'] = options.n_jobs
+            # adding options.verbose in the map
+            json_with_best_parameters['verbose'] = options.verbose
+            # adding options.random_state in the map
+            json_with_best_parameters['random_state'] = options.random_state
+
+            # create classifier with best parameters
+            classifier_with_best_parameters = LogisticRegression(**json_with_best_parameters)
+            print('\t', classifier_with_best_parameters)
+
+            ml_final_list.append((classifier_with_best_parameters, Classifier.LOGISTIC_REGRESSION))
 
     if Classifier.MULTINOMIAL_NB.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
             ml_final_list.append((MultinomialNB(), Classifier.MULTINOMIAL_NB))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                '''
-                
-                '''
-                ml_final_list.append((MultinomialNB(alpha=0.01, fit_prior=True), Classifier.MULTINOMIAL_NB))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    '''
-                    
-                    '''
-                    ml_final_list.append((MultinomialNB(alpha=0.1, fit_prior=True), Classifier.MULTINOMIAL_NB))
-                else:
-                    # IMDb with binary classification
-                    '''
-                    
-                    '''
-                    ml_final_list.append((MultinomialNB(), Classifier.MULTINOMIAL_NB))
+            json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.MULTINOMIAL_NB, use_imdb_multi_class_labels)
+
+            # create classifier with best parameters
+            classifier_with_best_parameters = MultinomialNB(**json_with_best_parameters)
+            print('\t', classifier_with_best_parameters)
+
+            ml_final_list.append((classifier_with_best_parameters, Classifier.MULTINOMIAL_NB))
 
     if Classifier.NEAREST_CENTROID.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
             ml_final_list.append((NearestCentroid(), Classifier.NEAREST_CENTROID))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                '''
-                
-                '''
-                ml_final_list.append((NearestCentroid(metric='cosine'), Classifier.NEAREST_CENTROID))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    '''
-                    
-                    '''
-                    ml_final_list.append((NearestCentroid(metric='cosine'), Classifier.NEAREST_CENTROID))
-                else:
-                    # IMDb with binary classification
-                    '''
-                    
-                    '''
-                    ml_final_list.append((NearestCentroid(), Classifier.NEAREST_CENTROID))
+            json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.NEAREST_CENTROID, use_imdb_multi_class_labels)
+
+            # create classifier with best parameters
+            classifier_with_best_parameters = NearestCentroid(**json_with_best_parameters)
+            print('\t', classifier_with_best_parameters)
+
+            ml_final_list.append((classifier_with_best_parameters, Classifier.NEAREST_CENTROID))
 
     if Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
-            ml_final_list.append((PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                              random_state=options.random_state),
-                                  Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER))
+            ml_final_list.append((PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                '''
-                
-                '''
-                ml_final_list.append((PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                                  random_state=options.random_state, C=0.01,
-                                                                  average=False, class_weight='balanced',
-                                                                  early_stopping=False, max_iter=100,
-                                                                  n_iter_no_change=5, tol=0.0001,
-                                                                  validation_fraction=0.1),
-                                      Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    '''
-                    
-                    '''
-                    ml_final_list.append((PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                                      random_state=options.random_state, C=0.01,
-                                                                      average=False, class_weight=None,
-                                                                      early_stopping=True, max_iter=100,
-                                                                      n_iter_no_change=5, tol=0.01,
-                                                                      validation_fraction=0.01),
-                                          Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER))
-                else:
-                    # IMDb with binary classification
-                    '''
-                    
-                    '''
-                    ml_final_list.append((PassiveAggressiveClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                                      random_state=options.random_state),
-                                          Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER))
+            json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER, use_imdb_multi_class_labels)
+            # adding options.n_jobs in the map
+            json_with_best_parameters['n_jobs'] = options.n_jobs
+            # adding options.verbose in the map
+            json_with_best_parameters['verbose'] = options.verbose
+            # adding options.random_state in the map
+            json_with_best_parameters['random_state'] = options.random_state
+
+            # create classifier with best parameters
+            classifier_with_best_parameters = PassiveAggressiveClassifier(**json_with_best_parameters)
+            print('\t', classifier_with_best_parameters)
+
+            ml_final_list.append((classifier_with_best_parameters, Classifier.PASSIVE_AGGRESSIVE_CLASSIFIER))
 
     if Classifier.PERCEPTRON.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
-            ml_final_list.append((Perceptron(n_jobs=options.n_jobs, verbose=options.verbose,
-                                             random_state=options.random_state), Classifier.PERCEPTRON))
+            ml_final_list.append((Perceptron(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.PERCEPTRON))
         else:
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                '''
-                
-                '''
-                ml_final_list.append((Perceptron(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                 random_state=options.random_state, alpha=0.0001,
-                                                 class_weight='balanced', early_stopping=True, max_iter=100,
-                                                 n_iter_no_change=15, penalty='l2', tol=0.1, validation_fraction=0.01),
-                                      Classifier.PERCEPTRON))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    '''
-                    
-                    '''
-                    ml_final_list.append((Perceptron(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                     random_state=options.random_state, alpha=0.0001, class_weight=None,
-                                                     early_stopping=True, max_iter=100, n_iter_no_change=3,
-                                                     penalty='l2', tol=0.0001, validation_fraction=0.001),
-                                          Classifier.PERCEPTRON))
-                else:
-                    # IMDb with binary classification
-                    '''
-                    
-                    '''
-                    ml_final_list.append((Perceptron(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                     random_state=options.random_state), Classifier.PERCEPTRON))
+            json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.PERCEPTRON, use_imdb_multi_class_labels)
+            # adding options.n_jobs in the map
+            json_with_best_parameters['n_jobs'] = options.n_jobs
+            # adding options.verbose in the map
+            json_with_best_parameters['verbose'] = options.verbose
+            # adding options.random_state in the map
+            json_with_best_parameters['random_state'] = options.random_state
+
+            # create classifier with best parameters
+            classifier_with_best_parameters = Perceptron(**json_with_best_parameters)
+            print('\t', classifier_with_best_parameters)
+
+            ml_final_list.append((classifier_with_best_parameters, Classifier.PERCEPTRON))
 
     if Classifier.RANDOM_FOREST_CLASSIFIER.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
-            ml_final_list.append((RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                         random_state=options.random_state),
-                                  Classifier.RANDOM_FOREST_CLASSIFIER))
+            ml_final_list.append((RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose, random_state=options.random_state), Classifier.RANDOM_FOREST_CLASSIFIER))
         else:
-            '''
-            
-            '''
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                ml_final_list.append((RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                             random_state=options.random_state),
-                                      Classifier.RANDOM_FOREST_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    ml_final_list.append((RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                                 random_state=options.random_state),
-                                          Classifier.RANDOM_FOREST_CLASSIFIER))
-                else:
-                    # IMDb with binary classification
-                    '''
-                    
-                    '''
-                    ml_final_list.append((RandomForestClassifier(n_jobs=options.n_jobs, verbose=options.verbose,
-                                                                 random_state=options.random_state),
-                                          Classifier.RANDOM_FOREST_CLASSIFIER))
+            json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.RANDOM_FOREST_CLASSIFIER, use_imdb_multi_class_labels)
+            # adding options.n_jobs in the map
+            json_with_best_parameters['n_jobs'] = options.n_jobs
+            # adding options.verbose in the map
+            json_with_best_parameters['verbose'] = options.verbose
+            # adding options.random_state in the map
+            json_with_best_parameters['random_state'] = options.random_state
+
+            # create classifier with best parameters
+            classifier_with_best_parameters = RandomForestClassifier(**json_with_best_parameters)
+            print('\t', classifier_with_best_parameters)
+
+            ml_final_list.append((classifier_with_best_parameters, Classifier.RANDOM_FOREST_CLASSIFIER))
 
     if Classifier.RIDGE_CLASSIFIER.name in ml_algorithm_list:
         if use_classifiers_with_default_parameters:
             ml_final_list.append((RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER))
         else:
-            '''
-            
-            '''
-            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                ml_final_list.append((RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER))
-            elif dataset == Dataset.IMDB_REVIEWS.name:
-                if use_imdb_multi_class_labels:
-                    ml_final_list.append(
-                        (RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER))
-                else:
-                    # IMDb with binary classification
-                    '''
-                    
-                    '''
-                    ml_final_list.append(
-                        (RidgeClassifier(random_state=options.random_state), Classifier.RIDGE_CLASSIFIER))
+            json_with_best_parameters = get_json_with_best_parameters(dataset, Classifier.RIDGE_CLASSIFIER, use_imdb_multi_class_labels)
+            # adding options.random_state in the map
+            json_with_best_parameters['random_state'] = options.random_state
+
+            # create classifier with best parameters
+            classifier_with_best_parameters = RidgeClassifier(**json_with_best_parameters)
+            print('\t', classifier_with_best_parameters)
+
+            ml_final_list.append((classifier_with_best_parameters, Classifier.RIDGE_CLASSIFIER))
 
     return ml_final_list
