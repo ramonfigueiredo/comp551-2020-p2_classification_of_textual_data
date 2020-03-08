@@ -1,11 +1,5 @@
 ## Deep Learning using Keras (TWENTY_NEWS_GROUP and IMDB_REVIEWS)
 
-#### Computer settings used to run
-
-* Operating system: Ubuntu 18.04.4 LTS (64-bit)
-* Processor: Intel® Core™ i7-8700 CPU @ 3.20GHz × 12
-* Memory: 64 GB
-
 #### Training and Validation Accuracy and Loss
 
 Training Accuracy: 98.92%
@@ -19,6 +13,19 @@ Testing Accuracy:  84.16%
 |  TWENTY_NEWS_GROUPS | 98.92%                | 96.50%            |
 |  IMDB_REVIEWS       | 99.96%                | 84.16%            |
 
+#### TWENTY_NEWS_GROUPS: Training and Validation Accuracy, Training and Validation Loss
+
+![TWENTY_NEWS_GROUPS: Training and Validation Accuracy, Training and Validation Loss](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/TWENTY_NEWS_GROUPS_training_and_validation_accuracy_and_Loss.png)
+
+#### IMDB_REVIEWS: Training and Validation Accuracy, Training and Validation Loss
+
+![IMDB_REVIEWS: Training and Validation Accuracy, Training and Validation Loss](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/IMDB_REVIEWS_training_and_validation_accuracy_and_Loss.png)
+
+#### Computer settings used to run
+
+* Operating system: Ubuntu 18.04.4 LTS (64-bit)
+* Processor: Intel® Core™ i7-8700 CPU @ 3.20GHz × 12
+* Memory: 64 GB
 
 ```
 /home/rpessoa/virtual_envs/comp551_p2/bin/python /home/rpessoa/github/comp551-2020-p2_classification_of_textual_data/code/main.py --run_deep_learning_using_keras
