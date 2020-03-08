@@ -33,7 +33,13 @@
 |  4  |  LOGISTIC_REGRESSION  |  87.75%  |  [0.8892 0.8856 0.889  0.8876 0.891 ]  |  0.89 (+/- 0.00)  |  1.837  |  0.01146  |
 |  5  |  RANDOM_FOREST_CLASSIFIER  |  85.17%  |  [0.8576 0.8544 0.8528 0.8522 0.8546]  |  0.85 (+/- 0.00)  |  43.13  |  2.226  |
 
-![FINAL CLASSIFICATION TABLE: IMDB_REVIEWS dataset (Binary classification)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/just_miniproject_classifiers_20newsgroups_and_imdb_using_binary_classification/IMDB_REVIEWS_binary_classification.png)
+* Accuracy score
+
+![FINAL CLASSIFICATION TABLE (Accuracy score): IMDB_REVIEWS dataset (Binary classification)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/just_miniproject_classifiers_20newsgroups_and_imdb_using_binary_classification/IMDB_REVIEWS_binary_classification-just_accuracy_score.png)
+
+* Accuracy score, normalized training time and normalized test time
+
+![FINAL CLASSIFICATION TABLE (Accuracy score and normalized training and test time): IMDB_REVIEWS dataset (Binary classification)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/just_miniproject_classifiers_20newsgroups_and_imdb_using_binary_classification/IMDB_REVIEWS_binary_classification.png)
 
 #### Computer settings used to run
 
