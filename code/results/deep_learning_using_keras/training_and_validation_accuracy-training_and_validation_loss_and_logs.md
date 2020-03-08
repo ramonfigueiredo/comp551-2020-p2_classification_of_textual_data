@@ -1,8 +1,8 @@
 ## Deep Learning using Keras (TWENTY_NEWS_GROUP and IMDB_REVIEWS)
 
-#### Training and Validation Accuracy and Loss
+#### Deep Learning using Keras: Training and Validation Accuracy and Loss
 
-| DATASET             | Training Accuracy (%) | Test Accuracy (%) | 
+| Dataset             | Training Accuracy (%) | Test Accuracy (%) | 
 | ------------------- | --------------------- | ----------------- |
 |  TWENTY_NEWS_GROUPS | 97.56%                | 95.98%            |
 |  IMDB_REVIEWS       | 99.96%                | 84.17%            |
