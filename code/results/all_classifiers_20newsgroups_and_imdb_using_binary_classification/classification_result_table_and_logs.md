@@ -23,11 +23,11 @@
 
 * Accuracy Score
 
-![FINAL CLASSIFICATION TABLE (Accuracy Score): TWENTY_NEWS_GROUPS dataset (removing headers signatures and quoting)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/all_classifiers_20newsgroups_and_imdb_using_binary_classification/TWENTY_NEWS_GROUPS.png)
+![FINAL CLASSIFICATION TABLE (Accuracy Score): TWENTY_NEWS_GROUPS dataset (removing headers signatures and quoting)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/all_classifiers_20newsgroups_and_imdb_using_binary_classification/TWENTY_NEWS_GROUPS-just_accuracy_score.png)
 
 * Accuracy Score, Normalized Training Time and Normalized Test Time
 
-![FINAL CLASSIFICATION TABLE (Accuracy Score and Normalized Training and Test Time): TWENTY_NEWS_GROUPS dataset (removing headers signatures and quoting)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/all_classifiers_20newsgroups_and_imdb_using_binary_classification/TWENTY_NEWS_GROUPS-just_accuracy_score.png)
+![FINAL CLASSIFICATION TABLE (Accuracy Score and Normalized Training and Test Time): TWENTY_NEWS_GROUPS dataset (removing headers signatures and quoting)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/all_classifiers_20newsgroups_and_imdb_using_binary_classification/TWENTY_NEWS_GROUPS.png)
 
 ### IMDB using Binary Classification
 
