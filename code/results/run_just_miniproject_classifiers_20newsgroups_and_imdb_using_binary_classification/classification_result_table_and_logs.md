@@ -31,7 +31,7 @@
 #### All logs
 
 ```
-/home/ramon/virtual_envs/comp551_p2/bin/python /home/ramon/github/comp551-2020-p2_classification_of_textual_data/code/main.py --run_cross_validation --report --all_metrics --confusion_matrix --plot_accurary_and_time_together --use_just_miniproject_classifiers
+python /comp551-2020-p2_classification_of_textual_data/code/main.py --run_cross_validation --report --all_metrics --confusion_matrix --plot_accurary_and_time_together --use_just_miniproject_classifiers
 03/08/2020 10:37:16 AM - INFO - Program started...
 usage: main.py [-h] [-d DATASET] [-ml ML_ALGORITHM_LIST]
                [-use_default_parameters] [-not_shuffle] [-n_jobs N_JOBS] [-cv]
