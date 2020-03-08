@@ -13,7 +13,7 @@
 |  4  |  LOGISTIC_REGRESSION  |  69.28%  |  [0.75961114 0.74016792 0.75519222 0.7565179  0.73607427]  |  0.75 (+/- 0.02)  |  50.95  |  0.03105  |
 |  5  |  RANDOM_FOREST_CLASSIFIER  |  63.71%  |  [0.69465312 0.66902342 0.68272205 0.69730446 0.67462423]  |  0.68 (+/- 0.02)  |  42.94  |  1.114  |
 
-
+![FINAL CLASSIFICATION TABLE: TWENTY_NEWS_GROUPS dataset (removing headers signatures and quoting)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/just_miniproject_classifiers_20newsgroups_and_imdb_using_binary_classification/TWENTY_NEWS_GROUPS.png)
 
 ### IMDB using Binary Classification
 
@@ -26,6 +26,8 @@
 |  3  |  LINEAR_SVC  |  87.13%  |  [0.8862 0.8798 0.8838 0.8856 0.8876]  |  0.88 (+/- 0.01)  |  0.5033  |  0.006712  |
 |  4  |  LOGISTIC_REGRESSION  |  87.75%  |  [0.8892 0.8856 0.889  0.8876 0.891 ]  |  0.89 (+/- 0.00)  |  1.837  |  0.01146  |
 |  5  |  RANDOM_FOREST_CLASSIFIER  |  85.17%  |  [0.8576 0.8544 0.8528 0.8522 0.8546]  |  0.85 (+/- 0.00)  |  43.13  |  2.226  |
+
+![FINAL CLASSIFICATION TABLE: IMDB_REVIEWS dataset (Binary classification)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/just_miniproject_classifiers_20newsgroups_and_imdb_using_binary_classification/IMDB_REVIEWS_binary_classification.png)
 
 #### Computer settings used to run
 
