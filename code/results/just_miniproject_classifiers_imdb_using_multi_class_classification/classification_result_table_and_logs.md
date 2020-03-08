@@ -12,6 +12,8 @@
 |  4  |  LOGISTIC_REGRESSION  |  42.04%  |  [0.422  0.4256 0.4264 0.424  0.4288]  |  0.43 (+/- 0.00)  |  20.88  |  0.04449  |
 |  5  |  RANDOM_FOREST_CLASSIFIER  |  37.84%  |  [0.3736 0.3752 0.3736 0.3766 0.3738]  |  0.37 (+/- 0.00)  |  31.31  |  2.228  |
 
+![FINAL CLASSIFICATION TABLE: IMDB_REVIEWS dataset (Multi-class classification)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/just_miniproject_classifiers_imdb_using_multi_class_classification/IMDB_REVIEWS_multi_class_classification.png)
+
 #### Computer settings used to run
 
 * Operating system: Ubuntu 18.04.3 LTS (64-bit)
