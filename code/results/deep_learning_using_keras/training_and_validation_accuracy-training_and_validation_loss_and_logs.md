@@ -22,7 +22,7 @@
 * Memory: 64 GB
 
 ```
-/home/rpessoa/virtual_envs/comp551_p2/bin/python /home/rpessoa/github/comp551-2020-p2_classification_of_textual_data/code/main.py --run_deep_learning_using_keras
+python /comp551-2020-p2_classification_of_textual_data/code/main.py --run_deep_learning_using_keras
 Using TensorFlow backend.
 2020-03-08 15:51:54.921612: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer.so.6'; dlerror: libnvinfer.so.6: cannot open shared object file: No such file or directory
 2020-03-08 15:51:54.921671: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer_plugin.so.6'; dlerror: libnvinfer_plugin.so.6: cannot open shared object file: No such file or directory
