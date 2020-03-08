@@ -22,6 +22,7 @@
 |  13  |  RANDOM_FOREST_CLASSIFIER  |  37.72%  |  [0.369  0.3796 0.3768 0.3728 0.3718]  |  0.37 (+/- 0.01)  |  9.596  |  0.708  |
 |  14  |  RIDGE_CLASSIFIER  |  38.55%  |  [0.4036 0.4074 0.402  0.3954 0.4   ]  |  0.40 (+/- 0.01)  |  2.934  |  0.04121  |
 
+![FINAL CLASSIFICATION TABLE: IMDB_REVIEWS dataset (Multi-class classification)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/all_classifiers_just_imdb_using_multi_class_classification/IMDB_REVIEWS_multi_class_classification.png)
 
 #### Computer settings used to run
 
