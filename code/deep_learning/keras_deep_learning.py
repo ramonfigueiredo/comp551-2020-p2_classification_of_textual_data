@@ -18,6 +18,28 @@ warnings.filterwarnings('always')
 warnings.filterwarnings('ignore')
 
 
+def plot_history(history):
+    print("Plotting the grapsh")
+    acc = history.history['accuracy']
+    val_acc = history.history['val_accuracy']
+    loss = history.history['loss']
+    val_loss = history.history['val_loss']
+    x = range(1, len(acc) + 1)
+
+    plt.figure(figsize=(12, 5))
+    plt.subplot(1, 2, 1)
+    plt.plot(x, acc, 'b', label='Training acc')
+    plt.plot(x, val_acc, 'r', label='Validation acc')
+    plt.title('Training and validation accuracy ({})'.format(dataset))
+    plt.legend()
+    plt.subplot(1, 2, 2)
+    plt.plot(x, loss, 'b', label='Training loss')
+    plt.plot(x, val_loss, 'r', label='Validation loss')
+    plt.title('Training and validation loss ({})'.format(dataset))
+    plt.legend()
+    plt.show()
+
+
 def run_deep_learning_using_keras(options):
 
     if options.save_logs_in_file:
@@ -99,43 +121,4 @@ def run_deep_learning_using_keras(options):
 
         plt.style.use('ggplot')
 
-
-        def plot_history(history):
-            print("Plotting the grapsh")
-            acc = history.history['accuracy']
-            val_acc = history.history['val_accuracy']
-            loss = history.history['loss']
-            val_loss = history.history['val_loss']
-            x = range(1, len(acc) + 1)
-
-            plt.figure(figsize=(12, 5))
-            plt.subplot(1, 2, 1)
-            plt.plot(x, acc, 'b', label='Training acc')
-            plt.plot(x, val_acc, 'r', label='Validation acc')
-            plt.title('Training and validation accuracy ({})'.format(dataset))
-            plt.legend()
-            plt.subplot(1, 2, 2)
-            plt.plot(x, loss, 'b', label='Training loss')
-            plt.plot(x, val_loss, 'r', label='Validation loss')
-            plt.title('Training and validation loss ({})'.format(dataset))
-            plt.legend()
-            plt.show()
-
-
         plot_history(history)
-
-        # if options.run_cross_validation:
-        #     results = [[x[i] for x in results] for i in range(6)]
-        #     clf_name_list, accuracy_score_list, training_time_list, test_time_list, cross_val_score_list, cross_val_accuracy_score_mean_std_list = results
-        # else:
-        #     results = [[x[i] for x in results] for i in range(4)]
-        #     clf_name_list, accuracy_score_list, training_time_list, test_time_list = results
-        #
-        # training_time_list = np.array(training_time_list) / np.max(training_time_list)
-        # test_time_list = np.array(test_time_list) / np.max(test_time_list)
-        #
-        # title = plot_results(dataset, options, indices, clf_name_list, accuracy_score_list, training_time_list,
-        #                      test_time_list)
-        #
-        # print_final_classification_report(options, results, title)
-
