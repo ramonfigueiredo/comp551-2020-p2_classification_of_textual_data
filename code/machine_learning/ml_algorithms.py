@@ -86,7 +86,8 @@ def run_just_miniproject_classifiers(options, X_train, y_train, X_test, y_test,
         Classifier.ADA_BOOST_CLASSIFIER.name,
         Classifier.DECISION_TREE_CLASSIFIER.name,
         Classifier.LINEAR_SVC.name,
-        Classifier.LOGISTIC_REGRESSION.name
+        Classifier.LOGISTIC_REGRESSION.name,
+        Classifier.RANDOM_FOREST_CLASSIFIER
     ]
 
     try:
@@ -110,7 +111,8 @@ def run_just_miniproject_classifiers(options, X_train, y_train, X_test, y_test,
 def run_all_classifiers(options, X_train, y_train, X_test, y_test, use_classifiers_with_default_parameters,
                         use_imdb_multi_class_labels, dataset,
                         feature_names, target_names, results):
-    ml_algorithm_list = {classifier.name for classifier in Classifier}
+    ml_algorithm_list = [classifier.name for classifier in Classifier]
+    ml_algorithm_list.sort()
 
     try:
         for clf, classifier_name in (
