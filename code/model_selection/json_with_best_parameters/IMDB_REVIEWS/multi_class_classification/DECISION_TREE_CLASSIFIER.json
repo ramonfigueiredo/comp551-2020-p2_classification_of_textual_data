@@ -1,0 +1,1 @@
+{"criterion": "entropy", "min_samples_split": 250, "splitter": "random"}
