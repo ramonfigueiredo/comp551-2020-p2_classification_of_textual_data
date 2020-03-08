@@ -4,7 +4,6 @@ from utils.dataset_enum import Dataset
 
 
 def plot_history(history, dataset):
-    print("Plotting the grapsh")
     acc = history.history['accuracy']
     val_acc = history.history['val_accuracy']
     loss = history.history['loss']
