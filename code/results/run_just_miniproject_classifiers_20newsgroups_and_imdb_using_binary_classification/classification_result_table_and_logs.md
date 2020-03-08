@@ -27,6 +27,11 @@
 |  4  |  LOGISTIC_REGRESSION  |  87.75%  |  [0.8892 0.8856 0.889  0.8876 0.891 ]  |  0.89 (+/- 0.00)  |  1.837  |  0.01146  |
 |  5  |  RANDOM_FOREST_CLASSIFIER  |  85.17%  |  [0.8576 0.8544 0.8528 0.8522 0.8546]  |  0.85 (+/- 0.00)  |  43.13  |  2.226  |
 
+#### Computer settings used to run
+
+* Operating system: Ubuntu 18.04.3 LTS (64-bit)
+* Processor: Intel® Core™ i7-2620M CPU @ 2.70GHz × 4
+* Memory: 16 GB
 
 #### All logs
 
