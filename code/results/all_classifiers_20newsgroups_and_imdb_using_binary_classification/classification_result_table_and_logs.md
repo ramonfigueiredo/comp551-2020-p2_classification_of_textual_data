@@ -23,11 +23,11 @@
 
 * Accuracy score
 
-![FINAL CLASSIFICATION TABLE (Accuracy Score): TWENTY_NEWS_GROUPS dataset (removing headers signatures and quoting)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/all_classifiers_20newsgroups_and_imdb_using_binary_classification/TWENTY_NEWS_GROUPS-just_accuracy_score.png)
+![FINAL CLASSIFICATION TABLE (Accuracy score): TWENTY_NEWS_GROUPS dataset (removing headers signatures and quoting)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/all_classifiers_20newsgroups_and_imdb_using_binary_classification/TWENTY_NEWS_GROUPS-just_accuracy_score.png)
 
 * Accuracy score, normalized training time and normalized test time
 
-![FINAL CLASSIFICATION TABLE (Accuracy Score and Normalized Training and Test Time): TWENTY_NEWS_GROUPS dataset (removing headers signatures and quoting)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/all_classifiers_20newsgroups_and_imdb_using_binary_classification/TWENTY_NEWS_GROUPS.png)
+![FINAL CLASSIFICATION TABLE (Accuracy score and normalized training and test time): TWENTY_NEWS_GROUPS dataset (removing headers signatures and quoting)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/all_classifiers_20newsgroups_and_imdb_using_binary_classification/TWENTY_NEWS_GROUPS.png)
 
 ### IMDB using Binary Classification
 
@@ -50,7 +50,13 @@
 |  13  |  RANDOM_FOREST_CLASSIFIER  |  85.45%  |  [0.8504 0.8584 0.8488 0.8518 0.8568]  |  0.85 (+/- 0.01)  |  9.593  |  0.6074  |
 |  14  |  RIDGE_CLASSIFIER  |  86.90%  |  [0.8838 0.8952 0.8892 0.882  0.8788]  |  0.89 (+/- 0.01)  |  0.541  |  0.008644  |
 
-![FINAL CLASSIFICATION TABLE: IMDB_REVIEWS dataset (Binary classification)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/all_classifiers_20newsgroups_and_imdb_using_binary_classification/IMDB_REVIEWS_binary_classification.png)
+* Accuracy score
+
+![FINAL CLASSIFICATION TABLE (Accuracy score): IMDB_REVIEWS dataset (Binary classification)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/all_classifiers_20newsgroups_and_imdb_using_binary_classification/IMDB_REVIEWS_binary_classification-just_accuracy_score.png)
+
+* Accuracy score, normalized training time and normalized test time
+
+![FINAL CLASSIFICATION TABLE (Accuracy score and normalized training and test time): IMDB_REVIEWS dataset (Binary classification)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/all_classifiers_20newsgroups_and_imdb_using_binary_classification/IMDB_REVIEWS_binary_classification.png)
 
 #### Computer settings used to run
 
