@@ -14,7 +14,7 @@
 
 * Accuracy score
 
-![FINAL CLASSIFICATION TABLE (Accuracy score): IMDB_REVIEWS dataset (Multi-class classification)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/just_miniproject_classifiers_imdb_using_multi_class_classification/IMDB_REVIEWS_multi_class_classification-just_accuracy_time.png)
+![FINAL CLASSIFICATION TABLE (Accuracy score): IMDB_REVIEWS dataset (Multi-class classification)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/just_miniproject_classifiers_imdb_using_multi_class_classification/IMDB_REVIEWS_multi_class_classification-just_accuracy_score.png)
 
 * Accuracy score, normalized training time and normalized test time
 
