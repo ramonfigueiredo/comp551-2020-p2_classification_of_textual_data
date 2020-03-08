@@ -21,11 +21,11 @@
 |  13  |  RANDOM_FOREST_CLASSIFIER  |  63.71%  |  [0.69465312 0.66902342 0.68272205 0.69730446 0.67462423]  |  0.68 (+/- 0.02)  |  7.575  |  0.3064  |
 |  14  |  RIDGE_CLASSIFIER  |  70.02%  |  [0.76756518 0.74502872 0.76800707 0.776403   0.76083112]  |  0.76 (+/- 0.02)  |  3.189  |  0.0235  |
 
-* Accuracy Score
+* Accuracy score
 
 ![FINAL CLASSIFICATION TABLE (Accuracy Score): TWENTY_NEWS_GROUPS dataset (removing headers signatures and quoting)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/all_classifiers_20newsgroups_and_imdb_using_binary_classification/TWENTY_NEWS_GROUPS-just_accuracy_score.png)
 
-* Accuracy Score, Normalized Training Time and Normalized Test Time
+* Accuracy score, normalized training time and normalized test time
 
 ![FINAL CLASSIFICATION TABLE (Accuracy Score and Normalized Training and Test Time): TWENTY_NEWS_GROUPS dataset (removing headers signatures and quoting)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/all_classifiers_20newsgroups_and_imdb_using_binary_classification/TWENTY_NEWS_GROUPS.png)
 
