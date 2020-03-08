@@ -96,6 +96,9 @@ def get_options():
     parser.add_argument("-random_state",
                         action="store", type=int, dest="random_state", default=0,
                         help="Seed used by the random number generator. Default: 0")
+    parser.add_argument("-dl", "--run_deep_learning_using_keras",
+                        action="store_true", default=False, dest="run_deep_learning_using_keras",
+                        help="Run deep learning using keras. Default: False (Run scikit-learn algorithms)")
     parser.add_argument('-v', '--version', action='version', dest='version', version='%(prog)s 1.0')
 
     options = parser.parse_args()
@@ -156,5 +159,6 @@ def show_option(options, parser):
     print('\tSave logs in a file =', options.save_logs_in_file)
     print('\tSeed used by the random number generator (random_state) =', options.random_state)
     print('\tVerbose =', options.verbose)
+    print('\tRun deep learning using keras. Default: False (Run scikit-learn algorithms) =', options.run_deep_learning_using_keras)
     print('=' * 130)
     print()

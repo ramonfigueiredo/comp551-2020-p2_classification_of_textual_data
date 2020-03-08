@@ -1,36 +1,24 @@
 import logging
 import os
-from time import time
+# Ignore  the warnings
+import warnings
 
+import matplotlib.pyplot as plt
 import numpy as np
+from keras import layers
+from keras.models import Sequential
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 
-from argument_parser.argument_parser import get_options
 from datasets.load_dataset import load_dataset
 from feature_extraction.vectorizer import extract_text_features
 from feature_selection.select_k_best import select_k_best_using_chi2
-from machine_learning.ml_algorithms import run_all_classifiers
-from machine_learning.ml_algorithms import run_just_miniproject_classifiers
-from machine_learning.ml_algorithms import run_ml_algorithm_list
-from metrics.ml_metrics import print_final_classification_report
-from plotting.plot import plot_results
 from utils.dataset_enum import Dataset
-from utils.ml_classifiers_enum import validate_ml_list
 
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder
-
-from keras.models import Sequential
-from keras import layers
-
-# Ignore  the warnings
-import warnings
 warnings.filterwarnings('always')
 warnings.filterwarnings('ignore')
 
-import matplotlib.pyplot as plt
 
-if __name__ == '__main__':
-
-    options = get_options()
+def run_deep_learning_using_keras(options):
 
     if options.save_logs_in_file:
         if not os.path.exists('logs'):
@@ -42,8 +30,6 @@ if __name__ == '__main__':
                             datefmt='%m/%d/%Y %I:%M:%S %p')
 
     logging.info("Program started...")
-
-    start = time()
 
     dataset_list = []
 
@@ -60,7 +46,7 @@ if __name__ == '__main__':
         X_train, y_train, X_test, y_test, target_names, data_train_size_mb, data_test_size_mb = load_dataset(dataset,
                                                                                                              options)
 
-        if (dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels)\
+        if (dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels) \
                 or dataset == Dataset.TWENTY_NEWS_GROUPS.name:
             le_train = LabelEncoder()
             y_train = le_train.fit_transform(y_train)
@@ -75,7 +61,6 @@ if __name__ == '__main__':
             oh_test = OneHotEncoder(categories='auto', dtype=np.float, sparse=False, drop='first')
             y_test = y_test.reshape(len(y_test), 1)
             y_test = oh_test.fit_transform(y_test)
-
 
         vectorizer, X_train, X_test = extract_text_features(X_train, X_test, options, data_train_size_mb,
                                                             data_test_size_mb)
@@ -114,6 +99,7 @@ if __name__ == '__main__':
 
         plt.style.use('ggplot')
 
+
         def plot_history(history):
             print("Plotting the grapsh")
             acc = history.history['accuracy']
@@ -126,14 +112,15 @@ if __name__ == '__main__':
             plt.subplot(1, 2, 1)
             plt.plot(x, acc, 'b', label='Training acc')
             plt.plot(x, val_acc, 'r', label='Validation acc')
-            plt.title('Training and validation accuracy')
+            plt.title('Training and validation accuracy ({})'.format(dataset))
             plt.legend()
             plt.subplot(1, 2, 2)
             plt.plot(x, loss, 'b', label='Training loss')
             plt.plot(x, val_loss, 'r', label='Validation loss')
-            plt.title('Training and validation loss')
+            plt.title('Training and validation loss ({})'.format(dataset))
             plt.legend()
             plt.show()
+
 
         plot_history(history)
 
@@ -152,6 +139,3 @@ if __name__ == '__main__':
         #
         # print_final_classification_report(options, results, title)
 
-    print('\n\nDONE!')
-
-    print("Program finished. It took {} seconds".format(time() - start))
