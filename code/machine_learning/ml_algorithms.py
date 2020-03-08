@@ -87,7 +87,7 @@ def run_just_miniproject_classifiers(options, X_train, y_train, X_test, y_test,
         Classifier.DECISION_TREE_CLASSIFIER.name,
         Classifier.LINEAR_SVC.name,
         Classifier.LOGISTIC_REGRESSION.name,
-        Classifier.RANDOM_FOREST_CLASSIFIER
+        Classifier.RANDOM_FOREST_CLASSIFIER.name
     ]
 
     try:
