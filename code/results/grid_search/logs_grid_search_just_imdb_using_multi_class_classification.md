@@ -42,6 +42,12 @@
 |  14  |  RIDGE_CLASSIFIER  |  38.56%  |  [0.4036 0.4074 0.402  0.3954 0.4   ]  |  40.17 (+/- 0.79)  |  2.896  |  0.04107  |
 
 
+#### Computer settings used to run
+
+* Operating system: Ubuntu 18.04.4 LTS (64-bit)
+* Processor: Intel® Core™ i7-7700 CPU @ 3.60GHz × 8 
+* Memory: 32 GB
+
 #### All logs:
 
 ```
