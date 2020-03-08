@@ -1,1 +1,1 @@
-{"alpha": 0.5, "binarize": 0.01, "fit_prior": false}
+{"alpha": 0.5, "binarize": 0.0001, "fit_prior": false}
