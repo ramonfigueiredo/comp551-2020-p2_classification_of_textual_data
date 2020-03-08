@@ -12,32 +12,11 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from datasets.load_dataset import load_dataset
 from feature_extraction.vectorizer import extract_text_features
 from feature_selection.select_k_best import select_k_best_using_chi2
+from plotting.plot import plot_history
 from utils.dataset_enum import Dataset
 
 warnings.filterwarnings('always')
 warnings.filterwarnings('ignore')
-
-
-def plot_history(history, dataset):
-    print("Plotting the grapsh")
-    acc = history.history['accuracy']
-    val_acc = history.history['val_accuracy']
-    loss = history.history['loss']
-    val_loss = history.history['val_loss']
-    x = range(1, len(acc) + 1)
-
-    plt.figure(figsize=(12, 5))
-    plt.subplot(1, 2, 1)
-    plt.plot(x, acc, 'b', label='Training acc')
-    plt.plot(x, val_acc, 'r', label='Validation acc')
-    plt.title('Training and validation accuracy ({})'.format(dataset))
-    plt.legend()
-    plt.subplot(1, 2, 2)
-    plt.plot(x, loss, 'b', label='Training loss')
-    plt.plot(x, val_loss, 'r', label='Validation loss')
-    plt.title('Training and validation loss ({})'.format(dataset))
-    plt.legend()
-    plt.show()
 
 
 def run_deep_learning_using_keras(options):
