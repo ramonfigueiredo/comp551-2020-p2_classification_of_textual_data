@@ -8,20 +8,26 @@
 
 #### Training and Validation Accuracy and Loss
 
-| DATASET             | Training Accuracy (%) | Test Accuracy (%) | Training Loss (%) | Validation Loss (%) | 
-| ------------------- | ----------------- | ------------------- | ------------- | --------------- |
-|  TWENTY_NEWS_GROUPS | 98.55             | 96.41               |               |                 |
-|  IMDB_REVIEWS       |              |                     |               |                 |
+Training Accuracy: 98.92%
+Testing Accuracy:  96.50%
+
+Training Accuracy: 99.96%
+Testing Accuracy:  84.16%
+
+| DATASET             | Training Accuracy (%) | Test Accuracy (%) | 
+| ------------------- | --------------------- | ----------------- |
+|  TWENTY_NEWS_GROUPS | 98.92%                | 96.50%            |
+|  IMDB_REVIEWS       | 99.96%                | 84.16%            |
 
 
 ```
 /home/rpessoa/virtual_envs/comp551_p2/bin/python /home/rpessoa/github/comp551-2020-p2_classification_of_textual_data/code/main.py --run_deep_learning_using_keras
 Using TensorFlow backend.
-2020-03-08 13:14:03.660629: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer.so.6'; dlerror: libnvinfer.so.6: cannot open shared object file: No such file or directory
-2020-03-08 13:14:03.660691: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer_plugin.so.6'; dlerror: libnvinfer_plugin.so.6: cannot open shared object file: No such file or directory
-2020-03-08 13:14:03.660696: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:30] Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
-03/08/2020 01:14:04 PM - INFO - Program started...
-03/08/2020 01:14:04 PM - INFO - Program started...
+2020-03-08 14:00:49.782641: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer.so.6'; dlerror: libnvinfer.so.6: cannot open shared object file: No such file or directory
+2020-03-08 14:00:49.782698: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer_plugin.so.6'; dlerror: libnvinfer_plugin.so.6: cannot open shared object file: No such file or directory
+2020-03-08 14:00:49.782703: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:30] Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+03/08/2020 02:00:50 PM - INFO - Program started...
+03/08/2020 02:00:50 PM - INFO - Program started...
 usage: main.py [-h] [-d DATASET] [-ml ML_ALGORITHM_LIST]
                [-use_default_parameters] [-not_shuffle] [-n_jobs N_JOBS] [-cv]
                [-n_splits N_SPLITS] [-required_classifiers]
@@ -160,24 +166,24 @@ data loaded
 20 categories
 
 Extracting features from the training data using a vectorizer
-done in 1.080179s at 12.759MB/s
+done in 1.074437s at 12.827MB/s
 n_samples: 11314, n_features: 101321
 
 Extracting features from the test data using the same vectorizer
-done in 0.574098s at 14.391MB/s
+done in 0.621911s at 13.284MB/s
 n_samples: 7532, n_features: 101321
 
 ================================================================================
 Keras
-2020-03-08 13:14:07.230963: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2020-03-08 13:14:07.230978: E tensorflow/stream_executor/cuda/cuda_driver.cc:351] failed call to cuInit: UNKNOWN ERROR (303)
-2020-03-08 13:14:07.230990: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (rpessoadesk): /proc/driver/nvidia/version does not exist
-2020-03-08 13:14:07.231110: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
-2020-03-08 13:14:07.254445: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3199980000 Hz
-2020-03-08 13:14:07.255092: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x891a0c0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
-2020-03-08 13:14:07.255117: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
-Training Accuracy: 0.9855
-Testing Accuracy:  0.9641
+2020-03-08 14:00:53.373440: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2020-03-08 14:00:53.373456: E tensorflow/stream_executor/cuda/cuda_driver.cc:351] failed call to cuInit: UNKNOWN ERROR (303)
+2020-03-08 14:00:53.373467: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (rpessoadesk): /proc/driver/nvidia/version does not exist
+2020-03-08 14:00:53.373588: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-03-08 14:00:53.394335: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3199980000 Hz
+2020-03-08 14:00:53.394674: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x73bd1d0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-03-08 14:00:53.394684: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+Training Accuracy: 98.92%
+Testing Accuracy:  96.50%
 Plotting the grapsh
 Loading IMDB_REVIEWS dataset:
 
@@ -193,22 +199,22 @@ data loaded
 25000 documents - 32.351MB (test set)
 
 Extracting features from the training data using a vectorizer
-done in 2.854300s at 11.608MB/s
+done in 2.783152s at 11.905MB/s
 n_samples: 25000, n_features: 74170
 
 Extracting features from the test data using the same vectorizer
-done in 2.773329s at 11.665MB/s
+done in 2.720244s at 11.893MB/s
 n_samples: 25000, n_features: 74170
 
 ================================================================================
 Keras
-Training Accuracy: 0.9996
-Testing Accuracy:  0.8416
+Training Accuracy: 99.96%
+Testing Accuracy:  84.16%
 Plotting the grapsh
 
 
 DONE!
-Program finished. It took 168.30148696899414 seconds
+Program finished. It took 168.13154578208923 seconds
 
 Process finished with exit code 0
 ```

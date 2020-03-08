@@ -95,7 +95,7 @@ def run_deep_learning_using_keras(options):
         loss, accuracy = model.evaluate(X_train, y_train, verbose=False)
         print("Training Accuracy: {:.2f}%".format(accuracy*100))
         loss, accuracy = model.evaluate(X_test, y_test, verbose=False)
-        print("Testing Accuracy:  {:.2f}%".format(accuracy*100))
+        print("Testingf}%".format(accuracy*100))
 
         plt.style.use('ggplot')
 
