@@ -46,7 +46,7 @@ if __name__ == '__main__':
             results_model1 = run_deep_learning_KerasDL1(options)
             results_model2 = run_deep_learning_KerasDL2(options)
 
-            print('\n\nFINAL CLASSIFICATION TABLE:')
+            print('\n\nFINAL CLASSIFICATION TABLE:\n')
             print('| ID | Dataset | Algorithm | Loss | Training accuracy score (%) | Test accuracy score (%) | Training time (seconds) | Test time (seconds) |')
             print('| -- | ------- | --------- | ---- | --------------------------- | ----------------------- | ----------------------- | ------------------- |')
             count = 1
@@ -61,7 +61,7 @@ if __name__ == '__main__':
                       loss, training_accuracy * 100, test_accuracy * 100, training_time, test_time)
                 count = count + 1
 
-            print("MODEL 1: KERAS DEEP LEARNING MODEL"
+            print("\nMODEL 1: KERAS DEEP LEARNING MODEL"
                   "\nUsing layers:"
                   "\n\t==> Dense(10, input_dim=input_dim, activation='relu')"
                   "\n\t==> Dense(7=IMDB_REVIEWS multi-label or 19 = TWENTY_NEWS_GROUPS or 1 to IMDB_REVIEWS binary label, activation='sigmoid')"
@@ -69,7 +69,7 @@ if __name__ == '__main__':
                   "\n\t==> model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])"
                   )
 
-            print("MODEL 2: KERAS DEEP LEARNING MODEL"
+            print("\nMODEL 2: KERAS DEEP LEARNING MODEL"
                   "\nUsing layers:"
                   "\n\t==> Embedding(max_features, embed_size)"
                   "\n\t==> Bidirectional(LSTM(32, return_sequences = True)"

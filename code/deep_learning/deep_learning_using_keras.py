@@ -133,11 +133,17 @@ def run_deep_learning_KerasDL1(options):
         start = time()
         loss, training_accuracy = model.evaluate(X_train, y_train, verbose=False)
         test_time = time() - start
-        print(dataset)
-        print("\tTraining accuracy score: {:.2f}%".format(training_accuracy * 100))
+
+        algorithm_name = "Deep Learning using Keras 1 (KerasDL1)"
+
+        print("\tDataset: {}".format(dataset))
+        print("\tAlgorithm: {}".format(algorithm_name))
         print("\tLoss: {:.4f}".format(loss))
+        print("\tTraining accuracy score: {:.2f}%".format(training_accuracy * 100))
         loss, test_accuracy = model.evaluate(X_test, y_test, verbose=False)
         print("\tTest Accuracy: {:.2f}%".format(test_accuracy * 100))
+        print("\tTraining Time: {:.4f}".format(training_time))
+        print("\tTest Time: {:.4f}".format(test_time))
 
         plt.style.use('ggplot')
 
@@ -148,8 +154,7 @@ def run_deep_learning_KerasDL1(options):
 
         print('\n')
 
-        model_name = "Deep Learning using Keras 1 (KerasDL1)"
-        results[dataset] = dataset, model_name, loss, training_accuracy, test_accuracy, training_time, test_time
+        results[dataset] = dataset, algorithm_name, loss, training_accuracy, test_accuracy, training_time, test_time
 
     return results
 
@@ -271,7 +276,6 @@ def run_deep_learning_KerasDL2(options):
         history = model.fit(X_t, y, batch_size=batch_size, epochs=epochs, validation_data=(X_te, y_test))
         training_time = time() - start
 
-
         print('\t=====> Test the model: model.predict()')
         prediction = model.predict(X_te)
         y_pred = (prediction > 0.5)
@@ -285,11 +289,16 @@ def run_deep_learning_KerasDL2(options):
         start = time()
         loss, training_accuracy = model.evaluate(X_t, y, verbose=False)
         test_time = time() - start
-        print(dataset)
-        print("\tTraining accuracy score: {:.2f}%".format(training_accuracy*100))
+        algorithm_name = "Deep Learning using Keras 2 (KerasDL2)"
+
+        print("\tDataset: {}".format(dataset))
+        print("\tAlgorithm: {}".format(algorithm_name))
         print("\tLoss: {:.4f}".format(loss))
+        print("\tTraining accuracy score: {:.2f}%".format(training_accuracy * 100))
         loss, test_accuracy = model.evaluate(X_te, y_test, verbose=False)
-        print("\tTest Accuracy: {:.2f}%".format(test_accuracy*100))
+        print("\tTest Accuracy: {:.2f}%".format(test_accuracy * 100))
+        print("\tTraining Time: {:.4f}".format(training_time))
+        print("\tTest Time: {:.4f}".format(test_time))
 
         plt.style.use('ggplot')
 
@@ -300,7 +309,6 @@ def run_deep_learning_KerasDL2(options):
 
         print('\n')
 
-        model_name = "Deep Learning using Keras 2 (KerasDL2)"
-        results[dataset] = dataset, model_name, loss, training_accuracy, test_accuracy, training_time, test_time
+        results[dataset] = dataset, algorithm_name, loss, training_accuracy, test_accuracy, training_time, test_time
 
     return results
