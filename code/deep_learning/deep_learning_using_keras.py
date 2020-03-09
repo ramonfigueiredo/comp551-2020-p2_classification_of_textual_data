@@ -141,7 +141,7 @@ def run_deep_learning_model_1(options):
 
         plt.style.use('ggplot')
 
-        plot_history(history, dataset)
+        plot_history(history, 'Model 1', dataset)
         print('\n')
 
         model_name = "Deep Learning (Keras) Model 1"
@@ -289,7 +289,7 @@ def run_deep_learning_model_2(options):
 
         plt.style.use('ggplot')
 
-        plot_history(history, dataset)
+        plot_history(history, 'Model 2', dataset)
         print('\n')
 
         model_name = "Deep Learning (Keras) Model 2"
