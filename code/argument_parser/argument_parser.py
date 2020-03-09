@@ -21,7 +21,14 @@ def get_options():
                              "5) GRADIENT_BOOSTING_CLASSIFIER, 6) K_NEIGHBORS_CLASSIFIER, 7) LINEAR_SVC, "
                              "8) LOGISTIC_REGRESSION, 9) MULTINOMIAL_NB, 10) NEAREST_CENTROID, "
                              "11) PASSIVE_AGGRESSIVE_CLASSIFIER, 12) PERCEPTRON, 13) RANDOM_FOREST_CLASSIFIER, "
-                             "14) RIDGE_CLASSIFIER). "
+                             "14) RIDGE_CLASSIFIER, "
+                             "15) MAJORITY_VOTING_CLASSIFIER (using COMPLEMENT_NB, RIDGE_CLASSIFIER, LINEAR_SVC, "
+                             "LOGISTIC_REGRESSION, PASSIVE_AGGRESSIVE_CLASSIFIER, RANDOM_FOREST_CLASSIFIER), "
+                             "16) SOFT_VOTING_CLASSIFIER (using COMPLEMENT_NB, LOGISTIC_REGRESSION, MULTINOMIAL_NB, "
+                             "RANDOM_FOREST_CLASSIFIER), "
+                             "17) STACKING_CLASSIFIER (using COMPLEMENT_NB, RIDGE_CLASSIFIER, LINEAR_SVC, "
+                             "LOGISTIC_REGRESSION, PASSIVE_AGGRESSIVE_CLASSIFIER, RANDOM_FOREST_CLASSIFIER, "
+                             "final_estimator=LINEAR_SVC)). "
                              "Default: None. If ml_algorithm_list is not provided, all ML algorithms will be executed.",
                         default=None)
     parser.add_argument("-use_default_parameters", "--use_classifiers_with_default_parameters",
