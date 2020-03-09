@@ -7,20 +7,23 @@
 
 | ID | ML Algorithm | Accuracy Score (%) | K-fold Cross Validation (CV) (k = 5) | CV (Mean +/- Std) | Training time (seconds) | Test time (seconds) |
 | --- | ------------- | ------------------ | ------------------------------------ | ----------------- |  ------------------ | ------------------ |
-|  1  |  ADA_BOOST_CLASSIFIER  |  38.02%  |  [0.3792 0.379  0.374  0.3704 0.3746]  |  0.38 (+/- 0.01)  |  125.8  |  7.788  |
-|  2  |  BERNOULLI_NB  |  37.03%  |  [0.377  0.389  0.3782 0.38   0.373 ]  |  0.38 (+/- 0.01)  |  0.04582  |  0.04338  |
-|  3  |  COMPLEMENT_NB  |  37.34%  |  [0.3878 0.3942 0.3976 0.3938 0.3832]  |  0.39 (+/- 0.01)  |  0.03707  |  0.01888  |
-|  4  |  DECISION_TREE_CLASSIFIER  |  30.82%  |  [0.3072 0.3132 0.2996 0.3066 0.3064]  |  0.31 (+/- 0.01)  |  6.834  |  0.01294  |
-|  5  |  GRADIENT_BOOSTING_CLASSIFIER  |  37.88%  |  [0.3848 0.379  0.3696 0.3692 0.3728]  |  0.38 (+/- 0.01)  |  872.7  |  0.5021  |
-|  6  |  K_NEIGHBORS_CLASSIFIER  |  37.26%  |  [0.3822 0.3916 0.3842 0.386  0.388 ]  |  0.39 (+/- 0.01)  |  0.006473  |  14.71  |
-|  7  |  LINEAR_SVC  |  40.80%  |  [0.41   0.4206 0.4064 0.3992 0.4088]  |  0.41 (+/- 0.01)  |  0.5438  |  0.01863  |
-|  8  |  LOGISTIC_REGRESSION  |  42.04%  |  [0.4282 0.4334 0.4152 0.4194 0.4218]  |  0.42 (+/- 0.01)  |  9.81  |  0.01971  |
-|  9  |  MULTINOMIAL_NB  |  37.82%  |  [0.389  0.3928 0.3918 0.3942 0.386 ]  |  0.39 (+/- 0.01)  |  0.03475  |  0.01914  |
-|  10  |  NEAREST_CENTROID  |  37.33%  |  [0.3872 0.3786 0.3894 0.3672 0.3782]  |  0.38 (+/- 0.02)  |  0.02605  |  0.03179  |
-|  11  |  PASSIVE_AGGRESSIVE_CLASSIFIER  |  41.81%  |  [0.4172 0.4284 0.4096 0.409  0.4164]  |  0.42 (+/- 0.01)  |  0.5241  |  0.02055  |
-|  12  |  PERCEPTRON  |  31.60%  |  [0.3364 0.3094 0.3268 0.298  0.2964]  |  0.31 (+/- 0.03)  |  0.4149  |  0.0195  |
-|  13  |  RANDOM_FOREST_CLASSIFIER  |  37.72%  |  [0.369  0.3796 0.3768 0.3728 0.3718]  |  0.37 (+/- 0.01)  |  9.596  |  0.708  |
-|  14  |  RIDGE_CLASSIFIER  |  38.55%  |  [0.4036 0.4074 0.402  0.3954 0.4   ]  |  0.40 (+/- 0.01)  |  2.934  |  0.04121  |
+|  1  |  ADA_BOOST_CLASSIFIER  |  38.02%  |  [0.3792 0.379  0.374  0.3704 0.3746]  |  0.38 (+/- 0.01)  |  122.9  |  7.493  |
+|  2  |  BERNOULLI_NB  |  37.03%  |  [0.377  0.389  0.3782 0.38   0.373 ]  |  0.38 (+/- 0.01)  |  0.04714  |  0.04163  |
+|  3  |  COMPLEMENT_NB  |  37.34%  |  [0.3878 0.3942 0.3976 0.3938 0.3832]  |  0.39 (+/- 0.01)  |  0.03856  |  0.01853  |
+|  4  |  DECISION_TREE_CLASSIFIER  |  30.82%  |  [0.3072 0.3132 0.2996 0.3066 0.3064]  |  0.31 (+/- 0.01)  |  7.022  |  0.01285  |
+|  5  |  GRADIENT_BOOSTING_CLASSIFIER  |  37.88%  |  [0.3848 0.379  0.3696 0.3692 0.3728]  |  0.38 (+/- 0.01)  |  875.0  |  0.5061  |
+|  6  |  K_NEIGHBORS_CLASSIFIER  |  37.26%  |  [0.3822 0.3916 0.3842 0.386  0.388 ]  |  0.39 (+/- 0.01)  |  0.006438  |  14.09  |
+|  7  |  LINEAR_SVC  |  40.80%  |  [0.41   0.4206 0.4064 0.3992 0.4088]  |  0.41 (+/- 0.01)  |  0.5486  |  0.0185  |
+|  8  |  LOGISTIC_REGRESSION  |  42.04%  |  [0.4282 0.4334 0.4152 0.4194 0.4218]  |  0.42 (+/- 0.01)  |  9.692  |  0.01969  |
+|  9  |  MULTINOMIAL_NB  |  37.82%  |  [0.389  0.3928 0.3918 0.3942 0.386 ]  |  0.39 (+/- 0.01)  |  0.03519  |  0.01996  |
+|  10  |  NEAREST_CENTROID  |  37.33%  |  [0.3872 0.3786 0.3894 0.3672 0.3782]  |  0.38 (+/- 0.02)  |  0.02599  |  0.03267  |
+|  11  |  PASSIVE_AGGRESSIVE_CLASSIFIER  |  41.81%  |  [0.4172 0.4284 0.4096 0.409  0.4164]  |  0.42 (+/- 0.01)  |  0.5453  |  0.0195  |
+|  12  |  PERCEPTRON  |  31.60%  |  [0.3364 0.3094 0.3268 0.298  0.2964]  |  0.31 (+/- 0.03)  |  0.4152  |  0.0189  |
+|  13  |  RANDOM_FOREST_CLASSIFIER  |  37.72%  |  [0.369  0.3796 0.3768 0.3728 0.3718]  |  0.37 (+/- 0.01)  |  9.598  |  0.7072  |
+|  14  |  RIDGE_CLASSIFIER  |  38.55%  |  [0.4036 0.4074 0.402  0.3954 0.4   ]  |  0.40 (+/- 0.01)  |  2.797  |  0.0416  |
+|  15  |  MAJORITY_VOTING_CLASSIFIER  |  41.46%  |  [0.4198 0.4244 0.4108 0.4136 0.4144]  |  0.42 (+/- 0.01)  |  17.2  |  0.9589  |
+|  16  |  SOFT_VOTING_CLASSIFIER  |  40.72%  |  [0.4124 0.4168 0.415  0.4096 0.408 ]  |  0.41 (+/- 0.01)  |  16.47  |  0.7836  |
+|  17  |  STACKING_CLASSIFIER  |  40.99%  |  [0.4074 0.4122 0.4186 0.4186 0.4042]  |  0.41 (+/- 0.01)  |  110.3  |  0.8278  |
 
 * Accuracy score
 
@@ -39,16 +42,20 @@
 #### All logs
 
 ```
-python /comp551-2020-p2_classification_of_textual_data/code/main.py --dataset IMDB_REVIEWS --use_imdb_multi_class_labels --run_cross_validation --report --all_metrics --confusion_matrix --plot_accurary_and_time_together
-03/08/2020 10:51:16 AM - INFO - Program started...
+/home/ets-crchum/virtual_envs/comp551_p2/bin/python /home/ets-crchum/github/comp551-2020-p2_classification_of_textual_data/code/main.py --dataset IMDB_REVIEWS --use_imdb_multi_class_labels --run_cross_validation --report --all_metrics --confusion_matrix --plot_accurary_and_time_together
+Using TensorFlow backend.
+2020-03-09 01:17:42.199579: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer.so.6'; dlerror: libnvinfer.so.6: cannot open shared object file: No such file or directory
+2020-03-09 01:17:42.199678: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer_plugin.so.6'; dlerror: libnvinfer_plugin.so.6: cannot open shared object file: No such file or directory
+2020-03-09 01:17:42.199688: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:30] Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
 usage: main.py [-h] [-d DATASET] [-ml ML_ALGORITHM_LIST]
+03/09/2020 01:17:42 AM - INFO - Program started...
                [-use_default_parameters] [-not_shuffle] [-n_jobs N_JOBS] [-cv]
                [-n_splits N_SPLITS] [-required_classifiers]
                [-news_with_4_classes] [-news_no_filter] [-imdb_multi_class]
                [-show_reviews] [-r] [-m] [--chi2_select CHI2_SELECT] [-cm]
                [-use_hashing] [-use_count] [-n_features N_FEATURES]
                [-plot_time] [-save_logs] [-verbose]
-               [-random_state RANDOM_STATE] [-v]
+               [-random_state RANDOM_STATE] [-dl] [-v]
 
 MiniProject 2: Classification of textual data. Authors: Ramon Figueiredo
 Pessoa, Rafael Gomes Braga, Ege Odaci
@@ -72,8 +79,19 @@ optional arguments:
                         LOGISTIC_REGRESSION, 9) MULTINOMIAL_NB, 10)
                         NEAREST_CENTROID, 11) PASSIVE_AGGRESSIVE_CLASSIFIER,
                         12) PERCEPTRON, 13) RANDOM_FOREST_CLASSIFIER, 14)
-                        RIDGE_CLASSIFIER). Default: None. If ml_algorithm_list
-                        is not provided, all ML algorithms will be executed.
+                        RIDGE_CLASSIFIER, 15) MAJORITY_VOTING_CLASSIFIER
+                        (using COMPLEMENT_NB, RIDGE_CLASSIFIER, LINEAR_SVC,
+                        LOGISTIC_REGRESSION, PASSIVE_AGGRESSIVE_CLASSIFIER,
+                        RANDOM_FOREST_CLASSIFIER), 16) SOFT_VOTING_CLASSIFIER
+                        (using COMPLEMENT_NB, LOGISTIC_REGRESSION,
+                        MULTINOMIAL_NB, RANDOM_FOREST_CLASSIFIER), 17)
+                        STACKING_CLASSIFIER (using COMPLEMENT_NB,
+                        RIDGE_CLASSIFIER, LINEAR_SVC, LOGISTIC_REGRESSION,
+                        PASSIVE_AGGRESSIVE_CLASSIFIER,
+                        RANDOM_FOREST_CLASSIFIER,
+                        final_estimator=LINEAR_SVC)). Default: None. If
+                        ml_algorithm_list is not provided, all ML algorithms
+                        will be executed.
   -use_default_parameters, --use_classifiers_with_default_parameters
                         Use classifiers with default parameters. Default:
                         False = Use classifiers with best parameters found
@@ -135,6 +153,9 @@ optional arguments:
                         Increase output verbosity. Default: False
   -random_state RANDOM_STATE
                         Seed used by the random number generator. Default: 0
+  -dl, --run_deep_learning_using_keras
+                        Run deep learning using keras. Default: False (Run
+                        scikit-learn algorithms)
   -v, --version         show program's version number and exit
 
 COMP 551 (001/002), Applied Machine Learning, Winter 2020, McGill University.
@@ -166,6 +187,7 @@ Running with options:
 	Save logs in a file = False
 	Seed used by the random number generator (random_state) = 0
 	Verbose = False
+	Run deep learning using keras. Default: False (Run scikit-learn algorithms) = False
 ==================================================================================================================================
 
 Loading IMDB_REVIEWS dataset:
@@ -182,11 +204,11 @@ data loaded
 25000 documents - 32.351MB (test set)
 
 Extracting features from the training data using a vectorizer
-done in 2.996497s at 11.057MB/s
+done in 2.973536s at 11.143MB/s
 n_samples: 25000, n_features: 74170
 
 Extracting features from the test data using the same vectorizer
-done in 2.920075s at 11.079MB/s
+done in 2.887845s at 11.202MB/s
 n_samples: 25000, n_features: 74170
 
 	==> Using JSON with best parameters (selected using grid search) to the ADA_BOOST_CLASSIFIER classifier (multi-class classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'learning_rate': 0.1, 'n_estimators': 500}
@@ -257,14 +279,177 @@ n_samples: 25000, n_features: 74170
 	 RidgeClassifier(alpha=1.0, class_weight=None, copy_X=True, fit_intercept=True,
                 max_iter=None, normalize=False, random_state=0, solver='auto',
                 tol=0.001)
+	==> Using JSON with best parameters (selected using grid search) to the COMPLEMENT_NB classifier (multi-class classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'alpha': 0.5, 'fit_prior': False, 'norm': False}
+	 ComplementNB(alpha=0.5, class_prior=None, fit_prior=False, norm=False)
+	==> Using JSON with best parameters (selected using grid search) to the LINEAR_SVC classifier (multi-class classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'C': 0.01, 'multi_class': 'crammer_singer', 'tol': 0.001}
+	 LinearSVC(C=0.01, class_weight=None, dual=True, fit_intercept=True,
+          intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+          multi_class='crammer_singer', penalty='l2', random_state=0, tol=0.001,
+          verbose=False)
+	==> Using JSON with best parameters (selected using grid search) to the LOGISTIC_REGRESSION classifier (multi-class classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'C': 1, 'tol': 0.001}
+	 LogisticRegression(C=1, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='auto', n_jobs=-1, penalty='l2', random_state=0,
+                   solver='lbfgs', tol=0.001, verbose=False, warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the PASSIVE_AGGRESSIVE_CLASSIFIER classifier (multi-class classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'C': 0.01, 'early_stopping': True, 'tol': 0.0001, 'validation_fraction': 0.01}
+	 PassiveAggressiveClassifier(C=0.01, average=False, class_weight=None,
+                            early_stopping=True, fit_intercept=True,
+                            loss='hinge', max_iter=1000, n_iter_no_change=5,
+                            n_jobs=-1, random_state=0, shuffle=True, tol=0.0001,
+                            validation_fraction=0.01, verbose=False,
+                            warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the RANDOM_FOREST_CLASSIFIER classifier (multi-class classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'min_samples_leaf': 2, 'min_samples_split': 5, 'n_estimators': 200}
+	 RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
+                       criterion='gini', max_depth=None, max_features='auto',
+                       max_leaf_nodes=None, max_samples=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=2, min_samples_split=5,
+                       min_weight_fraction_leaf=0.0, n_estimators=200,
+                       n_jobs=-1, oob_score=False, random_state=0,
+                       verbose=False, warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the RIDGE_CLASSIFIER classifier (multi-class classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'alpha': 1.0, 'tol': 0.001}
+	 RidgeClassifier(alpha=1.0, class_weight=None, copy_X=True, fit_intercept=True,
+                max_iter=None, normalize=False, random_state=0, solver='auto',
+                tol=0.001)
+	 VotingClassifier(estimators=[('complement_nb',
+                              ComplementNB(alpha=0.5, class_prior=None,
+                                           fit_prior=False, norm=False)),
+                             ('linear_svc',
+                              LinearSVC(C=0.01, class_weight=None, dual=True,
+                                        fit_intercept=True, intercept_scaling=1,
+                                        loss='squared_hinge', max_iter=1000,
+                                        multi_class='crammer_singer',
+                                        penalty='l2', random_state=0, tol=0.001,
+                                        verbose=False)),
+                             ('logistic_regressi...
+                                                     min_samples_split=5,
+                                                     min_weight_fraction_leaf=0.0,
+                                                     n_estimators=200,
+                                                     n_jobs=-1, oob_score=False,
+                                                     random_state=0,
+                                                     verbose=False,
+                                                     warm_start=False)),
+                             ('ridge_classifier',
+                              RidgeClassifier(alpha=1.0, class_weight=None,
+                                              copy_X=True, fit_intercept=True,
+                                              max_iter=None, normalize=False,
+                                              random_state=0, solver='auto',
+                                              tol=0.001))],
+                 flatten_transform=True, n_jobs=-1, voting='hard',
+                 weights=None)
+	==> Using JSON with best parameters (selected using grid search) to the COMPLEMENT_NB classifier (multi-class classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'alpha': 0.5, 'fit_prior': False, 'norm': False}
+	 ComplementNB(alpha=0.5, class_prior=None, fit_prior=False, norm=False)
+	==> Using JSON with best parameters (selected using grid search) to the LOGISTIC_REGRESSION classifier (multi-class classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'C': 1, 'tol': 0.001}
+	 LogisticRegression(C=1, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='auto', n_jobs=-1, penalty='l2', random_state=0,
+                   solver='lbfgs', tol=0.001, verbose=False, warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the MULTINOMIAL_NB classifier (multi-class classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'alpha': 0.1, 'fit_prior': True}
+	 MultinomialNB(alpha=0.1, class_prior=None, fit_prior=True)
+	==> Using JSON with best parameters (selected using grid search) to the RANDOM_FOREST_CLASSIFIER classifier (multi-class classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'min_samples_leaf': 2, 'min_samples_split': 5, 'n_estimators': 200}
+	 RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
+                       criterion='gini', max_depth=None, max_features='auto',
+                       max_leaf_nodes=None, max_samples=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=2, min_samples_split=5,
+                       min_weight_fraction_leaf=0.0, n_estimators=200,
+                       n_jobs=-1, oob_score=False, random_state=0,
+                       verbose=False, warm_start=False)
+	 VotingClassifier(estimators=[('complement_nb',
+                              ComplementNB(alpha=0.5, class_prior=None,
+                                           fit_prior=False, norm=False)),
+                             ('logistic_regression',
+                              LogisticRegression(C=1, class_weight=None,
+                                                 dual=False, fit_intercept=True,
+                                                 intercept_scaling=1,
+                                                 l1_ratio=None, max_iter=100,
+                                                 multi_class='auto', n_jobs=-1,
+                                                 penalty='l2', random_state=0,
+                                                 solver='lbfgs', tol=0.001,
+                                                 verbose=Fals...
+                                                     criterion='gini',
+                                                     max_depth=None,
+                                                     max_features='auto',
+                                                     max_leaf_nodes=None,
+                                                     max_samples=None,
+                                                     min_impurity_decrease=0.0,
+                                                     min_impurity_split=None,
+                                                     min_samples_leaf=2,
+                                                     min_samples_split=5,
+                                                     min_weight_fraction_leaf=0.0,
+                                                     n_estimators=200,
+                                                     n_jobs=-1, oob_score=False,
+                                                     random_state=0,
+                                                     verbose=False,
+                                                     warm_start=False))],
+                 flatten_transform=True, n_jobs=-1, voting='soft',
+                 weights=None)
+	==> Using JSON with best parameters (selected using grid search) to the COMPLEMENT_NB classifier (multi-class classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'alpha': 0.5, 'fit_prior': False, 'norm': False}
+	 ComplementNB(alpha=0.5, class_prior=None, fit_prior=False, norm=False)
+	==> Using JSON with best parameters (selected using grid search) to the LINEAR_SVC classifier (multi-class classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'C': 0.01, 'multi_class': 'crammer_singer', 'tol': 0.001}
+	 LinearSVC(C=0.01, class_weight=None, dual=True, fit_intercept=True,
+          intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+          multi_class='crammer_singer', penalty='l2', random_state=0, tol=0.001,
+          verbose=False)
+	==> Using JSON with best parameters (selected using grid search) to the LOGISTIC_REGRESSION classifier (multi-class classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'C': 1, 'tol': 0.001}
+	 LogisticRegression(C=1, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='auto', n_jobs=-1, penalty='l2', random_state=0,
+                   solver='lbfgs', tol=0.001, verbose=False, warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the PASSIVE_AGGRESSIVE_CLASSIFIER classifier (multi-class classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'C': 0.01, 'early_stopping': True, 'tol': 0.0001, 'validation_fraction': 0.01}
+	 PassiveAggressiveClassifier(C=0.01, average=False, class_weight=None,
+                            early_stopping=True, fit_intercept=True,
+                            loss='hinge', max_iter=1000, n_iter_no_change=5,
+                            n_jobs=-1, random_state=0, shuffle=True, tol=0.0001,
+                            validation_fraction=0.01, verbose=False,
+                            warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the RANDOM_FOREST_CLASSIFIER classifier (multi-class classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'min_samples_leaf': 2, 'min_samples_split': 5, 'n_estimators': 200}
+	 RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
+                       criterion='gini', max_depth=None, max_features='auto',
+                       max_leaf_nodes=None, max_samples=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=2, min_samples_split=5,
+                       min_weight_fraction_leaf=0.0, n_estimators=200,
+                       n_jobs=-1, oob_score=False, random_state=0,
+                       verbose=False, warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the RIDGE_CLASSIFIER classifier (multi-class classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'alpha': 1.0, 'tol': 0.001}
+	 RidgeClassifier(alpha=1.0, class_weight=None, copy_X=True, fit_intercept=True,
+                max_iter=None, normalize=False, random_state=0, solver='auto',
+                tol=0.001)
+	 StackingClassifier(cv=None,
+                   estimators=[('complement_nb',
+                                ComplementNB(alpha=0.5, class_prior=None,
+                                             fit_prior=False, norm=False)),
+                               ('linear_svc',
+                                LinearSVC(C=0.01, class_weight=None, dual=True,
+                                          fit_intercept=True,
+                                          intercept_scaling=1,
+                                          loss='squared_hinge', max_iter=1000,
+                                          multi_class='crammer_singer',
+                                          penalty='l2', random_state=0,
+                                          tol=0.001, verbose=False)),
+                               ('logisti...
+                                                max_iter=None, normalize=False,
+                                                random_state=0, solver='auto',
+                                                tol=0.001))],
+                   final_estimator=LinearSVC(C=0.01, class_weight=None,
+                                             dual=True, fit_intercept=True,
+                                             intercept_scaling=1,
+                                             loss='squared_hinge',
+                                             max_iter=1000,
+                                             multi_class='crammer_singer',
+                                             penalty='l2', random_state=0,
+                                             tol=0.001, verbose=False),
+                   n_jobs=-1, passthrough=False, stack_method='auto',
+                   verbose=False)
 ================================================================================
 Classifier.ADA_BOOST_CLASSIFIER
 ________________________________________________________________________________
 Training: 
 AdaBoostClassifier(algorithm='SAMME.R', base_estimator=None, learning_rate=0.1,
                    n_estimators=500, random_state=0)
-train time: 125.801s
-test time:  7.788s
+train time: 122.861s
+test time:  7.493s
 accuracy:   0.380
 
 
@@ -359,8 +544,8 @@ Classifier.BERNOULLI_NB
 ________________________________________________________________________________
 Training: 
 BernoulliNB(alpha=0.5, binarize=0.0001, class_prior=None, fit_prior=True)
-train time: 0.046s
-test time:  0.043s
+train time: 0.047s
+test time:  0.042s
 accuracy:   0.370
 
 
@@ -452,7 +637,7 @@ Classifier.COMPLEMENT_NB
 ________________________________________________________________________________
 Training: 
 ComplementNB(alpha=0.5, class_prior=None, fit_prior=False, norm=False)
-train time: 0.037s
+train time: 0.039s
 test time:  0.019s
 accuracy:   0.373
 
@@ -550,7 +735,7 @@ DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None, criterion='entropy',
                        min_samples_leaf=1, min_samples_split=250,
                        min_weight_fraction_leaf=0.0, presort='deprecated',
                        random_state=0, splitter='random')
-train time: 6.834s
+train time: 7.022s
 test time:  0.013s
 accuracy:   0.308
 
@@ -649,8 +834,8 @@ GradientBoostingClassifier(ccp_alpha=0.0, criterion='friedman_mse', init=None,
                            random_state=0, subsample=1.0, tol=0.0001,
                            validation_fraction=0.1, verbose=False,
                            warm_start=False)
-train time: 872.650s
-test time:  0.502s
+train time: 874.993s
+test time:  0.506s
 accuracy:   0.379
 
 
@@ -742,7 +927,7 @@ KNeighborsClassifier(algorithm='auto', leaf_size=5, metric='euclidean',
                      metric_params=None, n_jobs=-1, n_neighbors=50, p=2,
                      weights='distance')
 train time: 0.006s
-test time:  14.708s
+test time:  14.095s
 accuracy:   0.373
 
 
@@ -834,10 +1019,8 @@ LinearSVC(C=0.01, class_weight=None, dual=True, fit_intercept=True,
           intercept_scaling=1, loss='squared_hinge', max_iter=1000,
           multi_class='crammer_singer', penalty='l2', random_state=0, tol=0.001,
           verbose=False)
-/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
-  "the number of iterations.", ConvergenceWarning)
-train time: 0.544s
-test time:  0.019s
+train time: 0.549s
+test time:  0.018s
 accuracy:   0.408
 
 
@@ -950,7 +1133,7 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
 Please also refer to the documentation for alternative solver options:
     https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
   extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
-train time: 9.810s
+train time: 9.692s
 test time:  0.020s
 accuracy:   0.420
 
@@ -1084,7 +1267,7 @@ ________________________________________________________________________________
 Training: 
 MultinomialNB(alpha=0.1, class_prior=None, fit_prior=True)
 train time: 0.035s
-test time:  0.019s
+test time:  0.020s
 accuracy:   0.378
 
 
@@ -1176,24 +1359,8 @@ Classifier.NEAREST_CENTROID
 ________________________________________________________________________________
 Training: 
 NearestCentroid(metric='cosine', shrink_threshold=None)
-/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
 train time: 0.026s
-test time:  0.032s
+test time:  0.033s
 accuracy:   0.373
 
 
@@ -1367,8 +1534,8 @@ PassiveAggressiveClassifier(C=0.01, average=False, class_weight=None,
                             n_jobs=-1, random_state=0, shuffle=True, tol=0.0001,
                             validation_fraction=0.01, verbose=False,
                             warm_start=False)
-train time: 0.524s
-test time:  0.021s
+train time: 0.545s
+test time:  0.020s
 accuracy:   0.418
 
 
@@ -1563,8 +1730,8 @@ RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
                        min_weight_fraction_leaf=0.0, n_estimators=200,
                        n_jobs=-1, oob_score=False, random_state=0,
                        verbose=False, warm_start=False)
-train time: 9.596s
-test time:  0.708s
+train time: 9.598s
+test time:  0.707s
 accuracy:   0.377
 
 
@@ -1655,8 +1822,8 @@ Training:
 RidgeClassifier(alpha=1.0, class_weight=None, copy_X=True, fit_intercept=True,
                 max_iter=None, normalize=False, random_state=0, solver='auto',
                 tol=0.001)
-train time: 2.934s
-test time:  0.041s
+train time: 2.797s
+test time:  0.042s
 accuracy:   0.386
 
 
@@ -1743,33 +1910,822 @@ confusion matrix:
  [ 137   48   53   93  188  373  201 1251]
  [ 313   57   62  115  211  496  295 3450]]
 
+================================================================================
+Classifier.MAJORITY_VOTING_CLASSIFIER
+________________________________________________________________________________
+Training: 
+VotingClassifier(estimators=[('complement_nb',
+                              ComplementNB(alpha=0.5, class_prior=None,
+                                           fit_prior=False, norm=False)),
+                             ('linear_svc',
+                              LinearSVC(C=0.01, class_weight=None, dual=True,
+                                        fit_intercept=True, intercept_scaling=1,
+                                        loss='squared_hinge', max_iter=1000,
+                                        multi_class='crammer_singer',
+                                        penalty='l2', random_state=0, tol=0.001,
+                                        verbose=False)),
+                             ('logistic_regressi...
+                                                     min_samples_split=5,
+                                                     min_weight_fraction_leaf=0.0,
+                                                     n_estimators=200,
+                                                     n_jobs=-1, oob_score=False,
+                                                     random_state=0,
+                                                     verbose=False,
+                                                     warm_start=False)),
+                             ('ridge_classifier',
+                              RidgeClassifier(alpha=1.0, class_weight=None,
+                                              copy_X=True, fit_intercept=True,
+                                              max_iter=None, normalize=False,
+                                              random_state=0, solver='auto',
+                                              tol=0.001))],
+                 flatten_transform=True, n_jobs=-1, voting='hard',
+                 weights=None)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+train time: 17.199s
+test time:  0.959s
+accuracy:   0.415
+
+
+cross validation:
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+	accuracy: 5-fold cross validation: [0.4198 0.4244 0.4108 0.4136 0.4144]
+	test accuracy: 5-fold cross validation accuracy: 0.42 (+/- 0.01)
+
+
+===> Classification Report:
+
+              precision    recall  f1-score   support
+
+           1       0.45      0.91      0.61      5022
+           2       0.12      0.02      0.03      2302
+           3       0.25      0.08      0.12      2541
+           4       0.33      0.23      0.27      2635
+           7       0.30      0.19      0.23      2307
+           8       0.27      0.18      0.22      2850
+           9       0.24      0.04      0.07      2344
+          10       0.48      0.78      0.59      4999
+
+    accuracy                           0.41     25000
+   macro avg       0.30      0.30      0.27     25000
+weighted avg       0.34      0.41      0.34     25000
+
+
+
+===> Classification Metrics:
+
+accuracy classification score
+	accuracy score:  0.41456
+	accuracy score (normalize=False):  10364
+
+compute the precision
+	precision score (average=macro):  0.3045248740117993
+	precision score (average=micro):  0.41456
+	precision score (average=weighted):  0.3381687018487149
+	precision score (average=None):  [0.4538408  0.115727   0.24630542 0.3308026  0.3024055  0.26991614
+ 0.24146982 0.47573171]
+	precision score (average=None, zero_division=1):  [0.4538408  0.115727   0.24630542 0.3308026  0.3024055  0.26991614
+ 0.24146982 0.47573171]
+
+compute the precision
+	recall score (average=macro):  0.3034474390933989
+	recall score (average=micro):  0.41456
+	recall score (average=weighted):  0.41456
+	recall score (average=None):  [0.90939865 0.01694179 0.07870917 0.23149905 0.19072388 0.18070175
+ 0.03924915 0.78035607]
+	recall score (average=None, zero_division=1):  [0.90939865 0.01694179 0.07870917 0.23149905 0.19072388 0.18070175
+ 0.03924915 0.78035607]
+
+compute the F1 score, also known as balanced F-score or F-measure
+	f1 score (average=macro):  0.2669701435431719
+	f1 score (average=micro):  0.41456
+	f1 score (average=weighted):  0.3359819817799454
+	f1 score (average=None):  [0.60550215 0.02955665 0.11929615 0.27238223 0.23391813 0.21647751
+ 0.06752294 0.59110539]
+
+compute the F-beta score
+	f beta score (average=macro):  0.2733136970045392
+	f beta score (average=micro):  0.41456
+	f beta score (average=weighted):  0.3232260758310413
+	f beta score (average=None):  [0.50437337 0.05342466 0.17274141 0.30466487 0.2707026  0.24565923
+ 0.11892451 0.51601894]
+
+compute the average Hamming loss
+	hamming loss:  0.58544
+
+jaccard similarity coefficient score
+	jaccard score (average=macro):  0.17232794939654167
+	jaccard score (average=None):  [0.43420802 0.015      0.06343165 0.15766348 0.13245033 0.12137638
+ 0.03494113 0.41955259]
+
+confusion matrix:
+[[4567   49   67  120   19   28    5  167]
+ [1743   39  109  181   49   35    7  139]
+ [1489   76  200  414   92   68   13  189]
+ [1105   79  230  610  180  157   22  252]
+ [ 308   29   88  231  440  450   68  693]
+ [ 277   21   58  156  349  515   90 1384]
+ [ 192   19   26   57  161  322   92 1475]
+ [ 382   25   34   75  165  333   84 3901]]
+
+================================================================================
+Classifier.SOFT_VOTING_CLASSIFIER
+________________________________________________________________________________
+Training: 
+VotingClassifier(estimators=[('complement_nb',
+                              ComplementNB(alpha=0.5, class_prior=None,
+                                           fit_prior=False, norm=False)),
+                             ('logistic_regression',
+                              LogisticRegression(C=1, class_weight=None,
+                                                 dual=False, fit_intercept=True,
+                                                 intercept_scaling=1,
+                                                 l1_ratio=None, max_iter=100,
+                                                 multi_class='auto', n_jobs=-1,
+                                                 penalty='l2', random_state=0,
+                                                 solver='lbfgs', tol=0.001,
+                                                 verbose=Fals...
+                                                     criterion='gini',
+                                                     max_depth=None,
+                                                     max_features='auto',
+                                                     max_leaf_nodes=None,
+                                                     max_samples=None,
+                                                     min_impurity_decrease=0.0,
+                                                     min_impurity_split=None,
+                                                     min_samples_leaf=2,
+                                                     min_samples_split=5,
+                                                     min_weight_fraction_leaf=0.0,
+                                                     n_estimators=200,
+                                                     n_jobs=-1, oob_score=False,
+                                                     random_state=0,
+                                                     verbose=False,
+                                                     warm_start=False))],
+                 flatten_transform=True, n_jobs=-1, voting='soft',
+                 weights=None)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+train time: 16.472s
+test time:  0.784s
+accuracy:   0.407
+
+
+cross validation:
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+	accuracy: 5-fold cross validation: [0.4124 0.4168 0.415  0.4096 0.408 ]
+	test accuracy: 5-fold cross validation accuracy: 0.41 (+/- 0.01)
+
+
+===> Classification Report:
+
+              precision    recall  f1-score   support
+
+           1       0.42      0.93      0.58      5022
+           2       0.32      0.01      0.01      2302
+           3       0.30      0.04      0.06      2541
+           4       0.38      0.20      0.26      2635
+           7       0.34      0.11      0.17      2307
+           8       0.26      0.17      0.21      2850
+           9       0.31      0.01      0.02      2344
+          10       0.44      0.83      0.57      4999
+
+    accuracy                           0.41     25000
+   macro avg       0.35      0.29      0.23     25000
+weighted avg       0.36      0.41      0.31     25000
+
+
+
+===> Classification Metrics:
+
+accuracy classification score
+	accuracy score:  0.40716
+	accuracy score (normalize=False):  10179
+
+compute the precision
+	precision score (average=macro):  0.3463019583688215
+	precision score (average=micro):  0.40716
+	precision score (average=weighted):  0.36184924918193967
+	precision score (average=None):  [0.41808367 0.31914894 0.30375427 0.37821928 0.34419817 0.26417171
+ 0.30769231 0.43514732]
+	precision score (average=None, zero_division=1):  [0.41808367 0.31914894 0.30375427 0.37821928 0.34419817 0.26417171
+ 0.30769231 0.43514732]
+
+compute the precision
+	recall score (average=macro):  0.28543630760358696
+	recall score (average=micro):  0.40716
+	recall score (average=weighted):  0.40716
+	recall score (average=None):  [0.92532855 0.00651607 0.03502558 0.19506641 0.11443433 0.16842105
+ 0.00853242 0.83016603]
+	recall score (average=None, zero_division=1):  [0.92532855 0.00651607 0.03502558 0.19506641 0.11443433 0.16842105
+ 0.00853242 0.83016603]
+
+compute the F1 score, also known as balanced F-score or F-measure
+	f1 score (average=macro):  0.23424662769573856
+	f1 score (average=micro):  0.4071600000000001
+	f1 score (average=weighted):  0.30541716860366697
+	f1 score (average=None):  [0.57594348 0.01277139 0.06280875 0.25738608 0.17176318 0.20569959
+ 0.0166044  0.57099615]
+
+compute the F-beta score
+	f beta score (average=macro):  0.24250716289757757
+	f beta score (average=micro):  0.40716
+	f beta score (average=weighted):  0.2923103707900903
+	f beta score (average=None):  [0.46956469 0.03012048 0.11984918 0.31842399 0.2455814  0.23720103
+ 0.03840246 0.48091408]
+
+compute the average Hamming loss
+	hamming loss:  0.59284
+
+jaccard similarity coefficient score
+	jaccard score (average=macro):  0.1509409877398289
+	jaccard score (average=None):  [0.40443864 0.00642674 0.03242259 0.14770115 0.09395018 0.11464055
+ 0.0083717  0.39957635]
+
+confusion matrix:
+[[4647    9   22   94    8   18    0  224]
+ [1879   15   47  138   22   22    0  179]
+ [1727   12   89  306   56   84    1  266]
+ [1349    8   85  514  107  185    2  385]
+ [ 424    0   29  153  264  454    7  976]
+ [ 380    3   14   86  192  480   19 1676]
+ [ 243    0    3   36   69  292   20 1681]
+ [ 466    0    4   32   49  282   16 4150]]
+
+================================================================================
+Classifier.STACKING_CLASSIFIER
+________________________________________________________________________________
+Training: 
+StackingClassifier(cv=None,
+                   estimators=[('complement_nb',
+                                ComplementNB(alpha=0.5, class_prior=None,
+                                             fit_prior=False, norm=False)),
+                               ('linear_svc',
+                                LinearSVC(C=0.01, class_weight=None, dual=True,
+                                          fit_intercept=True,
+                                          intercept_scaling=1,
+                                          loss='squared_hinge', max_iter=1000,
+                                          multi_class='crammer_singer',
+                                          penalty='l2', random_state=0,
+                                          tol=0.001, verbose=False)),
+                               ('logisti...
+                                                max_iter=None, normalize=False,
+                                                random_state=0, solver='auto',
+                                                tol=0.001))],
+                   final_estimator=LinearSVC(C=0.01, class_weight=None,
+                                             dual=True, fit_intercept=True,
+                                             intercept_scaling=1,
+                                             loss='squared_hinge',
+                                             max_iter=1000,
+                                             multi_class='crammer_singer',
+                                             penalty='l2', random_state=0,
+                                             tol=0.001, verbose=False),
+                   n_jobs=-1, passthrough=False, stack_method='auto',
+                   verbose=False)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+train time: 110.319s
+test time:  0.828s
+accuracy:   0.410
+
+
+cross validation:
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/ets-crchum/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+	accuracy: 5-fold cross validation: [0.4074 0.4122 0.4186 0.4186 0.4042]
+	test accuracy: 5-fold cross validation accuracy: 0.41 (+/- 0.01)
+
+
+===> Classification Report:
+
+              precision    recall  f1-score   support
+
+           1       0.52      0.85      0.64      5022
+           2       0.13      0.02      0.03      2302
+           3       0.17      0.13      0.15      2541
+           4       0.28      0.34      0.31      2635
+           7       0.29      0.17      0.21      2307
+           8       0.30      0.07      0.11      2850
+           9       0.15      0.09      0.12      2344
+          10       0.49      0.78      0.60      4999
+
+    accuracy                           0.41     25000
+   macro avg       0.29      0.31      0.27     25000
+weighted avg       0.34      0.41      0.34     25000
+
+
+
+===> Classification Metrics:
+
+accuracy classification score
+	accuracy score:  0.40992
+	accuracy score (normalize=False):  10248
+
+compute the precision
+	precision score (average=macro):  0.2915759878021498
+	precision score (average=micro):  0.40992
+	precision score (average=weighted):  0.33622244704282156
+	precision score (average=None):  [0.51523913 0.13157895 0.17377226 0.28326581 0.28903904 0.29535232
+ 0.15161957 0.49274082]
+	precision score (average=None, zero_division=1):  [0.51523913 0.13157895 0.17377226 0.28326581 0.28903904 0.29535232
+ 0.15161957 0.49274082]
+
+compute the precision
+	recall score (average=macro):  0.3061461512826937
+	recall score (average=micro):  0.40992
+	recall score (average=weighted):  0.40992
+	recall score (average=None):  [0.85165273 0.01520417 0.12672176 0.34497154 0.1668834  0.06912281
+ 0.09385666 0.78075615]
+	recall score (average=None, zero_division=1):  [0.85165273 0.01520417 0.12672176 0.34497154 0.1668834  0.06912281
+ 0.09385666 0.78075615]
+
+compute the F1 score, also known as balanced F-score or F-measure
+	f1 score (average=macro):  0.27133792865402084
+	f1 score (average=micro):  0.40992
+	f1 score (average=weighted):  0.34314962422962525
+	f1 score (average=None):  [0.64204759 0.02725857 0.1465635  0.3110883  0.21159659 0.1120273
+ 0.11594203 0.60417957]
+
+compute the F-beta score
+	f beta score (average=macro):  0.27057375183467025
+	f beta score (average=micro):  0.40992
+	f beta score (average=weighted):  0.3272228108691407
+	f beta score (average=None):  [0.55943599 0.05199049 0.16176027 0.29377545 0.25212836 0.17850671
+ 0.13500245 0.5319903 ]
+
+compute the average Hamming loss
+	hamming loss:  0.59008
+
+jaccard similarity coefficient score
+	jaccard score (average=macro):  0.1777419012408795
+	jaccard score (average=None):  [0.47280566 0.01381761 0.07907662 0.18419453 0.11831592 0.05933735
+ 0.06153846 0.43284906]
+
+confusion matrix:
+[[4277   33  189  256   49    8   43  167]
+ [1492   35  219  342   44   13   47  110]
+ [1139   68  322  680   87   28   76  141]
+ [ 770   65  354  909  169   34  162  172]
+ [ 137   25  255  402  385  158  315  630]
+ [ 135   24  213  315  308  197  335 1323]
+ [ 114    5  125  149  143  113  220 1475]
+ [ 237   11  176  156  147  116  253 3903]]
+
 FINAL CLASSIFICATION TABLE: IMDB_REVIEWS dataset (Multi-class classification)
 | ID | ML Algorithm | Accuracy Score (%) | K-fold Cross Validation (CV) (k = 5) | CV (Mean +/- Std) | Training time (seconds) | Test time (seconds) |
 | --- | ------------- | ------------------ | ------------------------------------ | ----------------- |  ------------------ | ------------------ |
-|  1  |  ADA_BOOST_CLASSIFIER  |  38.02%  |  [0.3792 0.379  0.374  0.3704 0.3746]  |  0.38 (+/- 0.01)  |  125.8  |  7.788  |
-|  2  |  BERNOULLI_NB  |  37.03%  |  [0.377  0.389  0.3782 0.38   0.373 ]  |  0.38 (+/- 0.01)  |  0.04582  |  0.04338  |
-|  3  |  COMPLEMENT_NB  |  37.34%  |  [0.3878 0.3942 0.3976 0.3938 0.3832]  |  0.39 (+/- 0.01)  |  0.03707  |  0.01888  |
-|  4  |  DECISION_TREE_CLASSIFIER  |  30.82%  |  [0.3072 0.3132 0.2996 0.3066 0.3064]  |  0.31 (+/- 0.01)  |  6.834  |  0.01294  |
-|  5  |  GRADIENT_BOOSTING_CLASSIFIER  |  37.88%  |  [0.3848 0.379  0.3696 0.3692 0.3728]  |  0.38 (+/- 0.01)  |  872.7  |  0.5021  |
-|  6  |  K_NEIGHBORS_CLASSIFIER  |  37.26%  |  [0.3822 0.3916 0.3842 0.386  0.388 ]  |  0.39 (+/- 0.01)  |  0.006473  |  14.71  |
-|  7  |  LINEAR_SVC  |  40.80%  |  [0.41   0.4206 0.4064 0.3992 0.4088]  |  0.41 (+/- 0.01)  |  0.5438  |  0.01863  |
-|  8  |  LOGISTIC_REGRESSION  |  42.04%  |  [0.4282 0.4334 0.4152 0.4194 0.4218]  |  0.42 (+/- 0.01)  |  9.81  |  0.01971  |
-|  9  |  MULTINOMIAL_NB  |  37.82%  |  [0.389  0.3928 0.3918 0.3942 0.386 ]  |  0.39 (+/- 0.01)  |  0.03475  |  0.01914  |
-|  10  |  NEAREST_CENTROID  |  37.33%  |  [0.3872 0.3786 0.3894 0.3672 0.3782]  |  0.38 (+/- 0.02)  |  0.02605  |  0.03179  |
-|  11  |  PASSIVE_AGGRESSIVE_CLASSIFIER  |  41.81%  |  [0.4172 0.4284 0.4096 0.409  0.4164]  |  0.42 (+/- 0.01)  |  0.5241  |  0.02055  |
-|  12  |  PERCEPTRON  |  31.60%  |  [0.3364 0.3094 0.3268 0.298  0.2964]  |  0.31 (+/- 0.03)  |  0.4149  |  0.0195  |
-|  13  |  RANDOM_FOREST_CLASSIFIER  |  37.72%  |  [0.369  0.3796 0.3768 0.3728 0.3718]  |  0.37 (+/- 0.01)  |  9.596  |  0.708  |
-|  14  |  RIDGE_CLASSIFIER  |  38.55%  |  [0.4036 0.4074 0.402  0.3954 0.4   ]  |  0.40 (+/- 0.01)  |  2.934  |  0.04121  |
+|  1  |  ADA_BOOST_CLASSIFIER  |  38.02%  |  [0.3792 0.379  0.374  0.3704 0.3746]  |  0.38 (+/- 0.01)  |  122.9  |  7.493  |
+|  2  |  BERNOULLI_NB  |  37.03%  |  [0.377  0.389  0.3782 0.38   0.373 ]  |  0.38 (+/- 0.01)  |  0.04714  |  0.04163  |
+|  3  |  COMPLEMENT_NB  |  37.34%  |  [0.3878 0.3942 0.3976 0.3938 0.3832]  |  0.39 (+/- 0.01)  |  0.03856  |  0.01853  |
+|  4  |  DECISION_TREE_CLASSIFIER  |  30.82%  |  [0.3072 0.3132 0.2996 0.3066 0.3064]  |  0.31 (+/- 0.01)  |  7.022  |  0.01285  |
+|  5  |  GRADIENT_BOOSTING_CLASSIFIER  |  37.88%  |  [0.3848 0.379  0.3696 0.3692 0.3728]  |  0.38 (+/- 0.01)  |  875.0  |  0.5061  |
+|  6  |  K_NEIGHBORS_CLASSIFIER  |  37.26%  |  [0.3822 0.3916 0.3842 0.386  0.388 ]  |  0.39 (+/- 0.01)  |  0.006438  |  14.09  |
+|  7  |  LINEAR_SVC  |  40.80%  |  [0.41   0.4206 0.4064 0.3992 0.4088]  |  0.41 (+/- 0.01)  |  0.5486  |  0.0185  |
+|  8  |  LOGISTIC_REGRESSION  |  42.04%  |  [0.4282 0.4334 0.4152 0.4194 0.4218]  |  0.42 (+/- 0.01)  |  9.692  |  0.01969  |
+|  9  |  MULTINOMIAL_NB  |  37.82%  |  [0.389  0.3928 0.3918 0.3942 0.386 ]  |  0.39 (+/- 0.01)  |  0.03519  |  0.01996  |
+|  10  |  NEAREST_CENTROID  |  37.33%  |  [0.3872 0.3786 0.3894 0.3672 0.3782]  |  0.38 (+/- 0.02)  |  0.02599  |  0.03267  |
+|  11  |  PASSIVE_AGGRESSIVE_CLASSIFIER  |  41.81%  |  [0.4172 0.4284 0.4096 0.409  0.4164]  |  0.42 (+/- 0.01)  |  0.5453  |  0.0195  |
+|  12  |  PERCEPTRON  |  31.60%  |  [0.3364 0.3094 0.3268 0.298  0.2964]  |  0.31 (+/- 0.03)  |  0.4152  |  0.0189  |
+|  13  |  RANDOM_FOREST_CLASSIFIER  |  37.72%  |  [0.369  0.3796 0.3768 0.3728 0.3718]  |  0.37 (+/- 0.01)  |  9.598  |  0.7072  |
+|  14  |  RIDGE_CLASSIFIER  |  38.55%  |  [0.4036 0.4074 0.402  0.3954 0.4   ]  |  0.40 (+/- 0.01)  |  2.797  |  0.0416  |
+|  15  |  MAJORITY_VOTING_CLASSIFIER  |  41.46%  |  [0.4198 0.4244 0.4108 0.4136 0.4144]  |  0.42 (+/- 0.01)  |  17.2  |  0.9589  |
+|  16  |  SOFT_VOTING_CLASSIFIER  |  40.72%  |  [0.4124 0.4168 0.415  0.4096 0.408 ]  |  0.41 (+/- 0.01)  |  16.47  |  0.7836  |
+|  17  |  STACKING_CLASSIFIER  |  40.99%  |  [0.4074 0.4122 0.4186 0.4186 0.4042]  |  0.41 (+/- 0.01)  |  110.3  |  0.8278  |
 
 
 Best algorithm:
 ===> 8) LOGISTIC_REGRESSION
-		Accuracy score = 42.04%		Training time = 9.81		Test time = 0.01971
+		Accuracy score = 42.04%		Training time = 9.692		Test time = 0.01969
 
 
 
 DONE!
-Program finished. It took 3434.2735683918 seconds
+Program finished. It took 4463.24662733078 seconds
 
 Process finished with exit code 0
 ```

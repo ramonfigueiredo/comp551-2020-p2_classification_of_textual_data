@@ -6,20 +6,23 @@
 
 | ID | ML Algorithm | Accuracy Score (%) | K-fold Cross Validation (CV) (k = 5) | CV (Mean +/- Std) | Training time (seconds) | Test time (seconds) |
 | --- | ------------- | ------------------ | ------------------------------------ | ----------------- |  ------------------ | ------------------ |
-|  1  |  ADA_BOOST_CLASSIFIER  |  44.04%  |  [0.46973045 0.45779938 0.46575342 0.47017234 0.46993811]  |  0.47 (+/- 0.01)  |  18.56  |  0.9824  |
-|  2  |  BERNOULLI_NB  |  62.56%  |  [0.69200177 0.67741935 0.6752099  0.67388422 0.67992927]  |  0.68 (+/- 0.01)  |  0.07657  |  0.0547  |
-|  3  |  COMPLEMENT_NB  |  71.22%  |  [0.776403   0.75828546 0.78126381 0.77507733 0.76967286]  |  0.77 (+/- 0.02)  |  0.06438  |  0.01067  |
-|  4  |  DECISION_TREE_CLASSIFIER  |  44.72%  |  [0.49094123 0.48696421 0.47547503 0.49270879 0.49646331]  |  0.49 (+/- 0.01)  |  8.915  |  0.005966  |
-|  5  |  GRADIENT_BOOSTING_CLASSIFIER  |  59.43%  |  [0.65930181 0.62704375 0.64781264 0.6548829  0.64721485]  |  0.65 (+/- 0.02)  |  664.3  |  0.3512  |
-|  6  |  K_NEIGHBORS_CLASSIFIER  |  8.48%  |  [0.12417145 0.11842687 0.12063632 0.12240389 0.12113174]  |  0.12 (+/- 0.00)  |  0.00307  |  1.304  |
-|  7  |  LINEAR_SVC  |  69.82%  |  [0.76270437 0.74458683 0.76182059 0.7715422  0.74580018]  |  0.76 (+/- 0.02)  |  0.8327  |  0.009177  |
-|  8  |  LOGISTIC_REGRESSION  |  69.28%  |  [0.75961114 0.74016792 0.75519222 0.7565179  0.73607427]  |  0.75 (+/- 0.02)  |  23.53  |  0.01201  |
-|  9  |  MULTINOMIAL_NB  |  68.79%  |  [0.76049492 0.74149359 0.75519222 0.75695979 0.74270557]  |  0.75 (+/- 0.02)  |  0.06755  |  0.01122  |
-|  10  |  NEAREST_CENTROID  |  66.70%  |  [0.71674768 0.71807335 0.71851525 0.71939903 0.70601238]  |  0.72 (+/- 0.01)  |  0.01734  |  0.01925  |
-|  11  |  PASSIVE_AGGRESSIVE_CLASSIFIER  |  69.62%  |  [0.76535572 0.74856385 0.76182059 0.77065842 0.74889478]  |  0.76 (+/- 0.02)  |  2.239  |  0.01044  |
-|  12  |  PERCEPTRON  |  53.86%  |  [0.63146266 0.61025188 0.58948299 0.60450729 0.60477454]  |  0.61 (+/- 0.03)  |  0.409  |  0.01173  |
-|  13  |  RANDOM_FOREST_CLASSIFIER  |  63.71%  |  [0.69465312 0.66902342 0.68272205 0.69730446 0.67462423]  |  0.68 (+/- 0.02)  |  7.575  |  0.3064  |
-|  14  |  RIDGE_CLASSIFIER  |  70.02%  |  [0.76756518 0.74502872 0.76800707 0.776403   0.76083112]  |  0.76 (+/- 0.02)  |  3.189  |  0.0235  |
+|  1  |  ADA_BOOST_CLASSIFIER  |  44.04%  |  [0.46973045 0.45779938 0.46575342 0.47017234 0.46993811]  |  0.47 (+/- 0.01)  |  19.26  |  1.015  |
+|  2  |  BERNOULLI_NB  |  62.56%  |  [0.69200177 0.67741935 0.6752099  0.67388422 0.67992927]  |  0.68 (+/- 0.01)  |  0.07593  |  0.0528  |
+|  3  |  COMPLEMENT_NB  |  71.22%  |  [0.776403   0.75828546 0.78126381 0.77507733 0.76967286]  |  0.77 (+/- 0.02)  |  0.0646  |  0.01039  |
+|  4  |  DECISION_TREE_CLASSIFIER  |  44.72%  |  [0.49094123 0.48696421 0.47547503 0.49270879 0.49646331]  |  0.49 (+/- 0.01)  |  9.037  |  0.006431  |
+|  5  |  GRADIENT_BOOSTING_CLASSIFIER  |  59.43%  |  [0.65930181 0.62704375 0.64781264 0.6548829  0.64721485]  |  0.65 (+/- 0.02)  |  658.5  |  0.3929  |
+|  6  |  K_NEIGHBORS_CLASSIFIER  |  8.48%  |  [0.12417145 0.11842687 0.12063632 0.12240389 0.12113174]  |  0.12 (+/- 0.00)  |  0.003191  |  1.298  |
+|  7  |  LINEAR_SVC  |  69.82%  |  [0.76270437 0.74458683 0.76182059 0.7715422  0.74580018]  |  0.76 (+/- 0.02)  |  0.8115  |  0.008989  |
+|  8  |  LOGISTIC_REGRESSION  |  69.28%  |  [0.75961114 0.74016792 0.75519222 0.7565179  0.73607427]  |  0.75 (+/- 0.02)  |  22.88  |  0.01089  |
+|  9  |  MULTINOMIAL_NB  |  68.79%  |  [0.76049492 0.74149359 0.75519222 0.75695979 0.74270557]  |  0.75 (+/- 0.02)  |  0.07197  |  0.01174  |
+|  10  |  NEAREST_CENTROID  |  66.70%  |  [0.71674768 0.71807335 0.71851525 0.71939903 0.70601238]  |  0.72 (+/- 0.01)  |  0.01669  |  0.01906  |
+|  11  |  PASSIVE_AGGRESSIVE_CLASSIFIER  |  69.62%  |  [0.76535572 0.74856385 0.76182059 0.77065842 0.74889478]  |  0.76 (+/- 0.02)  |  2.319  |  0.01587  |
+|  12  |  PERCEPTRON  |  53.86%  |  [0.63146266 0.61025188 0.58948299 0.60450729 0.60477454]  |  0.61 (+/- 0.03)  |  0.4178  |  0.0171  |
+|  13  |  RANDOM_FOREST_CLASSIFIER  |  63.71%  |  [0.69465312 0.66902342 0.68272205 0.69730446 0.67462423]  |  0.68 (+/- 0.02)  |  7.79  |  0.3067  |
+|  14  |  RIDGE_CLASSIFIER  |  70.02%  |  [0.76756518 0.74502872 0.76800707 0.776403   0.76083112]  |  0.76 (+/- 0.02)  |  3.12  |  0.02272  |
+|  15  |  MAJORITY_VOTING_CLASSIFIER  |  70.37%  |  [0.76712329 0.75077331 0.76800707 0.77551922 0.7515473 ]  |  0.76 (+/- 0.02)  |  31.06  |  0.4181  |
+|  16  |  SOFT_VOTING_CLASSIFIER  |  71.73%  |  [0.79231109 0.75828546 0.79098542 0.7870084  0.76702034]  |  0.78 (+/- 0.03)  |  28.07  |  0.3526  |
+|  17  |  STACKING_CLASSIFIER  |  71.28%  |  [0.77507733 0.75961114 0.77198409 0.77110031 0.75066313]  |  0.77 (+/- 0.02)  |  184.0  |  0.368  |
 
 * Accuracy score
 
@@ -31,24 +34,27 @@
 
 ### IMDB using Binary Classification
 
-#### FINAL CLASSIFICATION TABLE:  IMDB_REVIEWS dataset (Binary classification)
+#### FINAL CLASSIFICATION TABLE: IMDB_REVIEWS dataset (Binary classification)
 
 | ID | ML Algorithm | Accuracy Score (%) | K-fold Cross Validation (CV) (k = 5) | CV (Mean +/- Std) | Training time (seconds) | Test time (seconds) |
 | --- | ------------- | ------------------ | ------------------------------------ | ----------------- |  ------------------ | ------------------ |
-|  1  |  ADA_BOOST_CLASSIFIER  |  84.60%  |  [0.8398 0.8516 0.8416 0.8366 0.8416]  |  0.84 (+/- 0.01)  |  105.6  |  5.739  |
-|  2  |  BERNOULLI_NB  |  81.28%  |  [0.8398 0.8424 0.8514 0.8396 0.8516]  |  0.84 (+/- 0.01)  |  0.02628  |  0.02054  |
-|  3  |  COMPLEMENT_NB  |  83.93%  |  [0.8564 0.8678 0.8682 0.8678 0.8672]  |  0.87 (+/- 0.01)  |  0.01715  |  0.008316  |
-|  4  |  DECISION_TREE_CLASSIFIER  |  74.14%  |  [0.735  0.7292 0.746  0.739  0.7342]  |  0.74 (+/- 0.01)  |  8.226  |  0.01256  |
-|  5  |  GRADIENT_BOOSTING_CLASSIFIER  |  82.86%  |  [0.8278 0.8294 0.8238 0.823  0.8284]  |  0.83 (+/- 0.01)  |  105.4  |  0.06937  |
-|  6  |  K_NEIGHBORS_CLASSIFIER  |  82.66%  |  [0.8632 0.8744 0.8694 0.864  0.8618]  |  0.87 (+/- 0.01)  |  0.00634  |  13.07  |
-|  7  |  LINEAR_SVC  |  87.13%  |  [0.8838 0.8932 0.883  0.8836 0.8782]  |  0.88 (+/- 0.01)  |  0.2239  |  0.003934  |
-|  8  |  LOGISTIC_REGRESSION  |  87.75%  |  [0.8882 0.897  0.8878 0.8876 0.8818]  |  0.89 (+/- 0.01)  |  1.106  |  0.004114  |
-|  9  |  MULTINOMIAL_NB  |  83.93%  |  [0.8564 0.8678 0.8682 0.8678 0.8672]  |  0.87 (+/- 0.01)  |  0.01693  |  0.008398  |
-|  10  |  NEAREST_CENTROID  |  84.65%  |  [0.8426 0.8546 0.8426 0.8522 0.8502]  |  0.85 (+/- 0.01)  |  0.01881  |  0.01723  |
-|  11  |  PASSIVE_AGGRESSIVE_CLASSIFIER  |  88.07%  |  [0.8874 0.8966 0.8886 0.888  0.8846]  |  0.89 (+/- 0.01)  |  0.8494  |  0.003876  |
-|  12  |  PERCEPTRON  |  80.64%  |  [0.8166 0.8264 0.8144 0.81   0.8102]  |  0.82 (+/- 0.01)  |  0.08878  |  0.008192  |
-|  13  |  RANDOM_FOREST_CLASSIFIER  |  85.45%  |  [0.8504 0.8584 0.8488 0.8518 0.8568]  |  0.85 (+/- 0.01)  |  9.593  |  0.6074  |
-|  14  |  RIDGE_CLASSIFIER  |  86.90%  |  [0.8838 0.8952 0.8892 0.882  0.8788]  |  0.89 (+/- 0.01)  |  0.541  |  0.008644  |
+|  1  |  ADA_BOOST_CLASSIFIER  |  84.60%  |  [0.8398 0.8516 0.8416 0.8366 0.8416]  |  0.84 (+/- 0.01)  |  103.3  |  5.553  |
+|  2  |  BERNOULLI_NB  |  81.28%  |  [0.8398 0.8424 0.8514 0.8396 0.8516]  |  0.84 (+/- 0.01)  |  0.02759  |  0.02151  |
+|  3  |  COMPLEMENT_NB  |  83.93%  |  [0.8564 0.8678 0.8682 0.8678 0.8672]  |  0.87 (+/- 0.01)  |  0.01739  |  0.00831  |
+|  4  |  DECISION_TREE_CLASSIFIER  |  74.14%  |  [0.735  0.7292 0.746  0.739  0.7342]  |  0.74 (+/- 0.01)  |  7.808  |  0.01236  |
+|  5  |  GRADIENT_BOOSTING_CLASSIFIER  |  82.86%  |  [0.8278 0.8294 0.8238 0.823  0.8284]  |  0.83 (+/- 0.01)  |  100.8  |  0.06589  |
+|  6  |  K_NEIGHBORS_CLASSIFIER  |  82.66%  |  [0.8632 0.8744 0.8694 0.864  0.8618]  |  0.87 (+/- 0.01)  |  0.006417  |  13.02  |
+|  7  |  LINEAR_SVC  |  87.13%  |  [0.8838 0.8932 0.883  0.8836 0.8782]  |  0.88 (+/- 0.01)  |  0.2095  |  0.004025  |
+|  8  |  LOGISTIC_REGRESSION  |  87.75%  |  [0.8882 0.897  0.8878 0.8876 0.8818]  |  0.89 (+/- 0.01)  |  1.075  |  0.005046  |
+|  9  |  MULTINOMIAL_NB  |  83.93%  |  [0.8564 0.8678 0.8682 0.8678 0.8672]  |  0.87 (+/- 0.01)  |  0.01648  |  0.0088  |
+|  10  |  NEAREST_CENTROID  |  84.65%  |  [0.8426 0.8546 0.8426 0.8522 0.8502]  |  0.85 (+/- 0.01)  |  0.01818  |  0.01677  |
+|  11  |  PASSIVE_AGGRESSIVE_CLASSIFIER  |  88.07%  |  [0.8874 0.8966 0.8886 0.888  0.8846]  |  0.89 (+/- 0.01)  |  0.8581  |  0.003922  |
+|  12  |  PERCEPTRON  |  80.64%  |  [0.8166 0.8264 0.8144 0.81   0.8102]  |  0.82 (+/- 0.01)  |  0.09105  |  0.007187  |
+|  13  |  RANDOM_FOREST_CLASSIFIER  |  85.45%  |  [0.8504 0.8584 0.8488 0.8518 0.8568]  |  0.85 (+/- 0.01)  |  8.792  |  0.7235  |
+|  14  |  RIDGE_CLASSIFIER  |  86.90%  |  [0.8838 0.8952 0.8892 0.882  0.8788]  |  0.89 (+/- 0.01)  |  0.5019  |  0.00815  |
+|  15  |  MAJORITY_VOTING_CLASSIFIER  |  87.88%  |  [0.8882 0.8976 0.8896 0.8884 0.8846]  |  0.89 (+/- 0.01)  |  10.81  |  0.7945  |
+|  16  |  SOFT_VOTING_CLASSIFIER  |  87.73%  |  [0.8852 0.8972 0.8906 0.8908 0.8856]  |  0.89 (+/- 0.01)  |  10.29  |  0.6372  |
+|  17  |  STACKING_CLASSIFIER  |  88.29%  |  [0.8924 0.902  0.8934 0.8898 0.889 ]  |  0.89 (+/- 0.01)  |  93.17  |  0.6377  |
 
 * Accuracy score
 
@@ -68,7 +74,11 @@
 
 ```
 python /comp551-2020-p2_classification_of_textual_data/code/main.py --run_cross_validation --report --all_metrics --confusion_matrix --plot_accurary_and_time_together
-03/08/2020 09:36:55 AM - INFO - Program started...
+Using TensorFlow backend.
+2020-03-09 01:14:08.328185: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer.so.6'; dlerror: libnvinfer.so.6: cannot open shared object file: No such file or directory
+2020-03-09 01:14:08.328238: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer_plugin.so.6'; dlerror: libnvinfer_plugin.so.6: cannot open shared object file: No such file or directory
+2020-03-09 01:14:08.328243: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:30] Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+03/09/2020 01:14:08 AM - INFO - Program started...
 usage: main.py [-h] [-d DATASET] [-ml ML_ALGORITHM_LIST]
                [-use_default_parameters] [-not_shuffle] [-n_jobs N_JOBS] [-cv]
                [-n_splits N_SPLITS] [-required_classifiers]
@@ -76,7 +86,7 @@ usage: main.py [-h] [-d DATASET] [-ml ML_ALGORITHM_LIST]
                [-show_reviews] [-r] [-m] [--chi2_select CHI2_SELECT] [-cm]
                [-use_hashing] [-use_count] [-n_features N_FEATURES]
                [-plot_time] [-save_logs] [-verbose]
-               [-random_state RANDOM_STATE] [-v]
+               [-random_state RANDOM_STATE] [-dl] [-v]
 
 MiniProject 2: Classification of textual data. Authors: Ramon Figueiredo
 Pessoa, Rafael Gomes Braga, Ege Odaci
@@ -100,8 +110,19 @@ optional arguments:
                         LOGISTIC_REGRESSION, 9) MULTINOMIAL_NB, 10)
                         NEAREST_CENTROID, 11) PASSIVE_AGGRESSIVE_CLASSIFIER,
                         12) PERCEPTRON, 13) RANDOM_FOREST_CLASSIFIER, 14)
-                        RIDGE_CLASSIFIER). Default: None. If ml_algorithm_list
-                        is not provided, all ML algorithms will be executed.
+                        RIDGE_CLASSIFIER, 15) MAJORITY_VOTING_CLASSIFIER
+                        (using COMPLEMENT_NB, RIDGE_CLASSIFIER, LINEAR_SVC,
+                        LOGISTIC_REGRESSION, PASSIVE_AGGRESSIVE_CLASSIFIER,
+                        RANDOM_FOREST_CLASSIFIER), 16) SOFT_VOTING_CLASSIFIER
+                        (using COMPLEMENT_NB, LOGISTIC_REGRESSION,
+                        MULTINOMIAL_NB, RANDOM_FOREST_CLASSIFIER), 17)
+                        STACKING_CLASSIFIER (using COMPLEMENT_NB,
+                        RIDGE_CLASSIFIER, LINEAR_SVC, LOGISTIC_REGRESSION,
+                        PASSIVE_AGGRESSIVE_CLASSIFIER,
+                        RANDOM_FOREST_CLASSIFIER,
+                        final_estimator=LINEAR_SVC)). Default: None. If
+                        ml_algorithm_list is not provided, all ML algorithms
+                        will be executed.
   -use_default_parameters, --use_classifiers_with_default_parameters
                         Use classifiers with default parameters. Default:
                         False = Use classifiers with best parameters found
@@ -163,6 +184,9 @@ optional arguments:
                         Increase output verbosity. Default: False
   -random_state RANDOM_STATE
                         Seed used by the random number generator. Default: 0
+  -dl, --run_deep_learning_using_keras
+                        Run deep learning using keras. Default: False (Run
+                        scikit-learn algorithms)
   -v, --version         show program's version number and exit
 
 COMP 551 (001/002), Applied Machine Learning, Winter 2020, McGill University.
@@ -194,6 +218,7 @@ Running with options:
 	Save logs in a file = False
 	Seed used by the random number generator (random_state) = 0
 	Verbose = False
+	Run deep learning using keras. Default: False (Run scikit-learn algorithms) = False
 ==================================================================================================================================
 
 Loading TWENTY_NEWS_GROUPS dataset for categories:
@@ -203,11 +228,11 @@ data loaded
 20 categories
 
 Extracting features from the training data using a vectorizer
-done in 1.085917s at 12.692MB/s
+done in 1.133759s at 12.156MB/s
 n_samples: 11314, n_features: 101321
 
 Extracting features from the test data using the same vectorizer
-done in 0.569791s at 14.499MB/s
+done in 0.633444s at 13.042MB/s
 n_samples: 7532, n_features: 101321
 
 	==> Using JSON with best parameters (selected using grid search) to the ADA_BOOST_CLASSIFIER classifier (multi-class classification) and TWENTY_NEWS_GROUPS dataset ===> JSON in dictionary format: {'learning_rate': 1, 'n_estimators': 200}
@@ -278,14 +303,178 @@ n_samples: 7532, n_features: 101321
 	 RidgeClassifier(alpha=0.5, class_weight=None, copy_X=True, fit_intercept=True,
                 max_iter=None, normalize=False, random_state=0, solver='auto',
                 tol=0.001)
+	==> Using JSON with best parameters (selected using grid search) to the COMPLEMENT_NB classifier (multi-class classification) and TWENTY_NEWS_GROUPS dataset ===> JSON in dictionary format: {'alpha': 0.5, 'fit_prior': False, 'norm': False}
+	 ComplementNB(alpha=0.5, class_prior=None, fit_prior=False, norm=False)
+	==> Using JSON with best parameters (selected using grid search) to the LINEAR_SVC classifier (multi-class classification) and TWENTY_NEWS_GROUPS dataset ===> JSON in dictionary format: {'C': 1.0, 'multi_class': 'ovr', 'tol': 0.0001}
+	 LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+          intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+          multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
+          verbose=False)
+	==> Using JSON with best parameters (selected using grid search) to the LOGISTIC_REGRESSION classifier (multi-class classification) and TWENTY_NEWS_GROUPS dataset ===> JSON in dictionary format: {'C': 10, 'tol': 0.001}
+	 LogisticRegression(C=10, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='auto', n_jobs=-1, penalty='l2', random_state=0,
+                   solver='lbfgs', tol=0.001, verbose=False, warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the PASSIVE_AGGRESSIVE_CLASSIFIER classifier (multi-class classification) and TWENTY_NEWS_GROUPS dataset ===> JSON in dictionary format: {'C': 0.01, 'early_stopping': False, 'tol': 0.0001, 'validation_fraction': 0.0001}
+	 PassiveAggressiveClassifier(C=0.01, average=False, class_weight=None,
+                            early_stopping=False, fit_intercept=True,
+                            loss='hinge', max_iter=1000, n_iter_no_change=5,
+                            n_jobs=-1, random_state=0, shuffle=True, tol=0.0001,
+                            validation_fraction=0.0001, verbose=False,
+                            warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the RANDOM_FOREST_CLASSIFIER classifier (multi-class classification) and TWENTY_NEWS_GROUPS dataset ===> JSON in dictionary format: {'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 200}
+	 RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
+                       criterion='gini', max_depth=None, max_features='auto',
+                       max_leaf_nodes=None, max_samples=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=5,
+                       min_weight_fraction_leaf=0.0, n_estimators=200,
+                       n_jobs=-1, oob_score=False, random_state=0,
+                       verbose=False, warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the RIDGE_CLASSIFIER classifier (multi-class classification) and TWENTY_NEWS_GROUPS dataset ===> JSON in dictionary format: {'alpha': 0.5, 'tol': 0.001}
+	 RidgeClassifier(alpha=0.5, class_weight=None, copy_X=True, fit_intercept=True,
+                max_iter=None, normalize=False, random_state=0, solver='auto',
+                tol=0.001)
+	 VotingClassifier(estimators=[('complement_nb',
+                              ComplementNB(alpha=0.5, class_prior=None,
+                                           fit_prior=False, norm=False)),
+                             ('linear_svc',
+                              LinearSVC(C=1.0, class_weight=None, dual=True,
+                                        fit_intercept=True, intercept_scaling=1,
+                                        loss='squared_hinge', max_iter=1000,
+                                        multi_class='ovr', penalty='l2',
+                                        random_state=0, tol=0.0001,
+                                        verbose=False)),
+                             ('logistic_regression',
+                              Logisti...
+                                                     min_samples_split=5,
+                                                     min_weight_fraction_leaf=0.0,
+                                                     n_estimators=200,
+                                                     n_jobs=-1, oob_score=False,
+                                                     random_state=0,
+                                                     verbose=False,
+                                                     warm_start=False)),
+                             ('ridge_classifier',
+                              RidgeClassifier(alpha=0.5, class_weight=None,
+                                              copy_X=True, fit_intercept=True,
+                                              max_iter=None, normalize=False,
+                                              random_state=0, solver='auto',
+                                              tol=0.001))],
+                 flatten_transform=True, n_jobs=-1, voting='hard',
+                 weights=None)
+	==> Using JSON with best parameters (selected using grid search) to the COMPLEMENT_NB classifier (multi-class classification) and TWENTY_NEWS_GROUPS dataset ===> JSON in dictionary format: {'alpha': 0.5, 'fit_prior': False, 'norm': False}
+	 ComplementNB(alpha=0.5, class_prior=None, fit_prior=False, norm=False)
+	==> Using JSON with best parameters (selected using grid search) to the LOGISTIC_REGRESSION classifier (multi-class classification) and TWENTY_NEWS_GROUPS dataset ===> JSON in dictionary format: {'C': 10, 'tol': 0.001}
+	 LogisticRegression(C=10, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='auto', n_jobs=-1, penalty='l2', random_state=0,
+                   solver='lbfgs', tol=0.001, verbose=False, warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the MULTINOMIAL_NB classifier (multi-class classification) and TWENTY_NEWS_GROUPS dataset ===> JSON in dictionary format: {'alpha': 0.01, 'fit_prior': True}
+	 MultinomialNB(alpha=0.01, class_prior=None, fit_prior=True)
+	==> Using JSON with best parameters (selected using grid search) to the RANDOM_FOREST_CLASSIFIER classifier (multi-class classification) and TWENTY_NEWS_GROUPS dataset ===> JSON in dictionary format: {'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 200}
+	 RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
+                       criterion='gini', max_depth=None, max_features='auto',
+                       max_leaf_nodes=None, max_samples=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=5,
+                       min_weight_fraction_leaf=0.0, n_estimators=200,
+                       n_jobs=-1, oob_score=False, random_state=0,
+                       verbose=False, warm_start=False)
+	 VotingClassifier(estimators=[('complement_nb',
+                              ComplementNB(alpha=0.5, class_prior=None,
+                                           fit_prior=False, norm=False)),
+                             ('logistic_regression',
+                              LogisticRegression(C=10, class_weight=None,
+                                                 dual=False, fit_intercept=True,
+                                                 intercept_scaling=1,
+                                                 l1_ratio=None, max_iter=100,
+                                                 multi_class='auto', n_jobs=-1,
+                                                 penalty='l2', random_state=0,
+                                                 solver='lbfgs', tol=0.001,
+                                                 verbose=Fal...
+                                                     criterion='gini',
+                                                     max_depth=None,
+                                                     max_features='auto',
+                                                     max_leaf_nodes=None,
+                                                     max_samples=None,
+                                                     min_impurity_decrease=0.0,
+                                                     min_impurity_split=None,
+                                                     min_samples_leaf=1,
+                                                     min_samples_split=5,
+                                                     min_weight_fraction_leaf=0.0,
+                                                     n_estimators=200,
+                                                     n_jobs=-1, oob_score=False,
+                                                     random_state=0,
+                                                     verbose=False,
+                                                     warm_start=False))],
+                 flatten_transform=True, n_jobs=-1, voting='soft',
+                 weights=None)
+	==> Using JSON with best parameters (selected using grid search) to the COMPLEMENT_NB classifier (multi-class classification) and TWENTY_NEWS_GROUPS dataset ===> JSON in dictionary format: {'alpha': 0.5, 'fit_prior': False, 'norm': False}
+	 ComplementNB(alpha=0.5, class_prior=None, fit_prior=False, norm=False)
+	==> Using JSON with best parameters (selected using grid search) to the LINEAR_SVC classifier (multi-class classification) and TWENTY_NEWS_GROUPS dataset ===> JSON in dictionary format: {'C': 1.0, 'multi_class': 'ovr', 'tol': 0.0001}
+	 LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+          intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+          multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
+          verbose=False)
+	==> Using JSON with best parameters (selected using grid search) to the LOGISTIC_REGRESSION classifier (multi-class classification) and TWENTY_NEWS_GROUPS dataset ===> JSON in dictionary format: {'C': 10, 'tol': 0.001}
+	 LogisticRegression(C=10, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='auto', n_jobs=-1, penalty='l2', random_state=0,
+                   solver='lbfgs', tol=0.001, verbose=False, warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the PASSIVE_AGGRESSIVE_CLASSIFIER classifier (multi-class classification) and TWENTY_NEWS_GROUPS dataset ===> JSON in dictionary format: {'C': 0.01, 'early_stopping': False, 'tol': 0.0001, 'validation_fraction': 0.0001}
+	 PassiveAggressiveClassifier(C=0.01, average=False, class_weight=None,
+                            early_stopping=False, fit_intercept=True,
+                            loss='hinge', max_iter=1000, n_iter_no_change=5,
+                            n_jobs=-1, random_state=0, shuffle=True, tol=0.0001,
+                            validation_fraction=0.0001, verbose=False,
+                            warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the RANDOM_FOREST_CLASSIFIER classifier (multi-class classification) and TWENTY_NEWS_GROUPS dataset ===> JSON in dictionary format: {'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 200}
+	 RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
+                       criterion='gini', max_depth=None, max_features='auto',
+                       max_leaf_nodes=None, max_samples=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=5,
+                       min_weight_fraction_leaf=0.0, n_estimators=200,
+                       n_jobs=-1, oob_score=False, random_state=0,
+                       verbose=False, warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the RIDGE_CLASSIFIER classifier (multi-class classification) and TWENTY_NEWS_GROUPS dataset ===> JSON in dictionary format: {'alpha': 0.5, 'tol': 0.001}
+	 RidgeClassifier(alpha=0.5, class_weight=None, copy_X=True, fit_intercept=True,
+                max_iter=None, normalize=False, random_state=0, solver='auto',
+                tol=0.001)
+	 StackingClassifier(cv=None,
+                   estimators=[('complement_nb',
+                                ComplementNB(alpha=0.5, class_prior=None,
+                                             fit_prior=False, norm=False)),
+                               ('linear_svc',
+                                LinearSVC(C=1.0, class_weight=None, dual=True,
+                                          fit_intercept=True,
+                                          intercept_scaling=1,
+                                          loss='squared_hinge', max_iter=1000,
+                                          multi_class='ovr', penalty='l2',
+                                          random_state=0, tol=0.0001,
+                                          verbose=False)),
+                               ('logistic_regressio...
+                                                copy_X=True, fit_intercept=True,
+                                                max_iter=None, normalize=False,
+                                                random_state=0, solver='auto',
+                                                tol=0.001))],
+                   final_estimator=LinearSVC(C=1.0, class_weight=None,
+                                             dual=True, fit_intercept=True,
+                                             intercept_scaling=1,
+                                             loss='squared_hinge',
+                                             max_iter=1000, multi_class='ovr',
+                                             penalty='l2', random_state=0,
+                                             tol=0.0001, verbose=False),
+                   n_jobs=-1, passthrough=False, stack_method='auto',
+                   verbose=False)
 ================================================================================
 Classifier.ADA_BOOST_CLASSIFIER
 ________________________________________________________________________________
 Training: 
 AdaBoostClassifier(algorithm='SAMME.R', base_estimator=None, learning_rate=1,
                    n_estimators=200, random_state=0)
-train time: 18.556s
-test time:  0.982s
+train time: 19.260s
+test time:  1.015s
 accuracy:   0.440
 
 
@@ -432,8 +621,8 @@ Classifier.BERNOULLI_NB
 ________________________________________________________________________________
 Training: 
 BernoulliNB(alpha=0.1, binarize=0.1, class_prior=None, fit_prior=False)
-train time: 0.077s
-test time:  0.055s
+train time: 0.076s
+test time:  0.053s
 accuracy:   0.626
 
 
@@ -583,8 +772,8 @@ Classifier.COMPLEMENT_NB
 ________________________________________________________________________________
 Training: 
 ComplementNB(alpha=0.5, class_prior=None, fit_prior=False, norm=False)
-train time: 0.064s
-test time:  0.011s
+train time: 0.065s
+test time:  0.010s
 accuracy:   0.712
 
 
@@ -739,7 +928,7 @@ DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None, criterion='gini',
                        min_samples_leaf=1, min_samples_split=2,
                        min_weight_fraction_leaf=0.0, presort='deprecated',
                        random_state=0, splitter='random')
-train time: 8.915s
+train time: 9.037s
 test time:  0.006s
 accuracy:   0.447
 
@@ -896,8 +1085,8 @@ GradientBoostingClassifier(ccp_alpha=0.0, criterion='friedman_mse', init=None,
                            random_state=0, subsample=1.0, tol=0.0001,
                            validation_fraction=0.1, verbose=False,
                            warm_start=False)
-train time: 664.298s
-test time:  0.351s
+train time: 658.514s
+test time:  0.393s
 accuracy:   0.594
 
 
@@ -1047,7 +1236,7 @@ KNeighborsClassifier(algorithm='auto', leaf_size=5, metric='euclidean',
                      metric_params=None, n_jobs=-1, n_neighbors=3, p=2,
                      weights='distance')
 train time: 0.003s
-test time:  1.304s
+test time:  1.298s
 accuracy:   0.085
 
 
@@ -1197,7 +1386,7 @@ LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
           intercept_scaling=1, loss='squared_hinge', max_iter=1000,
           multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
           verbose=False)
-train time: 0.833s
+train time: 0.811s
 test time:  0.009s
 accuracy:   0.698
 
@@ -1359,8 +1548,8 @@ Increase the number of iterations (max_iter) or scale the data as shown in:
 Please also refer to the documentation for alternative solver options:
     https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
   extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
-train time: 23.530s
-test time:  0.012s
+train time: 22.877s
+test time:  0.011s
 accuracy:   0.693
 
 
@@ -1550,8 +1739,8 @@ Classifier.MULTINOMIAL_NB
 ________________________________________________________________________________
 Training: 
 MultinomialNB(alpha=0.01, class_prior=None, fit_prior=True)
-train time: 0.068s
-test time:  0.011s
+train time: 0.072s
+test time:  0.012s
 accuracy:   0.688
 
 
@@ -1702,46 +1891,6 @@ ________________________________________________________________________________
 Training: 
 NearestCentroid(metric='cosine', shrink_threshold=None)
 train time: 0.017s
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
 test time:  0.019s
 accuracy:   0.667
 
@@ -2094,8 +2243,8 @@ PassiveAggressiveClassifier(C=0.01, average=False, class_weight=None,
                             n_jobs=-1, random_state=0, shuffle=True, tol=0.0001,
                             validation_fraction=0.0001, verbose=False,
                             warm_start=False)
-train time: 2.239s
-test time:  0.010s
+train time: 2.319s
+test time:  0.016s
 accuracy:   0.696
 
 
@@ -2248,8 +2397,8 @@ Perceptron(alpha=0.0001, class_weight=None, early_stopping=True, eta0=1.0,
            fit_intercept=True, max_iter=100, n_iter_no_change=3, n_jobs=-1,
            penalty='l2', random_state=0, shuffle=True, tol=0.0001,
            validation_fraction=0.01, verbose=False, warm_start=False)
-train time: 0.409s
-test time:  0.012s
+train time: 0.418s
+test time:  0.017s
 accuracy:   0.539
 
 
@@ -2406,8 +2555,8 @@ RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
                        min_weight_fraction_leaf=0.0, n_estimators=200,
                        n_jobs=-1, oob_score=False, random_state=0,
                        verbose=False, warm_start=False)
-train time: 7.575s
-test time:  0.306s
+train time: 7.790s
+test time:  0.307s
 accuracy:   0.637
 
 
@@ -2556,7 +2705,7 @@ Training:
 RidgeClassifier(alpha=0.5, class_weight=None, copy_X=True, fit_intercept=True,
                 max_iter=None, normalize=False, random_state=0, solver='auto',
                 tol=0.001)
-train time: 3.189s
+train time: 3.120s
 test time:  0.023s
 accuracy:   0.700
 
@@ -2702,28 +2851,916 @@ confusion matrix:
  [ 34   5   1   2   2   2   2   4   0   8   0   2   3   6   4  76  21   5
     9  65]]
 
+================================================================================
+Classifier.MAJORITY_VOTING_CLASSIFIER
+________________________________________________________________________________
+Training: 
+VotingClassifier(estimators=[('complement_nb',
+                              ComplementNB(alpha=0.5, class_prior=None,
+                                           fit_prior=False, norm=False)),
+                             ('linear_svc',
+                              LinearSVC(C=1.0, class_weight=None, dual=True,
+                                        fit_intercept=True, intercept_scaling=1,
+                                        loss='squared_hinge', max_iter=1000,
+                                        multi_class='ovr', penalty='l2',
+                                        random_state=0, tol=0.0001,
+                                        verbose=False)),
+                             ('logistic_regression',
+                              Logisti...
+                                                     min_samples_split=5,
+                                                     min_weight_fraction_leaf=0.0,
+                                                     n_estimators=200,
+                                                     n_jobs=-1, oob_score=False,
+                                                     random_state=0,
+                                                     verbose=False,
+                                                     warm_start=False)),
+                             ('ridge_classifier',
+                              RidgeClassifier(alpha=0.5, class_weight=None,
+                                              copy_X=True, fit_intercept=True,
+                                              max_iter=None, normalize=False,
+                                              random_state=0, solver='auto',
+                                              tol=0.001))],
+                 flatten_transform=True, n_jobs=-1, voting='hard',
+                 weights=None)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+train time: 31.059s
+test time:  0.418s
+accuracy:   0.704
+
+
+cross validation:
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+	accuracy: 5-fold cross validation: [0.76712329 0.75077331 0.76800707 0.77551922 0.7515473 ]
+	test accuracy: 5-fold cross validation accuracy: 0.76 (+/- 0.02)
+
+
+===> Classification Report:
+
+                          precision    recall  f1-score   support
+
+             alt.atheism       0.52      0.47      0.49       319
+           comp.graphics       0.65      0.75      0.70       389
+ comp.os.ms-windows.misc       0.63      0.62      0.63       394
+comp.sys.ibm.pc.hardware       0.66      0.68      0.67       392
+   comp.sys.mac.hardware       0.73      0.70      0.71       385
+          comp.windows.x       0.83      0.71      0.76       395
+            misc.forsale       0.78      0.79      0.78       390
+               rec.autos       0.50      0.78      0.61       396
+         rec.motorcycles       0.79      0.77      0.78       398
+      rec.sport.baseball       0.84      0.84      0.84       397
+        rec.sport.hockey       0.90      0.87      0.89       399
+               sci.crypt       0.84      0.73      0.78       396
+         sci.electronics       0.66      0.58      0.62       393
+                 sci.med       0.79      0.79      0.79       396
+               sci.space       0.76      0.75      0.76       394
+  soc.religion.christian       0.65      0.81      0.72       398
+      talk.politics.guns       0.59      0.70      0.64       364
+   talk.politics.mideast       0.84      0.77      0.80       376
+      talk.politics.misc       0.61      0.46      0.52       310
+      talk.religion.misc       0.47      0.25      0.33       251
+
+                accuracy                           0.70      7532
+               macro avg       0.70      0.69      0.69      7532
+            weighted avg       0.71      0.70      0.70      7532
+
+
+
+===> Classification Metrics:
+
+accuracy classification score
+	accuracy score:  0.7036643653744026
+	accuracy score (normalize=False):  5300
+
+compute the precision
+	precision score (average=macro):  0.70142419223004
+	precision score (average=micro):  0.7036643653744026
+	precision score (average=weighted):  0.7091020761445109
+	precision score (average=None):  [0.51535836 0.64955357 0.63471503 0.66253102 0.73224044 0.8259587
+ 0.77525253 0.50162866 0.79220779 0.84263959 0.89717224 0.83526012
+ 0.65994236 0.78734177 0.7642487  0.6498994  0.58796296 0.84057971
+ 0.60683761 0.46715328]
+	precision score (average=None, zero_division=1):  [0.51535836 0.64955357 0.63471503 0.66253102 0.73224044 0.8259587
+ 0.77525253 0.50162866 0.79220779 0.84263959 0.89717224 0.83526012
+ 0.65994236 0.78734177 0.7642487  0.6498994  0.58796296 0.84057971
+ 0.60683761 0.46715328]
+
+compute the precision
+	recall score (average=macro):  0.6905924633217626
+	recall score (average=micro):  0.7036643653744026
+	recall score (average=weighted):  0.7036643653744026
+	recall score (average=None):  [0.47335423 0.74807198 0.62182741 0.68112245 0.6961039  0.70886076
+ 0.78717949 0.77777778 0.76633166 0.83627204 0.87468672 0.72979798
+ 0.5826972  0.78535354 0.74873096 0.81155779 0.6978022  0.7712766
+ 0.45806452 0.25498008]
+	recall score (average=None, zero_division=1):  [0.47335423 0.74807198 0.62182741 0.68112245 0.6961039  0.70886076
+ 0.78717949 0.77777778 0.76633166 0.83627204 0.87468672 0.72979798
+ 0.5826972  0.78535354 0.74873096 0.81155779 0.6978022  0.7712766
+ 0.45806452 0.25498008]
+
+compute the F1 score, also known as balanced F-score or F-measure
+	f1 score (average=macro):  0.6908873272390695
+	f1 score (average=micro):  0.7036643653744026
+	f1 score (average=weighted):  0.7017532405600586
+	f1 score (average=None):  [0.49346405 0.6953405  0.62820513 0.67169811 0.71371505 0.76294278
+ 0.78117048 0.60990099 0.77905492 0.83944374 0.8857868  0.77897574
+ 0.61891892 0.7863464  0.75641026 0.72178771 0.63819095 0.80443828
+ 0.52205882 0.32989691]
+
+compute the F-beta score
+	f beta score (average=macro):  0.6958585389874006
+	f beta score (average=micro):  0.7036643653744026
+	f beta score (average=weighted):  0.7050119961857817
+	f beta score (average=None):  [0.50637156 0.66712517 0.63209494 0.66616766 0.72471606 0.79954312
+ 0.77760892 0.53997195 0.7868937  0.84135834 0.89258312 0.81179775
+ 0.64289725 0.78694332 0.76109391 0.67686505 0.60707457 0.82574032
+ 0.56982343 0.40050063]
+
+compute the average Hamming loss
+	hamming loss:  0.2963356346255975
+
+jaccard similarity coefficient score
+	jaccard score (average=macro):  0.5415500097478312
+	jaccard score (average=None):  [0.32754881 0.53296703 0.45794393 0.50568182 0.55486542 0.61674009
+ 0.64091858 0.43874644 0.63807531 0.72331155 0.79498861 0.63796909
+ 0.4481409  0.64791667 0.60824742 0.56468531 0.46863469 0.67285383
+ 0.35323383 0.19753086]
+
+confusion matrix:
+[[151   0   2   1   2   2   3  14   2   4   2   1   4   6  11  60   9  12
+    8  25]
+ [  5 291  18   5   6  22   6   8   1   2   0   7   6   0   9   2   0   0
+    0   1]
+ [  5  25 245  37  15  12   2  18   2   1   2   3   4   6   6   1   2   2
+    4   2]
+ [  0  16  35 267  22   6   8  10   0   1   1   5  19   0   2   0   0   0
+    0   0]
+ [  2  11   8  27 268   3  15  20   1   1   1   5  16   2   1   0   3   1
+    0   0]
+ [  1  44  35   6   4 280   2   7   1   2   0   2   2   1   5   0   1   1
+    0   1]
+ [  0   2   4  14  16   1 307  16   5   2   0   1   9   2   1   2   4   2
+    2   0]
+ [  4   2   2   2   3   1  14 308  21   3   1   1  15   1   6   1   4   3
+    4   0]
+ [  4   3   1   1   2   0   5  33 305   4   2   0   8   4   7   3   4   2
+    8   2]
+ [  3   3   0   1   0   1   4  19   5 332  15   0   1   3   0   4   1   1
+    3   1]
+ [  1   1   1   0   1   0   0  12   2  18 349   0   0   3   1   0   5   1
+    2   2]
+ [  4   9   6   8   4   0   3  18   4   2   2 289   7   1   6   5  17   2
+    8   1]
+ [  4  13  16  23  16   5  14  22   8   4   1  13 229  14   5   1   1   2
+    1   1]
+ [  4   4   2   1   1   0   3  25   6   0   5   0   7 311   5   4   6   4
+    6   2]
+ [  6  11   4   1   2   2   3  24   6   2   2   1  13   7 295   1   4   1
+    6   3]
+ [ 20   4   2   1   0   0   2  14   2   1   0   1   0   5   3 323   1   2
+    4  13]
+ [  6   3   3   2   1   0   2  16   6   2   0  11   0   9   8   8 254   7
+   17   9]
+ [ 25   0   1   3   0   1   2   8   6   6   0   1   1   3   2   7   8 290
+   11   1]
+ [ 12   1   0   0   1   1   0  11   2   5   4   4   3   9   9   1  90   6
+  142   9]
+ [ 36   5   1   3   2   2   1  11   0   2   2   1   3   8   4  74  18   6
+    8  64]]
+
+================================================================================
+Classifier.SOFT_VOTING_CLASSIFIER
+________________________________________________________________________________
+Training: 
+VotingClassifier(estimators=[('complement_nb',
+                              ComplementNB(alpha=0.5, class_prior=None,
+                                           fit_prior=False, norm=False)),
+                             ('logistic_regression',
+                              LogisticRegression(C=10, class_weight=None,
+                                                 dual=False, fit_intercept=True,
+                                                 intercept_scaling=1,
+                                                 l1_ratio=None, max_iter=100,
+                                                 multi_class='auto', n_jobs=-1,
+                                                 penalty='l2', random_state=0,
+                                                 solver='lbfgs', tol=0.001,
+                                                 verbose=Fal...
+                                                     criterion='gini',
+                                                     max_depth=None,
+                                                     max_features='auto',
+                                                     max_leaf_nodes=None,
+                                                     max_samples=None,
+                                                     min_impurity_decrease=0.0,
+                                                     min_impurity_split=None,
+                                                     min_samples_leaf=1,
+                                                     min_samples_split=5,
+                                                     min_weight_fraction_leaf=0.0,
+                                                     n_estimators=200,
+                                                     n_jobs=-1, oob_score=False,
+                                                     random_state=0,
+                                                     verbose=False,
+                                                     warm_start=False))],
+                 flatten_transform=True, n_jobs=-1, voting='soft',
+                 weights=None)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+train time: 28.071s
+test time:  0.353s
+accuracy:   0.717
+
+
+cross validation:
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+	accuracy: 5-fold cross validation: [0.79231109 0.75828546 0.79098542 0.7870084  0.76702034]
+	test accuracy: 5-fold cross validation accuracy: 0.78 (+/- 0.03)
+
+
+===> Classification Report:
+
+                          precision    recall  f1-score   support
+
+             alt.atheism       0.56      0.45      0.50       319
+           comp.graphics       0.65      0.73      0.69       389
+ comp.os.ms-windows.misc       0.73      0.55      0.63       394
+comp.sys.ibm.pc.hardware       0.65      0.71      0.68       392
+   comp.sys.mac.hardware       0.74      0.73      0.73       385
+          comp.windows.x       0.82      0.77      0.79       395
+            misc.forsale       0.81      0.78      0.80       390
+               rec.autos       0.53      0.82      0.64       396
+         rec.motorcycles       0.81      0.78      0.79       398
+      rec.sport.baseball       0.89      0.83      0.86       397
+        rec.sport.hockey       0.91      0.91      0.91       399
+               sci.crypt       0.78      0.76      0.77       396
+         sci.electronics       0.70      0.60      0.64       393
+                 sci.med       0.84      0.79      0.81       396
+               sci.space       0.78      0.80      0.79       394
+  soc.religion.christian       0.61      0.88      0.72       398
+      talk.politics.guns       0.58      0.73      0.64       364
+   talk.politics.mideast       0.83      0.79      0.81       376
+      talk.politics.misc       0.59      0.43      0.50       310
+      talk.religion.misc       0.49      0.22      0.30       251
+
+                accuracy                           0.72      7532
+               macro avg       0.72      0.70      0.70      7532
+            weighted avg       0.72      0.72      0.71      7532
+
+
+
+===> Classification Metrics:
+
+accuracy classification score
+	accuracy score:  0.7173393520977164
+	accuracy score (normalize=False):  5403
+
+compute the precision
+	precision score (average=macro):  0.715148718205421
+	precision score (average=micro):  0.7173393520977164
+	precision score (average=weighted):  0.7228926841676532
+	precision score (average=None):  [0.55642023 0.64759725 0.7337884  0.65105386 0.74270557 0.82336957
+ 0.81167109 0.53017945 0.81315789 0.89459459 0.9120603  0.77979275
+ 0.69616519 0.83733333 0.77641278 0.61120841 0.57608696 0.83240223
+ 0.58590308 0.49107143]
+	precision score (average=None, zero_division=1):  [0.55642023 0.64759725 0.7337884  0.65105386 0.74270557 0.82336957
+ 0.81167109 0.53017945 0.81315789 0.89459459 0.9120603  0.77979275
+ 0.69616519 0.83733333 0.77641278 0.61120841 0.57608696 0.83240223
+ 0.58590308 0.49107143]
+
+compute the precision
+	recall score (average=macro):  0.702571477365105
+	recall score (average=micro):  0.7173393520977164
+	recall score (average=weighted):  0.7173393520977164
+	recall score (average=None):  [0.44827586 0.72750643 0.54568528 0.70918367 0.72727273 0.76708861
+ 0.78461538 0.82070707 0.77638191 0.83375315 0.90977444 0.76010101
+ 0.60050891 0.79292929 0.80203046 0.87688442 0.72802198 0.79255319
+ 0.42903226 0.21912351]
+	recall score (average=None, zero_division=1):  [0.44827586 0.72750643 0.54568528 0.70918367 0.72727273 0.76708861
+ 0.78461538 0.82070707 0.77638191 0.83375315 0.90977444 0.76010101
+ 0.60050891 0.79292929 0.80203046 0.87688442 0.72802198 0.79255319
+ 0.42903226 0.21912351]
+
+compute the F1 score, also known as balanced F-score or F-measure
+	f1 score (average=macro):  0.7009116632385404
+	f1 score (average=micro):  0.7173393520977164
+	f1 score (average=weighted):  0.7129991383187694
+	f1 score (average=None):  [0.49652778 0.68523002 0.62590975 0.67887668 0.73490814 0.79423329
+ 0.79791395 0.64420218 0.79434447 0.863103   0.91091593 0.76982097
+ 0.64480874 0.81452659 0.78901373 0.72033024 0.64320388 0.8119891
+ 0.49534451 0.3030303 ]
+
+compute the F-beta score
+	f beta score (average=macro):  0.7071561929195752
+	f beta score (average=micro):  0.7173393520977163
+	f beta score (average=weighted):  0.7170191188675598
+	f beta score (average=None):  [0.53080921 0.66214319 0.68646232 0.66190476 0.73956683 0.81146224
+ 0.8061117  0.57057584 0.80552659 0.88172616 0.91160221 0.7757732
+ 0.67467124 0.82805907 0.78140455 0.65063386 0.60117967 0.82411504
+ 0.54597701 0.39341917]
+
+compute the average Hamming loss
+	hamming loss:  0.28266064790228357
+
+jaccard similarity coefficient score
+	jaccard score (average=macro):  0.5561106882196765
+	jaccard score (average=None):  [0.33025404 0.52117864 0.45550847 0.51386322 0.58091286 0.65869565
+ 0.6637744  0.4751462  0.65884861 0.75917431 0.83640553 0.62577963
+ 0.47580645 0.68708972 0.65154639 0.56290323 0.47406082 0.68348624
+ 0.32920792 0.17857143]
+
+confusion matrix:
+[[143   0   2   1   1   2   0  13   4   3   4   1   1   4  10  75   9  11
+   10  25]
+ [  3 283  11  12  11  26   5   8   2   3   0   9   4   0   9   1   0   1
+    1   0]
+ [  4  30 215  48  18  21   6  17   4   1   1   6   2   3  10   1   2   0
+    3   2]
+ [  0  14  23 278  25   4  10  10   0   0   1   3  23   0   1   0   0   0
+    0   0]
+ [  0   9   6  27 280   4   8  19   1   0   1   5  17   3   4   1   0   0
+    0   0]
+ [  0  42  18   4   6 303   2   7   1   1   0   2   3   2   3   0   1   0
+    0   0]
+ [  0   3   1  23  15   0 306  17   4   2   1   1   8   2   1   0   3   1
+    2   0]
+ [  2   1   1   1   2   0  11 325  20   0   2   2  10   1   3   2   5   2
+    6   0]
+ [  5   3   2   0   1   0   4  30 309   3   2   0  10   5   6   2   7   2
+    5   2]
+ [  4   4   0   0   0   1   6  17   4 331  15   1   1   3   0   3   4   0
+    3   0]
+ [  2   1   0   0   0   0   0  12   1   9 363   2   0   2   0   2   4   0
+    1   0]
+ [  2   7   4   4   5   3   1  17   2   4   1 301   6   1   3   1  19   5
+    8   2]
+ [  1  14   6  24  10   2  10  23   8   2   0  27 236  13   8   2   0   3
+    3   1]
+ [  2   6   0   2   0   0   3  22   3   0   0   0   7 314   5  14   9   3
+    4   2]
+ [  4   8   1   1   1   1   3  21   3   3   2   2   5   3 316   1   3   7
+    8   1]
+ [ 11   3   1   0   0   1   0  14   1   1   1   1   0   2   1 349   1   0
+    4   7]
+ [  3   1   2   0   1   0   2  15   3   1   0  13   0   5   9  13 265   6
+   16   9]
+ [ 19   3   0   0   0   0   0   8   4   4   2   3   0   1   2   9   9 298
+   14   0]
+ [ 17   2   0   1   0   0   0   9   4   2   0   4   3   7  10   5  95  12
+  133   6]
+ [ 35   3   0   1   1   0   0   9   2   0   2   3   3   4   6  90  24   7
+    6  55]]
+
+================================================================================
+Classifier.STACKING_CLASSIFIER
+________________________________________________________________________________
+Training: 
+StackingClassifier(cv=None,
+                   estimators=[('complement_nb',
+                                ComplementNB(alpha=0.5, class_prior=None,
+                                             fit_prior=False, norm=False)),
+                               ('linear_svc',
+                                LinearSVC(C=1.0, class_weight=None, dual=True,
+                                          fit_intercept=True,
+                                          intercept_scaling=1,
+                                          loss='squared_hinge', max_iter=1000,
+                                          multi_class='ovr', penalty='l2',
+                                          random_state=0, tol=0.0001,
+                                          verbose=False)),
+                               ('logistic_regressio...
+                                                copy_X=True, fit_intercept=True,
+                                                max_iter=None, normalize=False,
+                                                random_state=0, solver='auto',
+                                                tol=0.001))],
+                   final_estimator=LinearSVC(C=1.0, class_weight=None,
+                                             dual=True, fit_intercept=True,
+                                             intercept_scaling=1,
+                                             loss='squared_hinge',
+                                             max_iter=1000, multi_class='ovr',
+                                             penalty='l2', random_state=0,
+                                             tol=0.0001, verbose=False),
+                   n_jobs=-1, passthrough=False, stack_method='auto',
+                   verbose=False)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+train time: 183.956s
+test time:  0.368s
+accuracy:   0.713
+
+
+cross validation:
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+	accuracy: 5-fold cross validation: [0.77507733 0.75961114 0.77198409 0.77110031 0.75066313]
+	test accuracy: 5-fold cross validation accuracy: 0.77 (+/- 0.02)
+
+
+===> Classification Report:
+
+                          precision    recall  f1-score   support
+
+             alt.atheism       0.54      0.50      0.52       319
+           comp.graphics       0.66      0.75      0.70       389
+ comp.os.ms-windows.misc       0.70      0.61      0.65       394
+comp.sys.ibm.pc.hardware       0.70      0.67      0.69       392
+   comp.sys.mac.hardware       0.76      0.72      0.74       385
+          comp.windows.x       0.84      0.73      0.78       395
+            misc.forsale       0.79      0.78      0.79       390
+               rec.autos       0.52      0.77      0.62       396
+         rec.motorcycles       0.77      0.79      0.78       398
+      rec.sport.baseball       0.85      0.85      0.85       397
+        rec.sport.hockey       0.90      0.90      0.90       399
+               sci.crypt       0.84      0.75      0.79       396
+         sci.electronics       0.64      0.61      0.62       393
+                 sci.med       0.77      0.81      0.79       396
+               sci.space       0.75      0.77      0.76       394
+  soc.religion.christian       0.67      0.77      0.72       398
+      talk.politics.guns       0.60      0.68      0.63       364
+   talk.politics.mideast       0.87      0.77      0.82       376
+      talk.politics.misc       0.56      0.49      0.52       310
+      talk.religion.misc       0.42      0.31      0.36       251
+
+                accuracy                           0.71      7532
+               macro avg       0.71      0.70      0.70      7532
+            weighted avg       0.72      0.71      0.71      7532
+
+
+
+===> Classification Metrics:
+
+accuracy classification score
+	accuracy score:  0.7128252788104089
+	accuracy score (normalize=False):  5369
+
+compute the precision
+	precision score (average=macro):  0.7085113323950883
+	precision score (average=micro):  0.7128252788104089
+	precision score (average=weighted):  0.7174746299131989
+	precision score (average=None):  [0.54081633 0.65695067 0.69970845 0.70320856 0.76243094 0.8425656
+ 0.79274611 0.5170068  0.77395577 0.85496183 0.89526185 0.84375
+ 0.64498645 0.76682692 0.75308642 0.67252747 0.59661836 0.87048193
+ 0.55925926 0.42307692]
+	precision score (average=None, zero_division=1):  [0.54081633 0.65695067 0.69970845 0.70320856 0.76243094 0.8425656
+ 0.79274611 0.5170068  0.77395577 0.85496183 0.89526185 0.84375
+ 0.64498645 0.76682692 0.75308642 0.67252747 0.59661836 0.87048193
+ 0.55925926 0.42307692]
+
+compute the precision
+	recall score (average=macro):  0.7007622023480741
+	recall score (average=micro):  0.7128252788104089
+	recall score (average=weighted):  0.7128252788104089
+	recall score (average=None):  [0.4984326  0.75321337 0.60913706 0.67091837 0.71688312 0.73164557
+ 0.78461538 0.76767677 0.79145729 0.84634761 0.89974937 0.75
+ 0.60559796 0.80555556 0.77411168 0.76884422 0.67857143 0.76861702
+ 0.48709677 0.30677291]
+	recall score (average=None, zero_division=1):  [0.4984326  0.75321337 0.60913706 0.67091837 0.71688312 0.73164557
+ 0.78461538 0.76767677 0.79145729 0.84634761 0.89974937 0.75
+ 0.60559796 0.80555556 0.77411168 0.76884422 0.67857143 0.76861702
+ 0.48709677 0.30677291]
+
+compute the F1 score, also known as balanced F-score or F-measure
+	f1 score (average=macro):  0.7015545161116471
+	f1 score (average=micro):  0.7128252788104089
+	f1 score (average=weighted):  0.7121492080897529
+	f1 score (average=None):  [0.5187602  0.70179641 0.65128901 0.68668407 0.73895582 0.78319783
+ 0.78865979 0.61788618 0.7826087  0.85063291 0.8975     0.79411765
+ 0.62467192 0.78571429 0.76345432 0.71746776 0.63496144 0.81638418
+ 0.52068966 0.3556582 ]
+
+compute the F-beta score
+	f beta score (average=macro):  0.7050289210801781
+	f beta score (average=micro):  0.7128252788104089
+	f beta score (average=weighted):  0.714679339679733
+	f beta score (average=None):  [0.53177258 0.67418316 0.6795017  0.69650424 0.75286416 0.81777023
+ 0.79110651 0.55312955 0.77739388 0.85322499 0.89615577 0.82317073
+ 0.63670412 0.77427184 0.7571996  0.68981064 0.61138614 0.84800469
+ 0.54316547 0.39325843]
+
+compute the average Hamming loss
+	hamming loss:  0.2871747211895911
+
+jaccard similarity coefficient score
+	jaccard score (average=macro):  0.5540563185514078
+	jaccard score (average=None):  [0.35022026 0.54059041 0.48289738 0.52286282 0.58598726 0.64365256
+ 0.65106383 0.44705882 0.64285714 0.74008811 0.81405896 0.65853659
+ 0.45419847 0.64705882 0.61740891 0.55941499 0.46516008 0.68973747
+ 0.35198135 0.21629213]
+
+confusion matrix:
+[[159   1   1   1   1   2   2  15   3   3   4   3   4   6  11  45   8  10
+   10  30]
+ [  2 293  15   6   7  21   6   7   5   1   0   5  10   1   6   1   0   0
+    0   3]
+ [  2  27 240  36  15  14   0  16   3   0   1   3   3   9  10   4   2   2
+    5   2]
+ [  0  15  29 263  25   3  13  10   0   3   1   3  24   1   2   0   0   0
+    0   0]
+ [  2   8   7  21 276   5  10  18   2   1   0   4  18   3   5   1   2   2
+    0   0]
+ [  2  41  28   5   2 289   2   7   1   2   0   2   5   1   5   0   1   1
+    0   1]
+ [  2   2   2  13  14   0 306  15   4   1   2   1  13   2   3   1   4   2
+    3   0]
+ [  4   2   1   3   2   1  10 304  25   5   1   1  16   2   4   2   5   2
+    6   0]
+ [  3   3   0   0   2   0   5  27 315   3   3   1   8   5   4   3   4   0
+   10   2]
+ [  2   3   0   0   0   0   3  19   6 336  13   1   2   2   0   3   1   1
+    4   1]
+ [  1   2   0   0   0   0   0  11   2  14 359   0   0   3   0   1   4   1
+    1   0]
+ [  3   7   3   5   2   1   2  19   4   3   2 297   7   4   6   4  14   1
+    9   3]
+ [  3  13   8  20  13   3  14  24   5   3   2  13 238  16  11   2   0   1
+    2   2]
+ [  6   5   2   0   0   0   3  18   7   1   5   0   5 319   4   6   4   3
+    6   2]
+ [  5  11   3   0   1   1   2  23   3   2   2   2   8  10 305   2   3   1
+    8   2]
+ [ 20   3   1   0   0   0   1  14   3   2   1   1   1   5   4 306   0   3
+    7  26]
+ [  7   3   1   0   2   0   3  14   6   3   0  12   0   8  10   4 247   4
+   22  18]
+ [ 27   0   1   0   0   1   1   7   5   6   2   0   1   4   1   4  10 289
+   14   3]
+ [ 10   1   0   0   0   1   1  11   4   3   2   3   3   9   9   3  85   4
+  151  10]
+ [ 34   6   1   1   0   1   2   9   4   1   1   0   3   6   5  63  20   5
+   12  77]]
+
 FINAL CLASSIFICATION TABLE: TWENTY_NEWS_GROUPS dataset (removing headers signatures and quoting)
 | ID | ML Algorithm | Accuracy Score (%) | K-fold Cross Validation (CV) (k = 5) | CV (Mean +/- Std) | Training time (seconds) | Test time (seconds) |
 | --- | ------------- | ------------------ | ------------------------------------ | ----------------- |  ------------------ | ------------------ |
-|  1  |  ADA_BOOST_CLASSIFIER  |  44.04%  |  [0.46973045 0.45779938 0.46575342 0.47017234 0.46993811]  |  0.47 (+/- 0.01)  |  18.56  |  0.9824  |
-|  2  |  BERNOULLI_NB  |  62.56%  |  [0.69200177 0.67741935 0.6752099  0.67388422 0.67992927]  |  0.68 (+/- 0.01)  |  0.07657  |  0.0547  |
-|  3  |  COMPLEMENT_NB  |  71.22%  |  [0.776403   0.75828546 0.78126381 0.77507733 0.76967286]  |  0.77 (+/- 0.02)  |  0.06438  |  0.01067  |
-|  4  |  DECISION_TREE_CLASSIFIER  |  44.72%  |  [0.49094123 0.48696421 0.47547503 0.49270879 0.49646331]  |  0.49 (+/- 0.01)  |  8.915  |  0.005966  |
-|  5  |  GRADIENT_BOOSTING_CLASSIFIER  |  59.43%  |  [0.65930181 0.62704375 0.64781264 0.6548829  0.64721485]  |  0.65 (+/- 0.02)  |  664.3  |  0.3512  |
-|  6  |  K_NEIGHBORS_CLASSIFIER  |  8.48%  |  [0.12417145 0.11842687 0.12063632 0.12240389 0.12113174]  |  0.12 (+/- 0.00)  |  0.00307  |  1.304  |
-|  7  |  LINEAR_SVC  |  69.82%  |  [0.76270437 0.74458683 0.76182059 0.7715422  0.74580018]  |  0.76 (+/- 0.02)  |  0.8327  |  0.009177  |
-|  8  |  LOGISTIC_REGRESSION  |  69.28%  |  [0.75961114 0.74016792 0.75519222 0.7565179  0.73607427]  |  0.75 (+/- 0.02)  |  23.53  |  0.01201  |
-|  9  |  MULTINOMIAL_NB  |  68.79%  |  [0.76049492 0.74149359 0.75519222 0.75695979 0.74270557]  |  0.75 (+/- 0.02)  |  0.06755  |  0.01122  |
-|  10  |  NEAREST_CENTROID  |  66.70%  |  [0.71674768 0.71807335 0.71851525 0.71939903 0.70601238]  |  0.72 (+/- 0.01)  |  0.01734  |  0.01925  |
-|  11  |  PASSIVE_AGGRESSIVE_CLASSIFIER  |  69.62%  |  [0.76535572 0.74856385 0.76182059 0.77065842 0.74889478]  |  0.76 (+/- 0.02)  |  2.239  |  0.01044  |
-|  12  |  PERCEPTRON  |  53.86%  |  [0.63146266 0.61025188 0.58948299 0.60450729 0.60477454]  |  0.61 (+/- 0.03)  |  0.409  |  0.01173  |
-|  13  |  RANDOM_FOREST_CLASSIFIER  |  63.71%  |  [0.69465312 0.66902342 0.68272205 0.69730446 0.67462423]  |  0.68 (+/- 0.02)  |  7.575  |  0.3064  |
-|  14  |  RIDGE_CLASSIFIER  |  70.02%  |  [0.76756518 0.74502872 0.76800707 0.776403   0.76083112]  |  0.76 (+/- 0.02)  |  3.189  |  0.0235  |
+|  1  |  ADA_BOOST_CLASSIFIER  |  44.04%  |  [0.46973045 0.45779938 0.46575342 0.47017234 0.46993811]  |  0.47 (+/- 0.01)  |  19.26  |  1.015  |
+|  2  |  BERNOULLI_NB  |  62.56%  |  [0.69200177 0.67741935 0.6752099  0.67388422 0.67992927]  |  0.68 (+/- 0.01)  |  0.07593  |  0.0528  |
+|  3  |  COMPLEMENT_NB  |  71.22%  |  [0.776403   0.75828546 0.78126381 0.77507733 0.76967286]  |  0.77 (+/- 0.02)  |  0.0646  |  0.01039  |
+|  4  |  DECISION_TREE_CLASSIFIER  |  44.72%  |  [0.49094123 0.48696421 0.47547503 0.49270879 0.49646331]  |  0.49 (+/- 0.01)  |  9.037  |  0.006431  |
+|  5  |  GRADIENT_BOOSTING_CLASSIFIER  |  59.43%  |  [0.65930181 0.62704375 0.64781264 0.6548829  0.64721485]  |  0.65 (+/- 0.02)  |  658.5  |  0.3929  |
+|  6  |  K_NEIGHBORS_CLASSIFIER  |  8.48%  |  [0.12417145 0.11842687 0.12063632 0.12240389 0.12113174]  |  0.12 (+/- 0.00)  |  0.003191  |  1.298  |
+|  7  |  LINEAR_SVC  |  69.82%  |  [0.76270437 0.74458683 0.76182059 0.7715422  0.74580018]  |  0.76 (+/- 0.02)  |  0.8115  |  0.008989  |
+|  8  |  LOGISTIC_REGRESSION  |  69.28%  |  [0.75961114 0.74016792 0.75519222 0.7565179  0.73607427]  |  0.75 (+/- 0.02)  |  22.88  |  0.01089  |
+|  9  |  MULTINOMIAL_NB  |  68.79%  |  [0.76049492 0.74149359 0.75519222 0.75695979 0.74270557]  |  0.75 (+/- 0.02)  |  0.07197  |  0.01174  |
+|  10  |  NEAREST_CENTROID  |  66.70%  |  [0.71674768 0.71807335 0.71851525 0.71939903 0.70601238]  |  0.72 (+/- 0.01)  |  0.01669  |  0.01906  |
+|  11  |  PASSIVE_AGGRESSIVE_CLASSIFIER  |  69.62%  |  [0.76535572 0.74856385 0.76182059 0.77065842 0.74889478]  |  0.76 (+/- 0.02)  |  2.319  |  0.01587  |
+|  12  |  PERCEPTRON  |  53.86%  |  [0.63146266 0.61025188 0.58948299 0.60450729 0.60477454]  |  0.61 (+/- 0.03)  |  0.4178  |  0.0171  |
+|  13  |  RANDOM_FOREST_CLASSIFIER  |  63.71%  |  [0.69465312 0.66902342 0.68272205 0.69730446 0.67462423]  |  0.68 (+/- 0.02)  |  7.79  |  0.3067  |
+|  14  |  RIDGE_CLASSIFIER  |  70.02%  |  [0.76756518 0.74502872 0.76800707 0.776403   0.76083112]  |  0.76 (+/- 0.02)  |  3.12  |  0.02272  |
+|  15  |  MAJORITY_VOTING_CLASSIFIER  |  70.37%  |  [0.76712329 0.75077331 0.76800707 0.77551922 0.7515473 ]  |  0.76 (+/- 0.02)  |  31.06  |  0.4181  |
+|  16  |  SOFT_VOTING_CLASSIFIER  |  71.73%  |  [0.79231109 0.75828546 0.79098542 0.7870084  0.76702034]  |  0.78 (+/- 0.03)  |  28.07  |  0.3526  |
+|  17  |  STACKING_CLASSIFIER  |  71.28%  |  [0.77507733 0.75961114 0.77198409 0.77110031 0.75066313]  |  0.77 (+/- 0.02)  |  184.0  |  0.368  |
 
 
 Best algorithm:
-===> 3) COMPLEMENT_NB
-		Accuracy score = 71.22%		Training time = 0.06438		Test time = 0.01067
+===> 16) SOFT_VOTING_CLASSIFIER
+		Accuracy score = 71.73%		Training time = 28.07		Test time = 0.3526
 
 Loading IMDB_REVIEWS dataset:
 
@@ -2739,11 +3776,11 @@ data loaded
 25000 documents - 32.351MB (test set)
 
 Extracting features from the training data using a vectorizer
-done in 2.781326s at 11.913MB/s
+done in 2.762614s at 11.993MB/s
 n_samples: 25000, n_features: 74170
 
 Extracting features from the test data using the same vectorizer
-done in 2.707218s at 11.950MB/s
+done in 2.696052s at 11.999MB/s
 n_samples: 25000, n_features: 74170
 
 	==> Using JSON with best parameters (selected using grid search) to the ADA_BOOST_CLASSIFIER classifier (binary classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'learning_rate': 1, 'n_estimators': 500}
@@ -2814,14 +3851,178 @@ n_samples: 25000, n_features: 74170
 	 RidgeClassifier(alpha=1.0, class_weight=None, copy_X=True, fit_intercept=True,
                 max_iter=None, normalize=False, random_state=0, solver='auto',
                 tol=0.0001)
+	==> Using JSON with best parameters (selected using grid search) to the COMPLEMENT_NB classifier (binary classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'alpha': 1.0, 'fit_prior': False, 'norm': False}
+	 ComplementNB(alpha=1.0, class_prior=None, fit_prior=False, norm=False)
+	==> Using JSON with best parameters (selected using grid search) to the LINEAR_SVC classifier (binary classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'C': 1.0, 'multi_class': 'ovr', 'tol': 0.0001}
+	 LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+          intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+          multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
+          verbose=False)
+	==> Using JSON with best parameters (selected using grid search) to the LOGISTIC_REGRESSION classifier (binary classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'C': 10, 'tol': 0.01}
+	 LogisticRegression(C=10, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='auto', n_jobs=-1, penalty='l2', random_state=0,
+                   solver='lbfgs', tol=0.01, verbose=False, warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the PASSIVE_AGGRESSIVE_CLASSIFIER classifier (binary classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'C': 0.01, 'early_stopping': False, 'tol': 0.001, 'validation_fraction': 0.01}
+	 PassiveAggressiveClassifier(C=0.01, average=False, class_weight=None,
+                            early_stopping=False, fit_intercept=True,
+                            loss='hinge', max_iter=1000, n_iter_no_change=5,
+                            n_jobs=-1, random_state=0, shuffle=True, tol=0.001,
+                            validation_fraction=0.01, verbose=False,
+                            warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the RANDOM_FOREST_CLASSIFIER classifier (binary classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 200}
+	 RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
+                       criterion='gini', max_depth=None, max_features='auto',
+                       max_leaf_nodes=None, max_samples=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=5,
+                       min_weight_fraction_leaf=0.0, n_estimators=200,
+                       n_jobs=-1, oob_score=False, random_state=0,
+                       verbose=False, warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the RIDGE_CLASSIFIER classifier (binary classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'alpha': 1.0, 'tol': 0.0001}
+	 RidgeClassifier(alpha=1.0, class_weight=None, copy_X=True, fit_intercept=True,
+                max_iter=None, normalize=False, random_state=0, solver='auto',
+                tol=0.0001)
+	 VotingClassifier(estimators=[('complement_nb',
+                              ComplementNB(alpha=1.0, class_prior=None,
+                                           fit_prior=False, norm=False)),
+                             ('linear_svc',
+                              LinearSVC(C=1.0, class_weight=None, dual=True,
+                                        fit_intercept=True, intercept_scaling=1,
+                                        loss='squared_hinge', max_iter=1000,
+                                        multi_class='ovr', penalty='l2',
+                                        random_state=0, tol=0.0001,
+                                        verbose=False)),
+                             ('logistic_regression',
+                              Logisti...
+                                                     min_samples_split=5,
+                                                     min_weight_fraction_leaf=0.0,
+                                                     n_estimators=200,
+                                                     n_jobs=-1, oob_score=False,
+                                                     random_state=0,
+                                                     verbose=False,
+                                                     warm_start=False)),
+                             ('ridge_classifier',
+                              RidgeClassifier(alpha=1.0, class_weight=None,
+                                              copy_X=True, fit_intercept=True,
+                                              max_iter=None, normalize=False,
+                                              random_state=0, solver='auto',
+                                              tol=0.0001))],
+                 flatten_transform=True, n_jobs=-1, voting='hard',
+                 weights=None)
+	==> Using JSON with best parameters (selected using grid search) to the COMPLEMENT_NB classifier (binary classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'alpha': 1.0, 'fit_prior': False, 'norm': False}
+	 ComplementNB(alpha=1.0, class_prior=None, fit_prior=False, norm=False)
+	==> Using JSON with best parameters (selected using grid search) to the LOGISTIC_REGRESSION classifier (binary classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'C': 10, 'tol': 0.01}
+	 LogisticRegression(C=10, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='auto', n_jobs=-1, penalty='l2', random_state=0,
+                   solver='lbfgs', tol=0.01, verbose=False, warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the MULTINOMIAL_NB classifier (binary classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'alpha': 1.0, 'fit_prior': False}
+	 MultinomialNB(alpha=1.0, class_prior=None, fit_prior=False)
+	==> Using JSON with best parameters (selected using grid search) to the RANDOM_FOREST_CLASSIFIER classifier (binary classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 200}
+	 RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
+                       criterion='gini', max_depth=None, max_features='auto',
+                       max_leaf_nodes=None, max_samples=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=5,
+                       min_weight_fraction_leaf=0.0, n_estimators=200,
+                       n_jobs=-1, oob_score=False, random_state=0,
+                       verbose=False, warm_start=False)
+	 VotingClassifier(estimators=[('complement_nb',
+                              ComplementNB(alpha=1.0, class_prior=None,
+                                           fit_prior=False, norm=False)),
+                             ('logistic_regression',
+                              LogisticRegression(C=10, class_weight=None,
+                                                 dual=False, fit_intercept=True,
+                                                 intercept_scaling=1,
+                                                 l1_ratio=None, max_iter=100,
+                                                 multi_class='auto', n_jobs=-1,
+                                                 penalty='l2', random_state=0,
+                                                 solver='lbfgs', tol=0.01,
+                                                 verbose=Fals...
+                                                     criterion='gini',
+                                                     max_depth=None,
+                                                     max_features='auto',
+                                                     max_leaf_nodes=None,
+                                                     max_samples=None,
+                                                     min_impurity_decrease=0.0,
+                                                     min_impurity_split=None,
+                                                     min_samples_leaf=1,
+                                                     min_samples_split=5,
+                                                     min_weight_fraction_leaf=0.0,
+                                                     n_estimators=200,
+                                                     n_jobs=-1, oob_score=False,
+                                                     random_state=0,
+                                                     verbose=False,
+                                                     warm_start=False))],
+                 flatten_transform=True, n_jobs=-1, voting='soft',
+                 weights=None)
+	==> Using JSON with best parameters (selected using grid search) to the COMPLEMENT_NB classifier (binary classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'alpha': 1.0, 'fit_prior': False, 'norm': False}
+	 ComplementNB(alpha=1.0, class_prior=None, fit_prior=False, norm=False)
+	==> Using JSON with best parameters (selected using grid search) to the LINEAR_SVC classifier (binary classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'C': 1.0, 'multi_class': 'ovr', 'tol': 0.0001}
+	 LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+          intercept_scaling=1, loss='squared_hinge', max_iter=1000,
+          multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
+          verbose=False)
+	==> Using JSON with best parameters (selected using grid search) to the LOGISTIC_REGRESSION classifier (binary classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'C': 10, 'tol': 0.01}
+	 LogisticRegression(C=10, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class='auto', n_jobs=-1, penalty='l2', random_state=0,
+                   solver='lbfgs', tol=0.01, verbose=False, warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the PASSIVE_AGGRESSIVE_CLASSIFIER classifier (binary classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'C': 0.01, 'early_stopping': False, 'tol': 0.001, 'validation_fraction': 0.01}
+	 PassiveAggressiveClassifier(C=0.01, average=False, class_weight=None,
+                            early_stopping=False, fit_intercept=True,
+                            loss='hinge', max_iter=1000, n_iter_no_change=5,
+                            n_jobs=-1, random_state=0, shuffle=True, tol=0.001,
+                            validation_fraction=0.01, verbose=False,
+                            warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the RANDOM_FOREST_CLASSIFIER classifier (binary classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 200}
+	 RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
+                       criterion='gini', max_depth=None, max_features='auto',
+                       max_leaf_nodes=None, max_samples=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=5,
+                       min_weight_fraction_leaf=0.0, n_estimators=200,
+                       n_jobs=-1, oob_score=False, random_state=0,
+                       verbose=False, warm_start=False)
+	==> Using JSON with best parameters (selected using grid search) to the RIDGE_CLASSIFIER classifier (binary classification) and IMDB_REVIEWS dataset ===> JSON in dictionary format: {'alpha': 1.0, 'tol': 0.0001}
+	 RidgeClassifier(alpha=1.0, class_weight=None, copy_X=True, fit_intercept=True,
+                max_iter=None, normalize=False, random_state=0, solver='auto',
+                tol=0.0001)
+	 StackingClassifier(cv=None,
+                   estimators=[('complement_nb',
+                                ComplementNB(alpha=1.0, class_prior=None,
+                                             fit_prior=False, norm=False)),
+                               ('linear_svc',
+                                LinearSVC(C=1.0, class_weight=None, dual=True,
+                                          fit_intercept=True,
+                                          intercept_scaling=1,
+                                          loss='squared_hinge', max_iter=1000,
+                                          multi_class='ovr', penalty='l2',
+                                          random_state=0, tol=0.0001,
+                                          verbose=False)),
+                               ('logistic_regressio...
+                                                copy_X=True, fit_intercept=True,
+                                                max_iter=None, normalize=False,
+                                                random_state=0, solver='auto',
+                                                tol=0.0001))],
+                   final_estimator=LinearSVC(C=1.0, class_weight=None,
+                                             dual=True, fit_intercept=True,
+                                             intercept_scaling=1,
+                                             loss='squared_hinge',
+                                             max_iter=1000, multi_class='ovr',
+                                             penalty='l2', random_state=0,
+                                             tol=0.0001, verbose=False),
+                   n_jobs=-1, passthrough=False, stack_method='auto',
+                   verbose=False)
 ================================================================================
 Classifier.ADA_BOOST_CLASSIFIER
 ________________________________________________________________________________
 Training: 
 AdaBoostClassifier(algorithm='SAMME.R', base_estimator=None, learning_rate=1,
                    n_estimators=500, random_state=0)
-train time: 105.620s
-test time:  5.739s
+train time: 103.253s
+test time:  5.553s
 accuracy:   0.846
 
 
@@ -2891,8 +4092,8 @@ Classifier.BERNOULLI_NB
 ________________________________________________________________________________
 Training: 
 BernoulliNB(alpha=0.5, binarize=0.0001, class_prior=None, fit_prior=False)
-train time: 0.026s
-test time:  0.021s
+train time: 0.028s
+test time:  0.022s
 accuracy:   0.813
 
 
@@ -3044,8 +4245,8 @@ DecisionTreeClassifier(ccp_alpha=0.0, class_weight=None, criterion='entropy',
                        min_samples_leaf=1, min_samples_split=250,
                        min_weight_fraction_leaf=0.0, presort='deprecated',
                        random_state=0, splitter='random')
-train time: 8.226s
-test time:  0.013s
+train time: 7.808s
+test time:  0.012s
 accuracy:   0.741
 
 
@@ -3124,8 +4325,8 @@ GradientBoostingClassifier(ccp_alpha=0.0, criterion='friedman_mse', init=None,
                            random_state=0, subsample=1.0, tol=0.0001,
                            validation_fraction=0.1, verbose=False,
                            warm_start=False)
-train time: 105.379s
-test time:  0.069s
+train time: 100.751s
+test time:  0.066s
 accuracy:   0.829
 
 
@@ -3198,7 +4399,7 @@ KNeighborsClassifier(algorithm='auto', leaf_size=5, metric='euclidean',
                      metric_params=None, n_jobs=-1, n_neighbors=50, p=2,
                      weights='distance')
 train time: 0.006s
-test time:  13.065s
+test time:  13.022s
 accuracy:   0.827
 
 
@@ -3271,7 +4472,7 @@ LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
           intercept_scaling=1, loss='squared_hinge', max_iter=1000,
           multi_class='ovr', penalty='l2', random_state=0, tol=0.0001,
           verbose=False)
-train time: 0.224s
+train time: 0.209s
 test time:  0.004s
 accuracy:   0.871
 
@@ -3348,8 +4549,8 @@ LogisticRegression(C=10, class_weight=None, dual=False, fit_intercept=True,
                    intercept_scaling=1, l1_ratio=None, max_iter=100,
                    multi_class='auto', n_jobs=-1, penalty='l2', random_state=0,
                    solver='lbfgs', tol=0.01, verbose=False, warm_start=False)
-train time: 1.106s
-test time:  0.004s
+train time: 1.075s
+test time:  0.005s
 accuracy:   0.877
 
 
@@ -3438,8 +4639,8 @@ Classifier.MULTINOMIAL_NB
 ________________________________________________________________________________
 Training: 
 MultinomialNB(alpha=1.0, class_prior=None, fit_prior=False)
-train time: 0.017s
-test time:  0.008s
+train time: 0.016s
+test time:  0.009s
 accuracy:   0.839
 
 
@@ -3512,11 +4713,7 @@ Classifier.NEAREST_CENTROID
 ________________________________________________________________________________
 Training: 
 NearestCentroid(metric='cosine', shrink_threshold=None)
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/neighbors/_nearest_centroid.py:145: UserWarning: Averaging for metrics other than euclidean and manhattan not supported. The average is set to be the mean.
-  warnings.warn("Averaging for metrics other than "
-train time: 0.019s
+train time: 0.018s
 test time:  0.017s
 accuracy:   0.847
 
@@ -3612,7 +4809,7 @@ PassiveAggressiveClassifier(C=0.01, average=False, class_weight=None,
                             n_jobs=-1, random_state=0, shuffle=True, tol=0.001,
                             validation_fraction=0.01, verbose=False,
                             warm_start=False)
-train time: 0.849s
+train time: 0.858s
 test time:  0.004s
 accuracy:   0.881
 
@@ -3689,8 +4886,8 @@ Perceptron(alpha=0.0001, class_weight=None, early_stopping=True, eta0=1.0,
            fit_intercept=True, max_iter=100, n_iter_no_change=3, n_jobs=-1,
            penalty='l2', random_state=0, shuffle=True, tol=0.0001,
            validation_fraction=0.01, verbose=False, warm_start=False)
-train time: 0.089s
-test time:  0.008s
+train time: 0.091s
+test time:  0.007s
 accuracy:   0.806
 
 
@@ -3770,8 +4967,8 @@ RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
                        min_weight_fraction_leaf=0.0, n_estimators=200,
                        n_jobs=-1, oob_score=False, random_state=0,
                        verbose=False, warm_start=False)
-train time: 9.593s
-test time:  0.607s
+train time: 8.792s
+test time:  0.724s
 accuracy:   0.855
 
 
@@ -3843,8 +5040,8 @@ Training:
 RidgeClassifier(alpha=1.0, class_weight=None, copy_X=True, fit_intercept=True,
                 max_iter=None, normalize=False, random_state=0, solver='auto',
                 tol=0.0001)
-train time: 0.541s
-test time:  0.009s
+train time: 0.502s
+test time:  0.008s
 accuracy:   0.869
 
 
@@ -3912,33 +5109,402 @@ confusion matrix:
 [[10909  1591]
  [ 1683 10817]]
 
+================================================================================
+Classifier.MAJORITY_VOTING_CLASSIFIER
+________________________________________________________________________________
+Training: 
+VotingClassifier(estimators=[('complement_nb',
+                              ComplementNB(alpha=1.0, class_prior=None,
+                                           fit_prior=False, norm=False)),
+                             ('linear_svc',
+                              LinearSVC(C=1.0, class_weight=None, dual=True,
+                                        fit_intercept=True, intercept_scaling=1,
+                                        loss='squared_hinge', max_iter=1000,
+                                        multi_class='ovr', penalty='l2',
+                                        random_state=0, tol=0.0001,
+                                        verbose=False)),
+                             ('logistic_regression',
+                              Logisti...
+                                                     min_samples_split=5,
+                                                     min_weight_fraction_leaf=0.0,
+                                                     n_estimators=200,
+                                                     n_jobs=-1, oob_score=False,
+                                                     random_state=0,
+                                                     verbose=False,
+                                                     warm_start=False)),
+                             ('ridge_classifier',
+                              RidgeClassifier(alpha=1.0, class_weight=None,
+                                              copy_X=True, fit_intercept=True,
+                                              max_iter=None, normalize=False,
+                                              random_state=0, solver='auto',
+                                              tol=0.0001))],
+                 flatten_transform=True, n_jobs=-1, voting='hard',
+                 weights=None)
+train time: 10.806s
+test time:  0.795s
+accuracy:   0.879
+
+
+cross validation:
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+	accuracy: 5-fold cross validation: [0.8882 0.8976 0.8896 0.8884 0.8846]
+	test accuracy: 5-fold cross validation accuracy: 0.89 (+/- 0.01)
+
+
+===> Classification Report:
+
+              precision    recall  f1-score   support
+
+           0       0.87      0.89      0.88     12500
+           1       0.89      0.87      0.88     12500
+
+    accuracy                           0.88     25000
+   macro avg       0.88      0.88      0.88     25000
+weighted avg       0.88      0.88      0.88     25000
+
+
+
+===> Classification Metrics:
+
+accuracy classification score
+	accuracy score:  0.87884
+	accuracy score (normalize=False):  21971
+
+compute the precision
+	precision score (average=macro):  0.879093122600882
+	precision score (average=micro):  0.87884
+	precision score (average=weighted):  0.8790931226008822
+	precision score (average=None):  [0.86929736 0.88888889]
+	precision score (average=None, zero_division=1):  [0.86929736 0.88888889]
+
+compute the precision
+	recall score (average=macro):  0.8788400000000001
+	recall score (average=micro):  0.87884
+	recall score (average=weighted):  0.87884
+	recall score (average=None):  [0.89176 0.86592]
+	recall score (average=None, zero_division=1):  [0.89176 0.86592]
+
+compute the F1 score, also known as balanced F-score or F-measure
+	f1 score (average=macro):  0.8788197718207589
+	f1 score (average=micro):  0.8788399999999998
+	f1 score (average=weighted):  0.8788197718207588
+	f1 score (average=None):  [0.88038542 0.87725412]
+
+compute the F-beta score
+	f beta score (average=macro):  0.8789485202234015
+	f beta score (average=micro):  0.87884
+	f beta score (average=weighted):  0.8789485202234014
+	f beta score (average=None):  [0.8736989  0.88419814]
+
+compute the average Hamming loss
+	hamming loss:  0.12116
+
+jaccard similarity coefficient score
+	jaccard score (average=macro):  0.7838380037108439
+	jaccard score (average=None):  [0.78632901 0.781347  ]
+
+confusion matrix:
+[[11147  1353]
+ [ 1676 10824]]
+
+================================================================================
+Classifier.SOFT_VOTING_CLASSIFIER
+________________________________________________________________________________
+Training: 
+VotingClassifier(estimators=[('complement_nb',
+                              ComplementNB(alpha=1.0, class_prior=None,
+                                           fit_prior=False, norm=False)),
+                             ('logistic_regression',
+                              LogisticRegression(C=10, class_weight=None,
+                                                 dual=False, fit_intercept=True,
+                                                 intercept_scaling=1,
+                                                 l1_ratio=None, max_iter=100,
+                                                 multi_class='auto', n_jobs=-1,
+                                                 penalty='l2', random_state=0,
+                                                 solver='lbfgs', tol=0.01,
+                                                 verbose=Fals...
+                                                     criterion='gini',
+                                                     max_depth=None,
+                                                     max_features='auto',
+                                                     max_leaf_nodes=None,
+                                                     max_samples=None,
+                                                     min_impurity_decrease=0.0,
+                                                     min_impurity_split=None,
+                                                     min_samples_leaf=1,
+                                                     min_samples_split=5,
+                                                     min_weight_fraction_leaf=0.0,
+                                                     n_estimators=200,
+                                                     n_jobs=-1, oob_score=False,
+                                                     random_state=0,
+                                                     verbose=False,
+                                                     warm_start=False))],
+                 flatten_transform=True, n_jobs=-1, voting='soft',
+                 weights=None)
+train time: 10.289s
+test time:  0.637s
+accuracy:   0.877
+
+
+cross validation:
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+	accuracy: 5-fold cross validation: [0.8852 0.8972 0.8906 0.8908 0.8856]
+	test accuracy: 5-fold cross validation accuracy: 0.89 (+/- 0.01)
+
+
+===> Classification Report:
+
+              precision    recall  f1-score   support
+
+           0       0.87      0.89      0.88     12500
+           1       0.89      0.86      0.88     12500
+
+    accuracy                           0.88     25000
+   macro avg       0.88      0.88      0.88     25000
+weighted avg       0.88      0.88      0.88     25000
+
+
+
+===> Classification Metrics:
+
+accuracy classification score
+	accuracy score:  0.87732
+	accuracy score (normalize=False):  21933
+
+compute the precision
+	precision score (average=macro):  0.8775567286729686
+	precision score (average=micro):  0.87732
+	precision score (average=weighted):  0.8775567286729687
+	precision score (average=None):  [0.86810271 0.88701075]
+	precision score (average=None, zero_division=1):  [0.86810271 0.88701075]
+
+compute the precision
+	recall score (average=macro):  0.87732
+	recall score (average=micro):  0.87732
+	recall score (average=weighted):  0.87732
+	recall score (average=None):  [0.88984 0.8648 ]
+	recall score (average=None, zero_division=1):  [0.88984 0.8648 ]
+
+compute the F1 score, also known as balanced F-score or F-measure
+	f1 score (average=macro):  0.8773007668461235
+	f1 score (average=micro):  0.87732
+	f1 score (average=weighted):  0.8773007668461235
+	f1 score (average=None):  [0.87883696 0.87576457]
+
+compute the F-beta score
+	f beta score (average=macro):  0.8774212918744827
+	f beta score (average=micro):  0.87732
+	f beta score (average=weighted):  0.8774212918744827
+	f beta score (average=None):  [0.87236479 0.8824778 ]
+
+compute the average Hamming loss
+	hamming loss:  0.12268
+
+jaccard similarity coefficient score
+	jaccard score (average=macro):  0.7814243436356152
+	jaccard score (average=None):  [0.78386187 0.77898681]
+
+confusion matrix:
+[[11123  1377]
+ [ 1690 10810]]
+
+================================================================================
+Classifier.STACKING_CLASSIFIER
+________________________________________________________________________________
+Training: 
+StackingClassifier(cv=None,
+                   estimators=[('complement_nb',
+                                ComplementNB(alpha=1.0, class_prior=None,
+                                             fit_prior=False, norm=False)),
+                               ('linear_svc',
+                                LinearSVC(C=1.0, class_weight=None, dual=True,
+                                          fit_intercept=True,
+                                          intercept_scaling=1,
+                                          loss='squared_hinge', max_iter=1000,
+                                          multi_class='ovr', penalty='l2',
+                                          random_state=0, tol=0.0001,
+                                          verbose=False)),
+                               ('logistic_regressio...
+                                                copy_X=True, fit_intercept=True,
+                                                max_iter=None, normalize=False,
+                                                random_state=0, solver='auto',
+                                                tol=0.0001))],
+                   final_estimator=LinearSVC(C=1.0, class_weight=None,
+                                             dual=True, fit_intercept=True,
+                                             intercept_scaling=1,
+                                             loss='squared_hinge',
+                                             max_iter=1000, multi_class='ovr',
+                                             penalty='l2', random_state=0,
+                                             tol=0.0001, verbose=False),
+                   n_jobs=-1, passthrough=False, stack_method='auto',
+                   verbose=False)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentsation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+train time: 93.174s
+test time:  0.638s
+accuracy:   0.883
+
+
+cross validation:
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/linear_model/_logistic.py:940: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+/home/rpessoa/virtual_envs/comp551_p2/lib/python3.6/site-packages/sklearn/svm/_base.py:947: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  "the number of iterations.", ConvergenceWarning)
+	accuracy: 5-fold cross validation: [0.8924 0.902  0.8934 0.8898 0.889 ]
+	test accuracy: 5-fold cross validation accuracy: 0.89 (+/- 0.01)
+
+
+===> Classification Report:
+
+              precision    recall  f1-score   support
+
+           0       0.88      0.89      0.88     12500
+           1       0.89      0.88      0.88     12500
+
+    accuracy                           0.88     25000
+   macro avg       0.88      0.88      0.88     25000
+weighted avg       0.88      0.88      0.88     25000
+
+
+
+===> Classification Metrics:
+
+accuracy classification score
+	accuracy score:  0.88288
+	accuracy score (normalize=False):  22072
+
+compute the precision
+	precision score (average=macro):  0.8829189070116334
+	precision score (average=micro):  0.88288
+	precision score (average=weighted):  0.8829189070116334
+	precision score (average=None):  [0.87905908 0.88677873]
+	precision score (average=None, zero_division=1):  [0.87905908 0.88677873]
+
+compute the precision
+	recall score (average=macro):  0.88288
+	recall score (average=micro):  0.88288
+	recall score (average=weighted):  0.88288
+	recall score (average=None):  [0.88792 0.87784]
+	recall score (average=None, zero_division=1):  [0.88792 0.87784]
+
+compute the F1 score, also known as balanced F-score or F-measure
+	f1 score (average=macro):  0.8828770248890354
+	f1 score (average=micro):  0.88288
+	f1 score (average=weighted):  0.8828770248890354
+	f1 score (average=None):  [0.88346732 0.88228673]
+
+compute the F-beta score
+	f beta score (average=macro):  0.8828967705359524
+	f beta score (average=micro):  0.88288
+	f beta score (average=weighted):  0.8828967705359524
+	f beta score (average=None):  [0.88081709 0.88497645]
+
+compute the average Hamming loss
+	hamming loss:  0.11712
+
+jaccard similarity coefficient score
+	jaccard score (average=macro):  0.7903136924001999
+	jaccard score (average=None):  [0.79125971 0.78936767]
+
+confusion matrix:
+[[11099  1401]
+ [ 1527 10973]]
+
 FINAL CLASSIFICATION TABLE: IMDB_REVIEWS dataset (Binary classification)
 | ID | ML Algorithm | Accuracy Score (%) | K-fold Cross Validation (CV) (k = 5) | CV (Mean +/- Std) | Training time (seconds) | Test time (seconds) |
 | --- | ------------- | ------------------ | ------------------------------------ | ----------------- |  ------------------ | ------------------ |
-|  1  |  ADA_BOOST_CLASSIFIER  |  84.60%  |  [0.8398 0.8516 0.8416 0.8366 0.8416]  |  0.84 (+/- 0.01)  |  105.6  |  5.739  |
-|  2  |  BERNOULLI_NB  |  81.28%  |  [0.8398 0.8424 0.8514 0.8396 0.8516]  |  0.84 (+/- 0.01)  |  0.02628  |  0.02054  |
-|  3  |  COMPLEMENT_NB  |  83.93%  |  [0.8564 0.8678 0.8682 0.8678 0.8672]  |  0.87 (+/- 0.01)  |  0.01715  |  0.008316  |
-|  4  |  DECISION_TREE_CLASSIFIER  |  74.14%  |  [0.735  0.7292 0.746  0.739  0.7342]  |  0.74 (+/- 0.01)  |  8.226  |  0.01256  |
-|  5  |  GRADIENT_BOOSTING_CLASSIFIER  |  82.86%  |  [0.8278 0.8294 0.8238 0.823  0.8284]  |  0.83 (+/- 0.01)  |  105.4  |  0.06937  |
-|  6  |  K_NEIGHBORS_CLASSIFIER  |  82.66%  |  [0.8632 0.8744 0.8694 0.864  0.8618]  |  0.87 (+/- 0.01)  |  0.00634  |  13.07  |
-|  7  |  LINEAR_SVC  |  87.13%  |  [0.8838 0.8932 0.883  0.8836 0.8782]  |  0.88 (+/- 0.01)  |  0.2239  |  0.003934  |
-|  8  |  LOGISTIC_REGRESSION  |  87.75%  |  [0.8882 0.897  0.8878 0.8876 0.8818]  |  0.89 (+/- 0.01)  |  1.106  |  0.004114  |
-|  9  |  MULTINOMIAL_NB  |  83.93%  |  [0.8564 0.8678 0.8682 0.8678 0.8672]  |  0.87 (+/- 0.01)  |  0.01693  |  0.008398  |
-|  10  |  NEAREST_CENTROID  |  84.65%  |  [0.8426 0.8546 0.8426 0.8522 0.8502]  |  0.85 (+/- 0.01)  |  0.01881  |  0.01723  |
-|  11  |  PASSIVE_AGGRESSIVE_CLASSIFIER  |  88.07%  |  [0.8874 0.8966 0.8886 0.888  0.8846]  |  0.89 (+/- 0.01)  |  0.8494  |  0.003876  |
-|  12  |  PERCEPTRON  |  80.64%  |  [0.8166 0.8264 0.8144 0.81   0.8102]  |  0.82 (+/- 0.01)  |  0.08878  |  0.008192  |
-|  13  |  RANDOM_FOREST_CLASSIFIER  |  85.45%  |  [0.8504 0.8584 0.8488 0.8518 0.8568]  |  0.85 (+/- 0.01)  |  9.593  |  0.6074  |
-|  14  |  RIDGE_CLASSIFIER  |  86.90%  |  [0.8838 0.8952 0.8892 0.882  0.8788]  |  0.89 (+/- 0.01)  |  0.541  |  0.008644  |
+|  1  |  ADA_BOOST_CLASSIFIER  |  84.60%  |  [0.8398 0.8516 0.8416 0.8366 0.8416]  |  0.84 (+/- 0.01)  |  103.3  |  5.553  |
+|  2  |  BERNOULLI_NB  |  81.28%  |  [0.8398 0.8424 0.8514 0.8396 0.8516]  |  0.84 (+/- 0.01)  |  0.02759  |  0.02151  |
+|  3  |  COMPLEMENT_NB  |  83.93%  |  [0.8564 0.8678 0.8682 0.8678 0.8672]  |  0.87 (+/- 0.01)  |  0.01739  |  0.00831  |
+|  4  |  DECISION_TREE_CLASSIFIER  |  74.14%  |  [0.735  0.7292 0.746  0.739  0.7342]  |  0.74 (+/- 0.01)  |  7.808  |  0.01236  |
+|  5  |  GRADIENT_BOOSTING_CLASSIFIER  |  82.86%  |  [0.8278 0.8294 0.8238 0.823  0.8284]  |  0.83 (+/- 0.01)  |  100.8  |  0.06589  |
+|  6  |  K_NEIGHBORS_CLASSIFIER  |  82.66%  |  [0.8632 0.8744 0.8694 0.864  0.8618]  |  0.87 (+/- 0.01)  |  0.006417  |  13.02  |
+|  7  |  LINEAR_SVC  |  87.13%  |  [0.8838 0.8932 0.883  0.8836 0.8782]  |  0.88 (+/- 0.01)  |  0.2095  |  0.004025  |
+|  8  |  LOGISTIC_REGRESSION  |  87.75%  |  [0.8882 0.897  0.8878 0.8876 0.8818]  |  0.89 (+/- 0.01)  |  1.075  |  0.005046  |
+|  9  |  MULTINOMIAL_NB  |  83.93%  |  [0.8564 0.8678 0.8682 0.8678 0.8672]  |  0.87 (+/- 0.01)  |  0.01648  |  0.0088  |
+|  10  |  NEAREST_CENTROID  |  84.65%  |  [0.8426 0.8546 0.8426 0.8522 0.8502]  |  0.85 (+/- 0.01)  |  0.01818  |  0.01677  |
+|  11  |  PASSIVE_AGGRESSIVE_CLASSIFIER  |  88.07%  |  [0.8874 0.8966 0.8886 0.888  0.8846]  |  0.89 (+/- 0.01)  |  0.8581  |  0.003922  |
+|  12  |  PERCEPTRON  |  80.64%  |  [0.8166 0.8264 0.8144 0.81   0.8102]  |  0.82 (+/- 0.01)  |  0.09105  |  0.007187  |
+|  13  |  RANDOM_FOREST_CLASSIFIER  |  85.45%  |  [0.8504 0.8584 0.8488 0.8518 0.8568]  |  0.85 (+/- 0.01)  |  8.792  |  0.7235  |
+|  14  |  RIDGE_CLASSIFIER  |  86.90%  |  [0.8838 0.8952 0.8892 0.882  0.8788]  |  0.89 (+/- 0.01)  |  0.5019  |  0.00815  |
+|  15  |  MAJORITY_VOTING_CLASSIFIER  |  87.88%  |  [0.8882 0.8976 0.8896 0.8884 0.8846]  |  0.89 (+/- 0.01)  |  10.81  |  0.7945  |
+|  16  |  SOFT_VOTING_CLASSIFIER  |  87.73%  |  [0.8852 0.8972 0.8906 0.8908 0.8856]  |  0.89 (+/- 0.01)  |  10.29  |  0.6372  |
+|  17  |  STACKING_CLASSIFIER  |  88.29%  |  [0.8924 0.902  0.8934 0.8898 0.889 ]  |  0.89 (+/- 0.01)  |  93.17  |  0.6377  |
 
 
 Best algorithm:
-===> 11) PASSIVE_AGGRESSIVE_CLASSIFIER
-		Accuracy score = 88.07%		Training time = 0.8494		Test time = 0.003876
+===> 17) STACKING_CLASSIFIER
+		Accuracy score = 88.29%		Training time = 93.17		Test time = 0.6377
 
 
 
 DONE!
-Program finished. It took 4284.017226219177 seconds
+Program finished. It took 6212.019875049591 seconds
 
 Process finished with exit code 0
 ```
