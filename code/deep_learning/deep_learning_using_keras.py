@@ -39,7 +39,7 @@ Referece: Practical Text Classification With Python and Keras
 https://realpython.com/python-keras-text-classification/
 '''
 
-def run_deep_learning_model_1(options):
+def run_deep_learning_KerasDL1(options):
 
     if options.save_logs_in_file:
         if not os.path.exists('logs'):
@@ -142,13 +142,13 @@ def run_deep_learning_model_1(options):
         plt.style.use('ggplot')
 
         if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-            plot_history(history, 'Model 1', '20 NEWS')
+            plot_history(history, 'KerasDL1', '20 NEWS')
         elif dataset == Dataset.IMDB_REVIEWS.name:
-            plot_history(history, 'Model 1', 'IMDB')
+            plot_history(history, 'KerasDL1', 'IMDB')
 
         print('\n')
 
-        model_name = "Deep Learning (Keras) Model 1"
+        model_name = "Deep Learning using Keras 1 (KerasDL1)"
         results[dataset] = dataset, model_name, loss, training_accuracy, test_accuracy, training_time, test_time
 
     return results
@@ -158,7 +158,7 @@ def run_deep_learning_model_1(options):
 IMDB Review - Deep Model
 Reference: https://www.kaggle.com/nilanml/imdb-review-deep-model-94-89-accuracy
 '''
-def run_deep_learning_model_2(options):
+def run_deep_learning_KerasDL2(options):
     # To run and show all metrics: python main.py --run_deep_learning_using_keras --report --confusion_matrix --all_metrics
     if options.save_logs_in_file:
         if not os.path.exists('logs'):
@@ -294,13 +294,13 @@ def run_deep_learning_model_2(options):
         plt.style.use('ggplot')
 
         if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-            plot_history(history, 'Model 2', '20 NEWS')
+            plot_history(history, 'KerasDL2', '20 NEWS')
         elif dataset == Dataset.IMDB_REVIEWS.name:
-            plot_history(history, 'Model 2', 'IMDB')
+            plot_history(history, 'KerasDL2', 'IMDB')
 
         print('\n')
 
-        model_name = "Deep Learning (Keras) Model 2"
+        model_name = "Deep Learning using Keras 2 (KerasDL2)"
         results[dataset] = dataset, model_name, loss, training_accuracy, test_accuracy, training_time, test_time
 
     return results
