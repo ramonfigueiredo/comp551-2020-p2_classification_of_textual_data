@@ -141,7 +141,11 @@ def run_deep_learning_model_1(options):
 
         plt.style.use('ggplot')
 
-        plot_history(history, 'Model 1', dataset)
+        if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
+            plot_history(history, 'Model 1', '20 NEWS')
+        elif dataset == Dataset.IMDB_REVIEWS.name:
+            plot_history(history, 'Model 1', 'IMDB')
+
         print('\n')
 
         model_name = "Deep Learning (Keras) Model 1"
@@ -289,7 +293,11 @@ def run_deep_learning_model_2(options):
 
         plt.style.use('ggplot')
 
-        plot_history(history, 'Model 2', dataset)
+        if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
+            plot_history(history, 'Model 2', '20 NEWS')
+        elif dataset == Dataset.IMDB_REVIEWS.name:
+            plot_history(history, 'Model 2', 'IMDB')
+
         print('\n')
 
         model_name = "Deep Learning (Keras) Model 2"
