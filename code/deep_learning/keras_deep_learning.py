@@ -91,7 +91,7 @@ def run_deep_learning_using_keras(options):
 
         model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-        history = model.fit(X_train, y_train, epochs=6, verbose=False, validation_data=(X_test, y_test), batch_size=10)
+        history = model.fit(X_train, y_train, epochs=6, verbose=False, validation_data=(X_test, y_test),  batch_size=10)
 
         loss, accuracy = model.evaluate(X_train, y_train, verbose=False)
         print(dataset)

@@ -7,6 +7,7 @@ import numpy as np
 from argument_parser.argument_parser import get_options
 from datasets.load_dataset import load_dataset
 from deep_learning.keras_deep_learning import run_deep_learning_using_keras
+from deep_learning.deep_learning_using_keras import run_deep_learning_using_keras_with_layers_Embedding_BidirectionalLSTM_GlobalMaxPool1D_DenseRELU_Dropout_DenseSIGMOID
 from feature_extraction.vectorizer import extract_text_features
 from feature_selection.select_k_best import select_k_best_using_chi2
 from machine_learning.ml_algorithms import run_all_classifiers
@@ -41,6 +42,7 @@ if __name__ == '__main__':
         run_grid_search_imdb_using_multi_class_classification()
     else:
         if options.run_deep_learning_using_keras:
+            run_deep_learning_using_keras_with_layers_Embedding_BidirectionalLSTM_GlobalMaxPool1D_DenseRELU_Dropout_DenseSIGMOID(options)
             run_deep_learning_using_keras(options)
         else:
             dataset_list = []
