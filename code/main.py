@@ -6,19 +6,20 @@ import numpy as np
 
 from argument_parser.argument_parser import get_options
 from datasets.load_dataset import load_dataset
-from deep_learning.keras_deep_learning import run_deep_learning_using_keras
-from deep_learning.deep_learning_using_keras import run_deep_learning_using_keras_with_layers_Embedding_BidirectionalLSTM_GlobalMaxPool1D_DenseRELU_Dropout_DenseSIGMOID
+from deep_learning.deep_learning_using_keras import run_deep_learning_model_1, run_deep_learning_model_2
 from feature_extraction.vectorizer import extract_text_features
 from feature_selection.select_k_best import select_k_best_using_chi2
 from machine_learning.ml_algorithms import run_all_classifiers
 from machine_learning.ml_algorithms import run_just_miniproject_classifiers
 from machine_learning.ml_algorithms import run_ml_algorithm_list
 from metrics.ml_metrics import print_final_classification_report
+from model_selection.grid_search_20newsgroups_and_imdb_using_binary_classification import \
+    run_grid_search_20newsgroups_and_imdb_using_binary_classification
+from model_selection.grid_search_imdb_using_multi_class_classification import \
+    run_grid_search_imdb_using_multi_class_classification
 from plotting.plot import plot_results
 from utils.dataset_enum import Dataset
 from utils.ml_classifiers_enum import validate_ml_list
-from model_selection.grid_search_20newsgroups_and_imdb_using_binary_classification import run_grid_search_20newsgroups_and_imdb_using_binary_classification
-from model_selection.grid_search_imdb_using_multi_class_classification import run_grid_search_imdb_using_multi_class_classification
 
 if __name__ == '__main__':
 
@@ -42,8 +43,45 @@ if __name__ == '__main__':
         run_grid_search_imdb_using_multi_class_classification()
     else:
         if options.run_deep_learning_using_keras:
-            run_deep_learning_using_keras_with_layers_Embedding_BidirectionalLSTM_GlobalMaxPool1D_DenseRELU_Dropout_DenseSIGMOID(options)
-            run_deep_learning_using_keras(options)
+            results_model1 = run_deep_learning_model_1(options)
+            results_model2 = run_deep_learning_model_2(options)
+
+            print('\n\nFINAL CLASSIFICATION TABLE:')
+            print('| ID | Dataset | Algorithm | Loss | Training accuracy score (%) | Test accuracy score (%) | Training time (seconds) | Test time (seconds) |')
+            print('| -- | ------- | --------- | ---- | --------------------------- | ----------------------- | ----------------------- | ------------------- |')
+            count = 1
+            for key in results_model1:
+                dataset, model_name, training_accuracy, loss, test_accuracy, training_time, test_time = results_model1[key]
+                print("| {} | {} | {} | {:.4f} | {:.2f} | {:.2f}% | {:.4f} | {:.4f} |", count, dataset, model_name, loss, training_accuracy*100, test_accuracy*100, training_time, test_time)
+                count = count + 1
+
+            for key in results_model2:
+                dataset, model_name, training_accuracy, loss, test_accuracy, training_time, test_time = results_model2[key]
+                print("| {} | {} | {} | {:.4f} | {:.2f} | {:.2f}% | {:.4f} | {:.4f} |", count, dataset, model_name,
+                      loss, training_accuracy * 100, test_accuracy * 100, training_time, test_time)
+                count = count + 1
+
+            print("MODEL 1: KERAS DEEP LEARNING MODEL"
+                  "\nUsing layers:"
+                  "\n\t==> Dense(10, input_dim=input_dim, activation='relu')"
+                  "\n\t==> Dense(7=IMDB_REVIEWS multi-label or 19 = TWENTY_NEWS_GROUPS or 1 to IMDB_REVIEWS binary label, activation='sigmoid')"
+                  "\nCompile option:"
+                  "\n\t==> model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])"
+                  )
+
+            print("MODEL 2: KERAS DEEP LEARNING MODEL"
+                  "\nUsing layers:"
+                  "\n\t==> Embedding(max_features, embed_size)"
+                  "\n\t==> Bidirectional(LSTM(32, return_sequences = True)"
+                  "\n\t==> GlobalMaxPool1D()"
+                  "\n\t==> Dense(20, activation=\"relu\")"
+                  "\n\t==> Dropout(0.05)"
+                  "\n\t==> Dense(1, activation=\"sigmoid\")"
+                  "\n\t==> Dense(1, activation=\"sigmoid\")"
+                  "\nCompile option:"
+                  "\n\t==> model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])"
+                  )
+
         else:
             dataset_list = []
 
