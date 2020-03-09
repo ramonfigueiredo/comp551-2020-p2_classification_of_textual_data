@@ -106,6 +106,16 @@ def get_options():
     parser.add_argument("-dl", "--run_deep_learning_using_keras",
                         action="store_true", default=False, dest="run_deep_learning_using_keras",
                         help="Run deep learning using keras. Default: False (Run scikit-learn algorithms)")
+    parser.add_argument("-gs", "--run_grid_search",
+                        action="store_true", default=False, dest="run_grid_search",
+                        help="Run grid search for all datasets (TWENTY_NEWS_GROUPS, "
+                             "IMDB_REVIEWS binary labels and IMDB_REVIEWS multi-class labels), and all classifiers "
+                             "(1) ADA_BOOST_CLASSIFIER, 2) BERNOULLI_NB, 3) COMPLEMENT_NB, 4) DECISION_TREE_CLASSIFIER, "
+                             "5) GRADIENT_BOOSTING_CLASSIFIER, 6) K_NEIGHBORS_CLASSIFIER, 7) LINEAR_SVC, "
+                             "8) LOGISTIC_REGRESSION, 9) MULTINOMIAL_NB, 10) NEAREST_CENTROID, "
+                             "11) PASSIVE_AGGRESSIVE_CLASSIFIER, 12) PERCEPTRON, 13) RANDOM_FOREST_CLASSIFIER, "
+                             "14) RIDGE_CLASSIFIER). Default: False (run scikit-learn algorithms or deep learning "
+                             "algorithms). Note: this takes many hours to execute.")
     parser.add_argument('-v', '--version', action='version', dest='version', version='%(prog)s 1.0')
 
     options = parser.parse_args()
@@ -164,8 +174,11 @@ def show_option(options, parser):
     print('\tN features when using the hashing vectorizer =', options.n_features)
     print('\tPlot training time and test time together with accuracy score =', options.plot_accurary_and_time_together)
     print('\tSave logs in a file =', options.save_logs_in_file)
-    print('\tSeed used by the random number generator (random_state) =', options.random_state)
     print('\tVerbose =', options.verbose)
+    print('\tSeed used by the random number generator (random_state) =', options.random_state)
     print('\tRun deep learning using keras. Default: False (Run scikit-learn algorithms) =', options.run_deep_learning_using_keras)
+    print('\tRun grid search for all datasets (TWENTY_NEWS_GROUPS, IMDB_REVIEWS binary labels and IMDB_REVIEWS '
+          'multi-class labels), and all 14 classifiers. Default: False (run scikit-learn algorithms or deep learning '
+          'algorithms). Note: this takes many hours to execute. =', options.run_grid_search)
     print('=' * 130)
     print()
