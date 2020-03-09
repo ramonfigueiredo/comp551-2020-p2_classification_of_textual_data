@@ -51,14 +51,13 @@ if __name__ == '__main__':
             print('| -- | ------- | --------- | ---- | --------------------------- | ----------------------- | ----------------------- | ------------------- |')
             count = 1
             for key in results_model1:
-                dataset, model_name, training_accuracy, loss, test_accuracy, training_time, test_time = results_model1[key]
-                print("| {} | {} | {} | {:.4f} | {:.2f} | {:.2f}% | {:.4f} | {:.4f} |".format(count, dataset, model_name, loss, training_accuracy*100, test_accuracy*100, training_time, test_time))
+                dataset, algorithm_name, loss, training_accuracy, test_accuracy, training_time, test_time = results_model1[key]
+                print("| {} | {} | {} | {:.4f} | {:.2f} | {:.2f} | {:.4f} | {:.4f} |".format(count, dataset, algorithm_name, loss, training_accuracy * 100, test_accuracy * 100, training_time, test_time))
                 count = count + 1
 
             for key in results_model2:
-                dataset, model_name, training_accuracy, loss, test_accuracy, training_time, test_time = results_model2[key]
-                print("| {} | {} | {} | {:.4f} | {:.2f} | {:.2f}% | {:.4f} | {:.4f} |", count, dataset, model_name,
-                      loss, training_accuracy * 100, test_accuracy * 100, training_time, test_time)
+                dataset, algorithm_name, loss, training_accuracy, test_accuracy, training_time, test_time = results_model2[key]
+                print("| {} | {} | {} | {:.4f} | {:.2f} | {:.2f} | {:.4f} | {:.4f} |".format(count, dataset, algorithm_name, loss, training_accuracy * 100, test_accuracy * 100, training_time, test_time))
                 count = count + 1
 
             print("\nMODEL 1: KERAS DEEP LEARNING MODEL"
