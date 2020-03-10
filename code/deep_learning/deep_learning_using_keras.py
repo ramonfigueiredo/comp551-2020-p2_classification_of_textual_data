@@ -1,33 +1,23 @@
-# Ignore  the warnings
-import warnings
-from time import time
-
-from keras.layers import Bidirectional, GlobalMaxPool1D
-from keras.layers import Dense, LSTM, Embedding, Dropout
-from keras.preprocessing.sequence import pad_sequences
-from keras.preprocessing.text import Tokenizer
-
-from feature_extraction.nltk_features_extraction import apply_nltk_feature_extraction
-
-warnings.filterwarnings('always')
-warnings.filterwarnings('ignore')
-
-from metrics.ml_metrics import print_classification_report, print_ml_metrics, print_confusion_matrix
-
 import logging
 import os
-# Ignore  the warnings
 import warnings
+from time import time
 
 import matplotlib.pyplot as plt
 import numpy as np
 from keras import layers
+from keras.layers import Bidirectional, GlobalMaxPool1D
+from keras.layers import Dense, LSTM, Embedding, Dropout
 from keras.models import Sequential
+from keras.preprocessing.sequence import pad_sequences
+from keras.preprocessing.text import Tokenizer
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 
 from datasets.load_dataset import load_dataset
+from feature_extraction.nltk_features_extraction import apply_nltk_feature_extraction
 from feature_extraction.vectorizer import extract_text_features
 from feature_selection.select_k_best import select_k_best_using_chi2
+from metrics.ml_metrics import print_classification_report, print_ml_metrics, print_confusion_matrix
 from plotting.plot import plot_history
 from utils.dataset_enum import Dataset
 
@@ -39,8 +29,8 @@ Referece: Practical Text Classification With Python and Keras
 https://realpython.com/python-keras-text-classification/
 '''
 
-def run_deep_learning_KerasDL1(options):
 
+def manage_logs(options):
     if options.save_logs_in_file:
         if not os.path.exists('logs'):
             os.mkdir('logs')
@@ -50,10 +40,9 @@ def run_deep_learning_KerasDL1(options):
         logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO,
                             datefmt='%m/%d/%Y %I:%M:%S %p')
 
-    logging.info("Program started...")
 
+def get_dataset_list(options):
     dataset_list = []
-
     if options.dataset == Dataset.TWENTY_NEWS_GROUPS.name:
         dataset_list.append(Dataset.TWENTY_NEWS_GROUPS.name)
     elif options.dataset == Dataset.IMDB_REVIEWS.name:
@@ -61,12 +50,21 @@ def run_deep_learning_KerasDL1(options):
     else:
         dataset_list.append(Dataset.TWENTY_NEWS_GROUPS.name)
         dataset_list.append(Dataset.IMDB_REVIEWS.name)
+    return dataset_list
+
+
+def run_deep_learning_KerasDL1(options):
+
+    manage_logs(options)
+
+    logging.info("Program started...")
+
+    dataset_list = get_dataset_list(options)
 
     results = {}
     for dataset in dataset_list:
 
-        X_train, y_train, X_test, y_test, target_names, data_train_size_mb, data_test_size_mb = load_dataset(dataset,
-                                                                                                             options)
+        X_train, y_train, X_test, y_test, target_names, data_train_size_mb, data_test_size_mb = load_dataset(dataset, options)
 
         if (dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels) \
                 or dataset == Dataset.TWENTY_NEWS_GROUPS.name:
@@ -125,9 +123,18 @@ def run_deep_learning_KerasDL1(options):
 
         model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-        epochs=10
         start = time()
-        history = model.fit(X_train, y_train, epochs=epochs, verbose=False, validation_data=(X_test, y_test),  batch_size=10)
+
+        if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
+            epochs = 10
+        elif dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
+            epochs = 10
+        else: # IMDB_REVIEWS using binary classification
+            epochs = 10
+
+        print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(options.epochs))
+
+        history = model.fit(X_train, y_train, epochs=options.epochs, verbose=False, validation_data=(X_test, y_test),  batch_size=10)
         training_time = time() - start
 
         start = time()
@@ -165,27 +172,10 @@ IMDB Review - Deep Model
 Reference: https://www.kaggle.com/nilanml/imdb-review-deep-model-94-89-accuracy
 '''
 def run_deep_learning_KerasDL2(options):
-    # To run and show all metrics: python main.py --run_deep_learning_using_keras --report --confusion_matrix --all_metrics
-    if options.save_logs_in_file:
-        if not os.path.exists('logs'):
-            os.mkdir('logs')
-        logging.basicConfig(filename='logs/all.log', format='%(asctime)s - %(levelname)s - %(message)s',
-                            level=logging.INFO, datefmt='%m/%d/%Y %I:%M:%S %p')
-    else:
-        logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO,
-                            datefmt='%m/%d/%Y %I:%M:%S %p')
 
     logging.info("Program started...")
 
-    dataset_list = []
-
-    if options.dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-        dataset_list.append(Dataset.TWENTY_NEWS_GROUPS.name)
-    elif options.dataset == Dataset.IMDB_REVIEWS.name:
-        dataset_list.append(Dataset.IMDB_REVIEWS.name)
-    else:
-        dataset_list.append(Dataset.TWENTY_NEWS_GROUPS.name)
-        dataset_list.append(Dataset.IMDB_REVIEWS.name)
+    dataset_list = get_dataset_list(options)
 
     results = {}
     for dataset in dataset_list:
@@ -250,11 +240,13 @@ def run_deep_learning_KerasDL2(options):
         batch_size = 100
 
         if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-            epochs = 10 #2  # 2, 3, 4, 5, 10
-        elif dataset == Dataset.IMDB_REVIEWS.name:
-            epochs = 10 #6
+            epochs = 10
+        elif dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
+            epochs = 10
+        else: # IMDB_REVIEWS using binary classification
+            epochs = 10
 
-        print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(epochs))
+        print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(options.epochs))
 
         if dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
             model.add(layers.Dense(7, activation='sigmoid'))
@@ -271,10 +263,9 @@ def run_deep_learning_KerasDL2(options):
         X_te = pad_sequences(list_tokenized_test, maxlen=maxlen)
 
         # Train the model
-        # history = model.fit(X_t, y, batch_size=batch_size, epochs=epochs, validation_split=0.2)
         print('\t=====> Training the model: model.fit()')
         start = time()
-        history = model.fit(X_t, y, batch_size=batch_size, epochs=epochs, validation_data=(X_te, y_test))
+        history = model.fit(X_t, y, batch_size=batch_size, epochs=options.epochs, validation_data=(X_te, y_test))
         training_time = time() - start
 
         print('\t=====> Test the model: model.predict()')

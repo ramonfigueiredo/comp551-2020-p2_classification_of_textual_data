@@ -106,6 +106,11 @@ def get_options():
     parser.add_argument("-dl", "--run_deep_learning_using_keras",
                         action="store_true", default=False, dest="run_deep_learning_using_keras",
                         help="Run deep learning using keras. Default: False (Run scikit-learn algorithms)")
+    parser.add_argument("-epochs", dest="epochs",
+                        action="store", type=int, default=None,
+                        help="CNumber of epochs used by the deep learning approach. "
+                             "One epoch is when an entire dataset is passed both forward and backward through the "
+                             "neural network only once. Default: None = use the best number of epochs for each dataset.")
     parser.add_argument("-gs", "--run_grid_search",
                         action="store_true", default=False, dest="run_grid_search",
                         help="Run grid search for all datasets (TWENTY_NEWS_GROUPS, "
@@ -177,6 +182,7 @@ def show_option(options, parser):
     print('\tVerbose =', options.verbose)
     print('\tSeed used by the random number generator (random_state) =', options.random_state)
     print('\tRun deep learning using keras. Default: False (Run scikit-learn algorithms) =', options.run_deep_learning_using_keras)
+    print('\tNumber of epochs used by the deep learning approach. Default: None = use the best number of epochs for each dataset. = ', options.epochs)
     print('\tRun grid search for all datasets (TWENTY_NEWS_GROUPS, IMDB_REVIEWS binary labels and IMDB_REVIEWS '
           'multi-class labels), and all 14 classifiers. Default: False (run scikit-learn algorithms or deep learning '
           'algorithms). Note: this takes many hours to execute. =', options.run_grid_search)
