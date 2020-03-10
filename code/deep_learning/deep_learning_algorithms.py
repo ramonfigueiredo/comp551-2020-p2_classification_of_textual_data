@@ -1,5 +1,5 @@
-from utils.ml_classifiers_enum import Classifier
 from deep_learning.deep_learning_using_keras import run_deep_learning_KerasDL1, run_deep_learning_KerasDL2
+from utils.ml_classifiers_enum import Classifier
 
 
 def run_deep_learning(options):
