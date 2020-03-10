@@ -93,22 +93,6 @@ def run_deep_learning_KerasDL1(options):
         if options.chi2_select:
             select_k_best_using_chi2(X_train, y_train, X_test, feature_names, options)
 
-        print('=' * 80)
-        if dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
-            layer_name = "Dense(7, activation='sigmoid')"
-        elif dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-            layer_name = "Dense(19, activation='sigmoid')"
-        else:
-            layer_name = "Dense(1, activation='sigmoid')"
-
-        print("KERAS DEEP LEARNING MODEL"
-              "\nUsing layers:"
-              "\n\t==> Dense(10, input_dim=input_dim, activation='relu')"
-              "\n\t==> {}"
-              "\nCompile option:"
-              "\n\t==> model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])".format(layer_name)
-              )
-
         input_dim = X_train.shape[1]  # Number of features
 
         model = Sequential()
@@ -127,11 +111,11 @@ def run_deep_learning_KerasDL1(options):
         start = time()
 
         if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-            epochs = 10
+            options.epochs = 10
         elif dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
-            epochs = 10
+            options.epochs = 10
         else: # IMDB_REVIEWS using binary classification
-            epochs = 10
+            options.epochs = 10
 
         print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(options.epochs))
 
@@ -202,20 +186,6 @@ def run_deep_learning_KerasDL2(options):
             y_test = y_test.reshape(len(y_test), 1)
             y_test = oh_test.fit_transform(y_test)
 
-        print('=' * 80)
-        print("KERAS DEEP LEARNING MODEL"
-              "\nUsing layers:"
-              "\n\t==> Embedding(max_features, embed_size)"
-              "\n\t==> Bidirectional(LSTM(32, return_sequences = True)"
-              "\n\t==> GlobalMaxPool1D()"
-              "\n\t==> Dense(20, activation=\"relu\")"
-              "\n\t==> Dropout(0.05)"
-              "\n\t==> Dense(1, activation=\"sigmoid\")"
-              "\n\t==> Dense(1, activation=\"sigmoid\")"
-              "\nCompile option:"
-              "\n\t==> model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])"
-              )
-
         print('\t===> Tokenizer: fit_on_texts(X_train)')
         max_features = 6000
         tokenizer = Tokenizer(num_words=max_features)
@@ -242,11 +212,11 @@ def run_deep_learning_KerasDL2(options):
         batch_size = 100
 
         if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-            epochs = 10
+            options.epochs = 10
         elif dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
-            epochs = 10
+            options.epochs = 10
         else: # IMDB_REVIEWS using binary classification
-            epochs = 10
+            options.epochs = 10
 
         print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(options.epochs))
 
