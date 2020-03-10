@@ -122,6 +122,7 @@ def run_deep_learning_KerasDL1(options):
             model.add(layers.Dense(1, activation='sigmoid'))
 
         model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+        print(model.summary())
 
         start = time()
 
@@ -236,6 +237,7 @@ def run_deep_learning_KerasDL2(options):
         model.add(Dropout(0.05))
         model.add(Dense(1, activation="sigmoid"))
         model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+        print(model.summary())
 
         batch_size = 100
 

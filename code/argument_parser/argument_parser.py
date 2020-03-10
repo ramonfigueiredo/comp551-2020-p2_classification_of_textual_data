@@ -108,9 +108,18 @@ def get_options():
                         help="Run deep learning using keras. Default: False (Run scikit-learn algorithms)")
     parser.add_argument("-epochs", dest="epochs",
                         action="store", type=int, default=None,
-                        help="CNumber of epochs used by the deep learning approach. "
+                        help="Number of epochs used by the deep learning approach. "
                              "One epoch is when an entire dataset is passed both forward and backward through the "
                              "neural network only once. Default: None = use the best number of epochs for each dataset.")
+    parser.add_argument("-dl_list", "--dl_algorithm_list",
+                        action="append", dest="dl_algorithm_list",
+                        help="List of deep learning algorithm to be executed. This stores a list of Deep Learning "
+                             "algorithms, and appends each algorithm value to the list. "
+                             "For example: -dl_list KerasDL2, means dl_algorithm_list = ['KerasDL2']. "
+                             "(Options of Deep Learning algorithms: "
+                             "1) KERAS_DL1 (= Deep Learning using Keras 1), 2) KERAS_DL1 (= Deep Learning using Keras 2)."
+                             "Default: None. If dl_algorithm_list is not provided, all Deep Learning algorithms will be executed.",
+                        default=None)
     parser.add_argument("-gs", "--run_grid_search",
                         action="store_true", default=False, dest="run_grid_search",
                         help="Run grid search for all datasets (TWENTY_NEWS_GROUPS, "
@@ -182,7 +191,10 @@ def show_option(options, parser):
     print('\tVerbose =', options.verbose)
     print('\tSeed used by the random number generator (random_state) =', options.random_state)
     print('\tRun deep learning using keras. Default: False (Run scikit-learn algorithms) =', options.run_deep_learning_using_keras)
-    print('\tNumber of epochs used by the deep learning approach. Default: None = use the best number of epochs for each dataset. = ', options.epochs)
+    print('\tNumber of epochs used by the deep learning approach. Default: None = use the best number of epochs for '
+          'each dataset. = ', options.epochs)
+    print('\tDeep Learning algorithm list (If dl_algorithm_list is not provided, all Deep Learning algorithms will '
+          'be executed). Options of Deep Learning algorithms: 1) KERAS_DL1, 2) KERAS_DL2. =', options.dl_algorithm_list)
     print('\tRun grid search for all datasets (TWENTY_NEWS_GROUPS, IMDB_REVIEWS binary labels and IMDB_REVIEWS '
           'multi-class labels), and all 14 classifiers. Default: False (run scikit-learn algorithms or deep learning '
           'algorithms). Note: this takes many hours to execute. =', options.run_grid_search)
