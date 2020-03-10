@@ -14,7 +14,7 @@
 ![IMDB_REVIEWS: Loss, Training Accuracy, Test Accuracy, Training Time, Test Time](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/results_20newsgroups_and_imdb_using_binary_classification/KerasDL1_IMDB_REVIEWS_training_and_validation_accuracy_and_Loss.png)
 
 
-### Learning using Keras 1 (KerasDL1)
+### Deep Learning using Keras 2 (KerasDL2)
 
 ![TWENTY_NEWS_GROUPS: Loss, Training Accuracy, Test Accuracy, Training Time, Test Time](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/results_20newsgroups_and_imdb_using_binary_classification/KerasDL2_TWENTY_NEWS_GROUPS_training_and_validation_accuracy_and_Loss.png)
 
