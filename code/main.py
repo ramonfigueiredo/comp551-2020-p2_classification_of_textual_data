@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
             print('\n\nFINAL CLASSIFICATION TABLE:\n')
             print('| ID | Dataset | Algorithm | Loss | Training accuracy score (%) | Test accuracy score (%) | Training time (seconds) | Test time (seconds) |')
-            print('| -- | ------- | --------- | ---- | --------------------------- | ----------------------- | ----------------------- | ------------------- |')
+            print('| --- | ------- | --------- | ---- | --------------------------- | ----------------------- | ----------------------- | ------------------- |')
             count = 1
             for key in results_model1:
                 dataset, algorithm_name, loss, training_accuracy, test_accuracy, training_time, test_time = results_model1[key]

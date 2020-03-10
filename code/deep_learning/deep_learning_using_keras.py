@@ -131,17 +131,18 @@ def run_deep_learning_KerasDL1(options):
         training_time = time() - start
 
         start = time()
-        loss, training_accuracy = model.evaluate(X_train, y_train, verbose=False)
+        training_loss, training_accuracy = model.evaluate(X_train, y_train, verbose=False)
         test_time = time() - start
 
         algorithm_name = "Deep Learning using Keras 1 (KerasDL1)"
 
         print("\tDataset: {}".format(dataset))
         print("\tAlgorithm: {}".format(algorithm_name))
-        print("\tLoss: {:.4f}".format(loss))
+        print("\tTraining Loss: {:.4f}".format(training_loss))
         print("\tTraining accuracy score: {:.2f}%".format(training_accuracy * 100))
-        loss, test_accuracy = model.evaluate(X_test, y_test, verbose=False)
+        test_loss, test_accuracy = model.evaluate(X_test, y_test, verbose=False)
         print("\tTest Accuracy: {:.2f}%".format(test_accuracy * 100))
+        print("\tTest Loss: {:.4f}".format(test_loss))
         print("\tTraining Time: {:.4f}".format(training_time))
         print("\tTest Time: {:.4f}".format(test_time))
 
@@ -154,7 +155,7 @@ def run_deep_learning_KerasDL1(options):
 
         print('\n')
 
-        results[dataset] = dataset, algorithm_name, loss, training_accuracy, test_accuracy, training_time, test_time
+        results[dataset] = dataset, algorithm_name, training_loss, training_accuracy, test_accuracy, training_time, test_time
 
     return results
 
@@ -287,15 +288,16 @@ def run_deep_learning_KerasDL2(options):
         print_confusion_matrix(options, y_pred, y_test)
 
         start = time()
-        loss, training_accuracy = model.evaluate(X_t, y, verbose=False)
+        training_loss, training_accuracy = model.evaluate(X_t, y, verbose=False)
         test_time = time() - start
         algorithm_name = "Deep Learning using Keras 2 (KerasDL2)"
 
         print("\tDataset: {}".format(dataset))
         print("\tAlgorithm: {}".format(algorithm_name))
-        print("\tLoss: {:.4f}".format(loss))
+        print("\tTraining Loss: {:.4f}".format(training_loss))
         print("\tTraining accuracy score: {:.2f}%".format(training_accuracy * 100))
-        loss, test_accuracy = model.evaluate(X_te, y_test, verbose=False)
+        test_loss, test_accuracy = model.evaluate(X_te, y_test, verbose=False)
+        print("\tTest Loss: {:.4f}".format(test_loss))
         print("\tTest Accuracy: {:.2f}%".format(test_accuracy * 100))
         print("\tTraining Time: {:.4f}".format(training_time))
         print("\tTest Time: {:.4f}".format(test_time))
@@ -309,6 +311,6 @@ def run_deep_learning_KerasDL2(options):
 
         print('\n')
 
-        results[dataset] = dataset, algorithm_name, loss, training_accuracy, test_accuracy, training_time, test_time
+        results[dataset] = dataset, algorithm_name, training_loss, training_accuracy, test_accuracy, training_time, test_time
 
     return results
