@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from utils.dataset_enum import Dataset
 
 
-def plot_history(history, dataset):
+def plot_history(history, model_label, dataset):
     acc = history.history['accuracy']
     val_acc = history.history['val_accuracy']
     loss = history.history['loss']
@@ -14,12 +14,12 @@ def plot_history(history, dataset):
     plt.subplot(1, 2, 1)
     plt.plot(x, acc, 'b', label='Training acc')
     plt.plot(x, val_acc, 'r', label='Validation acc')
-    plt.title('Training and validation accuracy ({})'.format(dataset))
+    plt.title('{}: Training and validation accuracy ({})'.format(model_label, dataset))
     plt.legend()
     plt.subplot(1, 2, 2)
     plt.plot(x, loss, 'b', label='Training loss')
     plt.plot(x, val_loss, 'r', label='Validation loss')
-    plt.title('Training and validation loss ({})'.format(dataset))
+    plt.title('{}: Training and validation loss ({})'.format(model_label, dataset))
     plt.legend()
     plt.show()
 
