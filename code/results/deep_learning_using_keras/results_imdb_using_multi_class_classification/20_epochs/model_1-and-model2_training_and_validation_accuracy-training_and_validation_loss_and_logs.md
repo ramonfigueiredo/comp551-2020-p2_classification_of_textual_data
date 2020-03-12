@@ -7,12 +7,12 @@
 
 ### Deep Learning using Keras 1 (KERAS_DL1)
 
-![IMDB_REVIEWS: Loss, Training Accuracy, Test Accuracy, Training Time, Test Time](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/results_imdb_using_multi_class_classification/KERAS_DL1_IMDB_REVIEWS_training_and_validation_accuracy_and_Loss.png)
+![IMDB_REVIEWS: Loss, Training Accuracy, Test Accuracy, Training Time, Test Time](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/results_imdb_using_multi_class_classification/20_epochs/KERAS_DL1_IMDB_REVIEWS_training_and_validation_accuracy_and_Loss.png)
 
 
 ### Learning using Keras 2 (KERAS_DL2)
 
-![IMDB_REVIEWS: Loss, Training Accuracy, Test Accuracy, Training Time, Test Time](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/results_imdb_using_multi_class_classification/KERAS_DL2_IMDB_REVIEWS_training_and_validation_accuracy_and_Loss.png)
+![IMDB_REVIEWS: Loss, Training Accuracy, Test Accuracy, Training Time, Test Time](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/results_imdb_using_multi_class_classification/20_epochs/KERAS_DL2_IMDB_REVIEWS_training_and_validation_accuracy_and_Loss.png)
 
 
 #### Computer settings used to run
