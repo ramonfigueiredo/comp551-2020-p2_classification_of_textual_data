@@ -122,7 +122,7 @@ def run_deep_learning_KerasDL1(options):
 
         if not options.epochs:
             if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                epochs = 12
+                epochs = 10
             elif dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
                 epochs = 2
             else:  # IMDB_REVIEWS using binary classification
