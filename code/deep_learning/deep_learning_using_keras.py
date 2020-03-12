@@ -112,15 +112,17 @@ def run_deep_learning_KerasDL1(options):
 
         if not options.epochs:
             if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                options.epochs = 10
+                epochs = 10
             elif dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
-                options.epochs = 3
-            else: # IMDB_REVIEWS using binary classification
-                options.epochs = 1
+                epochs = 3
+            elif dataset == Dataset.IMDB_REVIEWS.name and not options.use_imdb_multi_class_labels:
+                epochs = 1
+            else:
+                epochs = 10
 
-        print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(options.epochs))
+        print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(epochs))
 
-        history = model.fit(X_train, y_train, epochs=options.epochs, verbose=False, validation_data=(X_test, y_test),  batch_size=10)
+        history = model.fit(X_train, y_train, epochs=epochs, verbose=False, validation_data=(X_test, y_test),  batch_size=10)
         training_time = time() - start
 
         start = time()
@@ -214,13 +216,15 @@ def run_deep_learning_KerasDL2(options):
 
         if not options.epochs:
             if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                options.epochs = 2
+                epochs = 2
             elif dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
-                options.epochs = 1
-            else: # IMDB_REVIEWS using binary classification
-                options.epochs = 4
+                epochs = 1
+            elif dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
+                epochs = 4
+            else:
+                epochs = 10
 
-        print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(options.epochs))
+        print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(epochs))
 
         if dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
             model.add(layers.Dense(7, activation='sigmoid'))
@@ -239,7 +243,7 @@ def run_deep_learning_KerasDL2(options):
         # Train the model
         print('\t=====> Training the model: model.fit()')
         start = time()
-        history = model.fit(X_t, y, batch_size=batch_size, epochs=options.epochs, validation_data=(X_te, y_test))
+        history = model.fit(X_t, y, batch_size=batch_size, epochs=epochs, validation_data=(X_te, y_test))
         training_time = time() - start
 
         print('\t=====> Test the model: model.predict()')
@@ -262,8 +266,8 @@ def run_deep_learning_KerasDL2(options):
         print("\tTraining Loss: {:.4f}".format(training_loss))
         print("\tTraining accuracy score: {:.2f}%".format(training_accuracy * 100))
         test_loss, test_accuracy = model.evaluate(X_te, y_test, verbose=False)
-        print("\tTest Loss: {:.4f}".format(test_loss))
         print("\tTest Accuracy: {:.2f}%".format(test_accuracy * 100))
+        print("\tTest Loss: {:.4f}".format(test_loss))
         print("\tTraining Time: {:.4f}".format(training_time))
         print("\tTest Time: {:.4f}".format(test_time))
 

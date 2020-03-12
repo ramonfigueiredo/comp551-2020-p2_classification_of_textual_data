@@ -146,7 +146,6 @@ def get_options():
 
 def show_option(options, parser):
 
-    print(parser.print_help())
     print('=' * 130)
 
     print('\nRunning with options: ')
