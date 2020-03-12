@@ -110,12 +110,13 @@ def run_deep_learning_KerasDL1(options):
 
         start = time()
 
-        if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-            options.epochs = 10
-        elif dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
-            options.epochs = 10
-        else: # IMDB_REVIEWS using binary classification
-            options.epochs = 10
+        if not options.epochs:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
+                options.epochs = 10
+            elif dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
+                options.epochs = 3
+            else: # IMDB_REVIEWS using binary classification
+                options.epochs = 1
 
         print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(options.epochs))
 
@@ -211,12 +212,13 @@ def run_deep_learning_KerasDL2(options):
 
         batch_size = 100
 
-        if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-            options.epochs = 10
-        elif dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
-            options.epochs = 10
-        else: # IMDB_REVIEWS using binary classification
-            options.epochs = 10
+        if not options.epochs:
+            if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
+                options.epochs = 2
+            elif dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
+                options.epochs = 1
+            else: # IMDB_REVIEWS using binary classification
+                options.epochs = 4
 
         print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(options.epochs))
 
