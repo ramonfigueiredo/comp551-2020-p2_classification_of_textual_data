@@ -83,6 +83,20 @@ def print_results(dataset, algorithm_name, training_loss, training_accuracy, tes
     print("\tTest time: {:.4f}".format(test_time))
 
 
+def add_output_layer(dataset, model, options):
+    if dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
+        model.add(layers.Dense(7, activation='sigmoid'))
+    elif dataset == Dataset.TWENTY_NEWS_GROUPS.name:
+        model.add(layers.Dense(19, activation='sigmoid'))
+    else:
+        model.add(layers.Dense(1, activation='sigmoid'))
+
+
+def compile_model(model):
+    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+    print(model.summary())
+
+
 def run_deep_learning_KerasDL1(options):
     manage_logs(options)
 
@@ -103,13 +117,8 @@ def run_deep_learning_KerasDL1(options):
 
         model = Sequential()
         model.add(layers.Dense(10, input_dim=input_dim, activation='relu'))
-
         add_output_layer(dataset, model, options)
-
-        model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-        print(model.summary())
-
-        start = time()
+        compile_model(model)
 
         if not options.epochs:
             if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
@@ -119,13 +128,13 @@ def run_deep_learning_KerasDL1(options):
             else:  # IMDB_REVIEWS using binary classification
                 epochs = 1
 
+        start = time()
         if not options.epochs:
             print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(epochs))
             history = model.fit(X_train, y_train, epochs=epochs, verbose=False, validation_data=(X_test, y_test), batch_size=10)
         else:
             print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(options.epochs))
             history = model.fit(X_train, y_train, epochs=options.epochs, verbose=False, validation_data=(X_test, y_test), batch_size=10)
-
         training_time = time() - start
 
 
@@ -151,7 +160,6 @@ def run_deep_learning_KerasDL1(options):
         results[dataset] = dataset, algorithm_name, training_loss, training_accuracy, test_accuracy, training_time, test_time
 
     return results
-
 
 '''
 IMDB Review - Deep Model
@@ -191,9 +199,8 @@ def run_deep_learning_KerasDL2(options):
         model.add(GlobalMaxPool1D())
         model.add(Dense(20, activation="relu"))
         model.add(Dropout(0.05))
-        model.add(Dense(1, activation="sigmoid"))
-        model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-        print(model.summary())
+        add_output_layer(dataset, model, options)
+        compile_model(model)
 
         batch_size = 100
 
@@ -205,13 +212,6 @@ def run_deep_learning_KerasDL2(options):
             else:  # IMDB_REVIEWS using binary classification
                 epochs = 4
 
-        if not options.epochs:
-            print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(epochs))
-        else:
-            print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(options.epochs))
-
-        add_output_layer(dataset, model, options)
-
         # Test the model
         print('\t===> Tokenizer: fit_on_texts(X_test)')
         list_sentences_test = X_test
@@ -220,14 +220,13 @@ def run_deep_learning_KerasDL2(options):
         X_te = pad_sequences(list_tokenized_test, maxlen=maxlen)
 
         # Train the model
-        print('\t=====> Training the model: model.fit()')
         start = time()
-
         if not options.epochs:
+            print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(epochs))
             history = model.fit(X_t, y, batch_size=batch_size, epochs=epochs, validation_data=(X_te, y_test))
         else:
+            print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(options.epochs))
             history = model.fit(X_t, y, batch_size=batch_size, epochs=options.epochs, validation_data=(X_te, y_test))
-
         training_time = time() - start
 
         print('\t=====> Test the model: model.predict()')
@@ -261,12 +260,3 @@ def run_deep_learning_KerasDL2(options):
         results[dataset] = dataset, algorithm_name, training_loss, training_accuracy, test_accuracy, training_time, test_time
 
     return results
-
-
-def add_output_layer(dataset, model, options):
-    if dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
-        model.add(layers.Dense(7, activation='sigmoid'))
-    elif dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-        model.add(layers.Dense(19, activation='sigmoid'))
-    else:
-        model.add(layers.Dense(1, activation='sigmoid'))
