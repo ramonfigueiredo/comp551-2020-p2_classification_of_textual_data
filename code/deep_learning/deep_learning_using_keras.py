@@ -104,12 +104,7 @@ def run_deep_learning_KerasDL1(options):
         model = Sequential()
         model.add(layers.Dense(10, input_dim=input_dim, activation='relu'))
 
-        if dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
-            model.add(layers.Dense(7, activation='sigmoid'))
-        elif dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-            model.add(layers.Dense(19, activation='sigmoid'))
-        else:
-            model.add(layers.Dense(1, activation='sigmoid'))
+        add_output_layer(dataset, model, options)
 
         model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
         print(model.summary())
@@ -215,12 +210,7 @@ def run_deep_learning_KerasDL2(options):
         else:
             print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(options.epochs))
 
-        if dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
-            model.add(layers.Dense(7, activation='sigmoid'))
-        elif dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-            model.add(layers.Dense(19, activation='sigmoid'))
-        else:
-            model.add(layers.Dense(1, activation='sigmoid'))
+        add_output_layer(dataset, model, options)
 
         # Test the model
         print('\t===> Tokenizer: fit_on_texts(X_test)')
@@ -271,3 +261,12 @@ def run_deep_learning_KerasDL2(options):
         results[dataset] = dataset, algorithm_name, training_loss, training_accuracy, test_accuracy, training_time, test_time
 
     return results
+
+
+def add_output_layer(dataset, model, options):
+    if dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
+        model.add(layers.Dense(7, activation='sigmoid'))
+    elif dataset == Dataset.TWENTY_NEWS_GROUPS.name:
+        model.add(layers.Dense(19, activation='sigmoid'))
+    else:
+        model.add(layers.Dense(1, activation='sigmoid'))
