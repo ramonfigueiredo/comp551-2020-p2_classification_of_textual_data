@@ -110,7 +110,6 @@ def run_deep_learning_KerasDL1(options):
 
         start = time()
 
-        epochs = 10
         if not options.epochs:
             if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 epochs = 10
@@ -118,10 +117,17 @@ def run_deep_learning_KerasDL1(options):
                 epochs = 3
             elif dataset == Dataset.IMDB_REVIEWS.name and not options.use_imdb_multi_class_labels:
                 epochs = 1
+            else:
+                epochs = 10
 
-        print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(epochs))
+        if not options.epochs:
+            print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(epochs))
+            history = model.fit(X_train, y_train, epochs=epochs, verbose=False, validation_data=(X_test, y_test), batch_size=10)
+        else:
+            print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(options.epochs))
+            history = model.fit(X_train, y_train, epochs=options.epochs, verbose=False, validation_data=(X_test, y_test), batch_size=10)
 
-        history = model.fit(X_train, y_train, epochs=epochs, verbose=False, validation_data=(X_test, y_test),  batch_size=10)
+
         training_time = time() - start
 
         start = time()
@@ -213,7 +219,6 @@ def run_deep_learning_KerasDL2(options):
 
         batch_size = 100
 
-        epochs = 10
         if not options.epochs:
             if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 epochs = 2
@@ -221,8 +226,13 @@ def run_deep_learning_KerasDL2(options):
                 epochs = 1
             elif dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
                 epochs = 4
+            else:
+                epochs = 10
 
-        print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(epochs))
+        if not options.epochs:
+            print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(epochs))
+        else:
+            print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(options.epochs))
 
         if dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
             model.add(layers.Dense(7, activation='sigmoid'))
@@ -241,7 +251,12 @@ def run_deep_learning_KerasDL2(options):
         # Train the model
         print('\t=====> Training the model: model.fit()')
         start = time()
-        history = model.fit(X_t, y, batch_size=batch_size, epochs=epochs, validation_data=(X_te, y_test))
+
+        if not options.epochs:
+            history = model.fit(X_t, y, batch_size=batch_size, epochs=epochs, validation_data=(X_te, y_test))
+        else:
+            history = model.fit(X_t, y, batch_size=batch_size, epochs=options.epochs, validation_data=(X_te, y_test))
+
         training_time = time() - start
 
         print('\t=====> Test the model: model.predict()')
