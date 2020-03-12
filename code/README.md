@@ -1,6 +1,7 @@
 
 
 ## How to run the Python program?
+
 1. Install [virtualenv](https://virtualenv.pypa.io/en/latest/)
 	* To activate the virtualenv on Linux or MacOS: ```source venv/bin/activate```
 	* To activate the virtualenv on Windows: ```\venv\Script\activate.bat```
@@ -8,12 +9,22 @@
 2. Run the program
 
 ```sh
-cd <folder_name>/
+cd code/
+```
 
-virtualenv venv -p python3 or python3 -m venv env  if you are using Mac
+* If you are using Linux or Windows
 
+```sh 
+virtualenv venv -p python3
+```
 
+* If you are using MacOS
 
+```sh 
+python3 -m venv env
+```
+
+```sh
 source venv/bin/activate
 
 pip install -r requirements.txt

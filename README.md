@@ -125,20 +125,26 @@ Go back to [Contents](#contents).
 
 ```sh
 cd code/
+```
 
+* If you are using Linux or Windows
+
+```sh 
 virtualenv venv -p python3
+```
 
+* If you are using MacOS
+
+```sh 
+python3 -m venv env
+```
+
+```sh
 source venv/bin/activate
 
 pip install -r requirements.txt
 
 python main.py
-```
-
-If you are using Mac, replace ```virtualenv venv -p python3``` by
-
-```#!/bin/sh
-python3 -m venv env  
 ```
 
 **Note**: To desactivate the virtual environment
@@ -147,8 +153,7 @@ python3 -m venv env
 deactivate
 ```
 
-
-For more help you can type python ```main.py -h``` and get the arguments to run specific methods on specific datasets.
+For more help you can type ```python main.py -h```.
 
 ```
 python main.py -h
