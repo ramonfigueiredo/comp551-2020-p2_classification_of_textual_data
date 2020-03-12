@@ -30,6 +30,8 @@ deactivate
 For more help you can type ```python main.py -h```.
 
 ```
+python main.py -h
+
 usage: main.py [-h] [-d DATASET] [-ml ML_ALGORITHM_LIST]
                [-use_default_parameters] [-not_shuffle] [-n_jobs N_JOBS] [-cv]
                [-n_splits N_SPLITS] [-required_classifiers]
@@ -37,7 +39,8 @@ usage: main.py [-h] [-d DATASET] [-ml ML_ALGORITHM_LIST]
                [-show_reviews] [-r] [-m] [--chi2_select CHI2_SELECT] [-cm]
                [-use_hashing] [-use_count] [-n_features N_FEATURES]
                [-plot_time] [-save_logs] [-verbose]
-               [-random_state RANDOM_STATE] [-dl] [-gs] [-v]
+               [-random_state RANDOM_STATE] [-dl] [-epochs EPOCHS]
+               [-dl_list DL_ALGORITHM_LIST] [-gs] [-v]
 
 MiniProject 2: Classification of textual data. Authors: Ramon Figueiredo
 Pessoa, Rafael Gomes Braga, Ege Odaci
@@ -138,6 +141,21 @@ optional arguments:
   -dl, --run_deep_learning_using_keras
                         Run deep learning using keras. Default: False (Run
                         scikit-learn algorithms)
+  -epochs EPOCHS        Number of epochs used by the deep learning approach.
+                        One epoch is when an entire dataset is passed both
+                        forward and backward through the neural network only
+                        once. Default: None = use the best number of epochs
+                        for each dataset.
+  -dl_list DL_ALGORITHM_LIST, --dl_algorithm_list DL_ALGORITHM_LIST
+                        List of deep learning algorithm to be executed. This
+                        stores a list of Deep Learning algorithms, and appends
+                        each algorithm value to the list. For example:
+                        -dl_list KerasDL2, means dl_algorithm_list =
+                        ['KerasDL2']. (Options of Deep Learning algorithms: 1)
+                        KERAS_DL1 (= Deep Learning using Keras 1), 2)
+                        KERAS_DL1 (= Deep Learning using Keras 2).Default:
+                        None. If dl_algorithm_list is not provided, all Deep
+                        Learning algorithms will be executed.
   -gs, --run_grid_search
                         Run grid search for all datasets (TWENTY_NEWS_GROUPS,
                         IMDB_REVIEWS binary labels and IMDB_REVIEWS multi-
@@ -156,5 +174,3 @@ optional arguments:
 
 COMP 551 (001/002), Applied Machine Learning, Winter 2020, McGill University.
 ```
-
-
