@@ -2,23 +2,23 @@
 
 | ID | Dataset | Algorithm | Loss | Training accuracy score (%) | Test accuracy score (%) | Training time (seconds) | Test time (seconds) |
 | --- | ------- | --------- | ---- | --------------------------- | ----------------------- | ----------------------- | ------------------- |
-| 1 | TWENTY_NEWS_GROUPS | Deep Learning using Keras 1 (KerasDL1) | 0.0301 | 99.42 | 96.56 | 95.1296 | 4.9434 |
-| 2 | IMDB_REVIEWS | Deep Learning using Keras 1 (KerasDL1) | 0.0003 | 100.00 | 82.94 | 163.8357 | 3.2235 |
-| 3 | TWENTY_NEWS_GROUPS | Deep Learning using Keras 2 (KerasDL2) | 0.2542 | 94.96 | 94.96 | 85.0631 | 2.8639 |
-| 4 | IMDB_REVIEWS | Deep Learning using Keras 2 (KerasDL2) | 0.2784 | 95.44 | 85.30 | 200.2824 | 6.5434 |
+| 1 | TWENTY_NEWS_GROUPS | Deep Learning using Keras 1 (KERAS_DL1) | 0.0301 | 99.42 | 96.56 | 95.1296 | 4.9434 |
+| 2 | IMDB_REVIEWS | Deep Learning using Keras 1 (KERAS_DL1) | 0.0003 | 100.00 | 82.94 | 163.8357 | 3.2235 |
+| 3 | TWENTY_NEWS_GROUPS | Deep Learning using Keras 2 (KERAS_DL2) | 0.2542 | 94.96 | 94.96 | 85.0631 | 2.8639 |
+| 4 | IMDB_REVIEWS | Deep Learning using Keras 2 (KERAS_DL2) | 0.2784 | 95.44 | 85.30 | 200.2824 | 6.5434 |
 
-### Deep Learning using Keras 1 (KerasDL1)
+### Deep Learning using Keras 1 (KERAS_DL1)
 
-![TWENTY_NEWS_GROUPS: Loss, Training Accuracy, Test Accuracy, Training Time, Test Time](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/results_20newsgroups_and_imdb_using_binary_classification/KerasDL1_TWENTY_NEWS_GROUPS_training_and_validation_accuracy_and_Loss.png)
+![TWENTY_NEWS_GROUPS: Loss, Training Accuracy, Test Accuracy, Training Time, Test Time](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/results_20newsgroups_and_imdb_using_binary_classification/KERAS_DL1_TWENTY_NEWS_GROUPS_training_and_validation_accuracy_and_Loss.png)
 
-![IMDB_REVIEWS: Loss, Training Accuracy, Test Accuracy, Training Time, Test Time](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/results_20newsgroups_and_imdb_using_binary_classification/KerasDL1_IMDB_REVIEWS_training_and_validation_accuracy_and_Loss.png)
+![IMDB_REVIEWS: Loss, Training Accuracy, Test Accuracy, Training Time, Test Time](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/results_20newsgroups_and_imdb_using_binary_classification/KERAS_DL1_IMDB_REVIEWS_training_and_validation_accuracy_and_Loss.png)
 
 
-### Deep Learning using Keras 2 (KerasDL2)
+### Deep Learning using Keras 2 (KERAS_DL2)
 
-![TWENTY_NEWS_GROUPS: Loss, Training Accuracy, Test Accuracy, Training Time, Test Time](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/results_20newsgroups_and_imdb_using_binary_classification/KerasDL2_TWENTY_NEWS_GROUPS_training_and_validation_accuracy_and_Loss.png)
+![TWENTY_NEWS_GROUPS: Loss, Training Accuracy, Test Accuracy, Training Time, Test Time](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/results_20newsgroups_and_imdb_using_binary_classification/KERAS_DL2_TWENTY_NEWS_GROUPS_training_and_validation_accuracy_and_Loss.png)
 
-![IMDB_REVIEWS: Loss, Training Accuracy, Test Accuracy, Training Time, Test Time](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/results_20newsgroups_and_imdb_using_binary_classification/KerasDL2_IMDB_REVIEWS_training_and_validation_accuracy_and_Loss.png)
+![IMDB_REVIEWS: Loss, Training Accuracy, Test Accuracy, Training Time, Test Time](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/results_20newsgroups_and_imdb_using_binary_classification/KERAS_DL2_IMDB_REVIEWS_training_and_validation_accuracy_and_Loss.png)
 
 
 #### Computer settings used to run

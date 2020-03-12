@@ -2,17 +2,17 @@
 
 | ID | Dataset | Algorithm | Loss | Training accuracy score (%) | Test accuracy score (%) | Training time (seconds) | Test time (seconds) |
 | --- | ------- | --------- | ---- | --------------------------- | ----------------------- | ----------------------- | ------------------- |
-| 1 | IMDB_REVIEWS (Multi-class classification) | Deep Learning using Keras 1 (KerasDL1) | 0.0103 | 99.94 | 87.07 | 178.0648 | 2.9642 |
-| 2 | IMDB_REVIEWS (Multi-class classification) | Deep Learning using Keras 2 (KerasDL2) | 0.3497 | 88.63 | 88.58 | 201.2245 | 6.4431 |
+| 1 | IMDB_REVIEWS (Multi-class classification) | Deep Learning using Keras 1 (KERAS_DL1) | 0.0103 | 99.94 | 87.07 | 178.0648 | 2.9642 |
+| 2 | IMDB_REVIEWS (Multi-class classification) | Deep Learning using Keras 2 (KERAS_DL2) | 0.3497 | 88.63 | 88.58 | 201.2245 | 6.4431 |
 
-### Deep Learning using Keras 1 (KerasDL1)
+### Deep Learning using Keras 1 (KERAS_DL1)
 
-![IMDB_REVIEWS: Loss, Training Accuracy, Test Accuracy, Training Time, Test Time](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/results_imdb_using_multi_class_classification/KerasDL1_IMDB_REVIEWS_training_and_validation_accuracy_and_Loss.png)
+![IMDB_REVIEWS: Loss, Training Accuracy, Test Accuracy, Training Time, Test Time](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/results_imdb_using_multi_class_classification/KERAS_DL1_IMDB_REVIEWS_training_and_validation_accuracy_and_Loss.png)
 
 
-### Learning using Keras 1 (KerasDL1)
+### Learning using Keras 2 (KERAS_DL2)
 
-![IMDB_REVIEWS: Loss, Training Accuracy, Test Accuracy, Training Time, Test Time](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/results_imdb_using_multi_class_classification/KerasDL2_IMDB_REVIEWS_training_and_validation_accuracy_and_Loss.png)
+![IMDB_REVIEWS: Loss, Training Accuracy, Test Accuracy, Training Time, Test Time](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/results_imdb_using_multi_class_classification/KERAS_DL2_IMDB_REVIEWS_training_and_validation_accuracy_and_Loss.png)
 
 
 #### Computer settings used to run
