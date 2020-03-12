@@ -124,7 +124,7 @@ def run_deep_learning_KerasDL1(options):
             if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 epochs = 12
             elif dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
-                epochs = 3
+                epochs = 2
             else:  # IMDB_REVIEWS using binary classification
                 epochs = 1
 
@@ -206,11 +206,11 @@ def run_deep_learning_KerasDL2(options):
 
         if not options.epochs:
             if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                epochs = 4
+                epochs = 15
             elif dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
-                epochs = 1
+                epochs = 2
             else:  # IMDB_REVIEWS using binary classification
-                epochs = 4
+                epochs = 3
 
         # Test the model
         print('\t===> Tokenizer: fit_on_texts(X_test)')
