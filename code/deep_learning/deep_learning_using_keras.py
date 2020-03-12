@@ -53,6 +53,39 @@ def get_dataset_list(options):
     return dataset_list
 
 
+def one_hot_enconder_in_multi_class_dataset(dataset, options, y_test, y_train):
+    if (dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels) \
+            or dataset == Dataset.TWENTY_NEWS_GROUPS.name:
+        le_train = LabelEncoder()
+        y_train = le_train.fit_transform(y_train)
+
+        le_test = LabelEncoder()
+        y_test = le_test.fit_transform(y_test)
+
+        oh_train = OneHotEncoder(categories='auto', dtype=np.float, sparse=False, drop='first')
+        y_train = y_train.reshape(len(y_train), 1)
+        y_train = oh_train.fit_transform(y_train)
+
+        oh_test = OneHotEncoder(categories='auto', dtype=np.float, sparse=False, drop='first')
+        y_test = y_test.reshape(len(y_test), 1)
+        y_test = oh_test.fit_transform(y_test)
+
+    return y_test, y_train
+
+
+def print_results(X_test, algorithm_name, dataset, model, test_time, training_accuracy, training_loss, training_time, y_test):
+    print("\tDataset: {}".format(dataset))
+    print("\tAlgorithm: {}".format(algorithm_name))
+    print("\tTraining loss: {:.4f}".format(training_loss))
+    print("\tTraining accuracy score: {:.2f}%".format(training_accuracy * 100))
+    test_loss, test_accuracy = model.evaluate(X_test, y_test, verbose=False)
+    print("\tTest loss: {:.4f}".format(test_loss))
+    print("\tTest accuracy score: {:.2f}%".format(test_accuracy * 100))
+    print("\tTraining time: {:.4f}".format(training_time))
+    print("\tTest time: {:.4f}".format(test_time))
+    return test_accuracy
+
+
 def run_deep_learning_KerasDL1(options):
 
     manage_logs(options)
@@ -66,21 +99,7 @@ def run_deep_learning_KerasDL1(options):
 
         X_train, y_train, X_test, y_test, target_names, data_train_size_mb, data_test_size_mb = load_dataset(dataset, options)
 
-        if (dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels) \
-                or dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-            le_train = LabelEncoder()
-            y_train = le_train.fit_transform(y_train)
-
-            le_test = LabelEncoder()
-            y_test = le_test.fit_transform(y_test)
-
-            oh_train = OneHotEncoder(categories='auto', dtype=np.float, sparse=False, drop='first')
-            y_train = y_train.reshape(len(y_train), 1)
-            y_train = oh_train.fit_transform(y_train)
-
-            oh_test = OneHotEncoder(categories='auto', dtype=np.float, sparse=False, drop='first')
-            y_test = y_test.reshape(len(y_test), 1)
-            y_test = oh_test.fit_transform(y_test)
+        y_test, y_train = one_hot_enconder_in_multi_class_dataset(dataset, options, y_test, y_train)
 
         vectorizer, X_train, X_test = extract_text_features(X_train, X_test, options, data_train_size_mb,
                                                             data_test_size_mb)
@@ -112,10 +131,10 @@ def run_deep_learning_KerasDL1(options):
 
         if not options.epochs:
             if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                epochs = 10
+                epochs = 12
             elif dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
                 epochs = 3
-            elif dataset == Dataset.IMDB_REVIEWS.name and not options.use_imdb_multi_class_labels:
+            else: # IMDB_REVIEWS with binary classification
                 epochs = 1
 
         if not options.epochs:
@@ -132,24 +151,16 @@ def run_deep_learning_KerasDL1(options):
         training_loss, training_accuracy = model.evaluate(X_train, y_train, verbose=False)
         test_time = time() - start
 
-        algorithm_name = "Deep Learning using Keras 1 (KerasDL1)"
+        algorithm_name = "Deep Learning using Keras 1 (KERAS_DL1)"
 
-        print("\tDataset: {}".format(dataset))
-        print("\tAlgorithm: {}".format(algorithm_name))
-        print("\tTraining Loss: {:.4f}".format(training_loss))
-        print("\tTraining accuracy score: {:.2f}%".format(training_accuracy * 100))
-        test_loss, test_accuracy = model.evaluate(X_test, y_test, verbose=False)
-        print("\tTest Accuracy: {:.2f}%".format(test_accuracy * 100))
-        print("\tTest Loss: {:.4f}".format(test_loss))
-        print("\tTraining Time: {:.4f}".format(training_time))
-        print("\tTest Time: {:.4f}".format(test_time))
+        test_accuracy = print_results(X_test, algorithm_name, dataset, model, test_time, training_accuracy, training_loss, training_time, y_test)
 
         plt.style.use('ggplot')
 
         if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-            plot_history(history, 'KerasDL1', '20 NEWS')
+            plot_history(history, 'KERAS_DL1', '20 NEWS')
         elif dataset == Dataset.IMDB_REVIEWS.name:
-            plot_history(history, 'KerasDL1', 'IMDB')
+            plot_history(history, 'KERAS_DL1', 'IMDB')
 
         print('\n')
 
@@ -176,21 +187,7 @@ def run_deep_learning_KerasDL2(options):
         X_train = apply_nltk_feature_extraction(X_train, options, label='X_train')
         X_test = apply_nltk_feature_extraction(X_test, options, label='X_test')
 
-        if (dataset == Dataset.IMDB_REVIEWS.name or options.use_imdb_multi_class_labels) \
-                or dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-            le_train = LabelEncoder()
-            y_train = le_train.fit_transform(y_train)
-
-            le_test = LabelEncoder()
-            y_test = le_test.fit_transform(y_test)
-
-            oh_train = OneHotEncoder(categories='auto', dtype=np.float, sparse=False, drop='first')
-            y_train = y_train.reshape(len(y_train), 1)
-            y_train = oh_train.fit_transform(y_train)
-
-            oh_test = OneHotEncoder(categories='auto', dtype=np.float, sparse=False, drop='first')
-            y_test = y_test.reshape(len(y_test), 1)
-            y_test = oh_test.fit_transform(y_test)
+        y_test, y_train = one_hot_enconder_in_multi_class_dataset(dataset, options, y_test, y_train)
 
         print('\t===> Tokenizer: fit_on_texts(X_train)')
         max_features = 6000
@@ -219,10 +216,10 @@ def run_deep_learning_KerasDL2(options):
 
         if not options.epochs:
             if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-                epochs = 2
+                epochs = 4
             elif dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
                 epochs = 1
-            elif dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
+            else: # IMDB_REVIEWS with binary classification
                 epochs = 4
 
         if not options.epochs:
@@ -268,24 +265,17 @@ def run_deep_learning_KerasDL2(options):
         start = time()
         training_loss, training_accuracy = model.evaluate(X_t, y, verbose=False)
         test_time = time() - start
-        algorithm_name = "Deep Learning using Keras 2 (KerasDL2)"
+        algorithm_name = "Deep Learning using Keras 2 (KERAS_DL2)"
 
-        print("\tDataset: {}".format(dataset))
-        print("\tAlgorithm: {}".format(algorithm_name))
-        print("\tTraining Loss: {:.4f}".format(training_loss))
-        print("\tTraining accuracy score: {:.2f}%".format(training_accuracy * 100))
-        test_loss, test_accuracy = model.evaluate(X_te, y_test, verbose=False)
-        print("\tTest Accuracy: {:.2f}%".format(test_accuracy * 100))
-        print("\tTest Loss: {:.4f}".format(test_loss))
-        print("\tTraining Time: {:.4f}".format(training_time))
-        print("\tTest Time: {:.4f}".format(test_time))
+        test_accuracy = print_results(X_te, algorithm_name, dataset, model, test_time, training_accuracy, training_loss, training_time, y_test)
+        test_accuracy = print_results(X_te, algorithm_name, dataset, model, test_time, training_accuracy, training_loss, training_time, y_test)
 
         plt.style.use('ggplot')
 
         if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
-            plot_history(history, 'KerasDL2', '20 NEWS')
+            plot_history(history, 'KERAS_DL2', '20 NEWS')
         elif dataset == Dataset.IMDB_REVIEWS.name:
-            plot_history(history, 'KerasDL2', 'IMDB')
+            plot_history(history, 'KERAS_DL2', 'IMDB')
 
         print('\n')
 
