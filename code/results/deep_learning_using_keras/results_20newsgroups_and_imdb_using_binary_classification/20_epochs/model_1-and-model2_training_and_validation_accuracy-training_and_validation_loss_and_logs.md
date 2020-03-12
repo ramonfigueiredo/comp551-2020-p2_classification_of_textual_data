@@ -20,6 +20,16 @@
 
 ![IMDB_REVIEWS: Loss, Training Accuracy, Test Accuracy, Training Time, Test Time](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/code/results/deep_learning_using_keras/results_20newsgroups_and_imdb_using_binary_classification/20_epochs/KERAS_DL2_IMDB_REVIEWS_training_and_validation_accuracy_and_Loss.png)
 
+## Comparing test accuracy score using best number of epochs and using 20 epochs
+
+| Deep Learning	| Dataset					 | Best number of epochs | Test accuracy with best epochs | Test accuracy with 20 epochs |
+| ------------- | -------------------------- | --------------------- |------------------------------- | ---------------------------- |
+| KERAS DL 1	| 20 NEWS GROUPS 			 | 10					 | 96.69						  | 96.66						 |
+| KERAS DL 1	| IMDB REVIEWS (binary)		 | 1					 | 88.36						  | 83.23						 |
+| KERAS DL 1	| IMDB REVIEWS (multi-class) | 2					 | 89.10						  | 86.61						 |
+| KERAS DL 2	| 20 NEWS GROUPS 			 | 15					 | 96.08						  | 95.98						 |
+| KERAS DL 2	| IMDB REVIEWS (binary)		 | 3					 | 86.33						  | 83.98						 |
+| KERAS DL 2	| IMDB REVIEWS (multi-class) | 2					 | 89.07						  | 86.15						 |
 
 #### Computer settings used to run
 
