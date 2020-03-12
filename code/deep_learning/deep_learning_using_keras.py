@@ -110,6 +110,7 @@ def run_deep_learning_KerasDL1(options):
 
         start = time()
 
+        epochs = 10
         if not options.epochs:
             if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 epochs = 10
@@ -117,8 +118,6 @@ def run_deep_learning_KerasDL1(options):
                 epochs = 3
             elif dataset == Dataset.IMDB_REVIEWS.name and not options.use_imdb_multi_class_labels:
                 epochs = 1
-            else:
-                epochs = 10
 
         print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(epochs))
 
@@ -214,6 +213,7 @@ def run_deep_learning_KerasDL2(options):
 
         batch_size = 100
 
+        epochs = 10
         if not options.epochs:
             if dataset == Dataset.TWENTY_NEWS_GROUPS.name:
                 epochs = 2
@@ -221,8 +221,6 @@ def run_deep_learning_KerasDL2(options):
                 epochs = 1
             elif dataset == Dataset.IMDB_REVIEWS.name and options.use_imdb_multi_class_labels:
                 epochs = 4
-            else:
-                epochs = 10
 
         print('\n\nNUMBER OF EPOCHS USED: {}\n'.format(epochs))
 
