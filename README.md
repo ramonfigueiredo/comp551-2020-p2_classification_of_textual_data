@@ -14,7 +14,7 @@ MiniProject 2: COMP 551 (001/002), Applied Machine Learning, Winter 2020, McGill
 
 [Assignment description (PDF) (COMP551 P2 Winter 2020)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/assignment/P2.pdf)
 
-[Final report (PDF) (COMP P2 Winter 2020)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/report/20200313_comp551_RRE_project2.pdf) 
+[Final report (PDF) (COMP P2 Winter 2020)](https://github.com/ramonfigueiredopessoa/comp551-2020-p2_classification_of_textual_data/blob/master/report/20200312_comp551_RRE_project2.pdf) 
 
 # General information
 
